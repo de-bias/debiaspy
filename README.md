@@ -28,6 +28,19 @@ From the repository root:
 python -m pip install -e ".[dev]"
 ```
 
+Install the empirical data companion when you need to reproduce tutorials or
+examples that use the packaged mobility, Census, covariate and coverage data:
+
+```bash
+python -m pip install git+https://github.com/de-bias/debiaspydata.git
+```
+
+For local development with a sibling checkout:
+
+```bash
+python -m pip install -e ../debiaspydata
+```
+
 ## Development checks
 
 Run the test suite:

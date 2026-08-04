@@ -46,6 +46,19 @@ Check that the package imports:
 python -c "import debiaspy; print(debiaspy.__version__)"
 ```
 
+Install the empirical data companion when you need to reproduce tutorials or
+examples that use the packaged mobility, Census, covariate and coverage data:
+
+```bash
+python -m pip install git+https://github.com/de-bias/debiaspydata.git
+```
+
+For local development with a sibling checkout:
+
+```bash
+python -m pip install -e ../debiaspydata
+```
+
 ## Framework
 
 The package follows a three-stage workflow:
