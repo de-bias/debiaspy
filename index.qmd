@@ -59,6 +59,33 @@ For local development with a sibling checkout:
 python -m pip install -e ../debiaspydata
 ```
 
+## Usage
+
+The first implemented function is `measure_bias()`, which calculates area-level
+active-user coverage scores and coverage bias:
+
+```python
+import pandas as pd
+from debiaspy import measure_bias
+
+coverage = pd.DataFrame(
+    {
+        "area": ["A", "B"],
+        "population": [1000, 800],
+        "user_count": [100, 40],
+    }
+)
+
+bias = measure_bias(coverage)
+print(bias)
+```
+
+The function returns the input data with three added columns:
+
+- `coverage_score`: `user_count / population`
+- `coverage_bias`: `1 - coverage_score`
+- `bias`: an alias of `coverage_bias`
+
 ## Framework
 
 The package follows a three-stage workflow:
