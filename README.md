@@ -1,9 +1,21 @@
 # debiaspy
 
-`debiaspy` is the planned Python counterpart to
-[`debiasR`](https://github.com/de-bias/debiasR), a package for bias correction
-and validation of origin-destination mobility data derived from mobile phone
-sources.
+`debiaspy` is a Python package for assessing, adjusting and validating
+population representation bias in digital trace data. It is designed for
+spatio-temporally aggregated data that provide population counts by location and
+flows between locations.
+
+The package workflow focuses on three linked tasks:
+
+1. measuring coverage and representativeness bias
+2. adjusting biased origin-destination flows
+3. validating adjusted flows against benchmark data
+
+Mobile-phone-derived mobility data are the main motivating example, but the
+same logic can apply to other location-to-location flow data with comparable
+spatial and temporal aggregation and a validation target. Examples include trade
+of goods, Internet traffic, supply chains and other forms of interaction between
+places.
 
 This repository currently contains the package skeleton only. The core
 adjustment, validation and measurement methods have not yet been implemented.
@@ -42,8 +54,10 @@ workflow.
 
 ## Planned module structure
 
-The initial module names mirror the flat file layout used in `debiasR/R`.
-These files are placeholders until the Python implementation begins:
+The initial source files are organised around the main package tasks: measuring
+bias, adjusting flows, validating outputs, plotting diagnostics and loading
+example data. These files are placeholders until the Python implementation
+begins:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
@@ -62,14 +76,14 @@ These files are placeholders until the Python implementation begins:
 - `validate_flow_methods.py`
 - `validate_flows.py`
 
-The R package metadata file `debiasR-package.R` is not mirrored because its role
-is specific to R package documentation.
+This flat layout keeps the package easy to inspect during the first stage of
+development. It can be reorganised later if the Python implementation needs a
+larger internal structure.
 
 ## Planned tutorials
 
-Tutorial placeholders are stored in `docs/tutorials`. Their filenames mirror
-the current `debiasR` vignette sequence, using `t` for tutorial instead of `v`
-for vignette:
+Tutorial placeholders are stored in `docs/tutorials`. The sequence is organised
+around the package workflow:
 
 - `t02-why-this-matters.qmd`
 - `t03-getting-set-up.qmd`
