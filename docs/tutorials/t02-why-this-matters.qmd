@@ -1,0 +1,6 @@
+---
+title: "Why this matters"
+---
+
+This tutorial is a placeholder for the Python counterpart of
+`debiasR/vignettes/v02-why-this-matters.qmd`.

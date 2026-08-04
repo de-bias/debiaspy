@@ -1,0 +1,6 @@
+---
+title: "Adjusting biases in origin-destination flows"
+---
+
+This tutorial is a placeholder for the Python counterpart of
+`debiasR/vignettes/v06-adjusting-biases.qmd`.

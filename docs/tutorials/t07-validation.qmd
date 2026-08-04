@@ -1,0 +1,6 @@
+---
+title: "Validation"
+---
+
+This tutorial is a placeholder for the Python counterpart of
+`debiasR/vignettes/v07-validation.qmd`.

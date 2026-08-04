@@ -1,0 +1,60 @@
+# Development workflow
+
+This note records the basic local workflow for developing `debiaspy`.
+
+## One-time setup
+
+From the repository root:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+```
+
+## Check that the package imports
+
+```bash
+python -c "import debiaspy; print(debiaspy.__version__)"
+```
+
+Expected output:
+
+```text
+0.0.0
+```
+
+## Run tests
+
+```bash
+python -m pytest
+```
+
+## Run linting
+
+```bash
+python -m ruff check .
+```
+
+## Format code
+
+```bash
+python -m ruff format .
+```
+
+## Implementing a function
+
+When porting a function from `debiasR`:
+
+1. Identify the source R file under `debiasR/R`.
+2. Read the corresponding tests under `debiasR/tests/testthat`.
+3. Implement the Python function in the matching flat module under
+   `src/debiaspy`.
+4. Add focused Python tests under `tests`.
+5. Export the public function from `src/debiaspy/__init__.py` when the API is
+   ready.
+6. Update README or tutorial text if the function is user-facing.
+7. Run `python -m pytest` and `python -m ruff check .`.
+
+Keep each change small enough that reviewers can compare the Python behaviour
+against the R implementation.

@@ -1,0 +1,6 @@
+---
+title: "Getting started"
+---
+
+This tutorial is a placeholder for the Python counterpart of
+`debiasR/vignettes/v03-getting-set-up.qmd`.

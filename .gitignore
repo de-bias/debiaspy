@@ -1,0 +1,36 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+_site/
+.quarto/
+
+# Coverage outputs
+.coverage
+htmlcov/
+
+# Local environment files
+.env
+.env.*
+
+# Interactive session history
+.Rhistory
+
+# Operating system files
+.DS_Store
+
+/.quarto/
+**/*.quarto_ipynb

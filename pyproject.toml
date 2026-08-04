@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "debiaspy"
+version = "0.0.0"
+description = "Python tools for bias correction in mobile-phone-derived mobility data."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE.md"]
+authors = [
+  { name = "Francisco Rowe", email = "fcorowe@liverpool.ac.uk" },
+  { name = "Carmen Cabrera", email = "c.cabrera@liverpool.ac.uk" },
+]
+keywords = [
+  "mobility",
+  "origin-destination",
+  "bias correction",
+  "mobile phone data",
+]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest >= 8",
+  "ruff >= 0.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/de-bias/debiaspy"
+Issues = "https://github.com/de-bias/debiaspy/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/debiaspy"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "UP",
+  "B",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "debiaspy"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Foundations
+        menu:
+          - href: docs/tutorials/t02-why-this-matters.qmd
+            text: "Why this matters"
+          - href: docs/tutorials/t03-getting-set-up.qmd
+            text: "Getting set up"
+      - text: Measure bias
+        menu:
+          - href: docs/tutorials/t04-measuring-coverage-bias.qmd
+            text: "Measuring coverage bias"
+          - href: docs/tutorials/t05-identifying-and-explaining-bias.qmd
+            text: "Identifying and explaining bias"
+      - text: Adjust flows
+        menu:
+          - href: docs/tutorials/t06-adjusting-biases.qmd
+            text: "Adjusting origin-destination flows"
+          - href: docs/tutorials/t09-advanced-bayesian-adjustment.qmd
+            text: "Advanced Bayesian multilevel adjustment"
+      - text: Validate
+        menu:
+          - href: docs/tutorials/t07-validation.qmd
+            text: "Validation workflow"
+      - text: Development
+        menu:
+          - href: docs/development/workflow.md
+            text: "Workflow"
+          - href: CONTRIBUTING.md
+            text: "Contributing"
+    right:
+      - icon: github
+        href: https://github.com/de-bias/debiaspy
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
