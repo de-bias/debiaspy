@@ -30,7 +30,9 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Topic :: Scientific/Engineering",
 ]
-dependencies = []
+dependencies = [
+  "pandas >= 2.2",
+]
 
 [project.optional-dependencies]
 dev = [
