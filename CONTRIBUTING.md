@@ -12,7 +12,7 @@ All changes to `main` should come through pull requests. Direct pushes to
 `main` are not part of the project workflow, including for maintainers and
 automation agents.
 
-Francisco Rowe (`fcorowe`) and Carmen Cabrera (`carmen-cabrera`) can review and
+Carmen Cabrera (`carmen-cabrera`) and Francisco Rowe (`fcorowe`) can review and
 merge accepted pull requests.
 
 Pull requests should wait for an approving review from an eligible reviewer
