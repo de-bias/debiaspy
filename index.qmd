@@ -137,7 +137,7 @@ be expanded as those materials are added.
 
 ## Core development team
 
-The core development team consists of **Francisco Rowe** and **Carmen Cabrera**
+The core development team consists of **Carmen Cabrera** and **Francisco Rowe**
 (University of Liverpool).
 
 We actively maintain and develop the DEBIAS package family and welcome
@@ -147,10 +147,10 @@ development.
 
 ::: {.grid}
 ::: {.g-col-12 .g-col-md-6}
-![](https://avatars.githubusercontent.com/u/28450210?v=4){fig-alt="Francisco Rowe" width="120"}
+![](https://avatars.githubusercontent.com/u/33100192?v=4){fig-alt="Carmen Cabrera" width="120"}
 
-**Francisco Rowe**  
-[Website](http://franciscorowe.com) · [GitHub](https://github.com/fcorowe)
+**Carmen Cabrera**<br>
+[Website](https://c-cabrera.com/) · [GitHub](https://github.com/carmen-cabrera)
 
 Contributions: documentation, code, bug reports, content, design, examples,
 ideas, infrastructure, maintenance, packaging, project management, research,
@@ -158,10 +158,10 @@ review, tools and tests.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-![](https://avatars.githubusercontent.com/u/33100192?v=4){fig-alt="Carmen Cabrera" width="120"}
+![](https://avatars.githubusercontent.com/u/28450210?v=4){fig-alt="Francisco Rowe" width="120"}
 
-**Carmen Cabrera**  
-[Website](https://c-cabrera.com/) · [GitHub](https://github.com/carmen-cabrera)
+**Francisco Rowe**<br>
+[Website](http://franciscorowe.com) · [GitHub](https://github.com/fcorowe)
 
 Contributions: documentation, code, bug reports, content, design, examples,
 ideas, infrastructure, maintenance, packaging, project management, research,
