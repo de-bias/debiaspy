@@ -31,6 +31,8 @@ classifiers = [
   "Topic :: Scientific/Engineering",
 ]
 dependencies = [
+  "matplotlib >= 3.9",
+  "numpy >= 2.0",
   "pandas >= 2.2",
 ]
 

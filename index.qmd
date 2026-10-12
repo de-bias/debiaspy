@@ -53,7 +53,8 @@ examples that use the packaged mobility, Census, covariate and coverage data:
 python -m pip install git+https://github.com/de-bias/debiaspydata.git
 ```
 
-For local development with a sibling checkout:
+If `debiaspy` and `debiaspydata` are cloned side by side under the same parent
+folder, install the local data package in editable mode with:
 
 ```bash
 python -m pip install -e ../debiaspydata
@@ -61,12 +62,17 @@ python -m pip install -e ../debiaspydata
 
 ## Usage
 
-The first implemented function is `measure_bias()`, which calculates area-level
-active-user coverage scores and coverage bias:
+The first implemented group of functions measures area-level coverage bias,
+compares the spatial distributions of active users and the population and
+examines residual structure:
 
 ```python
 import pandas as pd
-from debiaspy import measure_bias
+from debiaspy import (
+    measure_bias,
+    measure_bias_distribution,
+    validate_bias_residual_structure,
+)
 
 coverage = pd.DataFrame(
     {
@@ -76,15 +82,23 @@ coverage = pd.DataFrame(
     }
 )
 
-bias = measure_bias(coverage)
-print(bias)
+area_bias = measure_bias(coverage)
+distribution_bias = measure_bias_distribution(coverage, area_col="area")
+residual_bias = validate_bias_residual_structure(
+    coverage,
+    coverage_area_col="area",
+)
 ```
 
-The function returns the input data with three added columns:
+`measure_bias()` returns the input data with three added columns:
 
 - `coverage_score`: `user_count / population`
 - `coverage_bias`: `1 - coverage_score`
 - `bias`: an alias of `coverage_bias`
+
+`measure_bias_distribution()` and `validate_bias_residual_structure()` return
+dictionaries of pandas DataFrames. These separate the overall summaries from
+the area-level values and any optional diagnostics.
 
 ## Framework
 
