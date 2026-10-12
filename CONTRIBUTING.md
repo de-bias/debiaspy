@@ -1,10 +1,10 @@
 # Contributing guidelines
 
-Thank you for your interest in contributing to `debiaspy`. This package is the
-planned Python counterpart to [`debiasR`](https://github.com/de-bias/debiasR).
-It is currently at the skeleton stage, so early contributions should focus on
-careful package structure, tests, documentation and small ports of existing
-`debiasR` functionality.
+Thank you for your interest in contributing to `debiaspy`. The package provides
+Python tools for assessing and correcting population representation bias in
+digital trace data. It is under active development, so contributions should
+focus on careful package structure, tests, documentation and well-scoped
+implementations of the planned methods.
 
 ## How to contribute
 
@@ -73,8 +73,9 @@ If formatting changes are needed, run:
 python -m ruff format .
 ```
 
-For the current skeleton, the test suite only checks that the package imports.
-As functions are implemented, each public function should receive focused tests.
+The test suite checks package imports, numerical results, input validation and
+the behaviour of implemented public functions. Each new public function should
+receive similarly focused tests.
 
 ## Naming guide
 
@@ -86,8 +87,7 @@ As functions are implemented, each public function should receive focused tests.
   clear reason to reorganise.
 - Use Python file naming conventions, replacing hyphens with underscores. For
   example, `debiasR/R/example-data.R` is mirrored as `example_data.py`.
-- Prefer clear data-frame inputs and outputs. The expected data-frame library
-  will be decided when the first real functions are implemented.
+- Prefer clear pandas DataFrame inputs and outputs.
 
 ## Tests
 

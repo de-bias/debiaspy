@@ -17,8 +17,8 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-This repository currently contains the package skeleton only. All the
-adjustment, validation and measurement methods have not yet been implemented.
+The population coverage measurement API is implemented. Adjustment methods and
+flow-validation methods remain under development.
 
 ## Installation for development
 
@@ -35,11 +35,52 @@ examples that use mobility, Census, covariate and coverage data:
 python -m pip install git+https://github.com/de-bias/debiaspydata.git
 ```
 
-For local development with the data repository, install under the same parent folder as debiaspy:
+If `debiaspy` and `debiaspydata` are cloned side by side under the same parent
+folder, install the local data package in editable mode with:
 
 ```bash
 python -m pip install -e ../debiaspydata
 ```
+
+## Current measurement functions
+
+The package currently provides three functions for measuring population
+coverage bias and examining its structure:
+
+- `measure_bias()` calculates coverage scores and coverage bias for each area
+- `measure_bias_distribution()` compares population and active-user shares
+  across areas
+- `validate_bias_residual_structure()` examines departures from a constant
+  global coverage rate and can add benchmark-flow, covariate and spatial
+  diagnostics
+
+```python
+import pandas as pd
+from debiaspy import (
+    measure_bias,
+    measure_bias_distribution,
+    validate_bias_residual_structure,
+)
+
+coverage = pd.DataFrame(
+    {
+        "area": ["A", "B", "C"],
+        "population": [1000, 800, 1200],
+        "user_count": [100, 40, 180],
+    }
+)
+
+area_bias = measure_bias(coverage)
+distribution_bias = measure_bias_distribution(coverage, area_col="area")
+residual_bias = validate_bias_residual_structure(
+    coverage,
+    coverage_area_col="area",
+)
+```
+
+`measure_bias()` returns a DataFrame. The other two functions return
+dictionaries containing summary and area-level DataFrames, along with any
+optional diagnostics requested by the user.
 
 ## Development checks
 
@@ -65,12 +106,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and
 [docs/development/workflow.md](docs/development/workflow.md) for the contributor
 workflow.
 
-## Planned module structure
+## Module structure
 
-The initial source files are organised around the main package tasks: measuring
-bias, adjusting flows, validating outputs, plotting diagnostics and loading
-example data. These files are placeholders until the Python implementation
-begins:
+The source files are organised around the main package tasks: measuring bias,
+adjusting flows, validating outputs, plotting diagnostics and loading example
+data. `measure_bias.py` is implemented; most other modules remain placeholders:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
