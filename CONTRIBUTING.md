@@ -80,6 +80,9 @@ receive similarly focused tests.
 ## Naming guide
 
 `debiaspy` should mirror `debiasR` where this produces a clear Python API.
+The [R-to-Python API mapping](docs/development/api-mapping.md) records the
+agreed module and public-function locations. Check it before starting an
+implementation.
 
 - Keep public function names close to the `debiasR` names, for example
   `adjust_inverse_penetration`, `measure_bias` and `validate_flow_overall`.

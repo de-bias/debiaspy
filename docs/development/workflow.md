@@ -46,15 +46,17 @@ python -m ruff format .
 
 When porting a function from `debiasR`:
 
-1. Identify the source R file under `debiasR/R`.
-2. Read the corresponding tests under `debiasR/tests/testthat`.
-3. Implement the Python function in the matching flat module under
+1. Check the [R-to-Python API mapping](api-mapping.md) and confirm that nobody
+   else is working on the same function.
+2. Identify the source R file under `debiasR/R`.
+3. Read the corresponding tests under `debiasR/tests/testthat`.
+4. Implement the Python function in the matching flat module under
    `src/debiaspy`.
-4. Add focused Python tests under `tests`.
-5. Export the public function from `src/debiaspy/__init__.py` when the API is
+5. Add focused Python tests under `tests`.
+6. Export the public function from `src/debiaspy/__init__.py` when the API is
    ready.
-6. Update README or tutorial text if the function is user-facing.
-7. Run `python -m pytest` and `python -m ruff check .`.
+7. Update README or tutorial text if the function is user-facing.
+8. Run `python -m pytest` and `python -m ruff check .`.
 
 Keep each change small enough that reviewers can compare the Python behaviour
 against the R implementation.
