@@ -17,7 +17,7 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-This repository currently contains the package skeleton only. The core
+This repository currently contains the package skeleton only. All the
 adjustment, validation and measurement methods have not yet been implemented.
 
 ## Installation for development
@@ -29,13 +29,13 @@ python -m pip install -e ".[dev]"
 ```
 
 Install the empirical data companion when you need to reproduce tutorials or
-examples that use the packaged mobility, Census, covariate and coverage data:
+examples that use mobility, Census, covariate and coverage data:
 
 ```bash
 python -m pip install git+https://github.com/de-bias/debiaspydata.git
 ```
 
-For local development with a sibling checkout:
+For local development with the data repository, install under the same parent folder as debiaspy:
 
 ```bash
 python -m pip install -e ../debiaspydata
