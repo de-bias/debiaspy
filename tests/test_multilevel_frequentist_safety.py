@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from debiaspy import adjust_multilevel_bayes
+from debiaspy import adjust_all_methods, adjust_multilevel_bayes
 from debiaspy._exceptions import DebiasSchemaError
 from debiaspy._frequentist import _fit_count_model
 from debiaspy._multilevel_inputs import _random_intercept_group_col
@@ -503,6 +503,25 @@ def test_rank_deficient_default_formula_matches_pinned_r_alias_policy():
         atol=2e-8,
     )
     assert actual.attrs["diagnostics"]["aliased_fixed_effects"] == ["log_pop_o"]
+
+
+def test_adjust_all_methods_preserves_supported_default_multilevel_path(
+    example_data: dict[str, pd.DataFrame],
+):
+    actual = adjust_all_methods(
+        example_data["mpd_od"],
+        example_data["coverage"],
+        benchmark_od_df=example_data["benchmark_od"],
+        covariates_df=example_data["covariates"],
+        distance_df=example_data["distance"],
+        methods=["multilevel_bayes"],
+        covariate_col="income_norm",
+        multilevel_engine="frequentist",
+    )["multilevel_bayes"]
+
+    assert bool(np.isfinite(actual["flow_adj"]).all())
+    assert actual.attrs["model_family"] == "poisson"
+    assert actual.attrs["random_intercept"] == "none"
 
 
 @pytest.mark.parametrize(
