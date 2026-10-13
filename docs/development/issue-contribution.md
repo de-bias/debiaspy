@@ -1,6 +1,9 @@
 # Issue 10
 
-Selected deterministic-method orchestration. Multilevel dispatch requires the model implementation under #16.
+Orchestration for explicitly selected deterministic methods.
+Pass the deterministic method names through `methods`. The default
+`methods="all"` and multilevel dispatch require the model implementation
+under issue 16.
 
 Base: `contribution/issue-8`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
@@ -13,5 +16,3 @@ DEBIASR_ROOT=/path/to/debiasR python -m pytest -q
 python -m ruff check .
 ```
 
-The companion loader requires the documented `debiaspydata` assets.
-Plot maps require `.[plot]`.
