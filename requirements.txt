@@ -1,0 +1,7 @@
+# Base package and its runtime dependencies are defined in pyproject.toml.
+-e .
+
+# Optional runtimes:
+# python -m pip install -e ".[dev]"
+# python -m pip install -e ".[bayesian,grouped,latent]"
+# python -m pip install -e ".[plot]"

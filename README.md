@@ -202,3 +202,9 @@ DEBIAS.
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind are welcome.
+## Implementations introduced on this contribution branch
+
+proposed Bayesian and frequentist model backends.
+
+Exports become available when their supporting methods have been introduced.
+Bayesian implementation is proposed for maintainer review under issue #16.

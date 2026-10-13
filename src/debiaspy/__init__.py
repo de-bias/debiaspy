@@ -1,5 +1,6 @@
 """Python tools for bias correction in mobile-phone-derived mobility data."""
 
+from debiaspy.adjust_multilevel_bayes import adjust_multilevel_bayes
 from debiaspy.measure_bias import (
     measure_bias,
     measure_bias_distribution,
@@ -13,4 +14,5 @@ __all__ = [
     "measure_bias",
     "measure_bias_distribution",
     "validate_bias_residual_structure",
+    "adjust_multilevel_bayes",
 ]
