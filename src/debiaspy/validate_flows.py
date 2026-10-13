@@ -15,6 +15,11 @@ from debiaspy._flow_joins import (
 )
 from debiaspy._numeric import global_moran_i
 from debiaspy._schemas import require_columns, require_scalar_bool
+from debiaspy.distribution_metrics import (
+    _distribution_jsd_contributions,
+    _distribution_kl_contributions,
+    _distribution_shares,
+)
 
 FlowComparison = Literal["adjusted_vs_benchmark", "raw_vs_benchmark", "raw_vs_adjusted"]
 
@@ -261,6 +266,351 @@ OD_LEVEL_COLUMNS = [
     "zero_reference_total",
     "zero_comparison_total",
 ]
+
+
+def validate_flow_distribution(
+    adj_df: pd.DataFrame,
+    benchmark_od_df: pd.DataFrame,
+    flow_col_adj: str = "flow_adj",
+    flow_col_mpd: str = "flow",
+    flow_col_bench: str = "flow",
+    epsilon: float = 1e-8,
+    method_name: str | None = None,
+    weight_by: str = "none",
+    comparisons: str | list[str] = "adjusted_vs_benchmark",
+    return_origin_level: bool = True,
+    return_od_level: bool = False,
+) -> dict[str, pd.DataFrame]:
+    """Compare origin-specific destination-flow distributions.
+
+    ``adj_df`` requires OD keys and ``flow_col_adj``; raw comparisons also
+    require ``flow_col_mpd``. The benchmark requires matching OD keys and
+    ``flow_col_bench``. Shared source/time fields extend the observation key.
+    ``epsilon`` smooths shares, while comparison, weighting, and detail options
+    control the reported divergence tables.
+
+    Returns a ``summary`` data frame and optional ``origin_level`` and
+    ``od_level`` tables containing KL and Jensen-Shannon diagnostics. Invalid
+    smoothing, columns, comparisons, or joins raise. Parity is scoped to the
+    audited distribution tables and numeric tolerances.
+    """
+    weight_by = _match_weight_by(weight_by)
+    return_origin_level = require_scalar_bool(
+        return_origin_level, "return_origin_level"
+    )
+    return_od_level = require_scalar_bool(return_od_level, "return_od_level")
+    comparison_ids = normalise_flow_comparisons(comparisons)
+    _validate_distribution_epsilon(epsilon)
+
+    raw_requested = any(
+        comparison in {"raw_vs_benchmark", "raw_vs_adjusted"}
+        for comparison in comparison_ids
+    )
+    req_adj = ["origin", "destination", flow_col_adj]
+    if raw_requested:
+        req_adj.append(flow_col_mpd)
+    require_columns(adj_df, req_adj, "adj_df")
+    require_columns(
+        benchmark_od_df, ("origin", "destination", flow_col_bench), "benchmark_od_df"
+    )
+
+    join_keys = validation_join_keys(adj_df, benchmark_od_df)
+    # Repeated-observation columns participate in public detail tables only
+    # when they are shared join keys.  A constant source label carried solely
+    # by the adjusted frame does not change OD identity and debiasR drops it.
+    adj_key_columns = join_keys
+    adj_tbl = adj_df.loc[:, adj_key_columns].copy()
+    adj_tbl["adjusted_flow"] = adj_df[flow_col_adj].to_numpy()
+    if flow_col_mpd in adj_df.columns:
+        adj_tbl["raw_flow"] = adj_df[flow_col_mpd].to_numpy()
+    else:
+        adj_tbl["raw_flow"] = np.nan
+
+    bench_columns = list(
+        dict.fromkeys(
+            [
+                *join_keys,
+                *[
+                    key
+                    for key in REPEATED_OBSERVATION_KEYS
+                    if key in benchmark_od_df.columns
+                ],
+                flow_col_bench,
+            ]
+        )
+    )
+    bench_tbl = benchmark_od_df.loc[:, bench_columns].rename(
+        columns={flow_col_bench: "benchmark_flow"}
+    )
+    support_tbl = merge_validation_reference(
+        adj_tbl,
+        bench_tbl,
+        how="outer",
+        data_name="adj_df",
+        reference_name="benchmark_od_df",
+    )
+    support_tbl[["benchmark_flow", "adjusted_flow", "raw_flow"]] = support_tbl[
+        ["benchmark_flow", "adjusted_flow", "raw_flow"]
+    ].fillna(0)
+
+    comparison_outputs = [
+        _compute_flow_distribution_comparison(
+            comparison=comparison,
+            support_tbl=support_tbl,
+            epsilon=epsilon,
+            method_name=method_name,
+        )
+        for comparison in comparison_ids
+    ]
+    origin_level = pd.concat(
+        [item["origin_level"] for item in comparison_outputs], ignore_index=True
+    )
+
+    summary_rows = []
+    method = np.nan if method_name is None else method_name
+    for comparison in comparison_ids:
+        subset = origin_level.loc[origin_level["comparison"] == comparison]
+        first = subset.iloc[0]
+        summary_rows.append(
+            {
+                "method": method,
+                "comparison": comparison,
+                "comparison_label": first["comparison_label"],
+                "x_distribution": first["x_distribution"],
+                "y_distribution": first["y_distribution"],
+                "reference_distribution": first["reference_distribution"],
+                "comparison_distribution": first["comparison_distribution"],
+                "n_origins": len(subset),
+                "n_origins_used": int(subset["kl_origin"].notna().sum()),
+                "weight_by": weight_by,
+                "kl_mean": subset["kl_origin"].mean(skipna=True),
+                "kl_median": subset["kl_origin"].median(skipna=True),
+                "kl_weighted_mean": (
+                    _weighted_mean_na(subset["kl_origin"], subset["bench_origin_total"])
+                    if weight_by == "benchmark_origin_total"
+                    else np.nan
+                ),
+                "jsd_mean": subset["jsd_origin"].mean(skipna=True),
+                "jsd_median": subset["jsd_origin"].median(skipna=True),
+                "jsd_weighted_mean": (
+                    _weighted_mean_na(
+                        subset["jsd_origin"], subset["bench_origin_total"]
+                    )
+                    if weight_by == "benchmark_origin_total"
+                    else np.nan
+                ),
+            }
+        )
+    summary = pd.DataFrame(summary_rows, columns=DISTRIBUTION_SUMMARY_COLUMNS)
+
+    out = {"summary": summary}
+    if return_origin_level:
+        origin_columns = _columns_with_observation_keys(
+            ORIGIN_LEVEL_COLUMNS, origin_level
+        )
+        out["origin_level"] = origin_level.loc[:, origin_columns].reset_index(drop=True)
+    if return_od_level:
+        od_level = pd.concat(
+            [item["od_level"] for item in comparison_outputs], ignore_index=True
+        )
+        od_columns = _columns_with_observation_keys(OD_LEVEL_COLUMNS, od_level)
+        out["od_level"] = od_level.loc[:, od_columns].reset_index(drop=True)
+    return out
+
+
+def _compute_flow_distribution_comparison(
+    comparison: str,
+    support_tbl: pd.DataFrame,
+    epsilon: float,
+    method_name: str | None,
+) -> dict[str, pd.DataFrame]:
+    if comparison == "raw_vs_benchmark":
+        reference_col = "benchmark_flow"
+        comparison_col = "raw_flow"
+        reference_distribution = "benchmark"
+        comparison_distribution = "raw_mpd"
+    elif comparison == "adjusted_vs_benchmark":
+        reference_col = "benchmark_flow"
+        comparison_col = "adjusted_flow"
+        reference_distribution = "benchmark"
+        comparison_distribution = "adjusted_mpd"
+    elif comparison == "raw_vs_adjusted":
+        reference_col = "adjusted_flow"
+        comparison_col = "raw_flow"
+        reference_distribution = "adjusted_mpd"
+        comparison_distribution = "raw_mpd"
+    else:
+        raise ValueError("Unsupported distribution comparison.")
+
+    spec = flow_comparison_spec(comparison)
+    od_level = support_tbl.copy()
+    od_level["reference_flow"] = od_level[reference_col]
+    od_level["comparison_flow"] = od_level[comparison_col]
+
+    observation_keys = [
+        key for key in REPEATED_OBSERVATION_KEYS if key in od_level.columns
+    ]
+    origin_group_keys = [*observation_keys, "origin"]
+    origin_groups = od_level.groupby(
+        origin_group_keys, sort=True, dropna=False, observed=True
+    )
+    for flow_column, total_column in [
+        ("benchmark_flow", "bench_origin_total"),
+        ("raw_flow", "raw_origin_total"),
+        ("adjusted_flow", "adjusted_origin_total"),
+        ("reference_flow", "reference_origin_total"),
+        ("comparison_flow", "comparison_origin_total"),
+    ]:
+        od_level[total_column] = origin_groups[flow_column].transform("sum")
+    od_level["adj_origin_total"] = od_level["adjusted_origin_total"]
+
+    reference_smoothed = od_level["reference_flow"] + epsilon
+    comparison_smoothed = od_level["comparison_flow"] + epsilon
+    reference_smoothed_total = reference_smoothed.groupby(
+        [od_level[key] for key in origin_group_keys],
+        sort=True,
+        dropna=False,
+        observed=True,
+    ).transform("sum")
+    comparison_smoothed_total = comparison_smoothed.groupby(
+        [od_level[key] for key in origin_group_keys],
+        sort=True,
+        dropna=False,
+        observed=True,
+    ).transform("sum")
+    od_level["reference_share"] = _distribution_shares(
+        od_level["reference_flow"], epsilon, reference_smoothed_total
+    )
+    od_level["comparison_share"] = _distribution_shares(
+        od_level["comparison_flow"], epsilon, comparison_smoothed_total
+    )
+    od_level["midpoint_share"] = 0.5 * (
+        od_level["reference_share"] + od_level["comparison_share"]
+    )
+    od_level["kl_contribution"] = _distribution_kl_contributions(
+        od_level["reference_share"], od_level["comparison_share"]
+    )
+    od_level["jsd_contribution"] = _distribution_jsd_contributions(
+        od_level["reference_share"],
+        od_level["comparison_share"],
+    )
+    od_level["_origin_group_order"] = origin_groups.ngroup()
+    od_level = (
+        od_level.sort_values("_origin_group_order", kind="stable")
+        .drop(columns="_origin_group_order")
+        .reset_index(drop=True)
+    )
+    method = np.nan if method_name is None else method_name
+    od_level["method"] = method
+    od_level["comparison"] = comparison
+    od_level["comparison_label"] = spec["comparison_label"]
+    od_level["x_distribution"] = spec["x_series"]
+    od_level["y_distribution"] = spec["y_series"]
+    od_level["reference_distribution"] = reference_distribution
+    od_level["comparison_distribution"] = comparison_distribution
+    od_level["zero_benchmark_total"] = od_level["bench_origin_total"] <= 0
+    od_level["zero_raw_total"] = od_level["raw_origin_total"] <= 0
+    od_level["zero_adjusted_total"] = od_level["adjusted_origin_total"] <= 0
+    od_level["zero_adj_total"] = od_level["zero_adjusted_total"]
+    od_level["zero_reference_total"] = od_level["reference_origin_total"] <= 0
+    od_level["zero_comparison_total"] = od_level["comparison_origin_total"] <= 0
+
+    origin_rows = []
+    group_cols = [
+        "method",
+        "comparison",
+        "comparison_label",
+        "x_distribution",
+        "y_distribution",
+        "reference_distribution",
+        "comparison_distribution",
+        *observation_keys,
+        "origin",
+    ]
+    for keys, group in od_level.groupby(group_cols, sort=True, dropna=False):
+        first = group.iloc[0]
+        zero_reference_total = bool(first["zero_reference_total"])
+        key_values = keys if isinstance(keys, tuple) else (keys,)
+        row: dict[str, object] = dict(zip(group_cols, key_values, strict=True))
+        row.update(
+            {
+                "n_destinations": len(group),
+                "bench_origin_total": first["bench_origin_total"],
+                "raw_origin_total": first["raw_origin_total"],
+                "adjusted_origin_total": first["adjusted_origin_total"],
+                "adj_origin_total": first["adj_origin_total"],
+                "reference_origin_total": first["reference_origin_total"],
+                "comparison_origin_total": first["comparison_origin_total"],
+                "zero_benchmark_total": first["zero_benchmark_total"],
+                "zero_raw_total": first["zero_raw_total"],
+                "zero_adjusted_total": first["zero_adjusted_total"],
+                "zero_adj_total": first["zero_adj_total"],
+                "zero_reference_total": first["zero_reference_total"],
+                "zero_comparison_total": first["zero_comparison_total"],
+                "kl_origin": (
+                    np.nan
+                    if zero_reference_total
+                    else _sum_propagating_missing(
+                        cast(pd.Series, group["kl_contribution"])
+                    )
+                ),
+                "jsd_origin": (
+                    np.nan
+                    if zero_reference_total
+                    else _sum_propagating_missing(
+                        cast(pd.Series, group["jsd_contribution"])
+                    )
+                ),
+            }
+        )
+        origin_rows.append(row)
+
+    origin_level = pd.DataFrame(
+        origin_rows,
+        columns=_columns_with_observation_keys(ORIGIN_LEVEL_COLUMNS, od_level),
+    )
+    return {"origin_level": origin_level, "od_level": od_level}
+
+
+def _columns_with_observation_keys(columns: list[str], data: pd.DataFrame) -> list[str]:
+    out = list(columns)
+    insertion_index = out.index("origin")
+    for key in REPEATED_OBSERVATION_KEYS:
+        if key in data.columns:
+            out.insert(insertion_index, key)
+            insertion_index += 1
+    return out
+
+
+def _validate_distribution_epsilon(epsilon: float) -> None:
+    try:
+        numeric = float(epsilon)
+    except (TypeError, ValueError):
+        raise ValueError("`epsilon` must be a single positive finite number.") from None
+    if not np.isfinite(numeric) or numeric <= 0:
+        raise ValueError("`epsilon` must be a single positive finite number.")
+
+
+def _weighted_mean_na(x: pd.Series, w: pd.Series) -> float:
+    keep = np.isfinite(x) & np.isfinite(w) & (w > 0)
+    if not bool(keep.any()):
+        return np.nan
+    return float(np.average(x[keep], weights=w[keep]))
+
+
+def _sum_propagating_missing(x: pd.Series) -> float:
+    """Match R's ``sum(x)`` rather than pandas' missing-skipping default."""
+    if bool(x.isna().any()):
+        return np.nan
+    return float(x.sum(skipna=False))
+
+
+def _match_weight_by(weight_by: str) -> str:
+    choices = ("none", "benchmark_origin_total")
+    matches = [choice for choice in choices if choice.startswith(weight_by)]
+    if len(matches) != 1:
+        raise ValueError("`weight_by` must be one of: none, benchmark_origin_total")
+    return matches[0]
 
 
 SUMMARY_COLUMNS = [

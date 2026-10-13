@@ -17,6 +17,7 @@ from debiaspy.plot_validation import (
     validate_flow_plot_structure,
 )
 from debiaspy.validate_flows import (
+    validate_flow_distribution,
     validate_flow_pairs,
     validate_flow_residual_structure,
     validate_flow_residuals,
@@ -31,6 +32,7 @@ __all__ = [
     "validate_bias_residual_structure",
     "adjust_multilevel_bayes",
     "validate_flow_pairs",
+    "validate_flow_distribution",
     "validate_flow_residuals",
     "validate_flow_residual_structure",
     "validate_flow_plot_metrics",

@@ -204,7 +204,7 @@ This project follows the
 specification. Contributions of any kind are welcome.
 ## Implementations introduced on this contribution branch
 
-proposed Bayesian and frequentist model backends, validation plotting, multi-method validation helpers, residual and spatial diagnostics.
+proposed Bayesian and frequentist model backends, validation plotting, multi-method validation helpers, residual and spatial diagnostics, flow-distribution diagnostics.
 
 Exports become available when their supporting methods have been introduced.
 Bayesian implementation is proposed for maintainer review under issue #16.
