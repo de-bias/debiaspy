@@ -1,8 +1,8 @@
-# Issue 13
+# Issue 14
 
-Residual and spatial diagnostics: live R global/Local Moran, weighted links and isolated areas.
+Named multi-method wrappers, margin helpers and method-specific errors.
 
-Base: `contribution/issue-12`.
+Base: `contribution/issue-13`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.
