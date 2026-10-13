@@ -2,6 +2,11 @@
 
 This note records the basic local workflow for developing `debiaspy`.
 
+Before starting substantial work, read the
+[Project Log and Status](PROJECT_LOG_STATUS.md) for the current state of `main`
+and the [R-to-Python API mapping](api-mapping.md) for agreed function locations
+and implementation order.
+
 ## One-time setup
 
 From the repository root:
@@ -56,7 +61,9 @@ When porting a function from `debiasR`:
 6. Export the public function from `src/debiaspy/__init__.py` when the API is
    ready.
 7. Update README or tutorial text if the function is user-facing.
-8. Run `python -m pytest` and `python -m ruff check .`.
+8. Review `PROJECT_LOG_STATUS.md` and update it if the work changes the recorded
+   project status.
+9. Run `python -m pytest` and `python -m ruff check .`.
 
 Keep each change small enough that reviewers can compare the Python behaviour
 against the R implementation.

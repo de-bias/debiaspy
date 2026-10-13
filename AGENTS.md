@@ -33,6 +33,9 @@
   and functions that should not be carried into Python.
 - Read `docs/development/workflow.md` when local setup or the basic development
   cycle is relevant.
+- Read `docs/development/PROJECT_LOG_STATUS.md` before substantial work. It
+  records the current state of `main`, important decisions, known limitations
+  and immediate priorities.
 - Use the relevant GitHub issue to define the scope and acceptance criteria for
   each contribution.
 - Consult the corresponding `debiasR` function, documentation and tests when
@@ -123,6 +126,9 @@
   `.github/pull_request_template.md`.
 - Link the relevant issue and explain any deliberate difference from
   `debiasR` in the pull request.
+- Review `docs/development/PROJECT_LOG_STATUS.md` for every pull request and
+  update it in the same branch when the work changes any status recorded there.
+  Do not describe unmerged work as completed.
 - Disclose material AI assistance and identify the human who reviewed the code,
   tests and documentation.
 - Carmen Cabrera (`carmen-cabrera`) and Francisco Rowe (`fcorowe`) can review
@@ -259,6 +265,9 @@
 
 - Update public docstrings, README guidance and relevant development documents
   when user-facing behaviour changes.
+- Keep `docs/development/PROJECT_LOG_STATUS.md` as a concise snapshot of the
+  state of `main`. Link to issues and the API mapping for detail rather than
+  turning the status document into a duplicate task tracker.
 - Present `debiaspy` as a self-contained Python package. Introduce the problem
   it solves, its methods and its workflow without assuming familiarity with
   `debiasR`.
@@ -308,6 +317,8 @@
 - Summarise the files changed and the behaviour implemented.
 - Report the exact test, lint, formatting and documentation commands run and
   whether they passed.
+- Confirm that `docs/development/PROJECT_LOG_STATUS.md` was reviewed and state
+  whether it required an update.
 - Identify remaining limitations, unresolved methodological questions and
   deliberate differences from `debiasR`.
 - Confirm whether the working tree is uncommitted, committed, pushed or covered

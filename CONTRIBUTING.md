@@ -18,6 +18,26 @@ merge accepted pull requests.
 Pull requests should wait for an approving review from an eligible reviewer
 before merge.
 
+## Project guidance and status
+
+Read the [Project Log and Status](docs/development/PROJECT_LOG_STATUS.md) before
+starting work. It provides a concise summary of what is currently available on
+`main`, the main development priorities, important decisions and known
+limitations. Detailed function locations and implementation plans remain in
+the [R-to-Python API mapping](docs/development/api-mapping.md), while individual
+tasks and acceptance criteria remain in GitHub issues.
+
+If you use a coding agent, ask it to read and follow [AGENTS.md](AGENTS.md)
+before making changes. Some agents load this file automatically, but the named
+human contributor remains responsible for checking the resulting code, tests
+and documentation.
+
+Every pull request must review the project log and update it where necessary.
+Make any required update in the same branch and pull request as the work that
+changes project status. Small changes that do not affect the recorded status do
+not need to edit the file, but contributors must still confirm that they have
+reviewed it in the pull request checklist.
+
 ## Local setup
 
 Clone the repository and move into it:
@@ -48,12 +68,12 @@ reinstalling the package each time.
 Create a branch for each change:
 
 ```bash
-git checkout -b codex/my-change
+git switch -c issue-4-adjust-inverse-penetration
 ```
 
-Use a short, descriptive branch name. The `codex/` prefix is a useful default
-for local automation-assisted work, but human contributors can use any clear
-branch name.
+Use a short, descriptive branch name based on the issue or task. Where useful,
+prefix it with the human contributor's name or GitHub username. Agent-specific
+prefixes are not required.
 
 Make focused changes. Prefer small pull requests that implement one function,
 one documentation update or one test improvement at a time.
@@ -127,6 +147,7 @@ Before opening a PR:
 - run `python -m pytest`
 - run `python -m ruff check .`
 - update documentation if the user-facing behaviour changed
+- review `docs/development/PROJECT_LOG_STATUS.md` and update it where necessary
 - link any related issue
 
 Use the pull request template in `.github/pull_request_template.md`.
