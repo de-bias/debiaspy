@@ -6,6 +6,16 @@ from debiaspy.measure_bias import (
     measure_bias_distribution,
     validate_bias_residual_structure,
 )
+from debiaspy.plot_validation import (
+    validate_flow_plot_distribution,
+    validate_flow_plot_distribution_pairwise,
+    validate_flow_plot_lisa_map,
+    validate_flow_plot_metrics,
+    validate_flow_plot_residual_bands,
+    validate_flow_plot_residuals,
+    validate_flow_plot_scatter,
+    validate_flow_plot_structure,
+)
 
 __version__ = "0.0.0"
 
@@ -15,4 +25,12 @@ __all__ = [
     "measure_bias_distribution",
     "validate_bias_residual_structure",
     "adjust_multilevel_bayes",
+    "validate_flow_plot_metrics",
+    "validate_flow_plot_residuals",
+    "validate_flow_plot_scatter",
+    "validate_flow_plot_residual_bands",
+    "validate_flow_plot_distribution",
+    "validate_flow_plot_distribution_pairwise",
+    "validate_flow_plot_structure",
+    "validate_flow_plot_lisa_map",
 ]
