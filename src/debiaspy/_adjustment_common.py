@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import warnings
 from collections.abc import Iterable
+from numbers import Integral, Real
 from typing import Any, Literal
 
 import numpy as np
@@ -13,6 +14,34 @@ from debiaspy._exceptions import DebiasSchemaError
 
 def numeric_series(values: Any) -> pd.Series:
     return pd.to_numeric(pd.Series(values), errors="coerce")
+
+
+def r_character_key_series(values: Any) -> pd.Series:
+    """Canonicalize identifier values using R-like numeric character forms.
+
+    Pandas renders a floating-point identifier such as ``1.0`` as ``"1.0"``,
+    while R's ``as.character(1.0)`` returns ``"1"``.  debiasR uses the latter
+    conversion before raking, so equivalent integer and floating-point IDs must
+    resolve to the same key without changing the values returned to the caller.
+    """
+
+    def canonical(value: Any) -> object:
+        if pd.isna(value):
+            return pd.NA
+        if isinstance(value, (bool, np.bool_)):
+            return "TRUE" if bool(value) else "FALSE"
+        if isinstance(value, Integral):
+            return str(int(value))
+        if isinstance(value, Real):
+            numeric = float(value)
+            if not np.isfinite(numeric):
+                return str(value)
+            if numeric.is_integer():
+                return str(int(numeric))
+            return np.format_float_positional(numeric, unique=True, trim="-")
+        return str(value)
+
+    return pd.Series(values, copy=False).map(canonical).astype("string")
 
 
 def column_names(columns: str | Iterable[str] | None) -> list[str]:

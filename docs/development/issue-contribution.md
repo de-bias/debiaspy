@@ -1,8 +1,8 @@
-# Issue 4 6
+# Issue 7
 
-Inverse penetration and both selection methods; live R calibration and input boundaries.
+Raking: source/time keys, target margins and numerical boundaries.
 
-Base: `origin/main`.
+Base: `contribution/issue-4-6`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.
