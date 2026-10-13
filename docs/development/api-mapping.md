@@ -60,14 +60,14 @@ than one public function.
 | `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_structure()` | Implemented on contribution branch |
 | `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_lisa_map()` | Implemented on contribution branch |
 
-`debiasR_example_data()` is renamed `debiaspy_example_data()` because the R
-package name should not appear in the Python API.
+`debiaspy_example_data()` is the Python entry point corresponding to
+`debiasR_example_data()`.
 
-## Functions that will not be carried into the Python API
+## Historical R aliases
 
-`validate_flow_benchmark()` and `validate_flow_all()` are compatibility aliases
-for older `debiasR` names. `debiaspy` has no earlier API to support, so users
-should call `validate_flow_overall()` and `validate_flow_pairs()` directly.
+`validate_flow_benchmark()` and `validate_flow_all()` are historical `debiasR`
+aliases. The Python API exposes `validate_flow_overall()` and
+`validate_flow_pairs()` as the corresponding entry points.
 
 ## Internal support modules
 
@@ -87,6 +87,9 @@ The corresponding public functions remain in the mapped flat modules above.
 - `R/globals.R` supports R package checks and has no direct Python equivalent.
 - `R/data-simulated.R` documents bundled R datasets. Empirical Python datasets
   belong in `debiaspydata`, while small test fixtures belong in `tests/`.
+
+See [method evidence](method-evidence.md) for the checked scope and
+[contribution notes](contribution-format.md) for issue-specific review boundaries.
 
 ## Implementation order and dependencies
 

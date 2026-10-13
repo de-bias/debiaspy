@@ -7,7 +7,7 @@ The methods follow [debiasR](https://github.com/de-bias/debiasR).
 ## Install and run
 
 ```bash
-git switch contribution/r-parity
+git switch contribution/non-bayesian-parity
 python -m pip install -r requirements.txt
 python -m pip install -e ".[dev]"
 python examples/coverage_adjustment.py
@@ -69,7 +69,7 @@ Random slopes, multiple/nested/crossed random effects and latent ZIP/ZINB remain
 unsupported. Missing counts and zero-user inverse weights can produce missing
 or infinite results, following the corresponding R arithmetic.
 
-Bayesian methods are experimental on this integration branch. The checked
+Bayesian methods are experimental on this contribution branch. The checked
 Poisson case matches R priors and shared-draw predictions, but its extrapolated
 posterior means remain unreliable. Review the [Bayesian tutorial](docs/tutorials/t09-advanced-bayesian-adjustment.qmd)
 and diagnostics before interpreting corrected flows.
@@ -91,15 +91,16 @@ comparisons use debiasR commit `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 The [checked side-by-side PDF](docs/reports/debiasr_debiaspy_side_by_side.pdf)
 uses the original Census OD example and explains portable inputs and Bayesian
 limits. The report source and commands are in [report reproduction](docs/reports/README.md).
-The [integration review](docs/development/integration-review.md) records the
+The [method-by-method evidence](docs/development/method-evidence.md) identifies the
+R source, Python source, tests and checked scope for every public method.
+The [package verification](docs/development/parity-verification.md) records the
 branch's checks, intentional API choices and outstanding model review.
 
-We plan to investigate Polars for loading, joining and aggregating larger OD
-and benchmark tables. The evaluation will compare runtime and memory use on
+A future Polars evaluation will examine loading, joining and aggregating larger
+OD and benchmark tables. The evaluation will compare runtime and memory use on
 the Census example and other compatible datasets, while checking identifiers,
 missing values, duplicate joins and numerical parity with the current pandas
-implementation. Polars is not yet a dependency; the public API continues to
-accept pandas DataFrames.
+implementation. The current implementation accepts pandas DataFrames.
 
 ## Licence
 
@@ -109,7 +110,7 @@ are retained below.
 
 ## Acknowledging contributors
 
-We use the [All Contributors Bot](https://allcontributors.org/) to recognise
+The [All Contributors Bot](https://allcontributors.org/) recognises
 everyone’s work—code, docs, ideas, design and more.
 
 After your PR is merged, comment on an issue or PR:

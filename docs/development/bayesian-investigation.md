@@ -70,14 +70,14 @@ The model interpretation and unsupported counterfactual require maintainer
 review before this example can support a claim of reliable corrected flows.
 Further sampling alone has not resolved the problem in the tested runs.
 
-Verification: 288 tests passed, one optional sampling test skipped; Ruff,
+Historical investigation verification: 288 tests passed, one optional sampling test skipped; Ruff,
 formatting and whitespace checks passed. The new live-R prediction regression
 passed, and both empirical R/Python sampling runs completed. The full Bayesian
 family/random-effect matrix was not rerun.
 
 ## Reproduce the investigation
 
-Install the package's `models` extra and the R reference dependencies
+Install the package's `bayesian` extra and the R reference dependencies
 (including rstanarm, pkgload and jsonlite). The default input route additionally
 requires the Python data companion and its empirical assets.
 
@@ -101,6 +101,5 @@ fits/draws and a compact `investigation.json` to the chosen output directory.
 retains only compact evidence in `docs/reports/bayesian_checks.json`; empirical
 input files and posterior draws are not imported into the distribution.
 
-AI assistance was used. Human review and agreement on the Bayesian backend and
-model-parity strategy remain required by the contribution workflow. This work
-is on the integration branch; no merge into main is authorised.
+Human review and maintainer agreement on the Bayesian backend and model-parity
+strategy remain required by the contribution workflow.

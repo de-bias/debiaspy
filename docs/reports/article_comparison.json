@@ -1334,7 +1334,7 @@
     ]
   },
   "verification": {
-    "branch": "contribution/r-parity",
+    "branch": "contribution/non-bayesian-parity",
     "installed_tests_passed": 342,
     "installed_tests_skipped": 0,
     "warnings": 3,

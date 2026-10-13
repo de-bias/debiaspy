@@ -1,62 +1,62 @@
-# Suggested contribution format
+# Issue-specific contribution format
 
-The branch is `contribution/r-parity`. No pull request has been created.
-Its implementation commits follow GitHub's displayed issue order: #16, #15,
-#14, #13, #12, #11, #10, #9, #8, #7, then grouped #4–#6. Documentation and
-reproducible evidence follow in a separate commit. Shared dependencies appear
-with their first dependent implementation; public exports become available
-as supporting functions are introduced.
+Branch: `contribution/non-bayesian-parity`.
+The implementation history follows #16 through #7, then grouped #4–#6.
+The proposed review scopes below cover the deterministic, data and validation
+work. Bayesian strategy remains a separate maintainer discussion under #16.
 
-Use the existing `.github/pull_request_template.md` for a future proposal.
-Prefer an issue-specific title, such as:
+Use the existing `.github/pull_request_template.md`. Each proposal should carry
+its relevant implementation, supporting code, tests and documentation. Shared
+modules belong with the first proposal that needs them. The issue-ordered commits
+provide review boundaries; their dependencies determine which changes can be
+applied independently.
 
-- `Implement flow-distribution validation with debiasR parity (#12)`
-- `Add inverse-penetration and selection-rate adjustments (#4–#6)`
-- `Propose Bayesian backends and document current parity limits (#16)`
+| Issue | Suggested title | Scope and dependencies | Main tests |
+| --- | --- | --- | --- |
+| #15 | Implement validation plots with debiasR figure contracts | Eight plotting functions; depends on validation result schemas from #11–#14. | test_validation_plot_contract.py; test_lisa_plot.py |
+| #14 | Implement multi-method validation and margin helpers | Named results, method errors and scoped margins; depends on core validation #11–#13. | test_validate_flow_methods.py |
+| #13 | Implement residual and spatial validation with R comparisons | Residual signs, global/Local Moran, weighted links and isolates; uses paired validation and shared spatial arithmetic. | test_flow_residual_structure.py; test_validation_core.py |
+| #12 | Implement flow-distribution validation with R parity | Shares, KL/JSD and missing-value handling; uses scoped paired flows and shared distribution calculations. | test_validation_core.py; test_shared_distribution_metrics.py |
+| #11 | Implement overall and paired flow validation | Scoped joins, metric denominators and missing values; foundation for #12–#15. | test_validation_core.py |
+| #10 | Implement selected-method adjustment orchestration | Parameter forwarding and named outputs; depends on selected individual adjustment methods. Existing model dispatch follows its documented engine scope. | test_adjust_deterministic_methods.py; test_multilevel_frequentist_safety.py |
+| #9 | Load companion data and support portable OD inputs | Named LAD/MSOA assets, CSV identity scope and empirical examples; portable example uses adjustment and validation functions. | test_example_data_companion.py; test_adjust_deterministic_methods.py |
+| #8 | Implement coefficient calibration with Census parity | Calibration, input columns and numerical boundaries; uses shared adjustment inputs. | test_adjust_deterministic_methods.py |
+| #7 | Implement scoped raking with Census parity | OD margins, zero cells, source/time identities; uses shared adjustment inputs. | test_adjust_deterministic_methods.py |
+| #4–#6 | Implement inverse-penetration and selection-rate adjustments | Coverage weights, both selection methods, calibration and zero/missing values; shared adjustment inputs and live R comparisons. | test_adjust_inverse_penetration.py; test_adjust_deterministic_methods.py; test_r_adjustment_parity.py |
 
-For a proposal covering the complete branch, use
-`Implement debiasR flow adjustments and validation with parity evidence`.
-The complete branch is substantial; maintainers can review its issue commits
-or request separate focused proposals.
+The [method evidence table](method-evidence.md) supplies source filenames and
+checked scope. Use `Refs #NUMBER` while review or acceptance criteria remain
+outstanding.
 
 ## Description outline
 
 ```markdown
 ## Summary
 
-Describe the implemented behaviour and the user-facing problem it addresses.
-Give one concrete before/after example where useful.
+State the user-facing behaviour and the implemented change.
+Include one concrete input/output example where useful.
 
 ## Related issue
 
-Refs #NUMBER. List grouped issues when applicable.
+Refs #NUMBER.
 
 ## Checklist
 
-- [ ] Proposed through a branch and PR under the repository workflow
-- [ ] Relevant pytest checks run, with counts and skipped cases stated below
-- [ ] Ruff and formatting checks pass
-- [ ] User-facing documentation updated
-- [ ] Numerical, schema, missing-value and zero-value behaviour tested
-- [ ] Corresponding debiasR code and tests inspected
+Use the repository template's checklist and tick completed checks.
 
 ## Notes for reviewers
 
 R source: FILE.R at REFERENCE_COMMIT.
 Python source: FILE.py.
-Tests: TEST_FILE.py; commands and results.
+Tests: TEST_FILE.py, command and result.
+Evidence: live R comparisons / retained R outputs / Python contracts.
+Scope: tested input cases, tolerances and remaining differences.
+Dependencies: shared code and prerequisite implementations.
+Documentation: method evidence table and relevant full-report section.
 
-Explain deliberate API differences and unsupported options.
-Link the full parity document and its reproduction instructions.
-State which comparisons run R afresh and which use retained references.
-For Bayesian work, distinguish execution, shared-draw prediction agreement,
-posterior precision and model validity.
-
-AI assistance was used. Named human review of code, tests and documentation
-remains pending; record the contributor's name after that review occurs.
+AI assistance: used for implementation and documentation.
+Human review: NAME and reviewed scope, once completed.
 ```
 
-Current branch evidence is recorded in `integration-review.md` and the full
-side-by-side report. The Bayesian strategy requires maintainer agreement;
-issue #16 remains open. Future descriptions should use `Refs` while acceptance
-criteria or review remain outstanding.
+Check each proposed subset with its required imports, tests and documentation.
+The complete package's results are recorded in [package verification](parity-verification.md).
