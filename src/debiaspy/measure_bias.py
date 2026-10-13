@@ -12,6 +12,13 @@ import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
 
+from debiaspy._numeric import global_moran_i
+from debiaspy.distribution_metrics import (
+    _distribution_jsd_contributions,
+    _distribution_kl_contributions,
+    _distribution_shares,
+)
+
 
 def measure_bias(coverage_df: pd.DataFrame) -> pd.DataFrame:
     """Compute area-level active-user coverage score and coverage bias.
@@ -135,8 +142,8 @@ def measure_bias_distribution(
     area_level["user_share"] = user_share
     area_level["share_difference_user_minus_population"] = user_share - population_share
     area_level["midpoint_share"] = 0.5 * (population_share + user_share)
-    area_level["kl_contribution"] = population_share * np.log(
-        population_share / user_share
+    area_level["kl_contribution"] = _distribution_kl_contributions(
+        population_share, user_share
     )
     area_level["jsd_contribution"] = _distribution_jsd_contributions(
         population_share, user_share
@@ -557,24 +564,6 @@ def _validate_distribution_epsilon(epsilon: float) -> None:
         raise ValueError("`epsilon` must be a single positive finite number.")
 
 
-def _distribution_shares(values: np.ndarray, epsilon: float) -> np.ndarray:
-    total = np.sum(values + epsilon)
-    if not np.isfinite(total) or total <= 0:
-        raise ValueError(
-            "Cannot compute distribution shares from non-finite or empty totals."
-        )
-    return (values + epsilon) / total
-
-
-def _distribution_jsd_contributions(
-    population_share: np.ndarray, user_share: np.ndarray
-) -> np.ndarray:
-    midpoint_share = 0.5 * (population_share + user_share)
-    return 0.5 * population_share * np.log(population_share / midpoint_share) + (
-        0.5 * user_share * np.log(user_share / midpoint_share)
-    )
-
-
 def _normalise_benchmark_flow_roles(
     benchmark_flow_roles: str | Sequence[str] | None,
 ) -> tuple[str, ...]:
@@ -694,48 +683,7 @@ def _compute_moran_i(
     neighbors = _prepare_neighbor_links(
         area_neighbors, area_col, neighbor_col, weight_col
     )
-    values = area_level.loc[:, ["area", "selected_residual"]].copy()
-    values = values.loc[np.isfinite(values["selected_residual"])]
-    n_areas_used = len(values)
-    if n_areas_used < 2:
-        return {
-            "moran_i": np.nan,
-            "n_areas_used": n_areas_used,
-            "n_links_used": 0,
-            "weight_sum": np.nan,
-        }
-
-    mean_residual = values["selected_residual"].mean()
-    denominator = float(np.sum((values["selected_residual"] - mean_residual) ** 2))
-    area_values = values.rename(columns={"selected_residual": "area_residual"})
-    neighbor_values = values.rename(
-        columns={"area": "neighbor", "selected_residual": "neighbor_residual"}
-    )
-    links = neighbors.merge(area_values, on="area", how="inner").merge(
-        neighbor_values, on="neighbor", how="inner"
-    )
-    links = links.loc[np.isfinite(links["weight"]) & links["weight"].gt(0)]
-    n_links_used = len(links)
-    weight_sum = float(links["weight"].sum())
-    if n_links_used == 0 or weight_sum <= 0 or denominator <= 0:
-        return {
-            "moran_i": np.nan,
-            "n_areas_used": n_areas_used,
-            "n_links_used": n_links_used,
-            "weight_sum": weight_sum,
-        }
-
-    numerator = np.sum(
-        links["weight"]
-        * (links["area_residual"] - mean_residual)
-        * (links["neighbor_residual"] - mean_residual)
-    )
-    return {
-        "moran_i": float((n_areas_used / weight_sum) * (numerator / denominator)),
-        "n_areas_used": n_areas_used,
-        "n_links_used": n_links_used,
-        "weight_sum": weight_sum,
-    }
+    return global_moran_i(area_level.loc[:, ["area", "selected_residual"]], neighbors)
 
 
 def _first_matching_correlation(correlations: pd.DataFrame, role: str) -> float:
