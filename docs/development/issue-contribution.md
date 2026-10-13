@@ -1,8 +1,8 @@
-# Issue 14
+# Issue 15
 
-Named multi-method wrappers, margin helpers and method-specific errors.
+Eight plot functions: figure contracts, panels, LISA classes and CRS alignment.
 
-Base: `contribution/issue-13`.
+Base: `contribution/issue-14`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.
