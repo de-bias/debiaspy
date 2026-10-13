@@ -2,6 +2,7 @@
 
 from debiaspy.adjust_coefficient import adjust_coefficient
 from debiaspy.adjust_multilevel_bayes import adjust_multilevel_bayes
+from debiaspy.adjust_raking_ratio import adjust_raking_ratio
 from debiaspy.example_data import debiaspy_example_data
 from debiaspy.measure_bias import (
     measure_bias,
@@ -42,6 +43,7 @@ __all__ = [
     "measure_bias",
     "measure_bias_distribution",
     "validate_bias_residual_structure",
+    "adjust_raking_ratio",
     "adjust_coefficient",
     "adjust_multilevel_bayes",
     "validate_flow_pairs",
