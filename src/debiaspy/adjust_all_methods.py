@@ -10,7 +10,6 @@ from debiaspy._exceptions import DebiasSchemaError
 from debiaspy._schemas import require_columns
 from debiaspy.adjust_coefficient import adjust_coefficient
 from debiaspy.adjust_inverse_penetration import adjust_inverse_penetration
-from debiaspy.adjust_multilevel_bayes import adjust_multilevel_bayes
 from debiaspy.adjust_raking_ratio import adjust_raking_ratio
 from debiaspy.adjust_selection_rate import adjust_selection_rate
 from debiaspy.adjust_selection_rate2 import adjust_selection_rate2
@@ -84,6 +83,8 @@ def adjust_all_methods(
         require_columns(covariates_df, ("area", covariate_col), "covariates_df")
 
     if "multilevel_bayes" in selected:
+        from debiaspy.adjust_multilevel_bayes import adjust_multilevel_bayes
+
         if distance_df is None:
             raise DebiasSchemaError(
                 '`distance_df` is required when `methods` includes "multilevel_bayes".'
