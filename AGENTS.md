@@ -33,6 +33,8 @@
   and functions that should not be carried into Python.
 - Read `docs/development/workflow.md` when local setup or the basic development
   cycle is relevant.
+- Read `tests/README.md` before adding or changing package behaviour. It is the
+  shared testing guide for human and agent-assisted contributions.
 - Read `docs/development/PROJECT_LOG_STATUS.md` before substantial work. It
   records the current state of `main`, important decisions, known limitations
   and immediate priorities.
@@ -201,8 +203,12 @@
 ## Tests
 
 - Add or update focused pytest tests for every new or changed public behaviour.
+- Submit the implementation and its meaningful tests together in the same pull
+  request. Tests are part of the implementation, not a later task.
 - Place tests in a clearly named `tests/test_*.py` file corresponding to the
   public module or behaviour.
+- Follow `tests/README.md` to select relevant cases and inspect the
+  corresponding `debiasR` tests before deciding coverage.
 - Cover the relevant combination of:
   - required input columns and accepted types
   - output types, keys, column names and ordering
@@ -225,6 +231,8 @@
 
 - Do not weaken, delete, skip or rewrite a valid test merely to make a change
   pass. If expected behaviour needs to change, explain and review that decision.
+- Do not add empty test files, tests containing only `pass` or unconditional
+  skips or expected failures without a documented technical reason.
 
 ## Linting and formatting
 

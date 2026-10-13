@@ -101,7 +101,7 @@ uv run ruff format .
 
 The test suite checks package imports, numerical results, input validation and
 the behaviour of implemented public functions. Each new public function should
-receive similarly focused tests.
+receive similarly focused tests in the same pull request.
 
 ## Dependencies
 
@@ -133,8 +133,11 @@ implementation.
 
 ## Tests
 
+Follow the shared [testing guide](tests/README.md). Every new or changed
+function must be submitted with meaningful tests in the same pull request.
+
 When porting a function from `debiasR`, inspect the corresponding R tests and
-add Python tests that cover:
+consider the relevant combination of:
 
 - required input columns
 - output column names
@@ -144,7 +147,10 @@ add Python tests that cover:
 - errors and warnings
 
 Where possible, tests should demonstrate that `debiaspy` matches the behaviour
-of `debiasR`.
+of `debiasR`. Do not submit empty test files, tests containing only `pass` or
+unjustifiably skipped tests. The contributor implementing the function is
+responsible for identifying the relevant cases and raising unclear
+methodological behaviour for review.
 
 ## Documentation
 

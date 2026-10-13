@@ -77,10 +77,12 @@ When porting a function from `debiasR`:
 1. Check the [R-to-Python API mapping](api-mapping.md) and confirm that nobody
    else is working on the same function.
 2. Identify the source R file under `debiasR/R`.
-3. Read the corresponding tests under `debiasR/tests/testthat`.
+3. Read the shared [testing guide](../../tests/README.md) and the corresponding
+   tests under `debiasR/tests/testthat`.
 4. Implement the Python function in the matching flat module under
    `src/debiaspy`.
-5. Add focused Python tests under `tests`.
+5. Add meaningful Python tests under `tests` in the same pull request. Do not
+   use empty, `pass`-only or unjustifiably skipped placeholder tests.
 6. Export the public function from `src/debiaspy/__init__.py` when the API is
    ready.
 7. Update README or tutorial text if the function is user-facing.
