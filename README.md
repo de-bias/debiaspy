@@ -86,6 +86,9 @@ python -m pytest
 python -m ruff check .
 ```
 
+The [test setup](CONTRIBUTING.md#local-setup) gives the complete non-Bayesian
+installation and test command, including `grouped`, `plot` and the data companion.
+
 Set `DEBIASR_ROOT` to run the optional live-R regression tests. The adjustment
 comparisons use debiasR commit `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 The [checked side-by-side PDF](docs/reports/debiasr_debiaspy_side_by_side.pdf)

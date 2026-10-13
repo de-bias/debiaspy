@@ -22,7 +22,7 @@ Counts include tests inherited from the base and should be interpreted per branc
 | `contribution/issue-13` | `contribution/issue-12` | 89 passed | Residual and spatial diagnostics: live R global/Local Moran, weighted links and isolated areas. |
 | `contribution/issue-14` | `contribution/issue-13` | 107 passed | Named multi-method wrappers, margin helpers and method-specific errors. |
 | `contribution/issue-15` | `contribution/issue-14` | 144 passed | Eight plot functions: figure contracts, panels, LISA classes and CRS alignment. |
-| `contribution/issue-10` | `contribution/issue-8` | 117 passed | Selected deterministic-method orchestration. Multilevel dispatch requires the model implementation under issue 16. |
+| `contribution/issue-10` | `contribution/issue-8` | 117 passed | Explicitly selected deterministic-method orchestration. Default methods="all" and multilevel dispatch require the model implementation under issue 16. |
 
 Issue 11 includes the measurement arithmetic and shared numeric prerequisites
 in its commit history. Its contribution base is main; issues 12 through 15

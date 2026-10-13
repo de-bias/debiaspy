@@ -7,9 +7,13 @@ Python companion: `19d1c5f67f5dcf70fcd765e42fa03d667df496df`.
 
 ## Results
 
-- Current separated package: 292 tests passed with live R; Bayesian prediction/
+- Current complete non-Bayesian setup: 293 tests passed with live R; Bayesian prediction/
   backend and latent test modules were excluded. All 204 original test functions
-  and their assertion bodies are preserved in focused issue files.
+  and their assertion bodies are preserved in focused issue files. A new test
+  verifies the GPBoost installation hint.
+- Fresh base development/plotting setup: 281 passed, 12 expected skips
+  (nine GPBoost fitting cases and three companion-data cases). Both setups
+  pass `pip check`; GPBoost checks run whenever the package is installed.
 - Ten active [issue contributions](issue-contributions.md) passed installed-wheel,
   import, Ruff, formatting and dependency checks on their documented bases.
 - Previous complete installed Python 3.11 wheel on macOS ARM64: 342 tests passed with live R and

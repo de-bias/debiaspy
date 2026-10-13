@@ -43,6 +43,22 @@ python -m pip install -e ".[dev]"
 Editable mode means changes under `src/debiaspy/` are picked up without
 reinstalling the package each time.
 
+For the complete non-Bayesian checks, install the grouped and plotting extras
+and the pinned empirical companion:
+
+```bash
+python -m pip install -e ".[dev,grouped,plot]"
+python -m pip install git+https://github.com/de-bias/debiaspydata.git@19d1c5f67f5dcf70fcd765e42fa03d667df496df
+DEBIASR_ROOT=/path/to/debiasR MPLBACKEND=Agg python -m pytest -q \
+  --ignore=tests/test_bayesian_backend_contract.py \
+  --ignore=tests/test_bayesian_prediction_r_parity.py \
+  --ignore=tests/test_latent_backend_contract.py
+```
+
+GPBoost fitting checks skip when `grouped` is absent. The missing-runtime error
+check remains active. Companion and map checks require their respective data
+and plotting installations.
+
 ## Development workflow
 
 Create a branch for each change:

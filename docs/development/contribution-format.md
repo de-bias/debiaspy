@@ -8,8 +8,9 @@ work. Bayesian strategy remains a separate maintainer discussion under #16.
 
 Use the existing `.github/pull_request_template.md`. Each proposal should carry
 its relevant implementation, supporting code, tests and documentation. Shared
-modules belong with the first proposal that needs them. The issue branches carry their prerequisites in separate commits. Select the
-documented base when preparing each proposal.
+modules belong with the first proposal that needs them. The issue branches carry
+their prerequisites in separate commits. Select the documented base when
+preparing each proposal.
 
 | Issue | Suggested title | Scope and dependencies | Main tests |
 | --- | --- | --- | --- |
@@ -18,8 +19,8 @@ documented base when preparing each proposal.
 | #13 | Implement residual and spatial validation with R comparisons | Residual signs, global/Local Moran, weighted links and isolates; uses paired validation and shared spatial arithmetic. | test_flow_residual_structure.py; test_validation_residuals.py |
 | #12 | Implement flow-distribution validation with R parity | Shares, KL/JSD and missing-value handling; uses scoped paired flows and shared distribution calculations. | test_validation_distribution.py; test_shared_distribution_metrics.py |
 | #11 | Implement overall and paired flow validation | Scoped joins, metric denominators and missing values; foundation for #12–#15. | test_validation_core.py |
-| #10 | Implement selected-method adjustment orchestration | Parameter forwarding and named outputs; depends on selected individual adjustment methods. Existing model dispatch follows its documented engine scope. | test_adjust_all_methods.py |
-| #9 | Load companion data and support portable OD inputs | Named LAD/MSOA assets, CSV identity scope and empirical examples; portable example uses adjustment and validation functions. | test_example_data_companion.py; test_benchmark_od.py |
+| #10 | Implement selected deterministic-method orchestration | Parameter forwarding and named outputs for explicitly selected deterministic methods. Default methods="all" and multilevel dispatch require the model implementation under #16. | test_adjust_all_methods.py |
+| #9 | Load named Python companion LAD/MSOA assets | The issue branch contains the empirical loader and its tests. The portable end-to-end example is a combined-package follow-up requiring #4–#6 and #11. | test_example_data_companion.py |
 | #8 | Implement coefficient calibration with Census parity | Calibration, input columns and numerical boundaries; uses shared adjustment inputs. | test_adjust_coefficient.py |
 | #7 | Implement scoped raking with Census parity | OD margins, zero cells, source/time identities; uses shared adjustment inputs. | test_adjust_raking.py |
 | #4–#6 | Implement inverse-penetration and selection-rate adjustments | Coverage weights, both selection methods, calibration and zero/missing values; shared adjustment inputs and live R comparisons. | test_adjust_inverse_penetration.py; test_adjust_selection.py; test_r_adjustment_parity.py |

@@ -1,5 +1,6 @@
 # pyright: reportArgumentType=false, reportUnknownParameterType=false, reportMissingParameterType=false
 import builtins
+import importlib.util
 from typing import cast
 
 import numpy as np
@@ -10,6 +11,12 @@ from debiaspy import adjust_all_methods, adjust_multilevel_bayes
 from debiaspy._exceptions import DebiasSchemaError
 from debiaspy._frequentist import _fit_count_model
 from debiaspy._multilevel_inputs import _random_intercept_group_col
+
+
+@pytest.fixture(scope="module")
+def gpboost_runtime() -> None:
+    if importlib.util.find_spec("gpboost") is None:
+        pytest.skip("Install .[grouped] to run GPBoost fitting checks")
 
 
 @pytest.fixture(scope="module")
@@ -578,6 +585,7 @@ def test_additive_formula_preserves_explicit_default_selector_metadata(
     assert explicit.attrs["result_metadata"]["effective_random_intercept"] == "none"
 
 
+@pytest.mark.usefixtures("gpboost_runtime")
 def test_random_effect_formula_is_authoritative_but_preserves_caller_metadata(
     example_data: dict[str, pd.DataFrame],
 ):
@@ -1070,6 +1078,7 @@ def test_duplicate_s1_od_observations_follow_r_glm_row_semantics(
         ),
     ],
 )
+@pytest.mark.usefixtures("gpboost_runtime")
 def test_gpboost_executes_each_non_origin_random_intercept_selector(
     selector: str,
     scenario: str,
@@ -1098,6 +1107,7 @@ def test_gpboost_executes_each_non_origin_random_intercept_selector(
     assert bool(np.isfinite(actual["flow_adj"]).all())
 
 
+@pytest.mark.usefixtures("gpboost_runtime")
 def test_gpboost_poisson_random_intercept_matches_pinned_lme4_probe():
     fixture = _random_intercept_fixture("poisson")
     actual = adjust_multilevel_bayes(
@@ -1159,6 +1169,7 @@ def test_gpboost_poisson_random_intercept_matches_pinned_lme4_probe():
     assert bool(np.isfinite(actual["flow_adj"]).all())
 
 
+@pytest.mark.usefixtures("gpboost_runtime")
 def test_gpboost_negbin_random_intercept_matches_declared_lme4_tolerance():
     fixture = _random_intercept_fixture("negbin")
     actual = adjust_multilevel_bayes(
@@ -1220,6 +1231,7 @@ def test_gpboost_negbin_random_intercept_matches_declared_lme4_tolerance():
     )
 
 
+@pytest.mark.usefixtures("gpboost_runtime")
 def test_gpboost_coverage_offset_prediction_excludes_random_effects(
     example_data: dict[str, pd.DataFrame],
 ):
@@ -1263,6 +1275,27 @@ def test_explicit_gpboost_backend_requires_a_random_intercept(
             example_data["distance"],
             model_engine="frequentist",
             formula="flow ~ log_distance + bias_e_origin",
+            backend="gpboost",
+        )
+
+
+def test_missing_gpboost_message_names_grouped_extra(monkeypatch, example_data):
+    real_import = builtins.__import__
+
+    def blocked_import(name, *args, **kwargs):
+        if name == "gpboost":
+            raise ImportError("blocked for test")
+        return real_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", blocked_import)
+    with pytest.raises(ImportError, match=r"pip install -e '\.\[grouped\]'"):
+        adjust_multilevel_bayes(
+            example_data["mpd_od"],
+            example_data["coverage"],
+            example_data["covariates"],
+            example_data["distance"],
+            model_engine="frequentist",
+            formula="flow ~ log_distance + (1 | origin)",
             backend="gpboost",
         )
 

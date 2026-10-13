@@ -230,7 +230,7 @@ def _fit_gpboost_random_intercept(
     except (ImportError, OSError) as exc:
         raise ImportError(
             "Frequentist random-intercept fits require the pinned `gpboost` "
-            "runtime. Reinstall debiaspy with its production dependencies."
+            "runtime. Install it with `pip install -e '.[grouped]'`."
         ) from exc
 
     matrix = x.to_numpy(dtype=float)

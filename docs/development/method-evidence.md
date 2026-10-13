@@ -10,7 +10,7 @@ method imports and test files.
 **Python contracts** check behaviour, schemas, errors or figures within Python.
 The table covers all 31 public callable methods. `__version__` is package metadata.
 Each row describes its checked cases. The retained complete 342-test run includes all these types. Current
-non-Bayesian checks pass 292 tests. The article checker contains 151 comparisons,
+non-Bayesian checks pass 293 tests. The article checker contains 151 comparisons,
 with 149 passes and two documented
 public-export differences. Bayesian vignette tables read retained R outputs.
 

@@ -1325,7 +1325,7 @@
   },
   "verification": {
     "branch": "contribution/non-bayesian-parity",
-    "installed_tests_passed": 292,
+    "installed_tests_passed": 293,
     "installed_tests_skipped": 0,
     "warnings": 0,
     "live_r": true,
@@ -1343,7 +1343,15 @@
       "test_bayesian_prediction_r_parity.py",
       "test_latent_backend_contract.py"
     ],
-    "active_issue_branches": 10
+    "active_issue_branches": 10,
+    "optional_runtime_checks": {
+      "complete_passed": 293,
+      "base_passed": 281,
+      "base_skipped": 12,
+      "gpboost_fitting_skipped": 9,
+      "companion_skipped": 3,
+      "pip_check": "pass"
+    }
   },
   "further_simplification": {
     "runtime_net_lines_removed": 91,
