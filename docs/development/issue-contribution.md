@@ -1,8 +1,8 @@
-# Issue 7
+# Issue 8
 
-Raking: source/time keys, target margins and numerical boundaries.
+Coefficient calibration: OLS/count families, warning contracts and numerical references.
 
-Base: `contribution/issue-4-6`.
+Base: `contribution/issue-7`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.

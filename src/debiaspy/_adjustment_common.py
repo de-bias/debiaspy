@@ -11,6 +11,8 @@ import pandas as pd
 from debiaspy._choices import match_choice as match_choice
 from debiaspy._exceptions import DebiasSchemaError
 
+REPEATED_OBSERVATION_KEYS = ("mpd_source", "mpd_time")
+
 
 def numeric_series(values: Any) -> pd.Series:
     return pd.to_numeric(pd.Series(values), errors="coerce")
@@ -75,6 +77,26 @@ def require_no_reserved_columns(
             f"`{frame_name}` contains reserved adjustment column(s): "
             + ", ".join(collisions)
         )
+
+
+def finite_non_negative_mask(values: pd.Series | np.ndarray) -> np.ndarray:
+    array = np.asarray(values, dtype=float)
+    return np.isfinite(array) & (array >= 0)
+
+
+def validated_non_negative_numeric(values: Any, name: str) -> pd.Series:
+    """Return finite non-negative numeric values, rejecting logical counts."""
+    raw = pd.Series(values, copy=False)
+    if bool(raw.map(lambda value: isinstance(value, (bool, np.bool_))).any()):
+        raise DebiasSchemaError(
+            f"`{name}` must contain finite non-negative numeric values."
+        )
+    numeric = pd.to_numeric(raw, errors="coerce").astype(float)
+    if not bool((np.isfinite(numeric) & (numeric >= 0)).all()):
+        raise DebiasSchemaError(
+            f"`{name}` must contain finite non-negative numeric values."
+        )
+    return numeric
 
 
 def validate_clip_bounds(clip_min: Any, clip_max: Any) -> tuple[float, float]:
@@ -144,6 +166,13 @@ def require_group_columns(
     return columns
 
 
+def require_scalar_bool(value: Any, name: str) -> bool:
+    """Validate a Python/R logical flag without accepting integer lookalikes."""
+    if not isinstance(value, (bool, np.bool_)):
+        raise DebiasSchemaError(f"`{name}` must be a single boolean value.")
+    return bool(value)
+
+
 def collapse_exact_key_duplicates(
     frame: pd.DataFrame,
     *,
@@ -169,6 +198,55 @@ def collapse_exact_key_duplicates(
             f"({', '.join(key_columns)}); the join is not one-to-one."
         )
     return exact.reset_index(drop=True)
+
+
+def repeated_observation_join_keys(
+    left: pd.DataFrame,
+    right: pd.DataFrame,
+    *,
+    base_keys: Iterable[str] = ("origin", "destination"),
+    extra_keys: Iterable[str] = (),
+) -> list[str]:
+    """Return base keys plus shared source/time/stratum observation keys."""
+    candidates = column_names([*REPEATED_OBSERVATION_KEYS, *extra_keys])
+    return [
+        *column_names(base_keys),
+        *[key for key in candidates if key in left.columns and key in right.columns],
+    ]
+
+
+def require_unique_observation_rows(
+    frame: pd.DataFrame,
+    *,
+    keys: Iterable[str],
+    frame_name: str,
+    counterpart: pd.DataFrame | None = None,
+    counterpart_name: str | None = None,
+    candidate_observation_keys: Iterable[str] = REPEATED_OBSERVATION_KEYS,
+) -> None:
+    """Fail when a join key does not identify one observation row."""
+    key_columns = column_names(keys)
+    if not bool(frame.duplicated(subset=key_columns, keep=False).any()):
+        return
+
+    missing = []
+    if counterpart is not None:
+        missing = [
+            key
+            for key in column_names(candidate_observation_keys)
+            if key in frame.columns and key not in counterpart.columns
+        ]
+    detail = ""
+    if missing:
+        other = (
+            "the other input" if counterpart_name is None else f"`{counterpart_name}`"
+        )
+        detail = f" Add matching observation key(s) to {other}: {', '.join(missing)}."
+    raise DebiasSchemaError(
+        f"`{frame_name}` must contain at most one row per join key "
+        f"({', '.join(key_columns)}); the join would multiply observations."
+        f"{detail}"
+    )
 
 
 def join_with_r_warning(
