@@ -1,8 +1,8 @@
-# Issue 12
+# Issue 13
 
-Distribution validation: weighted shares, KL/JSD and invalid contributions.
+Residual and spatial diagnostics: live R global/Local Moran, weighted links and isolated areas.
 
-Base: `contribution/issue-11`.
+Base: `contribution/issue-12`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.

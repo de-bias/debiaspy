@@ -9,6 +9,8 @@ from debiaspy.validate_flows import (
     validate_flow_distribution,
     validate_flow_overall,
     validate_flow_pairs,
+    validate_flow_residual_structure,
+    validate_flow_residuals,
 )
 
 __version__ = "0.0.0"
@@ -21,4 +23,6 @@ __all__ = [
     "validate_flow_distribution",
     "validate_flow_overall",
     "validate_flow_pairs",
+    "validate_flow_residual_structure",
+    "validate_flow_residuals",
 ]
