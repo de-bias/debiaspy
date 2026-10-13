@@ -10,7 +10,7 @@ Python companion: `19d1c5f67f5dcf70fcd765e42fa03d667df496df`.
 - Current separated package: 292 tests passed with live R; Bayesian prediction/
   backend and latent test modules were excluded. All 204 original test functions
   and their assertion bodies are preserved in focused issue files.
-- Eleven [issue contributions](issue-contributions.md) passed installed-wheel,
+- Ten active [issue contributions](issue-contributions.md) passed installed-wheel,
   import, Ruff, formatting and dependency checks on their documented bases.
 - Previous complete installed Python 3.11 wheel on macOS ARM64: 342 tests passed with live R and
   the short Bambi/PyMC execution check enabled; three Bambi/Pandas warnings.

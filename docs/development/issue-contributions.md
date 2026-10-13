@@ -13,17 +13,21 @@ Counts include tests inherited from the base and should be interpreted per branc
 
 | Branch | Base | Installed tests | Scope |
 | --- | --- | --- | --- |
-| `contribution/measurement-parity` | `main` | 50 passed | Measurement arithmetic, shared distribution calculations and global Moran; live R numerical boundaries. |
 | `contribution/issue-4-6` | `main` | 93 passed | Inverse penetration and both selection methods; live R calibration and input boundaries. |
 | `contribution/issue-7` | `contribution/issue-4-6` | 104 passed | Raking: source/time keys, target margins and numerical boundaries. |
 | `contribution/issue-8` | `contribution/issue-7` | 114 passed | Coefficient calibration: OLS/count families, warning contracts and numerical references. |
 | `contribution/issue-9` | `main` | 51 passed | Named companion LAD/MSOA assets. Portable end-to-end example tests use the complete contribution package. |
-| `contribution/issue-11` | `contribution/measurement-parity` | 57 passed | Paired and overall validation: scoped joins, metric denominators and missing values. |
+| `contribution/issue-11` | `main` | 57 passed | Measurement arithmetic, shared numeric helpers, paired and overall validation; scoped joins, denominators and missing values. |
 | `contribution/issue-12` | `contribution/issue-11` | 67 passed | Distribution validation: weighted shares, KL/JSD and invalid contributions. |
 | `contribution/issue-13` | `contribution/issue-12` | 89 passed | Residual and spatial diagnostics: live R global/Local Moran, weighted links and isolated areas. |
 | `contribution/issue-14` | `contribution/issue-13` | 107 passed | Named multi-method wrappers, margin helpers and method-specific errors. |
 | `contribution/issue-15` | `contribution/issue-14` | 144 passed | Eight plot functions: figure contracts, panels, LISA classes and CRS alignment. |
 | `contribution/issue-10` | `contribution/issue-8` | 117 passed | Selected deterministic-method orchestration. Multilevel dispatch requires the model implementation under issue 16. |
+
+Issue 11 includes the measurement arithmetic and shared numeric prerequisites
+in its commit history. Its contribution base is main; issues 12 through 15
+continue to use their listed validation prerequisites.
+
 ## Reproduce a contribution check
 
 ```bash

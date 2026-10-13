@@ -1342,7 +1342,8 @@
       "test_bayesian_backend_contract.py",
       "test_bayesian_prediction_r_parity.py",
       "test_latent_backend_contract.py"
-    ]
+    ],
+    "active_issue_branches": 10
   },
   "further_simplification": {
     "runtime_net_lines_removed": 91,
