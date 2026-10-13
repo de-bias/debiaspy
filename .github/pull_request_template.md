@@ -14,7 +14,7 @@
 - [ ] I have run `uv run ruff check .`
 - [ ] I have run `uv run ruff format --check .`
 - [ ] I have updated documentation if user-facing behaviour changed
-- [ ] I have added or updated tests for new package behaviour
+- [ ] I have included meaningful tests for new or changed package behaviour in this PR, or explained why tests are not applicable
 - [ ] I have checked that the Python behaviour mirrors `debiasR` where relevant
 - [ ] I have reviewed `PROJECT_LOG_STATUS.md` and updated it where necessary
 

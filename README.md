@@ -118,7 +118,8 @@ uv run ruff format --check .
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and
 [docs/development/workflow.md](docs/development/workflow.md) for the contributor
-workflow.
+workflow. The shared [testing guide](tests/README.md) explains how to add
+meaningful tests with new or changed functions.
 
 ## Module structure
 

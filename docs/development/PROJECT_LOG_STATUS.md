@@ -25,7 +25,7 @@ detailed tasks and acceptance criteria.
 - **Public interface:** the bias-measurement functions are implemented and
   exported; adjustment and flow-validation interfaces remain planned
 - **Documentation:** the README, contribution guidance, development workflow,
-  API mapping and Quarto website structure are in place
+  testing guide, API mapping and Quarto website structure are in place
 - **Tutorials:** the planned tutorial sequence exists as placeholders and will
   be developed as the corresponding public interfaces stabilise
 - **Example data:** empirical example data are intended to come from the
@@ -107,6 +107,9 @@ the complete function-level plan.
 - Dependencies are added only when implemented functionality requires them.
   Broad compatibility requirements belong in `pyproject.toml`; `uv.lock`
   records the exact shared resolution and is committed.
+- New or changed functions and their meaningful tests are submitted together
+  in the same pull request. `tests/README.md` is the shared testing guide;
+  empty, `pass`-only and unjustifiably skipped placeholder tests are not used.
 - Human contributors remain responsible for reviewing agent-assisted code,
   tests and documentation.
 
@@ -135,6 +138,8 @@ the complete function-level plan.
   [#19](https://github.com/de-bias/debiaspy/issues/19).
 - Standardised the contributor development environment with `uv` through issue
   [#21](https://github.com/de-bias/debiaspy/issues/21).
+- Established the shared testing workflow through issue
+  [#23](https://github.com/de-bias/debiaspy/issues/23).
 
 ## How to update this document
 

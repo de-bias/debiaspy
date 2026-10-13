@@ -136,7 +136,8 @@ The contributor should:
 - preserve documented argument meanings, output names, errors and warnings
   where appropriate
 - export completed public functions from `src/debiaspy/__init__.py`
-- add focused pytest tests for numerical results, required columns, output
+- follow the shared [testing guide](../../tests/README.md) and add meaningful
+  pytest tests in the same PR for numerical results, required columns, output
   structure, missing values, zero values, errors and warnings as relevant
 - include fixed examples that demonstrate agreement with `debiasR` where
   possible

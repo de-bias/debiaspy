@@ -1,6 +1,13 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - index.qmd
+    - CONTRIBUTING.md
+    - LICENSE.md
+    - docs/**/*.qmd
+    - docs/**/*.md
+    - tests/README.md
 
 website:
   title: "debiaspy"
@@ -36,6 +43,8 @@ website:
             text: "Project status"
           - href: docs/development/workflow.md
             text: "Workflow"
+          - href: tests/README.md
+            text: "Testing"
           - href: docs/development/api-mapping.md
             text: "API mapping"
           - href: CONTRIBUTING.md
