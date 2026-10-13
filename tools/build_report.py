@@ -107,6 +107,50 @@ def main() -> None:
                 r"\end{document}", method_appendix + r"\end{document}"
             )
         )
+        issue_rows = []
+        issue_evidence = source.parents[1] / "development" / "issue-contributions.md"
+        for line in issue_evidence.read_text().splitlines():
+            if line.startswith("| `"):
+                branch, base, tests, scope = [
+                    cell.strip().replace("`", "") for cell in line.split("|")[1:-1]
+                ]
+                issue_rows.append(
+                    r"\path{"
+                    + branch
+                    + r"}\newline Base: \path{"
+                    + base
+                    + "} & "
+                    + tests
+                    + r"\newline "
+                    + scope
+                    + r" \\ \hline "
+                )
+        issue_appendix = (
+            r"\clearpage\section{Issue contribution checks}"
+            r"\textbf{R code:} \path{measure_bias.R}; "
+            r"\path{adjust_inverse_penetration.R}; \path{validate_flows.R}\par "
+            r"\textbf{Python code:} \path{adjust_all_methods.py}; "
+            r"\path{validate_flows.py}; \path{build_report.py}\par "
+            r"\textbf{Test:} \path{test_r_adjustment_parity.py}; "
+            r"\path{test_flow_residual_structure.py}\par "
+            "Each branch was built and installed as a wheel, then tested with its "
+            "documented prerequisites on macOS ARM64 with Python 3.11 and prepared "
+            "dependencies. Live R was enabled. All exported callables, Ruff, "
+            "formatting and pip dependency checks passed. The issue wheels contain "
+            "the non-Bayesian implementations. Counts include prerequisite tests. "
+            "The complete package retains all 204 original test functions and "
+            "their assertion bodies, with 292 non-Bayesian tests passing. "
+            r"\small\begin{longtable}{p{0.46\textwidth}p{0.48\textwidth}}"
+            r"\textbf{Contribution and base} & \textbf{Installed checks and scope} "
+            r"\\ \hline\endhead "
+            + "\n".join(issue_rows)
+            + r"\end{longtable}\normalsize "
+        )
+        path.write_text(
+            path.read_text().replace(
+                r"\end{document}", issue_appendix + r"\end{document}"
+            )
+        )
         for _ in range(2):
             result = subprocess.run(
                 ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex],

@@ -1048,7 +1048,7 @@ separately by the controlled 12-case Bayesian audit, not by these vignette files
 \end{boundarybox}
 
 \section{Validation}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 
 \textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v07-validation.html}
@@ -1060,7 +1060,7 @@ Checks full-LAD validation calls executed without MCMC plus ingestion of precomp
 
 
 \subsection{Complete output inventory}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 
 \footnotesize
@@ -1143,7 +1143,7 @@ Each pair uses the corresponding full-data or committed-summary R and Python val
 \end{figure}
 
 \subsection{Figure-data contracts}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 The committed contract rows agree exactly. Four additional vignette visuals (origin scatter, destination scatter, flow scatter and residual bands) require full residual rows that are not committed as article goldens. The optional LISA map also requires seeded permutations and external boundary data. They remain contract-only here.
 
@@ -1169,13 +1169,13 @@ No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
 \normalsize
 
 \subsection{Selected side-by-side table values}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 
 These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
 
 \subsubsection{\texorpdfstring{\texttt{level1.overall\_metrics.csv}}{level1.overall\_metrics.csv}}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 \small
 \begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
@@ -1235,7 +1235,7 @@ Row & Field & R output & Python output & $|\Delta|$ & Result \\
 \textit{Acceptance tolerance: \num{1e-05}.}
 
 \subsubsection{\texorpdfstring{\texttt{level2.origin\_margin\_metrics.csv}}{level2.origin\_margin\_metrics.csv}}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 \small
 \begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
@@ -1273,7 +1273,7 @@ Row & Field & R output & Python output & $|\Delta|$ & Result \\
 \textit{Acceptance tolerance: \num{0.0002}.}
 
 \subsubsection{\texorpdfstring{\texttt{level3.residual\_summary.csv}}{level3.residual\_summary.csv}}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 \small
 \begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
@@ -1315,7 +1315,7 @@ Row & Field & R output & Python output & $|\Delta|$ & Result \\
 \textit{Acceptance tolerance: \num{1e-06}.}
 
 \subsubsection{\texorpdfstring{\texttt{level4.distribution\_summary.csv}}{level4.distribution\_summary.csv}}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 \small
 \begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
@@ -1349,7 +1349,7 @@ Row & Field & R output & Python output & $|\Delta|$ & Result \\
 \textit{Acceptance tolerance: \num{1e-06}.}
 
 \subsubsection{\texorpdfstring{\texttt{level5.structure\_summary.csv}}{level5.structure\_summary.csv}}
-{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}; \path{test_validation_distribution.py}; \path{test_validation_residuals.py}\par}
 
 \small
 \begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
@@ -2145,9 +2145,9 @@ closed and no main merge was performed.
 \textbf{Python code:} \path{adjust_multilevel_bayes.py}; \path{_multilevel_inputs.py}; \path{_frequentist.py}; \path{example_data.py}\\
 \textbf{Test:} \path{test_bayesian_backend_contract.py}; \path{test_multilevel_frequentist_safety.py}; \path{test_example_data_companion.py}\par}
 
-This follow-up supersedes the earlier installation and documentation status.
-All adjustment, validation and plotting methods remain available on the contribution branch.
-Runtime Python source decreases by 473 lines compared with commit \texttt{6568831}.
+Adjustment, validation and plotting methods use the mapped public Python modules.
+The contribution checks identify the tested package and its prerequisites.
+Runtime Python source decreases by 472 lines compared with commit \texttt{6568831}.
 Moving fitting and shared input preparation into their own private modules reduces the
 public multilevel module from 2094 lines to 524; the mapped public function remains in place.
 
@@ -2175,8 +2175,8 @@ replacing the bundled \path{models} extra. Model calculations and method availab
 \textbf{Python code:} \path{check_article_parity.py}; \path{coverage_adjustment.py}; \path{benchmark_od.py}\\
 \textbf{Test:} \path{test_bayesian_prediction_r_parity.py}; \path{test_bayesian_backend_contract.py}; \path{test_lisa_plot.py}\par}
 
-On macOS ARM64, the rebuilt Python 3.11 wheel passes 342 tests with live R and
-short Bambi/PyMC sampling enabled. The earlier fresh Python 3.14 base/geographic
+On macOS ARM64, the current Python 3.11 wheel passes 292 non-Bayesian tests with
+live R. The earlier complete check passed 342 tests with short Bambi/PyMC sampling. The earlier fresh Python 3.14 base/geographic
 check passed 114 tests with one optional R comparison skipped. Both environments
 pass \path{pip check}. The installed Census example retains 42455 observed/adjusted
 rows, zero undefined adjustments and 34762 matched benchmark pairs.

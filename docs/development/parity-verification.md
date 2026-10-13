@@ -7,9 +7,11 @@ Python companion: `19d1c5f67f5dcf70fcd765e42fa03d667df496df`.
 
 ## Results
 
-- Current documentation cleanup: 292 installed-package tests passed with live R;
-  Bayesian prediction/backend and latent test modules were excluded. Runtime
-  source, examples and tests are unchanged from the checked package.
+- Current separated package: 292 tests passed with live R; Bayesian prediction/
+  backend and latent test modules were excluded. All 204 original test functions
+  and their assertion bodies are preserved in focused issue files.
+- Eleven [issue contributions](issue-contributions.md) passed installed-wheel,
+  import, Ruff, formatting and dependency checks on their documented bases.
 - Previous complete installed Python 3.11 wheel on macOS ARM64: 342 tests passed with live R and
   the short Bambi/PyMC execution check enabled; three Bambi/Pandas warnings.
 - Fresh article comparison: 149 of 151 passed at the existing tolerances;
@@ -27,8 +29,9 @@ provide the Census tables, figures and reference comparisons.
 
 ## Implementation and review
 
-All methods and original tests are retained, with an added nested-metric plotting
-regression. Shared spatial calculations preserve the distinct input normalization
+All methods and original tests are retained. Adjustment, validation and portable
+example tests are separated by scope and share their original fixture values.
+The adjustment wrapper loads the multilevel method when that method is selected. Shared spatial calculations preserve the distinct input normalization
 rules; common model attributes preserve priors, diagnostics and attribution.
 The latest runtime simplification removes 91 lines and the article checker removes
 103 lines. The public multilevel module has 524 lines. Scientific tolerances and

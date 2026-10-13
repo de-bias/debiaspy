@@ -93,6 +93,8 @@ uses the original Census OD example and explains portable inputs and Bayesian
 limits. The report source and commands are in [report reproduction](docs/reports/README.md).
 The [method-by-method evidence](docs/development/method-evidence.md) identifies the
 R source, Python source, tests and checked scope for every public method.
+The [checked issue contributions](docs/development/issue-contributions.md) list
+the branch bases and installed-package results.
 The [package verification](docs/development/parity-verification.md) records the
 branch's checks, intentional API choices and outstanding model review.
 

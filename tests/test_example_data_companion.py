@@ -2,23 +2,13 @@
 
 from __future__ import annotations
 
-import importlib.util
 import subprocess
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
 
 from debiaspy import debiaspy_example_data, example_data
-
-
-def _example_module():
-    path = Path(__file__).resolve().parents[1] / "examples" / "benchmark_od.py"
-    spec = importlib.util.spec_from_file_location("benchmark_example", path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
 
 
 @pytest.mark.parametrize("geography", ["lad", "msoa"])

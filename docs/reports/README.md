@@ -9,8 +9,9 @@ python tools/build_report.py --output output/debiasr_debiaspy_side_by_side.pdf
 ```
 
 The default build includes the recorded `article_comparison.json` summary and
-the current [method evidence table](../development/method-evidence.md).
-The Markdown table is the source for the PDF method appendix.
+the current [method evidence table](../development/method-evidence.md) and
+[issue contribution checks](../development/issue-contributions.md).
+The Markdown tables supply both PDF evidence appendices.
 The build runs twice for cross-references and the contents page. Its intermediate
 files stay in a temporary directory. Recorded figures and tables retain their
 original comparison values; compiling them reproduces that evidence snapshot.

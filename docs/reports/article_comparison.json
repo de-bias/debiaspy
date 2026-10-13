@@ -1,6 +1,6 @@
 {
   "reference_commit": "6fa2709ae42de6dc525a4a46182fdfb448b14a3f",
-  "integration_commit": "ff41d43b8281494629d1a756eab34c93aa5c1cd1",
+  "integration_commit": "73932f903bc601781d5ea892015e1cfc05379b19",
   "python_companion_commit": "19d1c5f67f5dcf70fcd765e42fa03d667df496df",
   "date": "2026-10-13",
   "checks": [
@@ -1304,24 +1304,14 @@
   ],
   "scope": "Fresh R/Python non-MCMC article calls; Bayesian extdata are reference fixtures.",
   "working_tree_changes": [
-    " M .gitignore",
     " M README.md",
-    " M docs/development/api-mapping.md",
-    " M docs/development/workflow.md",
-    " M docs/tutorials/t02-why-this-matters.qmd",
-    " M docs/tutorials/t03-getting-set-up.qmd",
-    " M docs/tutorials/t04-measuring-coverage-bias.qmd",
-    " M docs/tutorials/t05-identifying-and-explaining-bias.qmd",
-    " M docs/tutorials/t06-adjusting-biases.qmd",
-    " M docs/tutorials/t07-validation.qmd",
-    " M docs/tutorials/t08-visualising-flows.qmd",
-    " M docs/tutorials/t09-advanced-bayesian-adjustment.qmd",
-    " M index.qmd",
-    "?? docs/development/bayesian-investigation.md",
-    "?? docs/development/integration-review.md",
-    "?? docs/inputs.md",
-    "?? docs/reports/",
-    "?? tools/"
+    " M docs/development/contribution-format.md",
+    " M docs/development/method-evidence.md",
+    " M docs/development/parity-verification.md",
+    " M docs/reports/source/debiasr_debiaspy_side_by_side.tex",
+    " M tests/test_example_data_companion.py",
+    " M tools/build_report.py",
+    "?? docs/development/issue-contributions.md"
   ],
   "simplification": {
     "runtime_python_lines_removed": 382,
@@ -1335,16 +1325,24 @@
   },
   "verification": {
     "branch": "contribution/non-bayesian-parity",
-    "installed_tests_passed": 342,
+    "installed_tests_passed": 292,
     "installed_tests_skipped": 0,
-    "warnings": 3,
+    "warnings": 0,
     "live_r": true,
-    "short_bayesian_smoke": true,
+    "short_bayesian_smoke": false,
     "pip_check": "pass",
     "census_observed_rows": 42455,
     "census_adjusted_rows": 42455,
     "census_matched_pairs": 34762,
-    "full_bayesian_matrix_rerun": false
+    "full_bayesian_matrix_rerun": false,
+    "historical_full_suite_passed": 342,
+    "original_test_functions": 204,
+    "issue_wheels_checked": 11,
+    "bayesian_modules_excluded": [
+      "test_bayesian_backend_contract.py",
+      "test_bayesian_prediction_r_parity.py",
+      "test_latent_backend_contract.py"
+    ]
   },
   "further_simplification": {
     "runtime_net_lines_removed": 91,
