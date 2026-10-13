@@ -202,3 +202,8 @@ DEBIAS.
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind are welcome.
+
+
+## Contribution scope
+
+See [implementation and checks](docs/development/issue-contribution.md).
