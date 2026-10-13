@@ -1,10 +1,8 @@
-# Issue 11
+# Issue 12
 
-Paired and overall validation: scoped joins, metric denominators and missing values.
+Distribution validation: weighted shares, KL/JSD and invalid contributions.
 
-Base: `main` at `56c188a172dd71703f23973b88e22cf3c742d36b`.
-Measurement arithmetic and shared numeric helpers are included in this
-contribution's prerequisite commit, followed by paired and overall validation.
+Base: `contribution/issue-11`.
 R reference: `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
 
 Sources and tests are included with their implementation.
