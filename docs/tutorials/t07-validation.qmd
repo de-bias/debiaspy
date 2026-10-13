@@ -2,5 +2,34 @@
 title: "Validation"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v07-validation.qmd`.
+Compare adjusted flows with a benchmark on matching OD keys. Source and time
+columns contribute to the identity of repeated observations. Missing benchmark
+pairs and omitted zero flows change the evaluation population; inspect matched
+rows and choose filtering explicitly.
+
+```python
+from debiaspy import (
+    adjust_inverse_penetration, debiaspy_example_data, validate_flow_overall,
+)
+
+bundle = debiaspy_example_data(n_areas=25)
+adjusted = adjust_inverse_penetration(bundle["mpd_od"], bundle["coverage"])
+result = validate_flow_overall(
+    adjusted, bundle["benchmark_od"],
+    comparisons=["raw_vs_benchmark", "adjusted_vs_benchmark"],
+    drop_zeros=False, na_rm=False,
+)
+print(result["summary"])
+```
+
+`validate_flow_pairs` provides paired rows, `validate_flow_margins` checks
+origin/destination totals, `validate_flow_distribution` compares shares, and
+`validate_flow_residuals` summarises errors. `validate_flow_residual_structure`
+adds spatial diagnostics when you supply area-neighbour links. Its permutation
+seed reproduces Python results; R and NumPy use different random streams.
+
+The corresponding `*_methods` helpers compare mappings of method names to
+adjusted DataFrames. They identify the failing method when an input is invalid.
+Use `validate_flow_prepare_outputs` if adjusted results need their raw flows
+attached. Preserve undefined adjusted rows in exported results and explain
+any filtering before reporting accuracy.

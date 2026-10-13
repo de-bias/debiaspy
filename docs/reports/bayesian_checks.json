@@ -1,0 +1,433 @@
+{
+  "scope": "Recheck of retained R reference diagnostics; no fresh fit or Python sampling",
+  "gate_counts": {
+    "PASS": 462,
+    "FAIL": 6,
+    "SKIP": 0
+  },
+  "failures": [
+    {
+      "category": "statistical",
+      "gate": "reference_divergence_rate",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": {
+        "count": 76.0,
+        "rate": 0.006333333333333333
+      },
+      "expected": "rate <= 0.005",
+      "detail": "Python translation requires zero divergences; the unchanged upstream R call is retained as a reference when its divergence rate is at most 0.5%. Count and post-warmup draw count must be explicitly present."
+    },
+    {
+      "category": "statistical",
+      "gate": "mcse_over_sd",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": 0.077898648107208,
+      "expected": "<= 0.05",
+      "detail": "maximum across model parameters; metric must be explicit"
+    },
+    {
+      "category": "statistical",
+      "gate": "ess_tail",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": 137.784293130807,
+      "expected": ">= 400",
+      "detail": ""
+    },
+    {
+      "category": "statistical",
+      "gate": "aggregate_mcse_over_sd:r",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": 0.0819861350824468,
+      "expected": "<= 0.05",
+      "detail": ""
+    },
+    {
+      "category": "statistical",
+      "gate": "aggregate_ess_tail:r",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": 125.25730632339,
+      "expected": ">= 400.0",
+      "detail": ""
+    },
+    {
+      "category": "statistical",
+      "gate": "aggregate_rhat:r",
+      "status": "FAIL",
+      "case_id": "s1_reduced_form_zip_brms_random_origin",
+      "seed": 20260712,
+      "sampler": "R",
+      "actual": 1.01005377949374,
+      "expected": "<= 1.01",
+      "detail": ""
+    }
+  ],
+  "coverage_offset": {
+    "rows": 25,
+    "max_relative_flow_mean_difference": 0.008134244030358664,
+    "r_total_mean": 657123.1994213992,
+    "python_total_mean": 657146.6642939333,
+    "r_quality": {
+      "divergences": 0,
+      "rhat": 1.0077,
+      "ess_tail": 1125.2187,
+      "ess_bulk": 1115.196
+    },
+    "python_quality": {
+      "backend": "rstanarm",
+      "runtime_backend": "bambi_pymc",
+      "has_bias_term": false,
+      "convergence": {
+        "status": "available",
+        "n_chains": 4,
+        "draws_per_chain": 1000,
+        "n_post_warmup_draws": 4000,
+        "draw_shape_valid": 1,
+        "rhat_max": 1.0076142744806384,
+        "ess_bulk_min": 1106.0592798539349,
+        "ess_tail_min": 1309.7187900997649,
+        "mcse_mean_max": 0.005056387005294565,
+        "mcse_over_sd_max": 0.030002495204267333,
+        "divergences": 0,
+        "divergence_rate": 0.0,
+        "treedepth_hits": 0,
+        "treedepth_hit_rate": 0.0,
+        "sampler_shape_valid": 1,
+        "treedepth_max": 6.0,
+        "accept_stat_mean": 0.951921391525827,
+        "accept_stat_min": 0.5195926502833226,
+        "ebfmi_min": 0.8744331129825026
+      },
+      "adjusted_flow_total": {
+        "status": "available",
+        "functional": "sum of adjusted flows across prediction rows",
+        "mean": 657146.6642939334,
+        "sd": 4532.587216216105,
+        "mcse_mean": 68.1423873393107,
+        "mcse_over_sd": 0.01503388331845434,
+        "ess_bulk": 4418.249709320431,
+        "ess_tail": 3295.9430201299197,
+        "rhat": 1.0028099639098882
+      }
+    },
+    "controls": {
+      "areas": 5,
+      "od_pairs": 25,
+      "family": "poisson",
+      "random_effects": "none",
+      "chains": 4,
+      "iterations": 2000,
+      "seed": 20260710
+    },
+    "interpretation": "descriptive empirical probe; not the complete Bayesian parity gate",
+    "derived_relative_mean_mcse": 0.00010369433650329155
+  },
+  "reduced_form": {
+    "rows": 25,
+    "max_relative_flow_mean_difference": 0.967526751699754,
+    "r_total_mean": 2.7112262678344824e+21,
+    "python_total_mean": 9.026251724409286e+19,
+    "r_quality": {
+      "divergences": 0,
+      "rhat": 1.0027,
+      "ess_tail": 1433.0199,
+      "ess_bulk": 1192.7658
+    },
+    "python_quality": {
+      "backend": "rstanarm",
+      "runtime_backend": "bambi_pymc",
+      "has_bias_term": true,
+      "convergence": {
+        "status": "available",
+        "n_chains": 4,
+        "draws_per_chain": 1000,
+        "n_post_warmup_draws": 4000,
+        "draw_shape_valid": 1,
+        "rhat_max": 1.0031511725415458,
+        "ess_bulk_min": 1456.1883097127236,
+        "ess_tail_min": 1329.9153457298873,
+        "mcse_mean_max": 0.08633422394382045,
+        "mcse_over_sd_max": 0.02625584850421541,
+        "divergences": 0,
+        "divergence_rate": 0.0,
+        "treedepth_hits": 0,
+        "treedepth_hit_rate": 0.0,
+        "sampler_shape_valid": 1,
+        "treedepth_max": 6.0,
+        "accept_stat_mean": 0.9466989015365957,
+        "accept_stat_min": 0.40197743761990096,
+        "ebfmi_min": 1.054935799400519
+      },
+      "adjusted_flow_total": {
+        "status": "available",
+        "functional": "sum of adjusted flows across prediction rows",
+        "mean": 9.026251724409284e+19,
+        "sd": 1.6173682000541587e+21,
+        "mcse_mean": 3.017588299704287e+19,
+        "mcse_over_sd": 0.01865739847984671,
+        "ess_bulk": 2433.139383228461,
+        "ess_tail": 2379.9385079371677,
+        "rhat": 0.9998529277177238
+      }
+    },
+    "controls": {
+      "areas": 5,
+      "od_pairs": 25,
+      "family": "poisson",
+      "random_effects": "none",
+      "chains": 4,
+      "iterations": 2000,
+      "seed": 20260710
+    },
+    "interpretation": "unresolved heavy-tailed counterfactual means; no parity PASS",
+    "derived_relative_mean_mcse": 0.33431244683149697
+  },
+  "reduced_form_investigation": {
+    "date": "2026-10-12",
+    "r_code": [
+      "adjust_multilevel_bayes.R",
+      "check_bayesian_parity.R"
+    ],
+    "python_code": [
+      "_bayesian.py",
+      "adjust_multilevel_bayes.py",
+      "check_bayesian_parity.py"
+    ],
+    "tests": [
+      "test_bayesian_prediction_r_parity.py",
+      "test_bayesian_backend_contract.py"
+    ],
+    "cases": [
+      {
+        "scope": "fixed-effect reduced-form Poisson; five-area Census by default",
+        "reference_commit": "6fa2709ae42de6dc525a4a46182fdfb448b14a3f",
+        "fresh_sampling": true,
+        "sampling_controls": {
+          "iterations": 2000,
+          "seed": 20260710,
+          "chains": 4
+        },
+        "fit_rows": 25,
+        "posterior_draws_per_backend": 4000,
+        "prior_parameters_match": true,
+        "centered_log_prior_max_absolute_error": 1.2789769243681803e-13,
+        "prediction_checks": {
+          "observed": {
+            "shared_draw_max_relative_error": 1.137289758293995e-13,
+            "log_likelihood_max_absolute_error": 5.704237082682084e-11
+          },
+          "counterfactual": {
+            "shared_draw_max_relative_error": 1.5624671486645383e-13
+          }
+        },
+        "resolved_priors": {
+          "mu.Intercept": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 2.5
+            },
+            "auto_scale": false
+          },
+          "mu.bias_e_origin": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 985.1564742952404
+            },
+            "auto_scale": false
+          },
+          "mu.log_distance": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 0.14910027419798902
+            },
+            "auto_scale": false
+          },
+          "mu.log_pop_d": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 8.537199763148173
+            },
+            "auto_scale": false
+          },
+          "mu.log_pop_o": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 8.537199763148173
+            },
+            "auto_scale": false
+          }
+        },
+        "bias_fit_range": [
+          0.964422667234768,
+          0.971407484698487
+        ],
+        "counterfactual_bias": 0.0,
+        "counterfactual_distance_in_sample_sd": 381.3768421924751,
+        "r_total": {
+          "status": "available",
+          "functional": "sum of adjusted flows across prediction rows",
+          "mean": 2.711226267834496e+21,
+          "sd": 1.3358032195829323e+23,
+          "mcse_mean": 2.615250966724643e+21,
+          "mcse_relative_mean": 0.9646007777925115,
+          "mean_precision": "unstable",
+          "relative_mcse_warning_threshold": 0.05,
+          "largest_draw_share_of_sum": 0.7480147919448752,
+          "mcse_over_sd": 0.01957811546180569,
+          "ess_bulk": 2950.7366722715574,
+          "ess_tail": 2816.581156591148,
+          "rhat": 1.0007450340882624
+        },
+        "python_total": {
+          "status": "available",
+          "functional": "sum of adjusted flows across prediction rows",
+          "mean": 9.026251724409284e+19,
+          "sd": 1.6173682000541587e+21,
+          "mcse_mean": 3.017588299704287e+19,
+          "mcse_relative_mean": 0.33431244683149697,
+          "mean_precision": "unstable",
+          "relative_mcse_warning_threshold": 0.05,
+          "largest_draw_share_of_sum": 0.18573627252345956,
+          "mcse_over_sd": 0.01865739847984671,
+          "ess_bulk": 2433.139383228461,
+          "ess_tail": 2379.9385079371677,
+          "rhat": 0.9998529277177238
+        },
+        "independent_mean_max_relative_difference": 0.9675267516997549,
+        "independent_median_max_relative_difference": 0.20144272074993974,
+        "conclusion": "prior and shared-draw prediction parity pass; independent mean precision is reported separately"
+      },
+      {
+        "scope": "fixed-effect reduced-form Poisson; five-area Census by default",
+        "reference_commit": "6fa2709ae42de6dc525a4a46182fdfb448b14a3f",
+        "fresh_sampling": true,
+        "sampling_controls": {
+          "iterations": 8000,
+          "seed": 20260711,
+          "chains": 4
+        },
+        "fit_rows": 25,
+        "posterior_draws_per_backend": 16000,
+        "prior_parameters_match": true,
+        "centered_log_prior_max_absolute_error": 1.4921397450962104e-13,
+        "prediction_checks": {
+          "observed": {
+            "shared_draw_max_relative_error": 1.5618140766107423e-13,
+            "log_likelihood_max_absolute_error": 5.46265255252365e-11
+          },
+          "counterfactual": {
+            "shared_draw_max_relative_error": 1.562282317536667e-13
+          }
+        },
+        "resolved_priors": {
+          "mu.Intercept": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 2.5
+            },
+            "auto_scale": false
+          },
+          "mu.bias_e_origin": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 985.1564742952404
+            },
+            "auto_scale": false
+          },
+          "mu.log_distance": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 0.14910027419798902
+            },
+            "auto_scale": false
+          },
+          "mu.log_pop_d": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 8.537199763148173
+            },
+            "auto_scale": false
+          },
+          "mu.log_pop_o": {
+            "distribution": "Normal",
+            "parameters": {
+              "mu": 0.0,
+              "sigma": 8.537199763148173
+            },
+            "auto_scale": false
+          }
+        },
+        "bias_fit_range": [
+          0.964422667234768,
+          0.971407484698487
+        ],
+        "counterfactual_bias": 0.0,
+        "counterfactual_distance_in_sample_sd": 381.3768421924751,
+        "r_total": {
+          "status": "available",
+          "functional": "sum of adjusted flows across prediction rows",
+          "mean": 1.4333559838325898e+20,
+          "sd": 3.069653223532566e+21,
+          "mcse_mean": 3.0882091155656212e+19,
+          "mcse_relative_mean": 0.21545304518896902,
+          "mean_precision": "unstable",
+          "relative_mcse_warning_threshold": 0.05,
+          "largest_draw_share_of_sum": 0.10267969092175977,
+          "mcse_over_sd": 0.01006044947321998,
+          "ess_bulk": 9591.288120243431,
+          "ess_tail": 8501.658808704344,
+          "rhat": 1.0002566362033092
+        },
+        "python_total": {
+          "status": "available",
+          "functional": "sum of adjusted flows across prediction rows",
+          "mean": 2.916861080993158e+20,
+          "sd": 8.210149233547955e+21,
+          "mcse_mean": 9.748731213411916e+19,
+          "mcse_relative_mean": 0.33421993515346243,
+          "mean_precision": "unstable",
+          "relative_mcse_warning_threshold": 0.05,
+          "largest_draw_share_of_sum": 0.13649582327430404,
+          "mcse_over_sd": 0.0118740000164395,
+          "ess_bulk": 9535.88354122517,
+          "ess_tail": 8476.806363772886,
+          "rhat": 1.0004535759898987
+        },
+        "independent_mean_max_relative_difference": 1.1152566666964157,
+        "independent_median_max_relative_difference": 0.08744658432374126,
+        "conclusion": "prior and shared-draw prediction parity pass; independent mean precision is reported separately"
+      }
+    ],
+    "scope_limit": "No complete Bayesian matrix or ZIP reference resolution claimed.",
+    "fix": "Add mean-precision warning and counterfactual support diagnostics; posterior and estimator unchanged.",
+    "verification": {
+      "pytest_passed": 288,
+      "pytest_skipped": 1,
+      "ruff": "pass",
+      "format": "pass"
+    }
+  }
+}

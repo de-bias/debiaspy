@@ -32,5 +32,7 @@ htmlcov/
 # Operating system files
 .DS_Store
 
-/.quarto/
 **/*.quarto_ipynb
+
+# Local example results
+output/

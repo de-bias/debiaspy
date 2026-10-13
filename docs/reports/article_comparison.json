@@ -1,0 +1,1356 @@
+{
+  "reference_commit": "6fa2709ae42de6dc525a4a46182fdfb448b14a3f",
+  "integration_commit": "ff41d43b8281494629d1a756eab34c93aa5c1cd1",
+  "python_companion_commit": "19d1c5f67f5dcf70fcd765e42fa03d667df496df",
+  "date": "2026-10-13",
+  "checks": [
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "DataFrame are different\n\nDataFrame shape mismatch\n[left]:  (33, 1)\n[right]: (32, 1)",
+      "name": "index.public_exports.csv",
+      "rows_python": 32,
+      "rows_r": 33,
+      "status": "fail",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "index.workflow_pages.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.data_counts.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.input_schemas.csv",
+      "rows_python": 27,
+      "rows_r": 27,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.lad_OD_travel2work.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.census_lad_OD_travel2work.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.coverage_lad.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.1102230246251565e-16,
+      "message": "",
+      "name": "v03-getting-set-up.lad_covariates.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v03-getting-set-up.lad_centroids.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_lad.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_renamed.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.440892098500626e-16,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.measure_bias.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.440892098500626e-16,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_totals.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 3.3306690738754696e-16,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.lowest_bias.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 6.3976601794024646e-15,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.distribution.summary.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.440892098500626e-16,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.distribution.top_share_diff.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.0061396160665481e-16,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.summary.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.definitions.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 2.0463630789890885e-12,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.area_head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v04-measuring-coverage-bias.plot_contracts.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.coverage.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.1102230246251565e-16,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.covariates.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.440892098500626e-16,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.bias.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.440892098500626e-16,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.residual.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.bias_covariates.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.3145040611561853e-13,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.coefficient_table.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.0018028073766061e-16,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.fitted_residual.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.0061396160665481e-16,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.top_unexplained.csv",
+      "rows_python": 10,
+      "rows_r": 10,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.plot_contracts.csv",
+      "rows_python": 3,
+      "rows_r": 3,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.OD_travel2work.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.census_OD_travel2work.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.coverage.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.example_counts.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 7.275957614183426e-12,
+      "message": "",
+      "name": "v06-adjusting-biases.inverse_penetration.preview.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 2.1827872842550278e-11,
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate.preview.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate.attrs.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 3.637978807091713e-12,
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate2.preview.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate2.attrs.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 3.637978807091713e-11,
+      "message": "",
+      "name": "v06-adjusting-biases.raking_ratio.preview.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 3.552713678800501e-14,
+      "message": "",
+      "name": "v06-adjusting-biases.raking_ratio.summary.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 2.9103830456733704e-11,
+      "message": "",
+      "name": "v06-adjusting-biases.coefficient.preview.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.7763568394002505e-14,
+      "message": "",
+      "name": "v06-adjusting-biases.coefficient.attrs.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 5.684341886080802e-14,
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.display.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.metadata.csv",
+      "rows_python": 12,
+      "rows_r": 12,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.model_terms.csv",
+      "rows_python": 16,
+      "rows_r": 16,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 5.417678039520979e-07,
+      "message": "",
+      "name": "v06-adjusting-biases.adjust_all_methods.summary.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v07-validation.example_counts.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v07-validation.method_set.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.862645149230957e-09,
+      "message": "",
+      "name": "v07-validation.bayesian_precomputed.display.csv",
+      "rows_python": 35,
+      "rows_r": 35,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.1368683772161603e-13,
+      "message": "",
+      "name": "v07-validation.bayesian_precomputed.metadata.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.371628165245056e-06,
+      "message": "",
+      "name": "v07-validation.level1.overall_metrics.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-05
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.000157781417163938,
+      "message": "",
+      "name": "v07-validation.level2.origin_margin_metrics.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 0.0002
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 4.198708640479332e-05,
+      "message": "",
+      "name": "v07-validation.level2.destination_margin_metrics.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 0.0002
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.0089706847793423e-11,
+      "message": "",
+      "name": "v07-validation.level3.residual_summary.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 3.7834979593753815e-10,
+      "message": "",
+      "name": "v07-validation.level3.top_worst.csv",
+      "rows_python": 20,
+      "rows_r": 20,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.3378187446733136e-14,
+      "message": "",
+      "name": "v07-validation.level4.distribution_summary.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 9.094947017729282e-11,
+      "message": "",
+      "name": "v07-validation.level4.origin_head.csv",
+      "rows_python": 20,
+      "rows_r": 20,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v07-validation.level5.neighbor_summary.csv",
+      "rows_python": 1,
+      "rows_r": 1,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 9.61564161627848e-13,
+      "message": "",
+      "name": "v07-validation.level5.structure_summary.csv",
+      "rows_python": 4,
+      "rows_r": 4,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v07-validation.plot_contracts.csv",
+      "rows_python": 7,
+      "rows_r": 7,
+      "status": "pass",
+      "tolerance": 1e-06
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.data_counts.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.mpd_od.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.coverage.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.1102230246251565e-16,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.covariates.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 2.3874235921539366e-12,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.distance.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 0.0,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.benchmark.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.8306564015801996e-06,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.coverage_offset_frequentist.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 1e-05
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 1.6555371284484863,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.reduced_form_frequentist.head.csv",
+      "rows_python": 6,
+      "rows_r": 6,
+      "status": "pass",
+      "tolerance": 2.0
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": 9.71445146547012e-17,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.output.csv",
+      "rows_python": 5,
+      "rows_r": 5,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.summary.csv",
+      "rows_python": 3,
+      "rows_r": 3,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.diagnostics.csv",
+      "rows_python": 40,
+      "rows_r": 40,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "csv",
+      "max_abs_delta": null,
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_backend_contract.csv",
+      "rows_python": 2,
+      "rows_r": 2,
+      "status": "pass",
+      "tolerance": 1e-08
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "index.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.meta.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "JSON values differ",
+      "name": "index.public_exports.schema.json",
+      "status": "fail"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "index.workflow_pages.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.data_counts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.input_schemas.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.lad_OD_travel2work.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.census_lad_OD_travel2work.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.coverage_lad.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.lad_covariates.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v03-getting-set-up.lad_centroids.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_lad.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_renamed.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.measure_bias.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.coverage_totals.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.lowest_bias.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.distribution.summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.distribution.top_share_diff.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.definitions.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.residual.area_head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v04-measuring-coverage-bias.plot_contracts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.coverage.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.covariates.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.bias.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.residual.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.bias_covariates.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.coefficient_table.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.fitted_residual.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.top_unexplained.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v05-identifying-and-explaining-bias.plot_contracts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.OD_travel2work.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.census_OD_travel2work.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.raw_heads.coverage.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.example_counts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.inverse_penetration.preview.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate.preview.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate.attrs.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate2.preview.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.selection_rate2.attrs.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.raking_ratio.preview.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.raking_ratio.summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.coefficient.preview.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.coefficient.attrs.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.display.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.metadata.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.bayesian_precomputed.model_terms.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v06-adjusting-biases.adjust_all_methods.summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.example_counts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.method_set.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.bayesian_precomputed.display.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.bayesian_precomputed.metadata.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level1.overall_metrics.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level2.origin_margin_metrics.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level2.destination_margin_metrics.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level3.residual_summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level3.top_worst.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level4.distribution_summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level4.origin_head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level5.neighbor_summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.level5.structure_summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v07-validation.plot_contracts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.data_counts.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.mpd_od.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.coverage.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.covariates.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.distance.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.benchmark.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.coverage_offset_frequentist.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.reduced_form_frequentist.head.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.output.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.summary.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_precomputed.diagnostics.schema.json",
+      "status": "pass"
+    },
+    {
+      "kind": "json",
+      "message": "",
+      "name": "v09-advanced-bayesian-adjustment.bayesian_backend_contract.schema.json",
+      "status": "pass"
+    }
+  ],
+  "non_bayesian_issue_checks": {
+    "status": "Implemented and verified on integration branch; GitHub issues remain open pending review.",
+    "issues": {
+      "12": {
+        "change": "Shared smoothing, KL and JSD calculations reused by measurement and flow validation.",
+        "python": [
+          "distribution_metrics.py",
+          "measure_bias.py",
+          "validate_flows.py"
+        ],
+        "tests": [
+          "test_shared_distribution_metrics.py",
+          "test_measure_bias_distribution.py",
+          "test_validation_core.py"
+        ]
+      },
+      "13": {
+        "change": "Boolean significance fixes LISA classification; deterministic global/local Moran, weighted, constant, isolated and role/aggregation cases verified.",
+        "python": [
+          "validate_flows.py"
+        ],
+        "tests": [
+          "test_flow_residual_structure.py"
+        ],
+        "live_r_cases": [
+          "clusters",
+          "weighted",
+          "constant",
+          "isolated"
+        ],
+        "limit": "Seeded permutation sequences are not claimed identical across R and NumPy."
+      },
+      "14": {
+        "change": "Errors identify method names while wrappers reuse core calculations; preparation, margins, subsets and bad inputs verified.",
+        "python": [
+          "validate_flow_methods.py"
+        ],
+        "tests": [
+          "test_validate_flow_methods.py"
+        ]
+      },
+      "15": {
+        "change": "Real LISA rendering verified; consistent R default colours across panels and outline CRS alignment fixed.",
+        "python": [
+          "plot_validation.py"
+        ],
+        "tests": [
+          "test_lisa_plot.py",
+          "test_validation_plot_contract.py"
+        ]
+      }
+    },
+    "cleanup": {
+      "removed": [
+        "R data loading and automatic downloader",
+        "production synthetic fixture mode and derived fallback data",
+        "runtime SHA fingerprints and hashed cache layout",
+        "obsolete approval/stage labels and duplicate import scaffolding"
+      ],
+      "net_lines_removed_in_cleanup_commit": 471,
+      "stan_source_changed": false,
+      "deliberate_changes": [
+        "Retired debiasRdata loading requires the Python companion instead.",
+        "Explicit-path metadata identifies supplied filenames.",
+        "Missing/invalid centroid coverage raises instead of returning empty distance data.",
+        "Duplicate area classifications in a map panel raise explicitly."
+      ],
+      "retained": [
+        "public scientific output fields",
+        "source attribution",
+        "model controls and diagnostics",
+        "MIT licence and contributor credits"
+      ]
+    },
+    "verification": {
+      "pytest_passed": 341,
+      "pytest_skipped": 0,
+      "ruff": "pass",
+      "format": "pass",
+      "whitespace": "pass",
+      "article_passed": 149,
+      "article_intentional_api_differences": 2,
+      "wheel_build": "pass",
+      "installed_synthetic_example": "pass",
+      "installed_full_lad_observed_rows": 42455,
+      "installed_full_lad_matched_pairs": 34762,
+      "installed_package": true,
+      "fresh_dependency_resolution": true,
+      "python_version": "3.11.14",
+      "optional_bayesian_sampling_smoke": true,
+      "python_314_targeted_passed": 114,
+      "python_314_targeted_skipped": 1,
+      "quarto_render": true
+    },
+    "limits": [
+      "Human review and focused PRs pending.",
+      "Full Bayesian matrix, CmdStan compilation/sampling, Quarto rendering and fresh dependency-resolution matrix not rerun."
+    ]
+  },
+  "expected_differences": [
+    "index.public_exports.csv",
+    "index.public_exports.schema.json"
+  ],
+  "scope": "Fresh R/Python non-MCMC article calls; Bayesian extdata are reference fixtures.",
+  "working_tree_changes": [
+    " M .gitignore",
+    " M README.md",
+    " M docs/development/api-mapping.md",
+    " M docs/development/workflow.md",
+    " M docs/tutorials/t02-why-this-matters.qmd",
+    " M docs/tutorials/t03-getting-set-up.qmd",
+    " M docs/tutorials/t04-measuring-coverage-bias.qmd",
+    " M docs/tutorials/t05-identifying-and-explaining-bias.qmd",
+    " M docs/tutorials/t06-adjusting-biases.qmd",
+    " M docs/tutorials/t07-validation.qmd",
+    " M docs/tutorials/t08-visualising-flows.qmd",
+    " M docs/tutorials/t09-advanced-bayesian-adjustment.qmd",
+    " M index.qmd",
+    "?? docs/development/bayesian-investigation.md",
+    "?? docs/development/integration-review.md",
+    "?? docs/inputs.md",
+    "?? docs/reports/",
+    "?? tools/"
+  ],
+  "simplification": {
+    "runtime_python_lines_removed": 382,
+    "public_multilevel_lines_before": 2094,
+    "public_multilevel_lines_after": 543,
+    "all_methods_retained": true,
+    "deliberate_interface_changes": [
+      "Use formula instead of deprecated custom_formula.",
+      "Use grouped, bayesian and latent installation extras instead of models."
+    ]
+  },
+  "verification": {
+    "branch": "contribution/r-parity",
+    "installed_tests_passed": 342,
+    "installed_tests_skipped": 0,
+    "warnings": 3,
+    "live_r": true,
+    "short_bayesian_smoke": true,
+    "pip_check": "pass",
+    "census_observed_rows": 42455,
+    "census_adjusted_rows": 42455,
+    "census_matched_pairs": 34762,
+    "full_bayesian_matrix_rerun": false
+  },
+  "further_simplification": {
+    "runtime_net_lines_removed": 91,
+    "article_checker_lines_removed": 103,
+    "public_multilevel_lines": 524,
+    "original_tests_retained": true,
+    "regression_tests_added": 1
+  }
+}

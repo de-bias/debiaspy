@@ -1,6 +1,17 @@
 ---
-title: "Why this matters"
+title: "Why representation bias matters"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v02-why-this-matters.qmd`.
+Digital mobility data describe the people observed by a provider. Their
+geographical distribution can differ from the population whose travel patterns
+we want to estimate. Adjustments use coverage, benchmark flows or modelled
+relationships to account for those differences.
+
+Start by defining the counting unit and population of interest. Then measure
+coverage, choose an adjustment supported by the available data, and compare
+its results with a suitable benchmark. A benchmark used for calibration also
+influences the adjustment; independent evaluation is needed to assess accuracy
+beyond that calibration data.
+
+The Census example demonstrates the workflow. The public functions also accept
+other OD and benchmark tables that meet the [input definitions](../inputs.md).

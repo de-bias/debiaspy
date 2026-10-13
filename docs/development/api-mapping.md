@@ -31,34 +31,34 @@ than one public function.
 | `R/measure_bias.R` | `measure_bias.py` | `measure_bias()` | Implemented |
 | `R/measure_bias.R` | `measure_bias.py` | `measure_bias_distribution()` | Implemented |
 | `R/measure_bias.R` | `measure_bias.py` | `validate_bias_residual_structure()` | Implemented |
-| `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Planned |
-| `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Planned |
-| `R/adjust_selection_rate2.R` | `adjust_selection_rate2.py` | `adjust_selection_rate2()` | Planned |
-| `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Planned |
-| `R/adjust_coefficient.R` | `adjust_coefficient.py` | `adjust_coefficient()` | Planned |
-| `R/adjust_multilevel_bayes.R` | `adjust_multilevel_bayes.py` | `adjust_multilevel_bayes()` | Design required |
-| `R/adjust_all_methods.R` | `adjust_all_methods.py` | `adjust_all_methods()` | Planned after individual methods |
-| `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_output()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_outputs()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_overall_methods()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_residual_methods()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_distribution_methods()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_residual_structure_methods()` | Planned |
-| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_margins()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_metrics()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_residuals()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_scatter()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_residual_bands()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_distribution()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_distribution_pairwise()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_structure()` | Planned |
-| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_lisa_map()` | Planned |
+| `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Implemented on contribution branch |
+| `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Implemented on contribution branch |
+| `R/adjust_selection_rate2.R` | `adjust_selection_rate2.py` | `adjust_selection_rate2()` | Implemented on contribution branch |
+| `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Implemented on contribution branch |
+| `R/adjust_coefficient.R` | `adjust_coefficient.py` | `adjust_coefficient()` | Implemented on contribution branch |
+| `R/adjust_multilevel_bayes.R` | `adjust_multilevel_bayes.py` | `adjust_multilevel_bayes()` | Implementation proposed; backend review required |
+| `R/adjust_all_methods.R` | `adjust_all_methods.py` | `adjust_all_methods()` | Implemented on contribution branch |
+| `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Implemented on contribution branch |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Implemented on contribution branch |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Implemented on contribution branch |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Implemented on contribution branch |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Implemented on contribution branch |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_output()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_outputs()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_overall_methods()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_residual_methods()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_distribution_methods()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_residual_structure_methods()` | Implemented on contribution branch |
+| `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_margins()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_metrics()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_residuals()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_scatter()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_residual_bands()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_distribution()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_distribution_pairwise()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_structure()` | Implemented on contribution branch |
+| `R/plot_validation.R` | `plot_validation.py` | `validate_flow_plot_lisa_map()` | Implemented on contribution branch |
 
 `debiasR_example_data()` is renamed `debiaspy_example_data()` because the R
 package name should not appear in the Python API.
@@ -71,43 +71,22 @@ should call `validate_flow_overall()` and `validate_flow_pairs()` directly.
 
 ## Internal support modules
 
-### `distribution_metrics.py`
-
-This module may contain shared private calculations used by distributional
-measurement and validation, including:
-
-- `_validate_distribution_epsilon()`
-- `_distribution_shares()`
-- `_distribution_jsd_contributions()`
-- `_normalise_distribution_comparisons()`
-
-### `flow_comparisons.py`
-
-This module may contain shared private definitions for comparing adjusted, raw
-and benchmark flows, including:
-
-- `_normalise_flow_comparisons()`
-- `_flow_comparison_spec()`
-- `_flow_comparison_label()`
-- `_flow_comparison_residual()`
-- `_flow_comparison_x()`
-- `_flow_comparison_y()`
-
-These private names describe intended responsibilities, not a requirement to
-translate every R helper literally. Contributors should reuse an existing
-helper rather than create competing implementations.
+Shared calculations and input checks live in small private modules, including
+`_adjustment_common.py`, `_flow_joins.py`, `_numeric.py` and `_schemas.py`.
+Shared model inputs and formulas use `_multilevel_inputs.py`; frequentist
+fitting uses `_frequentist.py`. Bayesian runtimes use `_bayesian.py`,
+`_bayesian_latent.py` and `_latent.py`.
+The Python formula interface uses `formula` and the paired mobility/bias inputs;
+the deprecated R `custom_formula` argument is omitted.
+The corresponding public functions remain in the mapped flat modules above.
 
 ## R files without a direct Python module requirement
 
 - `R/debiasR-package.R` maps to package metadata in `pyproject.toml` and public
   exports in `src/debiaspy/__init__.py`.
 - `R/globals.R` supports R package checks and has no direct Python equivalent.
-  The current `globals.py` placeholder can be removed unless a Python-specific
-  use emerges.
 - `R/data-simulated.R` documents bundled R datasets. Empirical Python datasets
-  belong in `debiaspydata`, while small test fixtures belong in `tests/`. The
-  current `data_simulated.py` placeholder can be removed unless simulation
-  functions are designed later.
+  belong in `debiaspydata`, while small test fixtures belong in `tests/`.
 
 ## Implementation order and dependencies
 

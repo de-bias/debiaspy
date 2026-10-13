@@ -1,6 +1,40 @@
 ---
-title: "Advanced Bayesian multilevel adjustment"
+title: "Bayesian multilevel adjustment"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v09-advanced-bayesian-adjustment.qmd`.
+Bayesian methods are experimental on the integration branch. The tested
+fixed-effect Poisson case matches R priors, likelihood and shared-draw predictions.
+Its zero-bias counterfactual extrapolates far outside the observed bias range,
+producing very large and imprecisely estimated posterior means. Backend agreement
+and reliable corrected-flow estimates are separate questions.
+
+Install `.[bayesian]` for Bambi/PyMC, or `.[latent]` and CmdStan for latent models.
+The `backend` choices `rstanarm` and `brms` identify R model/prior conventions;
+non-latent Python sampling runs through Bambi/PyMC.
+
+```python
+from debiaspy import adjust_multilevel_bayes, debiaspy_example_data
+
+bundle = debiaspy_example_data(n_areas=5, complete_grid=True)
+result = adjust_multilevel_bayes(
+    bundle["mpd_od"], bundle["coverage"],
+    covariates_df=bundle["covariates"], distance_df=bundle["distance"],
+    model_engine="bayesian", random_intercept="none",
+    mobility_formula="~ log_pop_o + log_pop_d + log_distance",
+    bias_formula="~ bias_e_origin",
+    iter=2000, chains=4, seed=20260710,
+)
+print(result.attrs["diagnostics"])
+```
+
+Inspect divergences, effective sample size and R-hat, alongside
+`adjusted_flow_total` and `counterfactual_support`. A runtime warning is emitted
+when the adjusted total mean's Monte Carlo standard error exceeds 5% of its
+mean. The warning leaves the R-compatible mean estimator unchanged. Its absence
+provides limited evidence about precision and does not establish model validity.
+
+Random slopes, multiple/nested/crossed random effects and latent ZIP/ZINB require
+further implementation. The full Bayesian sampling matrix and six retained
+R-reference ZIP quality failures remain outstanding. Read the
+[investigation](../development/bayesian-investigation.md) for evidence and
+commands before interpreting the example's adjusted flows.

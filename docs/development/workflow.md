@@ -60,3 +60,16 @@ When porting a function from `debiasR`:
 
 Keep each change small enough that reviewers can compare the Python behaviour
 against the R implementation.
+
+## Optional comparison with R
+
+The measurement edge-case tests include a live comparison with
+`debiasR/R/measure_bias.R`. To run it against a local debiasR checkout:
+
+```bash
+DEBIASR_ROOT=/path/to/debiasR python -m pytest tests/test_measure_bias_r_parity.py
+```
+
+This comparison requires `Rscript`; it sources the measurement function directly.
+The regular Python edge-case tests run without R. Record the debiasR commit used
+when reporting a live comparison in a pull request.

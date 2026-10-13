@@ -1,0 +1,2208 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{pdflscape}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+
+\definecolor{passgreen}{HTML}{176B3A}
+\definecolor{failred}{HTML}{A12A2A}
+\newenvironment{statusbox}
+  {\begin{center}\begin{minipage}{0.88\textwidth}\hrule\vspace{0.7em}\color{passgreen}}
+  {\vspace{0.7em}\hrule\end{minipage}\end{center}}
+\newenvironment{boundarybox}
+  {\begin{quote}\color{blue!55!black}}
+  {\end{quote}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={debiasR vs debiaspy audit comparison},
+  pdfauthor={debiaspy integration comparison}
+}
+\sisetup{detect-all, scientific-notation=true}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\renewcommand{\arraystretch}{1.12}
+\setcounter{tocdepth}{2}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{debiasR vs debiaspy}
+\rhead{Vignette output comparison}
+\cfoot{\thepage}
+\emergencystretch=3em
+\Urlmuskip=0mu plus 1mu
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{1.25in}
+{\Huge\bfseries debiasR vs debiaspy\par}
+\vfill
+\begin{statusbox}
+\textbf{Updated result: 149 passes; two documented API-export differences.}\\[0.3em]
+All numerical article outputs pass their existing tolerances, including the
+full-LAD frequentist models. The two differences concern the intentional
+Python public-export policy. This report uses the original Census 2021 OD
+benchmark and records the remaining Bayesian limitation.
+\end{statusbox}
+\vfill
+{\small
+This project is currently hosted at\\[0.15em]
+\url{https://github.com/de-bias/debiaspy/tree/contribution/r-parity}\\[0.35em]
+Regenerated against the integration branch on 13 October 2026.\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+{\footnotesize\setlength{\parskip}{0pt}\tableofcontents}
+\clearpage
+\pagenumbering{arabic}
+
+\section{Executive result}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+The published article audit reruns the declared R and Python calls with the
+same pinned inputs. It records \textbf{72 paired CSV outputs} and
+\textbf{79 JSON/schema checks}; 149 pass and two export-list checks differ. All scientific table values
+pass. The side-by-side tables are read from newly regenerated outputs. The
+Python list has the renamed data loader, omits two R compatibility aliases,
+and exposes its version. These policy differences do not alter calculations.
+
+\section{Vignette coverage matrix}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Page & Workflow & CSV & JSON & Rendered pairs & Figure contracts & Result \\
+\midrule
+v03 & Getting Set Up & 7 & 8 & 0 & 0 & \textcolor{passgreen}{\textbf{PASS}} \\
+v04 & Measuring Coverage Bias & 11 & 12 & 4 & 4 & \textcolor{passgreen}{\textbf{PASS}} \\
+v05 & Identifying And Explaining Bias & 9 & 10 & 3 & 3 & \textcolor{passgreen}{\textbf{PASS}} \\
+v06 & Adjusting Biases & 17 & 18 & 0 & 0 & \textcolor{passgreen}{\textbf{PASS}} \\
+v07 & Validation & 14 & 15 & 3 & 7 & \textcolor{passgreen}{\textbf{PASS}} \\
+v09 & Advanced Bayesian Adjustment & 12 & 13 & 0 & 0 & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{tabular}
+\caption{Complete published-vignette coverage. Rendered pairs are newly
+generated exhibits; figure contracts are the committed audit records.}
+\end{table}
+
+\section{Provenance and comparison rules}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Reference & Checked revision \\
+\midrule
+debiasR & \texttt{6fa2709ae42de6dc525a4a46182fdfb448b14a3f} \\
+Original R data companion & \texttt{e652a1186c705d1edc4ff5427e7e2d5230ef7fe7} \\
+Python data companion & \texttt{19d1c5f67f5dcf70fcd765e42fa03d667df496df} \\
+Recorded table code & \texttt{6d1a2c9}; fresh checks: \texttt{ff41d43} \\
+Bayesian investigation & \texttt{48ac156}; separate diagnostic evidence \\
+Runtime & Python 3.11.14; R 4.5.1; prepared scientific dependency stack \\
+Article evidence & \path{docs/reports/article_comparison.json}; 149 PASS, two API differences \\
+\bottomrule
+\end{tabularx}
+
+The original Census 2021 ODWP01EW workplace-flow benchmark is retained.
+Python article outputs were regenerated against retained outputs from the clean
+pinned R checkout. Focused spatial regressions also execute R calls afresh. Artifact paths below identify outputs in the regeneration workspace. Published
+check records reside in the JSON files under \path{docs/reports}.
+
+The filename labels identify the implementation and executed audit or regression
+test files for the stated scope. Precomputed Bayesian tables cite their ingestion
+code; they do not imply that the article audit ran a sampler. Figure tests compare
+data contracts, not rendered pixels.
+
+CSV structures, strings, missingness
+and schemas are compared exactly. Numeric acceptance uses raw precision and
+existing per-table tolerances. Display rounding does not determine pass/fail.
+The renamed Python loader and module paths are adapted in the audit caller;
+no numerical acceptance thresholds or public model calculations were changed.
+
+The Python companion route also matches the original R companion route for
+MPD, benchmark, coverage, covariates, distances and support-audit tables in
+five-area LAD and MSOA probes. Tests verify that the Python route invokes no R.
+Independent validation of external source accuracy is beyond this comparison.
+
+\section{Getting Set Up}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v03-getting-set-up.html}
+
+
+
+Checks the article input objects, row counts, portable schemas, and first rows loaded from the same debiasRdata package.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{data_counts.csv} & 5 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{input_schemas.csv} & 27 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{lad_OD_travel2work.head.csv} & 6 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{census_lad_OD_travel2work.head.csv} & 6 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coverage_lad.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{lad_covariates.head.csv} & 6 & 10 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{lad_centroids.head.csv} & 6 & 6 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\paragraph{Figures.} This vignette section is table/input oriented; the declared article audit contains no data-figure contract for it.
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{data\_counts.csv}}{data\_counts.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & object & lad\_\allowbreak{}OD\_\allowbreak{}travel2work & lad\_\allowbreak{}OD\_\allowbreak{}travel2work & 0 & exact \\
+1 & rows & 42455 & 42455 & 0 & exact \\
+1 & columns & 3 & 3 & 0 & exact \\
+2 & object & census\_\allowbreak{}lad\_\allowbreak{}OD\_\allowbreak{}travel2work & census\_\allowbreak{}lad\_\allowbreak{}OD\_\allowbreak{}travel2work & 0 & exact \\
+2 & rows & 69983 & 69983 & 0 & exact \\
+2 & columns & 3 & 3 & 0 & exact \\
+3 & object & coverage\_\allowbreak{}lad & coverage\_\allowbreak{}lad & 0 & exact \\
+3 & rows & 331 & 331 & 0 & exact \\
+3 & columns & 5 & 5 & 0 & exact \\
+4 & object & lad\_\allowbreak{}covariates & lad\_\allowbreak{}covariates & 0 & exact \\
+4 & rows & 331 & 331 & 0 & exact \\
+4 & columns & 10 & 10 & 0 & exact \\
+5 & object & lad\_\allowbreak{}centroids & lad\_\allowbreak{}centroids & 0 & exact \\
+5 & rows & 363 & 363 & 0 & exact \\
+5 & columns & 6 & 6 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{coverage\_lad.head.csv}}{coverage\_lad.head.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & code & E06000001 & E06000001 & 0 & exact \\
+1 & population & 92338 & 92338 & 0 & exact \\
+1 & user\_\allowbreak{}count & 1207 & 1207 & 0 & exact \\
+2 & code & E06000002 & E06000002 & 0 & exact \\
+2 & population & 143926 & 143926 & 0 & exact \\
+2 & user\_\allowbreak{}count & 1028 & 1028 & 0 & exact \\
+3 & code & E06000003 & E06000003 & 0 & exact \\
+3 & population & 136531 & 136531 & 0 & exact \\
+3 & user\_\allowbreak{}count & 1144 & 1144 & 0 & exact \\
+4 & code & E06000004 & E06000004 & 0 & exact \\
+4 & population & 196595 & 196595 & 0 & exact \\
+4 & user\_\allowbreak{}count & 1755 & 1755 & 0 & exact \\
+5 & code & E06000005 & E06000005 & 0 & exact \\
+5 & population & 107799 & 107799 & 0 & exact \\
+5 & user\_\allowbreak{}count & 1165 & 1165 & 0 & exact \\
+6 & code & E06000006 & E06000006 & 0 & exact \\
+6 & population & 128478 & 128478 & 0 & exact \\
+6 & user\_\allowbreak{}count & 1744 & 1744 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{lad\_covariates.head.csv}}{lad\_covariates.head.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{example_data.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & area & E06000001 & E06000001 & 0 & exact \\
+1 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 11.48510348 & 11.48510348 & 0 & exact \\
+1 & per\_\allowbreak{}level4 & 24.80518437 & 24.80518437 & 0 & exact \\
+1 & rural\_\allowbreak{}pct & 3.094915805 & 3.094915805 & 0 & exact \\
+2 & area & E06000002 & E06000002 & 0 & exact \\
+2 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 14.23856704 & 14.23856704 & 0 & exact \\
+2 & per\_\allowbreak{}level4 & 26.44134142 & 26.44134142 & 0 & exact \\
+2 & rural\_\allowbreak{}pct & 0.2195404934 & 0.2195404934 & 0 & exact \\
+3 & area & E06000003 & E06000003 & 0 & exact \\
+3 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 10.28029854 & 10.28029854 & 0 & exact \\
+3 & per\_\allowbreak{}level4 & 24.92656353 & 24.92656353 & 0 & exact \\
+3 & rural\_\allowbreak{}pct & 31.69232798 & 31.69232798 & 0 & exact \\
+4 & area & E06000004 & E06000004 & 0 & exact \\
+4 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 10.99061522 & 10.99061522 & 0 & exact \\
+4 & per\_\allowbreak{}level4 & 29.52218214 & 29.52218214 & 0 & exact \\
+4 & rural\_\allowbreak{}pct & 5.552786312 & 5.552786312 & 0 & exact \\
+5 & area & E06000005 & E06000005 & 0 & exact \\
+5 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 10.9507333 & 10.9507333 & 0 & exact \\
+5 & per\_\allowbreak{}level4 & 28.96137651 & 28.96137651 & 0 & exact \\
+5 & rural\_\allowbreak{}pct & 13.05569726 & 13.05569726 & 0 & exact \\
+6 & area & E06000006 & E06000006 & 0 & exact \\
+6 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 11.41587341 & 11.41587341 & 0 & exact \\
+6 & per\_\allowbreak{}level4 & 23.93119637 & 23.93119637 & 0 & exact \\
+6 & rural\_\allowbreak{}pct & 0.7223307621 & 0.7223307621 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\section{Measuring Coverage Bias}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v04-measuring-coverage-bias.html}
+
+
+
+Checks coverage-bias tables, total coverage calculations, distribution summaries, residual-bias tables, and plot data contracts.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{coverage_lad.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coverage_renamed.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{measure_bias.head.csv} & 6 & 6 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coverage_totals.csv} & 1 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{lowest_bias.head.csv} & 6 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{distribution.summary.csv} & 1 & 11 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{distribution.top_share_diff.csv} & 6 & 12 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{residual.summary.csv} & 1 & 14 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{residual.definitions.csv} & 4 & 3 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{residual.area_head.csv} & 6 & 7 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{plot_contracts.csv} & 4 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Rendered figure pairs}
+{\footnotesize \textbf{R code:} \path{render_vignette_figures.R}\\ \textbf{Python code:} \path{render_vignette_latex_comparison.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_plot_contract.py}\par}
+
+
+Each pair uses the corresponding full-data or committed-summary R and Python values. Visual style differences are expected because the backends are ggplot2 and Matplotlib.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v04_coverage_bias_histogram.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v04_coverage_bias_histogram.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Coverage-bias histogram. Full 331-area data; the same variable, bins and interpretation are used.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v04_population_user_count_scatter.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v04_population_user_count_scatter.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Population and observed-user scatter. Full 331-area data with logarithmic axes.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v04_baseline_residual_panel.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v04_baseline_residual_panel.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Constant-coverage baseline and residual panel. Observed counts, expected baseline and residual bias use the same formulas.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v04_residual_bias_histogram.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v04_residual_bias_histogram.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Residual-bias histogram. Full 331-area residual table; rendered pixels are backend-specific.}
+\end{figure}
+
+\subsection{Figure-data contracts}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+The committed contract rows agree exactly.
+
+\footnotesize
+\begin{longtable}{@{}r p{0.16\textwidth}p{0.21\textwidth}p{0.16\textwidth}p{0.21\textwidth}l@{}}
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endfirsthead
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endhead
+1 & coverage\_\allowbreak{}bias\_\allowbreak{}histogram & x=coverage\_\allowbreak{}bias; y=count; n=331 & coverage\_\allowbreak{}bias\_\allowbreak{}histogram & x=coverage\_\allowbreak{}bias; y=count; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+2 & population\_\allowbreak{}user\_\allowbreak{}count\_\allowbreak{}scatter & x=population; y=user\_\allowbreak{}count; n=331 & population\_\allowbreak{}user\_\allowbreak{}count\_\allowbreak{}scatter & x=population; y=user\_\allowbreak{}count; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+3 & baseline\_\allowbreak{}residual\_\allowbreak{}panel & x=population; y=residual\_\allowbreak{}bias; n=331 & baseline\_\allowbreak{}residual\_\allowbreak{}panel & x=population; y=residual\_\allowbreak{}bias; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+4 & residual\_\allowbreak{}bias\_\allowbreak{}histogram & x=residual\_\allowbreak{}bias; y=count; n=331 & residual\_\allowbreak{}bias\_\allowbreak{}histogram & x=residual\_\allowbreak{}bias; y=count; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{coverage\_totals.csv}}{coverage\_totals.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & lad\_\allowbreak{}count & 331 & 331 & 0 & exact \\
+1 & census\_\allowbreak{}pop & 59597541 & 59597541 & 0 & exact \\
+1 & digital\_\allowbreak{}trace\_\allowbreak{}pop & 654130.2188 & 654130.2188 & 0 & exact \\
+1 & overall\_\allowbreak{}coverage & 0.01097579208 & 0.01097579208 & 0 & exact \\
+1 & overall\_\allowbreak{}coverage\_\allowbreak{}bias & 0.9890242079 & 0.9890242079 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{measure\_bias.head.csv}}{measure\_bias.head.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & area & E06000001 & E06000001 & 0 & exact \\
+1 & population & 92338 & 92338 & 0 & exact \\
+1 & user\_\allowbreak{}count & 1207 & 1207 & 0 & exact \\
+1 & coverage\_\allowbreak{}score & 0.01307154151 & 0.01307154151 & 0 & exact \\
+1 & coverage\_\allowbreak{}bias & 0.9869284585 & 0.9869284585 & 0 & exact \\
+2 & area & E06000002 & E06000002 & 0 & exact \\
+2 & population & 143926 & 143926 & 0 & exact \\
+2 & user\_\allowbreak{}count & 1028 & 1028 & 0 & exact \\
+2 & coverage\_\allowbreak{}score & 0.007142559371 & 0.007142559371 & 0 & exact \\
+2 & coverage\_\allowbreak{}bias & 0.9928574406 & 0.9928574406 & 0 & exact \\
+3 & area & E06000003 & E06000003 & 0 & exact \\
+3 & population & 136531 & 136531 & 0 & exact \\
+3 & user\_\allowbreak{}count & 1144 & 1144 & 0 & exact \\
+3 & coverage\_\allowbreak{}score & 0.008379049447 & 0.008379049447 & 0 & exact \\
+3 & coverage\_\allowbreak{}bias & 0.9916209506 & 0.9916209506 & 0 & exact \\
+4 & area & E06000004 & E06000004 & 0 & exact \\
+4 & population & 196595 & 196595 & 0 & exact \\
+4 & user\_\allowbreak{}count & 1755 & 1755 & 0 & exact \\
+4 & coverage\_\allowbreak{}score & 0.008926981866 & 0.008926981866 & 0 & exact \\
+4 & coverage\_\allowbreak{}bias & 0.9910730181 & 0.9910730181 & 0 & exact \\
+5 & area & E06000005 & E06000005 & 0 & exact \\
+5 & population & 107799 & 107799 & 0 & exact \\
+5 & user\_\allowbreak{}count & 1165 & 1165 & 0 & exact \\
+5 & coverage\_\allowbreak{}score & 0.01080715034 & 0.01080715034 & 0 & exact \\
+5 & coverage\_\allowbreak{}bias & 0.9891928497 & 0.9891928497 & 0 & exact \\
+6 & area & E06000006 & E06000006 & 0 & exact \\
+6 & population & 128478 & 128478 & 0 & exact \\
+6 & user\_\allowbreak{}count & 1744 & 1744 & 0 & exact \\
+6 & coverage\_\allowbreak{}score & 0.01357430844 & 0.01357430844 & 0 & exact \\
+6 & coverage\_\allowbreak{}bias & 0.9864256916 & 0.9864256916 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{distribution.summary.csv}}{distribution.summary.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & n\_\allowbreak{}areas & 331 & 331 & 0 & exact \\
+1 & kl\_\allowbreak{}population\_\allowbreak{}user & 0.03321172694 & 0.03321172694 & 0 & exact \\
+1 & jsd\_\allowbreak{}population\_\allowbreak{}user & 0.008103762933 & 0.008103762933 & 0 & exact \\
+1 & mean\_\allowbreak{}abs\_\allowbreak{}share\_\allowbreak{}difference & 0.0005957367869 & 0.0005957367869 & 0 & exact \\
+1 & max\_\allowbreak{}abs\_\allowbreak{}share\_\allowbreak{}difference & 0.005013364012 & 0.005013364012 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{residual.summary.csv}}{residual.summary.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_measure_bias_r_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & n\_\allowbreak{}areas & 331 & 331 & 0 & exact \\
+1 & global\_\allowbreak{}coverage\_\allowbreak{}score & 0.01097579208 & 0.01097579208 & 0 & exact \\
+1 & mean\_\allowbreak{}selected\_\allowbreak{}residual & 0.0005838313134 & 0.0005838313134 & 0 & exact \\
+1 & sd\_\allowbreak{}selected\_\allowbreak{}residual & 0.00291139526 & 0.00291139526 & 0 & exact \\
+1 & moran\_\allowbreak{}i & NA & NA & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\section{Identifying And Explaining Bias}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v05-identifying-and-explaining-bias.html}
+
+
+
+Checks the same LAD coverage/covariate join and the residual-bias OLS coefficient table used by the article explanation workflow.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{coverage.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{covariates.head.csv} & 6 & 10 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bias.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{residual.head.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bias_covariates.head.csv} & 6 & 6 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coefficient_table.csv} & 7 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{fitted_residual.head.csv} & 6 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{top_unexplained.csv} & 10 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{plot_contracts.csv} & 3 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Rendered figure pairs}
+{\footnotesize \textbf{R code:} \path{render_vignette_figures.R}\\ \textbf{Python code:} \path{render_vignette_latex_comparison.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_plot_contract.py}\par}
+
+
+Each pair uses the corresponding full-data or committed-summary R and Python values. Visual style differences are expected because the backends are ggplot2 and Matplotlib.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v05_residual_vs_age_20_29.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v05_residual_vs_age_20_29.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Residual bias and young-adult share. Same full joined data and least-squares trend semantics.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v05_residual_vs_level4.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v05_residual_vs_level4.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Residual bias and level-4 qualification share. Same full joined data and least-squares trend semantics.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v05_observed_vs_fitted_residual.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v05_observed_vs_fitted_residual.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Observed and fitted residual bias. Same six-variable OLS model and fitted values.}
+\end{figure}
+
+\subsection{Figure-data contracts}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+The committed contract rows agree exactly.
+
+\footnotesize
+\begin{longtable}{@{}r p{0.16\textwidth}p{0.21\textwidth}p{0.16\textwidth}p{0.21\textwidth}l@{}}
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endfirsthead
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endhead
+1 & residual\_\allowbreak{}vs\_\allowbreak{}age\_\allowbreak{}20\_\allowbreak{}29 & x=per\_\allowbreak{}age\_\allowbreak{}20.29; y=residual\_\allowbreak{}bias; n=331 & residual\_\allowbreak{}vs\_\allowbreak{}age\_\allowbreak{}20\_\allowbreak{}29 & x=per\_\allowbreak{}age\_\allowbreak{}20.29; y=residual\_\allowbreak{}bias; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+2 & residual\_\allowbreak{}vs\_\allowbreak{}level4 & x=per\_\allowbreak{}level4; y=residual\_\allowbreak{}bias; n=331 & residual\_\allowbreak{}vs\_\allowbreak{}level4 & x=per\_\allowbreak{}level4; y=residual\_\allowbreak{}bias; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+3 & observed\_\allowbreak{}vs\_\allowbreak{}fitted\_\allowbreak{}residual & x=fitted\_\allowbreak{}residual\_\allowbreak{}bias; y=residual\_\allowbreak{}bias; n=331 & observed\_\allowbreak{}vs\_\allowbreak{}fitted\_\allowbreak{}residual & x=fitted\_\allowbreak{}residual\_\allowbreak{}bias; y=residual\_\allowbreak{}bias; n=331 & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{coefficient\_table.csv}}{coefficient\_table.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & term & (Intercept) & (Intercept) & 0 & exact \\
+1 & estimate & -0.02133357703 & -0.02133357703 & 0 & exact \\
+1 & std\_\allowbreak{}error & 0.002558308434 & 0.002558308434 & 0 & exact \\
+1 & statistic & -8.338938633 & -8.338938633 & 0 & exact \\
+1 & p\_\allowbreak{}value & 0 & 0 & 0 & exact \\
+2 & term & per\_\allowbreak{}age\_\allowbreak{}20.29 & per\_\allowbreak{}age\_\allowbreak{}20.29 & 0 & exact \\
+2 & estimate & 0.0002300285588 & 0.0002300285588 & 0 & exact \\
+2 & std\_\allowbreak{}error & 6.736613209e-05 & 6.736613209e-05 & 0 & exact \\
+2 & statistic & 3.414602436 & 3.414602436 & 0 & exact \\
+2 & p\_\allowbreak{}value & 0.0007199557938 & 0.0007199557938 & 0 & exact \\
+3 & term & per\_\allowbreak{}age\_\allowbreak{}70plus & per\_\allowbreak{}age\_\allowbreak{}70plus & 0 & exact \\
+3 & estimate & 0.000215469174 & 0.000215469174 & 0 & exact \\
+3 & std\_\allowbreak{}error & 6.687210769e-05 & 6.687210769e-05 & 0 & exact \\
+3 & statistic & 3.222108311 & 3.222108311 & 0 & exact \\
+3 & p\_\allowbreak{}value & 0.001401819885 & 0.001401819885 & 0 & exact \\
+4 & term & per\_\allowbreak{}level4 & per\_\allowbreak{}level4 & 0 & exact \\
+4 & estimate & 0.0002347166805 & 0.0002347166805 & 0 & exact \\
+4 & std\_\allowbreak{}error & 3.47032463e-05 & 3.47032463e-05 & 0 & exact \\
+4 & statistic & 6.763536714 & 6.763536714 & 0 & exact \\
+4 & p\_\allowbreak{}value & 6.297558623e-11 & 6.297558623e-11 & 0 & exact \\
+5 & term & per\_\allowbreak{}hh\_\allowbreak{}no\_\allowbreak{}centralheat & per\_\allowbreak{}hh\_\allowbreak{}no\_\allowbreak{}centralheat & 0 & exact \\
+5 & estimate & 0.0006680707387 & 0.0006680707387 & 0 & exact \\
+5 & std\_\allowbreak{}error & 0.0001332254099 & 0.0001332254099 & 0 & exact \\
+5 & statistic & 5.014589478 & 5.014589478 & 0 & exact \\
+5 & p\_\allowbreak{}value & 8.769748953e-07 & 8.769748953e-07 & 0 & exact \\
+6 & term & per\_\allowbreak{}NS\_\allowbreak{}SeC\_\allowbreak{}L13\_\allowbreak{}routine & per\_\allowbreak{}NS\_\allowbreak{}SeC\_\allowbreak{}L13\_\allowbreak{}routine & 0 & exact \\
+6 & estimate & 0.0005217525003 & 0.0005217525003 & 0 & exact \\
+6 & std\_\allowbreak{}error & 7.486136936e-05 & 7.486136936e-05 & 0 & exact \\
+6 & statistic & 6.969582639 & 6.969582639 & 0 & exact \\
+6 & p\_\allowbreak{}value & 1.786132126e-11 & 1.786132126e-11 & 0 & exact \\
+7 & term & rural\_\allowbreak{}pct & rural\_\allowbreak{}pct & 0 & exact \\
+7 & estimate & -7.687229237e-06 & -7.687229237e-06 & 0 & exact \\
+7 & std\_\allowbreak{}error & 8.213160523e-06 & 8.213160523e-06 & 0 & exact \\
+7 & statistic & -0.935964811 & -0.935964811 & 0 & exact \\
+7 & p\_\allowbreak{}value & 0.3499883927 & 0.3499883927 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{fitted\_residual.head.csv}}{fitted\_residual.head.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & area & E06000001 & E06000001 & 0 & exact \\
+1 & residual\_\allowbreak{}bias & -0.002095749426 & -0.002095749426 & 0 & exact \\
+1 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.001104654496 & -0.001104654496 & 0 & exact \\
+1 & unexplained\_\allowbreak{}residual & -0.0009910949295 & -0.0009910949295 & 0 & exact \\
+2 & area & E06000002 & E06000002 & 0 & exact \\
+2 & residual\_\allowbreak{}bias & 0.003833232714 & 0.003833232714 & 0 & exact \\
+2 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.000621217643 & -0.000621217643 & 0 & exact \\
+2 & unexplained\_\allowbreak{}residual & 0.004454450357 & 0.004454450357 & 0 & exact \\
+3 & area & E06000003 & E06000003 & 0 & exact \\
+3 & residual\_\allowbreak{}bias & 0.002596742638 & 0.002596742638 & 0 & exact \\
+3 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.00127889273 & -0.00127889273 & 0 & exact \\
+3 & unexplained\_\allowbreak{}residual & 0.003875635368 & 0.003875635368 & 0 & exact \\
+4 & area & E06000004 & E06000004 & 0 & exact \\
+4 & residual\_\allowbreak{}bias & 0.002048810219 & 0.002048810219 & 0 & exact \\
+4 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.001107056816 & -0.001107056816 & 0 & exact \\
+4 & unexplained\_\allowbreak{}residual & 0.003155867035 & 0.003155867035 & 0 & exact \\
+5 & area & E06000005 & E06000005 & 0 & exact \\
+5 & residual\_\allowbreak{}bias & 0.0001686417403 & 0.0001686417403 & 0 & exact \\
+5 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.0003316001714 & -0.0003316001714 & 0 & exact \\
+5 & unexplained\_\allowbreak{}residual & 0.0005002419117 & 0.0005002419117 & 0 & exact \\
+6 & area & E06000006 & E06000006 & 0 & exact \\
+6 & residual\_\allowbreak{}bias & -0.002598516357 & -0.002598516357 & 0 & exact \\
+6 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.00080466704 & -0.00080466704 & 0 & exact \\
+6 & unexplained\_\allowbreak{}residual & -0.001793849317 & -0.001793849317 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{top\_unexplained.csv}}{top\_unexplained.csv}}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{check_article_parity.R}\\ \textbf{Python code:} \path{measure_bias.py}; \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & area & E09000001 & E09000001 & 0 & exact \\
+1 & name & City of London & City of London & 0 & exact \\
+1 & residual\_\allowbreak{}bias & -0.006384105387 & -0.006384105387 & 0 & exact \\
+1 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & 0.008122286251 & 0.008122286251 & 0 & exact \\
+1 & unexplained\_\allowbreak{}residual & -0.01450639164 & -0.01450639164 & 0 & exact \\
+2 & area & E07000228 & E07000228 & 0 & exact \\
+2 & name & Mid Sussex & Mid Sussex & 0 & exact \\
+2 & residual\_\allowbreak{}bias & 0.005293005619 & 0.005293005619 & 0 & exact \\
+2 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.002672141321 & -0.002672141321 & 0 & exact \\
+2 & unexplained\_\allowbreak{}residual & 0.007965146939 & 0.007965146939 & 0 & exact \\
+3 & area & E07000069 & E07000069 & 0 & exact \\
+3 & name & Castle Point & Castle Point & 0 & exact \\
+3 & residual\_\allowbreak{}bias & -0.01112562888 & -0.01112562888 & 0 & exact \\
+3 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.003874755351 & -0.003874755351 & 0 & exact \\
+3 & unexplained\_\allowbreak{}residual & -0.007250873529 & -0.007250873529 & 0 & exact \\
+4 & area & E07000098 & E07000098 & 0 & exact \\
+4 & name & Hertsmere & Hertsmere & 0 & exact \\
+4 & residual\_\allowbreak{}bias & -0.009093392813 & -0.009093392813 & 0 & exact \\
+4 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.002256288912 & -0.002256288912 & 0 & exact \\
+4 & unexplained\_\allowbreak{}residual & -0.006837103901 & -0.006837103901 & 0 & exact \\
+5 & area & E07000113 & E07000113 & 0 & exact \\
+5 & name & Swale & Swale & 0 & exact \\
+5 & residual\_\allowbreak{}bias & -0.008249398453 & -0.008249398453 & 0 & exact \\
+5 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.001571936489 & -0.001571936489 & 0 & exact \\
+5 & unexplained\_\allowbreak{}residual & -0.006677461963 & -0.006677461963 & 0 & exact \\
+6 & area & E07000030 & E07000030 & 0 & exact \\
+6 & name & Eden & Eden & 0 & exact \\
+6 & residual\_\allowbreak{}bias & -0.005470657443 & -0.005470657443 & 0 & exact \\
+6 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & 0.0001957089225 & 0.0001957089225 & 0 & exact \\
+6 & unexplained\_\allowbreak{}residual & -0.005666366365 & -0.005666366365 & 0 & exact \\
+7 & area & E08000032 & E08000032 & 0 & exact \\
+7 & name & Bradford & Bradford & 0 & exact \\
+7 & residual\_\allowbreak{}bias & 0.004585010038 & 0.004585010038 & 0 & exact \\
+7 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.0009408765204 & -0.0009408765204 & 0 & exact \\
+7 & unexplained\_\allowbreak{}residual & 0.005525886558 & 0.005525886558 & 0 & exact \\
+8 & area & E07000167 & E07000167 & 0 & exact \\
+8 & name & Ryedale & Ryedale & 0 & exact \\
+8 & residual\_\allowbreak{}bias & -0.005474680365 & -0.005474680365 & 0 & exact \\
+8 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -4.322944617e-06 & -4.322944617e-06 & 0 & exact \\
+8 & unexplained\_\allowbreak{}residual & -0.00547035742 & -0.00547035742 & 0 & exact \\
+9 & area & E07000135 & E07000135 & 0 & exact \\
+9 & name & Oadby and Wigston & Oadby and Wigston & 0 & exact \\
+9 & residual\_\allowbreak{}bias & 0.004689751252 & 0.004689751252 & 0 & exact \\
+9 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.0007009293555 & -0.0007009293555 & 0 & exact \\
+9 & unexplained\_\allowbreak{}residual & 0.005390680607 & 0.005390680607 & 0 & exact \\
+10 & area & E06000034 & E06000034 & 0 & exact \\
+10 & name & Thurrock & Thurrock & 0 & exact \\
+10 & residual\_\allowbreak{}bias & -0.006666153131 & -0.006666153131 & 0 & exact \\
+10 & fitted\_\allowbreak{}residual\_\allowbreak{}bias & -0.001387336853 & -0.001387336853 & 0 & exact \\
+10 & unexplained\_\allowbreak{}residual & -0.005278816279 & -0.005278816279 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\section{Adjusting Biases}
+{\footnotesize \textbf{R code:} \path{adjust_all_methods.R}; \path{adjust_inverse_penetration.R}; \path{adjust_raking_ratio.R}; \path{adjust_coefficient.R}; \path{adjust_selection_rate.R}; \path{adjust_selection_rate2.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{adjust_all_methods.py}; \path{adjust_inverse_penetration.py}; \path{adjust_raking_ratio.py}; \path{adjust_coefficient.py}; \path{adjust_selection_rate.py}; \path{adjust_selection_rate2.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v06-adjusting-biases.html}
+
+
+
+Checks algebraic adjustment previews, calibrated attributes, raking summaries, maximum-likelihood adjust\_all\_methods output, and ingestion of precomputed Bayesian article files.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{adjust_all_methods.R}; \path{adjust_inverse_penetration.R}; \path{adjust_raking_ratio.R}; \path{adjust_coefficient.R}; \path{adjust_selection_rate.R}; \path{adjust_selection_rate2.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{adjust_all_methods.py}; \path{adjust_inverse_penetration.py}; \path{adjust_raking_ratio.py}; \path{adjust_coefficient.py}; \path{adjust_selection_rate.py}; \path{adjust_selection_rate2.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{raw_heads.OD_travel2work.csv} & 6 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{raw_heads.census_OD_travel2work.csv} & 6 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{raw_heads.coverage.csv} & 6 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{example_counts.csv} & 5 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{inverse_penetration.preview.csv} & 5 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{selection_rate.preview.csv} & 5 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{selection_rate.attrs.csv} & 1 & 2 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{selection_rate2.preview.csv} & 5 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{selection_rate2.attrs.csv} & 1 & 2 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{raking_ratio.preview.csv} & 5 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{raking_ratio.summary.csv} & 1 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coefficient.preview.csv} & 5 & 5 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coefficient.attrs.csv} & 1 & 2 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.display.csv} & 5 & 9 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.metadata.csv} & 12 & 2 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.model_terms.csv} & 16 & 2 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{adjust_all_methods.summary.csv} & 6 & 4 & \num{1e-06} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\paragraph{Figures.} This vignette section is table/input oriented; the declared article audit contains no data-figure contract for it.
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{adjust_all_methods.R}; \path{adjust_inverse_penetration.R}; \path{adjust_raking_ratio.R}; \path{adjust_coefficient.R}; \path{adjust_selection_rate.R}; \path{adjust_selection_rate2.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{adjust_all_methods.py}; \path{adjust_inverse_penetration.py}; \path{adjust_raking_ratio.py}; \path{adjust_coefficient.py}; \path{adjust_selection_rate.py}; \path{adjust_selection_rate2.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{inverse\_penetration.preview.csv}}{inverse\_penetration.preview.csv}}
+{\footnotesize \textbf{R code:} \path{adjust_inverse_penetration.R}\\ \textbf{Python code:} \path{adjust_inverse_penetration.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & origin & E06000011 & E06000011 & 0 & exact \\
+1 & destination & E06000011 & E06000011 & 0 & exact \\
+1 & flow\_\allowbreak{}mpd\_\allowbreak{}raw & 2403 & 2403 & 0 & exact \\
+1 & flow\_\allowbreak{}mpd\_\allowbreak{}adjusted & 53757.61086 & 53757.61086 & 0 & exact \\
+1 & flow\_\allowbreak{}benchmark & 57155 & 57155 & 0 & exact \\
+2 & origin & E06000011 & E06000011 & 0 & exact \\
+2 & destination & E06000016 & E06000016 & 0 & exact \\
+2 & flow\_\allowbreak{}mpd\_\allowbreak{}raw & 1 & 1 & 0 & exact \\
+2 & flow\_\allowbreak{}mpd\_\allowbreak{}adjusted & 22.37104072 & 22.37104072 & 0 & exact \\
+2 & flow\_\allowbreak{}benchmark & 10 & 10 & 0 & exact \\
+3 & origin & E06000011 & E06000011 & 0 & exact \\
+3 & destination & E06000018 & E06000018 & 0 & exact \\
+3 & flow\_\allowbreak{}mpd\_\allowbreak{}raw & 1 & 1 & 0 & exact \\
+3 & flow\_\allowbreak{}mpd\_\allowbreak{}adjusted & 22.37104072 & 22.37104072 & 0 & exact \\
+3 & flow\_\allowbreak{}benchmark & 15 & 15 & 0 & exact \\
+4 & origin & E06000011 & E06000011 & 0 & exact \\
+4 & destination & E06000023 & E06000023 & 0 & exact \\
+4 & flow\_\allowbreak{}mpd\_\allowbreak{}raw & 2 & 2 & 0 & exact \\
+4 & flow\_\allowbreak{}mpd\_\allowbreak{}adjusted & 44.74208145 & 44.74208145 & 0 & exact \\
+4 & flow\_\allowbreak{}benchmark & 3 & 3 & 0 & exact \\
+5 & origin & E06000011 & E06000011 & 0 & exact \\
+5 & destination & E06000047 & E06000047 & 0 & exact \\
+5 & flow\_\allowbreak{}mpd\_\allowbreak{}raw & 6 & 6 & 0 & exact \\
+5 & flow\_\allowbreak{}mpd\_\allowbreak{}adjusted & 134.2262443 & 134.2262443 & 0 & exact \\
+5 & flow\_\allowbreak{}benchmark & 11 & 11 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{raking\_ratio.summary.csv}}{raking\_ratio.summary.csv}}
+{\footnotesize \textbf{R code:} \path{adjust_raking_ratio.R}\\ \textbf{Python code:} \path{adjust_raking_ratio.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & raw\_\allowbreak{}total & 80695 & 80695 & 0 & exact \\
+1 & adjusted\_\allowbreak{}total & 2302435 & 2302435 & 0 & exact \\
+1 & median\_\allowbreak{}weight & 27.8627201 & 27.8627201 & 0 & exact \\
+1 & ipf\_\allowbreak{}converged & True & True & 0 & exact \\
+1 & ipf\_\allowbreak{}iterations & 172 & 172 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{adjust\_all\_methods.summary.csv}}{adjust\_all\_methods.summary.csv}}
+{\footnotesize \textbf{R code:} \path{adjust_all_methods.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{adjust_all_methods.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_r_adjustment_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+1 & engine & direct\_\allowbreak{}adjustment & direct\_\allowbreak{}adjustment & 0 & exact \\
+1 & rows & 625 & 625 & 0 & exact \\
+1 & adjusted\_\allowbreak{}total & 2299443.401 & 2299443.401 & 0 & exact \\
+2 & method & selection\_\allowbreak{}rate & selection\_\allowbreak{}rate & 0 & exact \\
+2 & engine & direct\_\allowbreak{}adjustment & direct\_\allowbreak{}adjustment & 0 & exact \\
+2 & rows & 625 & 625 & 0 & exact \\
+2 & adjusted\_\allowbreak{}total & 2055645.469 & 2055645.469 & 0 & exact \\
+3 & method & selection\_\allowbreak{}rate2 & selection\_\allowbreak{}rate2 & 0 & exact \\
+3 & engine & direct\_\allowbreak{}adjustment & direct\_\allowbreak{}adjustment & 0 & exact \\
+3 & rows & 625 & 625 & 0 & exact \\
+3 & adjusted\_\allowbreak{}total & 76930.66889 & 76930.66889 & 0 & exact \\
+4 & method & raking\_\allowbreak{}ratio & raking\_\allowbreak{}ratio & 0 & exact \\
+4 & engine & direct\_\allowbreak{}adjustment & direct\_\allowbreak{}adjustment & 0 & exact \\
+4 & rows & 625 & 625 & 0 & exact \\
+4 & adjusted\_\allowbreak{}total & 2302435 & 2302435 & 0 & exact \\
+5 & method & coefficient & coefficient & 0 & exact \\
+5 & engine & direct\_\allowbreak{}adjustment & direct\_\allowbreak{}adjustment & 0 & exact \\
+5 & rows & 625 & 625 & 0 & exact \\
+5 & adjusted\_\allowbreak{}total & 2331903.475 & 2331903.475 & 0 & exact \\
+6 & method & multilevel\_\allowbreak{}bayes & multilevel\_\allowbreak{}bayes & 0 & exact \\
+6 & engine & frequentist & frequentist & 0 & exact \\
+6 & rows & 625 & 625 & 0 & exact \\
+6 & adjusted\_\allowbreak{}total & 56234.83351 & 56234.83351 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-06}.}
+
+\subsubsection{\texorpdfstring{\texttt{bayesian\_precomputed.display.csv}}{bayesian\_precomputed.display.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & origin & E06000011 & E06000011 & 0 & exact \\
+1 & destination & E06000011 & E06000011 & 0 & exact \\
+1 & flow & 2403 & 2403 & 0 & exact \\
+1 & flow\_\allowbreak{}adj & 82289.892 & 82289.892 & 0 & exact \\
+1 & flow\_\allowbreak{}benchmark & 57155 & 57155 & 0 & exact \\
+2 & origin & E06000011 & E06000011 & 0 & exact \\
+2 & destination & E06000016 & E06000016 & 0 & exact \\
+2 & flow & 1 & 1 & 0 & exact \\
+2 & flow\_\allowbreak{}adj & 506.2006562 & 506.2006562 & 0 & exact \\
+2 & flow\_\allowbreak{}benchmark & 10 & 10 & 0 & exact \\
+3 & origin & E06000011 & E06000011 & 0 & exact \\
+3 & destination & E06000018 & E06000018 & 0 & exact \\
+3 & flow & 1 & 1 & 0 & exact \\
+3 & flow\_\allowbreak{}adj & 523.6378868 & 523.6378868 & 0 & exact \\
+3 & flow\_\allowbreak{}benchmark & 15 & 15 & 0 & exact \\
+4 & origin & E06000011 & E06000011 & 0 & exact \\
+4 & destination & E06000023 & E06000023 & 0 & exact \\
+4 & flow & 2 & 2 & 0 & exact \\
+4 & flow\_\allowbreak{}adj & 461.6358699 & 461.6358699 & 0 & exact \\
+4 & flow\_\allowbreak{}benchmark & 3 & 3 & 0 & exact \\
+5 & origin & E06000011 & E06000011 & 0 & exact \\
+5 & destination & E06000047 & E06000047 & 0 & exact \\
+5 & flow & 6 & 6 & 0 & exact \\
+5 & flow\_\allowbreak{}adj & 508.6053287 & 508.6053287 & 0 & exact \\
+5 & flow\_\allowbreak{}benchmark & 11 & 11 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\begin{boundarybox}
+\textbf{Bayesian boundary for v06.} The article harness
+loads the same versioned precomputed Bayesian files in R and Python. Downstream
+v07 validation is rerun on those rows. Independent model fitting is demonstrated
+separately by the controlled 12-case Bayesian audit, not by these vignette files.
+\end{boundarybox}
+
+\section{Validation}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v07-validation.html}
+
+
+
+Checks full-LAD validation calls executed without MCMC plus ingestion of precomputed Bayesian files. Local Moran permutation outputs and rendered map pixels are not compared.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{example_counts.csv} & 5 & 3 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{method_set.csv} & 7 & 3 & -- & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.display.csv} & 35 & 30 & \num{1e-06} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.metadata.csv} & 7 & 64 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level1.overall_metrics.csv} & 7 & 21 & \num{1e-05} & \num{1e-05} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level2.origin_margin_metrics.csv} & 4 & 21 & \num{0.0002} & \num{0.0002} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level2.destination_margin_metrics.csv} & 4 & 21 & \num{0.0002} & \num{0.0002} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level3.residual_summary.csv} & 4 & 21 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level3.top_worst.csv} & 20 & 41 & \num{1e-06} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level4.distribution_summary.csv} & 4 & 16 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level4.origin_head.csv} & 20 & 23 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level5.neighbor_summary.csv} & 1 & 4 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{level5.structure_summary.csv} & 4 & 11 & \num{1e-10} & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{plot_contracts.csv} & 7 & 3 & -- & \num{1e-06} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Rendered figure pairs}
+{\footnotesize \textbf{R code:} \path{render_vignette_figures.R}\\ \textbf{Python code:} \path{render_vignette_latex_comparison.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_plot_contract.py}\par}
+
+
+Each pair uses the corresponding full-data or committed-summary R and Python values. Visual style differences are expected because the backends are ggplot2 and Matplotlib.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v07_level1_metrics_summary.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v07_level1_metrics_summary.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Level 1 overall validation metrics. Summary rendering from the committed seven-method output table.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v07_level4_distribution_summary.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v07_level4_distribution_summary.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Level 4 distributional allocation. Summary rendering from the committed four-method distribution table.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/r/v07_level5_structure_summary.png}}
+\caption{R / debiasR}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{\detokenize{vignette_figures/python/v07_level5_structure_summary.png}}
+\caption{Python / debiaspy}
+\end{subfigure}
+\caption{Level 5 residual structure. Summary rendering from the committed residual-structure table.}
+\end{figure}
+
+\subsection{Figure-data contracts}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+The committed contract rows agree exactly. Four additional vignette visuals (origin scatter, destination scatter, flow scatter and residual bands) require full residual rows that are not committed as article goldens. The optional LISA map also requires seeded permutations and external boundary data. They remain contract-only here.
+
+\footnotesize
+\begin{longtable}{@{}r p{0.16\textwidth}p{0.21\textwidth}p{0.16\textwidth}p{0.21\textwidth}l@{}}
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endfirsthead
+\toprule
+No. & R plot & R source/axes & Python plot & Python source/axes & Result \\
+\midrule
+\endhead
+1 & level1\_\allowbreak{}metrics & level1.overall\_\allowbreak{}metrics & level1\_\allowbreak{}metrics & level1.overall\_\allowbreak{}metrics & \textcolor{passgreen}{\textbf{PASS}} \\
+2 & level2\_\allowbreak{}origin\_\allowbreak{}scatter & origin\_\allowbreak{}margin\_\allowbreak{}residuals & level2\_\allowbreak{}origin\_\allowbreak{}scatter & origin\_\allowbreak{}margin\_\allowbreak{}residuals & \textcolor{passgreen}{\textbf{PASS}} \\
+3 & level2\_\allowbreak{}destination\_\allowbreak{}scatter & destination\_\allowbreak{}margin\_\allowbreak{}residuals & level2\_\allowbreak{}destination\_\allowbreak{}scatter & destination\_\allowbreak{}margin\_\allowbreak{}residuals & \textcolor{passgreen}{\textbf{PASS}} \\
+4 & level3\_\allowbreak{}flow\_\allowbreak{}scatter & level3.residual\_\allowbreak{}summary & level3\_\allowbreak{}flow\_\allowbreak{}scatter & level3.residual\_\allowbreak{}summary & \textcolor{passgreen}{\textbf{PASS}} \\
+5 & level3\_\allowbreak{}residual\_\allowbreak{}bands & level3.residual\_\allowbreak{}summary & level3\_\allowbreak{}residual\_\allowbreak{}bands & level3.residual\_\allowbreak{}summary & \textcolor{passgreen}{\textbf{PASS}} \\
+6 & level4\_\allowbreak{}distribution\_\allowbreak{}pairwise & level4.distribution\_\allowbreak{}summary & level4\_\allowbreak{}distribution\_\allowbreak{}pairwise & level4.distribution\_\allowbreak{}summary & \textcolor{passgreen}{\textbf{PASS}} \\
+7 & level5\_\allowbreak{}structure & level5.structure\_\allowbreak{}summary & level5\_\allowbreak{}structure & level5.structure\_\allowbreak{}summary & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{level1.overall\_metrics.csv}}{level1.overall\_metrics.csv}}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & unadjusted & unadjusted & 0 & exact \\
+1 & n & 97969 & 97969 & 0 & exact \\
+1 & mae & 141.8334984 & 141.8334984 & 0 & exact \\
+1 & rmse & 1920.035703 & 1920.035703 & 0 & exact \\
+1 & pearson\_\allowbreak{}r & 0.9611769098 & 0.9611769098 & 0 & exact \\
+1 & spearman\_\allowbreak{}rho & 0.5385132802 & 0.5385132802 & 0 & exact \\
+2 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+2 & n & 97969 & 97969 & 0 & exact \\
+2 & mae & 43.93677566 & 43.93677566 & 0 & exact \\
+2 & rmse & 284.3969114 & 284.3969114 & 0 & exact \\
+2 & pearson\_\allowbreak{}r & 0.990717465 & 0.990717465 & 0 & exact \\
+2 & spearman\_\allowbreak{}rho & 0.5374806252 & 0.5374806252 & 0 & exact \\
+3 & method & selection\_\allowbreak{}rate2 & selection\_\allowbreak{}rate2 & 0 & exact \\
+3 & n & 97969 & 97969 & 0 & exact \\
+3 & mae & 142.1112575 & 142.1112575 & 0 & exact \\
+3 & rmse & 1923.494913 & 1923.494913 & 0 & exact \\
+3 & pearson\_\allowbreak{}r & 0.9610399519 & 0.9610399519 & 0 & exact \\
+3 & spearman\_\allowbreak{}rho & 0.5303185939 & 0.5303185939 & 0 & exact \\
+4 & method & coefficient & coefficient & 0 & exact \\
+4 & n & 97969 & 97969 & 0 & exact \\
+4 & mae & 59.13678079 & 59.13678079 & 0 & exact \\
+4 & rmse & 549.0047229 & 549.0047229 & 0 & exact \\
+4 & pearson\_\allowbreak{}r & 0.9611769098 & 0.9611769098 & 0 & exact \\
+4 & spearman\_\allowbreak{}rho & 0.5385132802 & 0.5385132802 & 0 & exact \\
+5 & method & bayes\_\allowbreak{}gravity & bayes\_\allowbreak{}gravity & 0 & exact \\
+5 & n & 97969 & 97969 & 0 & exact \\
+5 & mae & 184.4710066 & 184.4710066 & 0 & exact \\
+5 & rmse & 716.8306514 & 716.8306514 & 0 & exact \\
+5 & pearson\_\allowbreak{}r & 0.9351067734 & 0.9351067734 & 0 & exact \\
+5 & spearman\_\allowbreak{}rho & 0.4600435335 & 0.4600435335 & 0 & exact \\
+6 & method & bayes\_\allowbreak{}gravity\_\allowbreak{}education & bayes\_\allowbreak{}gravity\_\allowbreak{}education & 0 & exact \\
+6 & n & 97969 & 97969 & 0 & exact \\
+6 & mae & 184.0999411 & 184.0999411 & 0 & exact \\
+6 & rmse & 724.3472081 & 724.3472081 & 0 & exact \\
+6 & pearson\_\allowbreak{}r & 0.9335139104 & 0.9335139104 & 0 & exact \\
+6 & spearman\_\allowbreak{}rho & 0.4758617005 & 0.4758617005 & 0 & exact \\
+7 & method & bayes\_\allowbreak{}origin\_\allowbreak{}pool & bayes\_\allowbreak{}origin\_\allowbreak{}pool & 0 & exact \\
+7 & n & 97969 & 97969 & 0 & exact \\
+7 & mae & 187.0241396 & 187.0241396 & 0 & exact \\
+7 & rmse & 725.5390412 & 725.5390412 & 0 & exact \\
+7 & pearson\_\allowbreak{}r & 0.9331118873 & 0.9331118873 & 0 & exact \\
+7 & spearman\_\allowbreak{}rho & 0.4762769897 & 0.4762769897 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-05}.}
+
+\subsubsection{\texorpdfstring{\texttt{level2.origin\_margin\_metrics.csv}}{level2.origin\_margin\_metrics.csv}}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+1 & n & 313 & 313 & 0 & exact \\
+1 & mae & 1836.217696 & 1836.217696 & 0 & exact \\
+1 & rmse & 2695.92716 & 2695.92716 & 0 & exact \\
+1 & pearson\_\allowbreak{}r & 0.9962508076 & 0.9962508076 & 0 & exact \\
+2 & method & coefficient & coefficient & 0 & exact \\
+2 & n & 313 & 313 & 0 & exact \\
+2 & mae & 10186.93803 & 10186.93803 & 0 & exact \\
+2 & rmse & 14171.92813 & 14171.92813 & 0 & exact \\
+2 & pearson\_\allowbreak{}r & 0.8925456159 & 0.8925456159 & 0 & exact \\
+3 & method & bayes\_\allowbreak{}gravity\_\allowbreak{}education & bayes\_\allowbreak{}gravity\_\allowbreak{}education & 0 & exact \\
+3 & n & 313 & 313 & 0 & exact \\
+3 & mae & 18736.06786 & 18736.06786 & 0 & exact \\
+3 & rmse & 19320.8748 & 19320.8748 & 0 & exact \\
+3 & pearson\_\allowbreak{}r & 0.992775392 & 0.992775392 & 0 & exact \\
+4 & method & unadjusted & unadjusted & 0 & exact \\
+4 & n & 313 & 313 & 0 & exact \\
+4 & mae & 44293.52716 & 44293.52716 & 0 & exact \\
+4 & rmse & 53025.97729 & 53025.97729 & 0 & exact \\
+4 & pearson\_\allowbreak{}r & 0.8925456159 & 0.8925456159 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{0.0002}.}
+
+\subsubsection{\texorpdfstring{\texttt{level3.residual\_summary.csv}}{level3.residual\_summary.csv}}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+1 & n & 97969 & 97969 & 0 & exact \\
+1 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}reduction & 97.89672269 & 97.89672269 & 0 & exact \\
+1 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}mpd\_\allowbreak{}benchmark & 141.8334984 & 141.8334984 & 0 & exact \\
+1 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}adj\_\allowbreak{}benchmark & 43.93677566 & 43.93677566 & 0 & exact \\
+1 & share\_\allowbreak{}improved & 0.09595892578 & 0.09595892578 & 0 & exact \\
+2 & method & coefficient & coefficient & 0 & exact \\
+2 & n & 97969 & 97969 & 0 & exact \\
+2 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}reduction & 82.69671756 & 82.69671756 & 0 & exact \\
+2 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}mpd\_\allowbreak{}benchmark & 141.8334984 & 141.8334984 & 0 & exact \\
+2 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}adj\_\allowbreak{}benchmark & 59.13678079 & 59.13678079 & 0 & exact \\
+2 & share\_\allowbreak{}improved & 0.08752768733 & 0.08752768733 & 0 & exact \\
+3 & method & bayes\_\allowbreak{}gravity\_\allowbreak{}education & bayes\_\allowbreak{}gravity\_\allowbreak{}education & 0 & exact \\
+3 & n & 97969 & 97969 & 0 & exact \\
+3 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}reduction & -42.26644278 & -42.26644278 & 0 & exact \\
+3 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}mpd\_\allowbreak{}benchmark & 141.8334984 & 141.8334984 & 0 & exact \\
+3 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}adj\_\allowbreak{}benchmark & 184.0999411 & 184.0999411 & 0 & exact \\
+3 & share\_\allowbreak{}improved & 0.06193795997 & 0.06193795997 & 0 & exact \\
+4 & method & unadjusted & unadjusted & 0 & exact \\
+4 & n & 97969 & 97969 & 0 & exact \\
+4 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}reduction & 0 & 0 & 0 & exact \\
+4 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}mpd\_\allowbreak{}benchmark & 141.8334984 & 141.8334984 & 0 & exact \\
+4 & mean\_\allowbreak{}abs\_\allowbreak{}residual\_\allowbreak{}adj\_\allowbreak{}benchmark & 141.8334984 & 141.8334984 & 0 & exact \\
+4 & share\_\allowbreak{}improved & 0 & 0 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-06}.}
+
+\subsubsection{\texorpdfstring{\texttt{level4.distribution\_summary.csv}}{level4.distribution\_summary.csv}}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+1 & n\_\allowbreak{}origins & 313 & 313 & 0 & exact \\
+1 & jsd\_\allowbreak{}mean & 0.04212284605 & 0.04212284605 & 0 & exact \\
+1 & jsd\_\allowbreak{}weighted\_\allowbreak{}mean & 0.03740623918 & 0.03740623918 & 0 & exact \\
+2 & method & coefficient & coefficient & 0 & exact \\
+2 & n\_\allowbreak{}origins & 313 & 313 & 0 & exact \\
+2 & jsd\_\allowbreak{}mean & 0.04214861554 & 0.04214861554 & 0 & exact \\
+2 & jsd\_\allowbreak{}weighted\_\allowbreak{}mean & 0.03769727553 & 0.03769727553 & 0 & exact \\
+3 & method & bayes\_\allowbreak{}gravity\_\allowbreak{}education & bayes\_\allowbreak{}gravity\_\allowbreak{}education & 0 & exact \\
+3 & n\_\allowbreak{}origins & 313 & 313 & 0 & exact \\
+3 & jsd\_\allowbreak{}mean & 0.2838345641 & 0.2838345641 & 0 & exact \\
+3 & jsd\_\allowbreak{}weighted\_\allowbreak{}mean & 0.2650893175 & 0.2650893175 & 0 & exact \\
+4 & method & unadjusted & unadjusted & 0 & exact \\
+4 & n\_\allowbreak{}origins & 313 & 313 & 0 & exact \\
+4 & jsd\_\allowbreak{}mean & 0.04214861079 & 0.04214861079 & 0 & exact \\
+4 & jsd\_\allowbreak{}weighted\_\allowbreak{}mean & 0.03769727195 & 0.03769727195 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-06}.}
+
+\subsubsection{\texorpdfstring{\texttt{level5.structure\_summary.csv}}{level5.structure\_summary.csv}}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{distribution_metrics.R}\\ \textbf{Python code:} \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{distribution_metrics.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_validation_core.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & method & inverse\_\allowbreak{}penetration & inverse\_\allowbreak{}penetration & 0 & exact \\
+1 & n\_\allowbreak{}areas & 313 & 313 & 0 & exact \\
+1 & pearson\_\allowbreak{}residual\_\allowbreak{}benchmark\_\allowbreak{}flow & 0.4360944171 & 0.4360944171 & 0 & exact \\
+1 & moran\_\allowbreak{}i & 0.08682431141 & 0.08682431141 & 0 & exact \\
+1 & pearson\_\allowbreak{}residual\_\allowbreak{}covariate & 0.09539748721 & 0.09539748721 & 0 & exact \\
+2 & method & coefficient & coefficient & 0 & exact \\
+2 & n\_\allowbreak{}areas & 313 & 313 & 0 & exact \\
+2 & pearson\_\allowbreak{}residual\_\allowbreak{}benchmark\_\allowbreak{}flow & 0.2774919662 & 0.2774919662 & 0 & exact \\
+2 & moran\_\allowbreak{}i & 0.4109623 & 0.4109623 & 0 & exact \\
+2 & pearson\_\allowbreak{}residual\_\allowbreak{}covariate & -0.04791752542 & -0.04791752542 & 0 & exact \\
+3 & method & bayes\_\allowbreak{}gravity\_\allowbreak{}education & bayes\_\allowbreak{}gravity\_\allowbreak{}education & 0 & exact \\
+3 & n\_\allowbreak{}areas & 313 & 313 & 0 & exact \\
+3 & pearson\_\allowbreak{}residual\_\allowbreak{}benchmark\_\allowbreak{}flow & 0.4982634494 & 0.4982634494 & 0 & exact \\
+3 & moran\_\allowbreak{}i & 0.4124461222 & 0.4124461222 & 0 & exact \\
+3 & pearson\_\allowbreak{}residual\_\allowbreak{}covariate & 0.658087603 & 0.658087603 & 0 & exact \\
+4 & method & unadjusted & unadjusted & 0 & exact \\
+4 & n\_\allowbreak{}areas & 313 & 313 & 0 & exact \\
+4 & pearson\_\allowbreak{}residual\_\allowbreak{}benchmark\_\allowbreak{}flow & 0.999937528 & 0.999937528 & 0 & exact \\
+4 & moran\_\allowbreak{}i & 0.2901810642 & 0.2901810642 & 0 & exact \\
+4 & pearson\_\allowbreak{}residual\_\allowbreak{}covariate & -0.04730896388 & -0.04730896388 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-06}.}
+
+\begin{boundarybox}
+\textbf{Bayesian boundary for v07.} The article harness
+loads the same versioned precomputed Bayesian files in R and Python. Downstream
+v07 validation is rerun on those rows. Independent model fitting is demonstrated
+separately by the controlled 12-case Bayesian audit, not by these vignette files.
+\end{boundarybox}
+
+\section{Advanced Bayesian Adjustment}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+
+\textbf{Source vignette:} \url{https://de-bias.github.io/debiasR/articles/v09-advanced-bayesian-adjustment.html}
+
+
+
+Checks the full-LAD advanced inputs and calls using model\_engine='frequentist', the maximum-likelihood API selector, plus a static Python backend inventory. The article harness does not execute MCMC.
+
+
+
+\subsection{Complete output inventory}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+
+\footnotesize
+\begin{longtable}{@{}p{0.27\textwidth}rrrrp{0.13\textwidth}l@{}}
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endfirsthead
+\toprule
+Output & Rows & Cols & Max delta & Tolerance & Equality class & Result \\
+\midrule
+\endhead
+\path{data_counts.csv} & 5 & 3 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{mpd_od.head.csv} & 6 & 8 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coverage.head.csv} & 6 & 6 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{covariates.head.csv} & 6 & 10 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{distance.head.csv} & 6 & 4 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{benchmark.head.csv} & 6 & 6 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{coverage_offset_frequentist.head.csv} & 6 & 7 & \num{1e-05} & \num{1e-05} & within tolerance & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{reduced_form_frequentist.head.csv} & 6 & 5 & \num{2} & \num{2} & within tolerance & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.output.csv} & 5 & 15 & \num{1e-10} & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.summary.csv} & 3 & 3 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_precomputed.diagnostics.csv} & 40 & 4 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{bayesian_backend_contract.csv} & 2 & 5 & -- & \num{1e-08} & exact values & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\paragraph{Figures.} This vignette section is table/input oriented; the declared article audit contains no data-figure contract for it.
+
+\subsection{Selected side-by-side table values}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+
+These are the main human-readable outputs. The complete artifact inventory above accounts for every paired CSV; full files remain under \path{audit/goldens/r/articles} and \path{audit/goldens/python/articles}.
+
+\subsubsection{\texorpdfstring{\texttt{data\_counts.csv}}{data\_counts.csv}}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & object & mpd\_\allowbreak{}od & mpd\_\allowbreak{}od & 0 & exact \\
+1 & rows & 97969 & 97969 & 0 & exact \\
+1 & columns & 8 & 8 & 0 & exact \\
+2 & object & coverage & coverage & 0 & exact \\
+2 & rows & 313 & 313 & 0 & exact \\
+2 & columns & 6 & 6 & 0 & exact \\
+3 & object & covariates & covariates & 0 & exact \\
+3 & rows & 313 & 313 & 0 & exact \\
+3 & columns & 10 & 10 & 0 & exact \\
+4 & object & distance & distance & 0 & exact \\
+4 & rows & 97969 & 97969 & 0 & exact \\
+4 & columns & 4 & 4 & 0 & exact \\
+5 & object & benchmark\_\allowbreak{}od & benchmark\_\allowbreak{}od & 0 & exact \\
+5 & rows & 97969 & 97969 & 0 & exact \\
+5 & columns & 6 & 6 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{coverage\_offset\_frequentist.head.csv}}{coverage\_offset\_frequentist.head.csv}}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & origin & E06000001 & E06000001 & 0 & exact \\
+1 & destination & E06000001 & E06000001 & 0 & exact \\
+1 & flow & 854 & 854 & 0 & exact \\
+1 & flow\_\allowbreak{}adj & 14139.50462 & 14139.50462 & 0 & exact \\
+1 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 681.5103457 & 681.5103458 & \num{1e-07} & within \\
+1 & flow\_\allowbreak{}true\_\allowbreak{}pred & 14139.50462 & 14139.50462 & 0 & exact \\
+1 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+2 & origin & E06000001 & E06000001 & 0 & exact \\
+2 & destination & E06000002 & E06000002 & 0 & exact \\
+2 & flow & 33 & 33 & 0 & exact \\
+2 & flow\_\allowbreak{}adj & 116.6679712 & 116.6679711 & \num{1e-07} & within \\
+2 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 5.623282537 & 5.623282528 & \num{9e-09} & within \\
+2 & flow\_\allowbreak{}true\_\allowbreak{}pred & 116.6679712 & 116.6679711 & \num{1e-07} & within \\
+2 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+3 & origin & E06000001 & E06000001 & 0 & exact \\
+3 & destination & E06000003 & E06000003 & 0 & exact \\
+3 & flow & 14 & 14 & 0 & exact \\
+3 & flow\_\allowbreak{}adj & 101.0051374 & 101.0051374 & 0 & exact \\
+3 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 4.868349207 & 4.868349208 & \num{1e-09} & within \\
+3 & flow\_\allowbreak{}true\_\allowbreak{}pred & 101.0051374 & 101.0051374 & 0 & exact \\
+3 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+4 & origin & E06000001 & E06000001 & 0 & exact \\
+4 & destination & E06000004 & E06000004 & 0 & exact \\
+4 & flow & 95 & 95 & 0 & exact \\
+4 & flow\_\allowbreak{}adj & 138.4950271 & 138.495027 & \num{1e-07} & within \\
+4 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 6.675325364 & 6.675325358 & \num{6e-09} & within \\
+4 & flow\_\allowbreak{}true\_\allowbreak{}pred & 138.4950271 & 138.495027 & \num{1e-07} & within \\
+4 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+5 & origin & E06000001 & E06000001 & 0 & exact \\
+5 & destination & E06000005 & E06000005 & 0 & exact \\
+5 & flow & 15 & 15 & 0 & exact \\
+5 & flow\_\allowbreak{}adj & 99.81156424 & 99.81156412 & \num{1.2e-07} & within \\
+5 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 4.810820144 & 4.810820138 & \num{6e-09} & within \\
+5 & flow\_\allowbreak{}true\_\allowbreak{}pred & 99.81156424 & 99.81156412 & \num{1.2e-07} & within \\
+5 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+6 & origin & E06000001 & E06000001 & 0 & exact \\
+6 & destination & E06000006 & E06000006 & 0 & exact \\
+6 & flow & 0 & 0 & 0 & exact \\
+6 & flow\_\allowbreak{}adj & 83.86638107 & 83.86638094 & \num{1.3e-07} & within \\
+6 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & 4.042277851 & 4.042277845 & \num{6e-09} & within \\
+6 & flow\_\allowbreak{}true\_\allowbreak{}pred & 83.86638107 & 83.86638094 & \num{1.3e-07} & within \\
+6 & observation\_\allowbreak{}probability & 0.04819902564 & 0.04819902564 & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-05}.}
+
+\subsubsection{\texorpdfstring{\texttt{reduced\_form\_frequentist.head.csv}}{reduced\_form\_frequentist.head.csv}}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{adjust_multilevel_bayes.py}\\ \textbf{Test:} \path{check_article_parity.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & origin & E06000001 & E06000001 & 0 & exact \\
+1 & destination & E06000001 & E06000001 & 0 & exact \\
+1 & flow & 854 & 854 & 0 & exact \\
+1 & flow\_\allowbreak{}adj & 1395706302 & 1395706304 & \num{2} & within \\
+1 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+2 & origin & E06000001 & E06000001 & 0 & exact \\
+2 & destination & E06000002 & E06000002 & 0 & exact \\
+2 & flow & 33 & 33 & 0 & exact \\
+2 & flow\_\allowbreak{}adj & 11596630.23 & 11596630.22 & \num{0.01} & within \\
+2 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+3 & origin & E06000001 & E06000001 & 0 & exact \\
+3 & destination & E06000003 & E06000003 & 0 & exact \\
+3 & flow & 14 & 14 & 0 & exact \\
+3 & flow\_\allowbreak{}adj & 10043933.85 & 10043933.87 & \num{0.02} & within \\
+3 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+4 & origin & E06000001 & E06000001 & 0 & exact \\
+4 & destination & E06000004 & E06000004 & 0 & exact \\
+4 & flow & 95 & 95 & 0 & exact \\
+4 & flow\_\allowbreak{}adj & 13770281.03 & 13770281.03 & 0 & exact \\
+4 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+5 & origin & E06000001 & E06000001 & 0 & exact \\
+5 & destination & E06000005 & E06000005 & 0 & exact \\
+5 & flow & 15 & 15 & 0 & exact \\
+5 & flow\_\allowbreak{}adj & 9936052.612 & 9936052.612 & 0 & exact \\
+5 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+6 & origin & E06000001 & E06000001 & 0 & exact \\
+6 & destination & E06000006 & E06000006 & 0 & exact \\
+6 & flow & 0 & 0 & 0 & exact \\
+6 & flow\_\allowbreak{}adj & 8333877.312 & 8333877.309 & \num{0.003} & within \\
+6 & flow\_\allowbreak{}mpd\_\allowbreak{}pred & NA & NA & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{2}.}
+
+\subsubsection{\texorpdfstring{\texttt{bayesian\_precomputed.summary.csv}}{bayesian\_precomputed.summary.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & observation\_\allowbreak{}model & coverage\_\allowbreak{}offset & coverage\_\allowbreak{}offset & 0 & exact \\
+1 & real\_\allowbreak{}data\_\allowbreak{}evidence & The LAD example uses observed MPD flows, active-user coverage, area c... & The LAD example uses observed MPD flows, active-user coverage, area c... & 0 & exact \\
+1 & output\_\allowbreak{}interpretation & `flow\_\allowbreak{}adj` is the true-flow-scale prediction and equals `flow\_\allowbreak{}true\_\allowbreak{}pr... & `flow\_\allowbreak{}adj` is the true-flow-scale prediction and equals `flow\_\allowbreak{}true\_\allowbreak{}pr... & 0 & exact \\
+2 & observation\_\allowbreak{}model & reduced\_\allowbreak{}form & reduced\_\allowbreak{}form & 0 & exact \\
+2 & real\_\allowbreak{}data\_\allowbreak{}evidence & Real LAD S1 applications use the same OD identifiers, covariates and ... & Real LAD S1 applications use the same OD identifiers, covariates and ... & 0 & exact \\
+2 & output\_\allowbreak{}interpretation & `flow\_\allowbreak{}adj` is an MPD-scale counterfactual with the fitted bias term n... & `flow\_\allowbreak{}adj` is an MPD-scale counterfactual with the fitted bias term n... & 0 & exact \\
+3 & observation\_\allowbreak{}model & latent\_\allowbreak{}two\_\allowbreak{}level & latent\_\allowbreak{}two\_\allowbreak{}level & 0 & exact \\
+3 & real\_\allowbreak{}data\_\allowbreak{}evidence & Repeated-source S3/\allowbreak{}S4 applications use source/\allowbreak{}time MPD rows, active-u... & Repeated-source S3/\allowbreak{}S4 applications use source/\allowbreak{}time MPD rows, active-u... & 0 & exact \\
+3 & output\_\allowbreak{}interpretation & `latent\_\allowbreak{}flow\_\allowbreak{}id` identifies the shared OD or OD-time state. `flow\_\allowbreak{}adj... & `latent\_\allowbreak{}flow\_\allowbreak{}id` identifies the shared OD or OD-time state. `flow\_\allowbreak{}adj... & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\subsubsection{\texorpdfstring{\texttt{bayesian\_backend\_contract.csv}}{bayesian\_backend\_contract.csv}}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+\small
+\begin{longtable}{@{}r p{0.24\textwidth}p{0.22\textwidth}p{0.22\textwidth}rl@{}}
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endfirsthead
+\toprule
+Row & Field & R output & Python output & $|\Delta|$ & Result \\
+\midrule
+\endhead
+1 & scope & nonlatent & nonlatent & 0 & exact \\
+1 & status & implemented & implemented & 0 & exact \\
+1 & implementation & Bambi/\allowbreak{}PyMC & Bambi/\allowbreak{}PyMC & 0 & exact \\
+1 & model\_\allowbreak{}families & poisson|negbin|zip|zinb & poisson|negbin|zip|zinb & 0 & exact \\
+1 & evidence\_\allowbreak{}scope & Static Python backend inventory; this article harness does not execut... & Static Python backend inventory; this article harness does not execut... & 0 & exact \\
+2 & scope & latent\_\allowbreak{}two\_\allowbreak{}level & latent\_\allowbreak{}two\_\allowbreak{}level & 0 & exact \\
+2 & status & implemented & implemented & 0 & exact \\
+2 & implementation & same debiasR Stan program via CmdStanPy & same debiasR Stan program via CmdStanPy & 0 & exact \\
+2 & model\_\allowbreak{}families & poisson|negbin & poisson|negbin & 0 & exact \\
+2 & evidence\_\allowbreak{}scope & Static Python backend inventory and pinned Stan-source identity; this... & Static Python backend inventory and pinned Stan-source identity; this... & 0 & exact \\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Acceptance tolerance: \num{1e-08}.}
+
+\begin{boundarybox}
+\textbf{Bayesian boundary for v09.} The article harness
+loads the same versioned precomputed Bayesian files in R and Python. Downstream
+v07 validation is rerun on those rows. Independent model fitting is demonstrated
+separately by the controlled 12-case Bayesian audit, not by these vignette files.
+\end{boundarybox}
+
+
+\section{Portable OD and benchmark workflow}
+{\footnotesize \textbf{R code:} \path{measure_bias.R}; \path{adjust_inverse_penetration.R}; \path{validate_flows.R}\\ \textbf{Python code:} \path{benchmark_od.py}; \path{example_data.py}; \path{measure_bias.py}; \path{adjust_inverse_penetration.py}; \path{validate_flows.py}\\ \textbf{Test:} \path{test_example_data_companion.py}; \path{test_r_adjustment_parity.py}\par}
+
+
+Census is the worked example, not a required input format. The same public
+measurement, adjustment and validation functions accept compatible pandas
+tables with arbitrary area identifiers. The worked runner demonstrates this
+using both the full Census example and unrelated zone keys in regression tests.
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Input & Required meaning \\
+\midrule
+Observed OD & origin, destination, observed flow count \\
+Benchmark OD & matching geographic/time/counting units and benchmark flow \\
+Coverage & origin, benchmark population or margin, observed user/count denominator \\
+Optional keys & source and time identifiers for repeated observations \\
+\bottomrule
+\end{tabularx}
+
+\begin{verbatim}
+python examples/benchmark_od.py --output output/census-od
+python examples/benchmark_od.py --observed observed.csv \
+  --benchmark benchmark.csv --coverage coverage.csv \
+  --output output/my-od
+\end{verbatim}
+
+Column-name options support other CSV schemas. Area/source/time identifiers
+are read as strings to preserve leading zeros. The caller-supplied route has
+no LAD/MSOA code requirement. The Census-specific companion loader validates
+its known geography; the underlying methods remain geography-independent.
+
+The full-LAD run used 42455 observed OD rows and retained all adjusted rows.
+Validation used 34762 matched benchmark pairs. Match coverage must be reported
+with metrics. This example preserves zero flows and retains undefined adjusted
+values; if they occur, it withholds metrics rather than silently reducing the
+sample. Unobserved cells are not automatically interpreted as zero.
+
+The Census example's weights use OD-margin coverage derived as in R. Since the
+benchmark also informs these weights, the resulting metric improvement is a
+worked calculation, not independent out-of-sample evidence. Another study must
+justify its coverage denominator, benchmark independence, units and time scope.
+
+The integration regression suite passed 339 tests with one optional sampling
+test skipped. Ruff and formatting passed. These tests cover the stated cases;
+wider runtime versions, arbitrary external schemas and all model options are
+not certified by this worked example.
+
+
+\section{Claim boundary and exceptions}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\begin{itemize}
+\item 149 of 151 checks pass. The two failures concern the export table and
+its row-count schema, reflecting the documented organisation API policy.
+\item The export-list table differs intentionally; all other CSV comparisons pass
+under their declared raw-precision tolerances.
+\item The two v09 full-LAD frequentist outputs are numerically equivalent within
+their predeclared tolerances, not numerically identical in every cell.
+\item The v04 and v05 pairs use the full 331-area inputs. The three v07 pairs use
+the complete committed summary tables.
+\item ggplot2 and Matplotlib produce different graphics objects and pixels. This
+report compares data, variables, formulas, axes and interpretation.
+\item v07 pair-level scatter/band figures are listed by their exact contracts but
+are not newly rendered because the full pair-level plotting rows are not committed.
+\item The optional v07 LISA map is outside this report because the article audit
+excludes Local Moran permutation rows and no pinned boundary artifact is supplied.
+\item Bayesian vignette files are precomputed fixtures. The separate Bayesian audit
+previously ran fresh controlled R/Python fits. Its latest retained reference
+run has six convergence failures; it does not certify this integration branch.
+\end{itemize}
+
+\appendix
+\section{Complete 151-check inventory}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\ \textbf{Python code:} \path{check_article_parity.py}\\ \textbf{Test:} \path{check_article_parity.py}\par}
+
+
+\begin{landscape}
+\scriptsize
+\begin{longtable}{@{}p{0.47\linewidth}lrrrrl@{}}
+\toprule
+Artifact & Kind & R rows & Python rows & Max delta & Tolerance & Result \\
+\midrule
+\endfirsthead
+\toprule
+Artifact & Kind & R rows & Python rows & Max delta & Tolerance & Result \\
+\midrule
+\endhead
+\path{index.public_exports.csv} & csv & 33 & 32 & -- & \num{1e-08} & \textcolor{failred}{\textbf{FAIL}} \\
+\path{index.workflow_pages.csv} & csv & 7 & 7 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.data_counts.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.input_schemas.csv} & csv & 27 & 27 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_OD_travel2work.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.census_lad_OD_travel2work.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.coverage_lad.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_covariates.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_centroids.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_lad.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_renamed.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.measure_bias.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_totals.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.lowest_bias.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.distribution.summary.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.distribution.top_share_diff.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.summary.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.definitions.csv} & csv & 4 & 4 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.area_head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.plot_contracts.csv} & csv & 4 & 4 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.coverage.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.covariates.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.bias.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.residual.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.bias_covariates.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.coefficient_table.csv} & csv & 7 & 7 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.fitted_residual.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.top_unexplained.csv} & csv & 10 & 10 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.plot_contracts.csv} & csv & 3 & 3 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.OD_travel2work.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.census_OD_travel2work.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.coverage.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.example_counts.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.inverse_penetration.preview.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate.preview.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate.attrs.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate2.preview.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate2.attrs.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raking_ratio.preview.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raking_ratio.summary.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.coefficient.preview.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.coefficient.attrs.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.display.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.metadata.csv} & csv & 12 & 12 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.model_terms.csv} & csv & 16 & 16 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.adjust_all_methods.summary.csv} & csv & 6 & 6 & \num{1e-06} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.example_counts.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.method_set.csv} & csv & 7 & 7 & -- & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.bayesian_precomputed.display.csv} & csv & 35 & 35 & \num{1e-06} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.bayesian_precomputed.metadata.csv} & csv & 7 & 7 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level1.overall_metrics.csv} & csv & 7 & 7 & \num{1e-05} & \num{1e-05} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level2.origin_margin_metrics.csv} & csv & 4 & 4 & \num{0.0002} & \num{0.0002} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level2.destination_margin_metrics.csv} & csv & 4 & 4 & \num{0.0002} & \num{0.0002} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level3.residual_summary.csv} & csv & 4 & 4 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level3.top_worst.csv} & csv & 20 & 20 & \num{1e-06} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level4.distribution_summary.csv} & csv & 4 & 4 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level4.origin_head.csv} & csv & 20 & 20 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level5.neighbor_summary.csv} & csv & 1 & 1 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level5.structure_summary.csv} & csv & 4 & 4 & \num{1e-10} & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.plot_contracts.csv} & csv & 7 & 7 & -- & \num{1e-06} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.data_counts.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.mpd_od.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.coverage.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.covariates.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.distance.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.benchmark.head.csv} & csv & 6 & 6 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.coverage_offset_frequentist.head.csv} & csv & 6 & 6 & \num{1e-05} & \num{1e-05} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.reduced_form_frequentist.head.csv} & csv & 6 & 6 & \num{2} & \num{2} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.output.csv} & csv & 5 & 5 & \num{1e-10} & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.summary.csv} & csv & 3 & 3 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.diagnostics.csv} & csv & 40 & 40 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_backend_contract.csv} & csv & 2 & 2 & -- & \num{1e-08} & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{index.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.meta.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{index.public_exports.schema.json} & json & - & - & -- & -- & \textcolor{failred}{\textbf{FAIL}} \\
+\path{index.workflow_pages.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.data_counts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.input_schemas.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_OD_travel2work.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.census_lad_OD_travel2work.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.coverage_lad.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_covariates.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v03-getting-set-up.lad_centroids.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_lad.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_renamed.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.measure_bias.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.coverage_totals.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.lowest_bias.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.distribution.summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.distribution.top_share_diff.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.definitions.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.residual.area_head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v04-measuring-coverage-bias.plot_contracts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.coverage.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.covariates.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.bias.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.residual.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.bias_covariates.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.coefficient_table.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.fitted_residual.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.top_unexplained.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v05-identifying-and-explaining-bias.plot_contracts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.OD_travel2work.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.census_OD_travel2work.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raw_heads.coverage.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.example_counts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.inverse_penetration.preview.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate.preview.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate.attrs.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate2.preview.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.selection_rate2.attrs.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raking_ratio.preview.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.raking_ratio.summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.coefficient.preview.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.coefficient.attrs.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.display.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.metadata.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.bayesian_precomputed.model_terms.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v06-adjusting-biases.adjust_all_methods.summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.example_counts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.method_set.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.bayesian_precomputed.display.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.bayesian_precomputed.metadata.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level1.overall_metrics.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level2.origin_margin_metrics.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level2.destination_margin_metrics.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level3.residual_summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level3.top_worst.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level4.distribution_summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level4.origin_head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level5.neighbor_summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.level5.structure_summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v07-validation.plot_contracts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.data_counts.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.mpd_od.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.coverage.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.covariates.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.distance.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.benchmark.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.coverage_offset_frequentist.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.reduced_form_frequentist.head.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.output.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.summary.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_precomputed.diagnostics.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\path{v09-advanced-bayesian-adjustment.bayesian_backend_contract.schema.json} & json & - & - & -- & -- & \textcolor{passgreen}{\textbf{PASS}} \\
+\bottomrule
+\end{longtable}
+\end{landscape}
+\normalsize
+
+\section{Bayesian reference quality and fresh empirical check}
+{\footnotesize \textbf{R code:} \path{adjust_multilevel_bayes.R}; \path{run_empirical_bayes.R}; \path{run_empirical_offset.R}\\ \textbf{Python code:} \path{adjust_multilevel_bayes.py}; \path{_bayesian.py}; \path{run_empirical_bayes.py}; \path{run_empirical_offset.py}\\ \textbf{Test:} \path{recheck_bayesian_reference.py}; \path{test_bayesian_backend_contract.py}\par}
+
+
+The retained 12-case, three-seed R reference diagnostics were rechecked with
+unchanged quality thresholds: 462 checks pass and six fail. This recheck did
+not sample new models. Every failure belongs to the random-origin ZIP case
+\texttt{s1\_reduced\_form\_zip\_brms\_random\_origin}, seed 20260712.
+
+\begin{tabularx}{\textwidth}{@{}lrr@{}}
+\toprule
+Diagnostic & Observed & Required \\
+\midrule
+Divergence rate & 76/12000 = 0.6333\% & at most 0.5\% \\
+Parameter MCSE/SD & 0.07790 & at most 0.05 \\
+Parameter tail ESS & 137.78 & at least 400 \\
+Aggregate MCSE/SD & 0.08199 & at most 0.05 \\
+Aggregate tail ESS & 125.26 & at least 400 \\
+Aggregate R-hat & 1.010054 & at most 1.01 \\
+\bottomrule
+\end{tabularx}
+
+The earlier full controlled run reported 2576 passes and six R-reference
+failures; Python quality and cross-language comparison gates passed then.
+That is historical evidence for the earlier translation, not a new full
+sampling PASS for this reorganised package. R's default brms sampler tuning
+is not exposed by the pinned public wrapper. Model mathematics and thresholds
+were preserved; accepting a new reference configuration needs explicit review.
+
+
+Machine-readable reference failures and empirical summaries are recorded in
+\path{docs/reports/bayesian_checks.json}.
+
+Two new empirical probes use the same five-area Census/MPD subset (25 OD
+pairs) in R and Python: Poisson, no random effects, four chains, 2000 iterations
+(1000 warmup and 1000 retained draws per chain), seed 20260710, and
+\texttt{~ log\_pop\_o + log\_pop\_d + log\_distance}. R is rstanarm;
+Python is Bambi/PyMC with the mapped prior contract. CSV observation flags
+were restored to logical values before the R call. No prior or target was
+changed to obtain agreement.
+
+\begin{tabularx}{\textwidth}{@{}lrr@{}}
+\toprule
+Quantity & R & Python \\
+\midrule
+Coverage-offset total mean & 657123.20 & 657146.66 \\
+Coverage-offset parameter max R-hat & 1.0077 & 1.0076 \\
+Coverage-offset minimum tail ESS & 1125.22 & 1309.72 \\
+Coverage-offset divergences & 0 & 0 \\
+Reduced-form total mean & $2.7112\times10^{21}$ & $9.0263\times10^{19}$ \\
+Reduced-form parameter max R-hat & 1.0027 & 1.0032 \\
+Reduced-form minimum tail ESS & 1433.02 & 1329.92 \\
+Reduced-form divergences & 0 & 0 \\
+\bottomrule
+\end{tabularx}
+
+The coverage-offset comparison sets \texttt{bias\_formula=~0} and targets
+true flow with fixed origin coverage. Its total means differ by 0.00357\%;
+maximum pair-mean difference is 0.814\%. Python total-flow MCSE is 68.14,
+approximately 0.0104\% of its estimated mean. These are descriptive results
+for one subset/seed, not a replacement for the complete declared Bayesian gate.
+
+The reduced-form comparison removes \texttt{bias\_e\_origin} to target the
+zero-bias counterfactual. Its adjusted-flow posterior is extremely heavy-tailed;
+maximum pair-mean difference is 96.75\%. Python total-flow MCSE is
+$3.0176\times10^{19}$, approximately 33.4\% of its estimated mean. This probe
+is unresolved and must not be reported as numerical parity. Similar coefficient
+means and acceptable parameter convergence do not certify precision of an
+extrapolated adjusted-flow mean. The integration result now reports adjusted-total
+R-hat, ESS and MCSE, including MCSE relative to its mean, using a streamed draw
+sum so the full draw-by-OD matrix need not be retained. Posterior calculations,
+priors and sampler settings are preserved. Choosing a different summary or
+model is a scientific decision for review.
+
+
+
+The numerical vignette comparisons above include freshly executed full-LAD
+frequentist models. The article's Bayesian CSVs remain precomputed fixtures;
+checking them cannot establish convergence of a new sampler run.
+
+\clearpage
+\section{Reduced-form investigation: priors and prediction}
+{\footnotesize \textbf{R code:} \path{adjust_multilevel_bayes.R}; \path{check_bayesian_parity.R}\\ \textbf{Python code:} \path{_bayesian.py}; \path{adjust_multilevel_bayes.py}; \path{check_bayesian_parity.py}\\ \textbf{Test:} \path{test_bayesian_prediction_r_parity.py}; \path{test_bayesian_backend_contract.py}\par}
+
+
+\textbf{Finding: the checked Poisson case reproduces R's priors and prediction
+code, while its counterfactual mean remains poorly determined.} This conclusion
+covers the five-area, fixed-effect reduced-form model; it does not certify other
+Bayesian families or resolve the separate random-origin ZIP reference failures.
+
+Both implementations use the same 25 fitting rows, outcome, transformed
+predictors and formula. The resolved Normal prior locations and scales match:
+centred intercept scale 2.5; slopes $2.5/\mathrm{sample\_sd}$. The bias slope
+scale is approximately 985.16 because observed bias varies very little.
+
+The reproducible checker evaluates the centred log prior and Poisson log
+likelihood at identical R coefficient draws, then sends those draws through
+the actual R and Python prediction helpers. It checks both observed predictions
+and the zero-bias counterfactual. Joint log priors agree within
+$1.5\times10^{-13}$, log likelihoods within $5.8\times10^{-11}$ and predicted
+rates within $1.6\times10^{-13}$ relative error. This rules out the checked
+prior parameters, centring, link and counterfactual prediction paths as the
+explanation for this discrepancy.
+
+\textbf{Cause and sensitivity.} Observed bias lies between 0.9644 and 0.9714.
+Zero is approximately 381 sample standard deviations from its mean. Removing
+a fitted bias coefficient near $-30$ multiplies rates by roughly $\exp(29)$.
+Coefficient uncertainty becomes extreme uncertainty on the flow scale. The
+observed total is 21488; the median of R's counterfactual total draws is already
+approximately $1.15\times10^{17}$. In the first R run, one draw supplies 74.8\%
+of the sum used to estimate the total mean.
+
+\begin{tabularx}{\textwidth}{@{}Xrrr@{}}
+\toprule
+Run & Retained draws & R MCSE/mean & Python MCSE/mean \\
+\midrule
+Seed 20260710; 2000 iterations & 4000 & 96.46\% & 33.43\% \\
+Seed 20260711; 8000 iterations & 16000 & 21.55\% & 33.42\% \\
+\bottomrule
+\end{tabularx}
+
+Both runs use four chains and half the iterations for warmup. The second
+changes seed and draw count together, so it demonstrates sensitivity rather
+than isolating draw-count effects. Shared-draw checks pass in both; independent
+mean differences remain large. Maximum pair-median differences are 20.1\% and
+8.7\%. Medians have not been substituted for R's default mean.
+
+\textbf{Fix and limit.} Python now records bias fit ranges, counterfactual
+support and the largest draw's share of the sum. A requested mean emits a
+RuntimeWarning when total-flow MCSE exceeds 5\% of its magnitude. This explicit
+Python precision warning preserves the posterior and estimator; it is not an
+R default or a relaxed parity gate. Its absence does not certify individual
+flows, convergence or model validity. Median precision is not assessed by it.
+
+The investigation and commands are documented in
+\path{docs/development/bayesian-investigation.md}; compact evidence is retained
+in \path{docs/reports/bayesian_checks.json}. The new live-R regression passes.
+The full suite has 288 passes and one optional sampling skip at that investigation revision; Ruff and
+formatting pass. The full Bayesian matrix was not rerun. No stronger prior,
+clipping or summary change was used to make the result pass. The counterfactual
+interpretation still needs maintainer review. Main remains untouched.
+
+\clearpage
+\section{Non-Bayesian issue completion and cleanup}
+{\footnotesize \textbf{R code:} \path{distribution_metrics.R}; \path{validate_flows.R}; \path{validate_flow_methods.R}; \path{plot_validation.R}\\ \textbf{Python code:} \path{distribution_metrics.py}; \path{validate_flows.py}; \path{validate_flow_methods.py}; \path{plot_validation.py}\\ \textbf{Test:} \path{test_shared_distribution_metrics.py}; \path{test_flow_residual_structure.py}; \path{test_validate_flow_methods.py}; \path{test_lisa_plot.py}\par}
+
+
+\textbf{Checked update: 13 October 2026.} The four identified non-Bayesian gaps
+are implemented and tested on the integration branch. GitHub issues 12--15
+remain open pending human review and focused PRs. Each change is a separate
+commit, followed by a cleanup commit. Main remains untouched.
+
+The cleaned package passes \textbf{339 tests}, with one optional sampling test
+skipped. Ruff, formatting and whitespace checks pass. The article audit was
+rerun against retained outputs from the unchanged R reference: \textbf{149 of 151 checks pass}; both
+remaining differences concern intentional public exports. All compared
+scientific tables retain their existing tolerances.
+
+\subsection{Issue 12: shared distribution calculations}
+{\footnotesize \textbf{R code:} \path{distribution_metrics.R}; \path{measure_bias.R}; \path{validate_flows.R}\\ \textbf{Python code:} \path{distribution_metrics.py}; \path{measure_bias.py}; \path{validate_flows.py}\\ \textbf{Test:} \path{test_shared_distribution_metrics.py}\par}
+
+
+Smoothing, shares, KL contributions and Jensen--Shannon contributions are now
+implemented once in the shared private calculation module, reused by coverage
+measurement and OD validation. Tests compare their public results and verify
+that separate source/origin groups retain their own denominators. Zero and
+missing behaviour retains the established API contracts; no numeric acceptance
+threshold was changed.
+
+\subsection{Issue 13: spatial residual diagnostics}
+{\footnotesize \textbf{R code:} \path{validate_flows.R}\\ \textbf{Python code:} \path{validate_flows.py}\\ \textbf{Test:} \path{test_flow_residual_structure.py}\par}
+
+
+The new regression exposed a real classification error. Significance flags
+were converted to numeric 0/1, while the classifier accepted only booleans.
+Significant areas were therefore labelled ``not significant''. Flags now use
+nullable booleans. Fixed global and Local Moran calculations match R for
+clustered, weighted, constant-residual and isolated-area cases. Endpoint roles,
+aggregation, covariates, geometry and invalid spatial inputs are covered.
+
+\begin{tabularx}{\textwidth}{@{}lrrXX@{}}
+\toprule
+Area & R Local Moran & Python Local Moran & R cluster & Python cluster \\
+\midrule
+A & 1.25 & 1.25 & low-low & low-low \\
+B & 1.25 & 1.25 & low-low & low-low \\
+C & 1.25 & 1.25 & high-high & high-high \\
+D & 1.25 & 1.25 & high-high & high-high \\
+E & NA & NA & no neighbours & no neighbours \\
+\bottomrule
+\end{tabularx}
+
+This is the synthetic five-area regression fixture from R's tests, with
+19 permutations and alpha 1 to check classification. It is not evidence of
+empirical statistical significance. Python seeded permutations are reproducible
+within Python; identical R/NumPy permutation sequences are not claimed.
+
+\subsection{Issue 14: multi-method validation}
+{\footnotesize \textbf{R code:} \path{validate_flow_methods.R}\\ \textbf{Python code:} \path{validate_flow_methods.py}\\ \textbf{Test:} \path{test_validate_flow_methods.py}\par}
+
+
+Preparation and validation wrappers reuse the core calculations and preserve
+method names. Errors now identify the failing method while retaining the
+underlying exception type. Tests cover multiple methods, margin totals, selected
+subsets, custom columns, conflicting inputs, non-data-frame values, reserved
+columns and ambiguous repeated-observation joins.
+
+\subsection{Issue 15: validation and LISA plots}
+{\footnotesize \textbf{R code:} \path{plot_validation.R}\\ \textbf{Python code:} \path{plot_validation.py}\\ \textbf{Test:} \path{test_lisa_plot.py}; \path{test_validation_plot_contract.py}\par}
+
+
+All eight plotting functions have executable coverage. Actual GeoPandas LISA
+figures render and save successfully. Tests verify cluster colours, significance
+filtering, isolates, unmatched polygons, method/comparison panels, labels,
+ordering and outlines. Cluster colours now follow R's defaults consistently
+across panels. Outlines are reprojected to the boundary CRS when both systems
+are known and differ. Duplicate classifications within one map panel raise
+clearly. Pixel-identical rendering is not claimed.
+
+\subsection{Legacy and metadata cleanup}
+{\footnotesize \textbf{R code:} \path{example-data.R}; \path{adjust_multilevel_bayes.R}\\ \textbf{Python code:} \path{example_data.py}; \path{_latent.py}; \path{_bayesian_latent.py}\\ \textbf{Test:} \path{test_example_data_companion.py}; \path{test_latent_backend_contract.py}; \path{test_multilevel_frequentist_safety.py}\par}
+
+
+The cleanup removes 471 net lines: the R data-loader/downloader, production
+synthetic fixture mode, unused source-search branches, derived fallback
+covariates/distances, runtime SHA fingerprints and hashed cache layout.
+Synthetic fixtures live in tests. The Python companion is the empirical route;
+explicit OD paths still require its covariate/centroid assets. Supplied-file
+metadata identifies the filename. Incomplete centroid coverage raises instead
+of silently returning empty distances.
+
+The Stan model is unchanged and still compared byte-for-byte with R in tests.
+Cached source uses a direct byte comparison to detect changes. Scientific output
+schemas, source attribution, model settings, diagnostics, contributor records
+and the single MIT licence are retained. Obsolete approval labels and duplicate
+import scaffolding are removed. Polars remains a planned evaluation, not a new
+dependency or changed public API.
+
+A rebuilt wheel runs the synthetic and full Census LAD examples outside the
+checkout. The Census run retains 42455 observed/adjusted rows and validates
+34762 matched benchmark pairs. These checks use prepared dependencies; broader
+runtime/dependency matrices, Quarto rendering and fresh CmdStan compilation/
+sampling were not exercised. The reduced-form Bayesian uncertainty and retained
+R ZIP reference failures remain unresolved. The implementation and cleanup
+require human review under the existing contribution workflow; no issue was
+closed and no main merge was performed.
+
+\clearpage
+\section{Simplification and clean installation}
+{\footnotesize \textbf{R code:} \path{adjust_multilevel_bayes.R}; \path{example-data.R}\\
+\textbf{Python code:} \path{adjust_multilevel_bayes.py}; \path{_multilevel_inputs.py}; \path{_frequentist.py}; \path{example_data.py}\\
+\textbf{Test:} \path{test_bayesian_backend_contract.py}; \path{test_multilevel_frequentist_safety.py}; \path{test_example_data_companion.py}\par}
+
+This follow-up supersedes the earlier installation and documentation status.
+All adjustment, validation and plotting methods remain available on the contribution branch.
+Runtime Python source decreases by 473 lines compared with commit \texttt{6568831}.
+Moving fitting and shared input preparation into their own private modules reduces the
+public multilevel module from 2094 lines to 524; the mapped public function remains in place.
+
+\subsection{Removed legacy paths and repeated code}
+{\footnotesize \textbf{R code:} \path{adjust_multilevel_bayes.R}; \path{example-data.R}\\
+\textbf{Python code:} \path{_bayesian.py}; \path{_multilevel_inputs.py}; \path{example_data.py}; \path{plot_validation.py}\\
+\textbf{Test:} \path{test_bayesian_backend_contract.py}; \path{test_example_data_companion.py}; \path{test_validation_plot_contract.py}\par}
+
+The duplicate Bayesian formula parser, irrelevant latent-backend arguments, silent
+row-ID deduplication, unused plotting implementation, repeated plotting table extraction,
+companion filename/dataset aliases and duplicated runtime dependency declarations are removed.
+A further 91 runtime lines and 103 article-checker lines are removed through shared global
+Moran calculations, model-result attributes and recursive plotting table extraction. All original
+tests remain, with one added regression for nested method metrics. Input normalization rules,
+scientific tolerances and model diagnostics are preserved. Shared joins reject conflicting input records before fitting. Companion assets are loaded by
+name through its public API, including MSOA assets stored separately from LAD data.
+
+The deprecated R \path{custom_formula} argument is omitted from this new Python interface;
+\path{formula} and paired mobility/bias formulas retain the model specifications.
+Optional installations use \path{grouped}, \path{bayesian} and \path{latent} extras,
+replacing the bundled \path{models} extra. Model calculations and method availability are preserved.
+
+\subsection{Installation, examples and documentation}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}\\
+\textbf{Python code:} \path{check_article_parity.py}; \path{coverage_adjustment.py}; \path{benchmark_od.py}\\
+\textbf{Test:} \path{test_bayesian_prediction_r_parity.py}; \path{test_bayesian_backend_contract.py}; \path{test_lisa_plot.py}\par}
+
+On macOS ARM64, the rebuilt Python 3.11 wheel passes 342 tests with live R and
+short Bambi/PyMC sampling enabled. The earlier fresh Python 3.14 base/geographic
+check passed 114 tests with one optional R comparison skipped. Both environments
+pass \path{pip check}. The installed Census example retains 42455 observed/adjusted
+rows, zero undefined adjustments and 34762 matched benchmark pairs.
+
+The fresh full-stack install exposed an ArviZ plotting import failure with Matplotlib 3.11.
+The Bayesian extra constrains Matplotlib to versions below 3.11; the successful rerun uses
+3.10.9. Base/geographic checks retain support for the newer runtime. This failure corresponds
+to \url{https://github.com/arviz-devs/arviz-plots/issues/453}.
+The non-sampling tutorial snippets execute and the existing Quarto website renders.
+
+\subsection{Reproduce the report and its checks}
+{\footnotesize \textbf{R code:} \path{check_article_parity.R}; \path{check_bayesian_parity.R}\\
+\textbf{Python code:} \path{build_report.py}; \path{check_article_parity.py}; \path{check_bayesian_parity.py}\\
+\textbf{Test:} \path{check_article_parity.py}; \path{test_bayesian_prediction_r_parity.py}\par}
+
+The repository now contains this report's authored LaTeX and recorded figures.
+\path{build_report.py} compiles the evidence snapshot; \path{check_article_parity.py}
+runs the 151 original comparisons using fresh R and Python outputs and their original
+tolerances. The only expected differences concern the Python public exports. Full-precision
+CSV outputs and comparison JSON stay in the caller's run directory. The build command can
+append that fresh comparison summary to the recorded report. See \path{docs/reports/README.md}.
+
+Bayesian vignette tables remain precomputed references. The separate reproducible
+checker investigates reduced-form priors, predictions and sampling. Full Bayesian
+matrix and CmdStan sampling checks remain outstanding; counterfactual uncertainty
+and six retained R ZIP quality failures remain unresolved. The contribution commits
+follow issues 16--7, then grouped 4--6. No PR or main merge occurred; human review
+remains pending. Suggested proposal format: \path{docs/development/contribution-format.md}.
+\end{document}

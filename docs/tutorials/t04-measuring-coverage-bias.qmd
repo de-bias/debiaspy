@@ -1,6 +1,22 @@
 ---
-title: "Measuring population coverage bias"
+title: "Measuring coverage bias"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v04-measuring-coverage-bias.qmd`.
+Coverage compares active users with the population of each area. Keep the same
+geography and counting period in both columns. A user count is the denominator
+for an inverse-penetration weight; it should describe the population represented
+by the observed data.
+
+```python
+from debiaspy import debiaspy_example_data, measure_bias, measure_bias_distribution
+
+bundle = debiaspy_example_data(n_areas=25)
+coverage = bundle["coverage"]
+print(measure_bias(coverage).head())
+print(measure_bias_distribution(coverage)["summary"])
+```
+
+`measure_bias` returns coverage scores and bias values. Distribution summaries
+compare each area's share of population with its share of active users. Read
+[input definitions](../inputs.md) before using the Census demonstration's
+OD-margin-derived counts as independent population coverage evidence.

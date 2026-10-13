@@ -1,6 +1,23 @@
 ---
-title: "Explaining population coverage bias"
+title: "Identifying and explaining bias"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v05-identifying-and-explaining-bias.qmd`.
+Residual diagnostics identify areas whose active-user counts differ from the
+counts expected under a population-only model. Associations with a covariate
+help describe spatial patterns; interpretation requires knowledge of how the
+observations and covariates were collected.
+
+```python
+from debiaspy import debiaspy_example_data, validate_bias_residual_structure
+
+bundle = debiaspy_example_data(n_areas=25)
+result = validate_bias_residual_structure(
+    bundle["coverage"],
+    covariate_df=bundle["covariates"], covariate_col="rural_pct",
+)
+print(result["summary"])
+```
+
+The result includes area residuals, model summaries and optional correlations.
+Supply explicit neighbour links for spatial association, or coordinates for
+maps. Review residual magnitude alongside the counts and model assumptions.

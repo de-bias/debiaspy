@@ -1,6 +1,27 @@
 ---
-title: "Getting started"
+title: "Getting set up"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v03-getting-set-up.qmd`.
+Create a virtual environment from a checkout of the integration branch:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python examples/coverage_adjustment.py
+```
+
+This example uses synthetic counts to demonstrate measurement, inverse weights
+and validation. Install `.[dev]` for tests, `.[grouped]` for frequentist random
+intercepts, `.[bayesian]` for Bambi/PyMC, `.[latent]` for CmdStanPy, and `.[plot]`
+for geographic plots. Latent sampling also requires CmdStan; see the README.
+
+The Census example uses the separate `debiaspydata` companion. The README pins
+the tested revision. Start with `debiaspy_example_data(n_areas=25)` for a small
+subset, or use `n_areas=None` for all available areas. Covariates and centroids
+are required companion assets. The loader selects areas by combined observed
+and benchmark flow volume and constructs coverage from their OD margins.
+
+For your own data, supply observed flows, benchmark flows and coverage as
+DataFrames or run the portable CSV example in the README. Read the
+[input guide](../inputs.md) for units, identifiers and matching requirements.

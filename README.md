@@ -1,168 +1,111 @@
 # debiaspy
 
-`debiaspy` is a Python package for assessing, adjusting and validating
-population representation bias in digital trace data. It is designed for
-spatio-temporally aggregated data that provide population counts by location and
-flows between locations.
+Measure population representation bias, adjust origin-destination flows, and
+validate the results against benchmark data using pandas DataFrames.
+The methods follow [debiasR](https://github.com/de-bias/debiasR).
 
-The package workflow focuses on three linked tasks:
-
-1. measuring coverage and representativeness bias
-2. adjusting biased origin-destination flows
-3. validating adjusted flows against benchmark data
-
-Mobile-phone-derived mobility data are the main motivating example, but the
-same logic can apply to other location-to-location flow data with comparable
-spatial and temporal aggregation and a validation target. Examples include trade
-of goods, Internet traffic, supply chains and other forms of interaction between
-places.
-
-The population coverage measurement API is implemented. Adjustment methods and
-flow-validation methods remain under development.
-
-## Installation for development
-
-From the repository root:
+## Install and run
 
 ```bash
+git switch contribution/r-parity
+python -m pip install -r requirements.txt
 python -m pip install -e ".[dev]"
+python examples/coverage_adjustment.py
 ```
 
-Install the empirical data companion when you need to reproduce tutorials or
-examples that use mobility, Census, covariate and coverage data:
+The example uses synthetic coverage and flows. It calls the public measurement,
+inverse-penetration and validation functions and prints adjusted flows and
+comparison metrics. Its constructed benchmark illustrates the calculation.
+See [input definitions](docs/inputs.md) for the required fields and units.
+
+## Methods
+
+- Measurement: coverage scores, distribution bias and residual diagnostics.
+- Adjustment: inverse penetration, raking, coefficients, selection rates and
+  multilevel models; `adjust_all_methods()` runs a selected set.
+- Validation: paired flows, summary metrics, margins, distributions, residuals,
+  spatial diagnostics and plots.
+
+`debiaspy_example_data()` reads the Python data companion. Install it to run
+the original mobile-phone/Census 2021 OD workplace-flow example:
 
 ```bash
-python -m pip install git+https://github.com/de-bias/debiaspydata.git
+python -m pip install git+https://github.com/de-bias/debiaspydata.git@19d1c5f67f5dcf70fcd765e42fa03d667df496df
+python examples/benchmark_od.py --output output/census-od
 ```
 
-If `debiaspy` and `debiaspydata` are cloned side by side under the same parent
-folder, install the local data package in editable mode with:
+Use the same public functions with other compatible data:
 
 ```bash
-python -m pip install -e ../debiaspydata
+python examples/benchmark_od.py --observed observed.csv --benchmark benchmark.csv \
+  --coverage coverage.csv --output output/my-od
 ```
 
-## Current measurement functions
+Column-name options support other schemas; area identifiers are unrestricted
+in this caller-supplied route. The [input guide](docs/inputs.md) explains units,
+denominators and matching requirements. A missing or infinite adjusted flow
+is retained in the output, and metrics are withheld until it is resolved.
+The Census loader reads named datasets through the Python companion API. Explicit OD paths still require companion
+covariate and centroid assets for this Census-specific loader.
 
-The package currently provides three functions for measuring population
-coverage bias and examining its structure:
+The base installation supports deterministic adjustment, fixed-effect count
+models and validation. Install optional runtimes as needed:
 
-- `measure_bias()` calculates coverage scores and coverage bias for each area
-- `measure_bias_distribution()` compares population and active-user shares
-  across areas
-- `validate_bias_residual_structure()` examines departures from a constant
-  global coverage rate and can add benchmark-flow, covariate and spatial
-  diagnostics
-
-```python
-import pandas as pd
-from debiaspy import (
-    measure_bias,
-    measure_bias_distribution,
-    validate_bias_residual_structure,
-)
-
-coverage = pd.DataFrame(
-    {
-        "area": ["A", "B", "C"],
-        "population": [1000, 800, 1200],
-        "user_count": [100, 40, 180],
-    }
-)
-
-area_bias = measure_bias(coverage)
-distribution_bias = measure_bias_distribution(coverage, area_col="area")
-residual_bias = validate_bias_residual_structure(
-    coverage,
-    coverage_area_col="area",
-)
+```bash
+python -m pip install -e ".[grouped]"   # frequentist random intercepts
+python -m pip install -e ".[bayesian]"  # Bambi/PyMC models
+python -m pip install -e ".[latent]"    # CmdStanPy latent models
+python -m pip install -e ".[plot]"    # geographic plots
 ```
 
-`measure_bias()` returns a DataFrame. The other two functions return
-dictionaries containing summary and area-level DataFrames, along with any
-optional diagnostics requested by the user.
+Latent Bayesian models additionally require CmdStan 2.32.2:
 
-## Development checks
+```bash
+debiaspy-install-cmdstan --version 2.32.2 --directory .cmdstan
+export CMDSTAN="$PWD/.cmdstan/cmdstan-2.32.2"
+```
 
-Run the test suite:
+Random slopes, multiple/nested/crossed random effects and latent ZIP/ZINB remain
+unsupported. Missing counts and zero-user inverse weights can produce missing
+or infinite results, following the corresponding R arithmetic.
+
+Bayesian methods are experimental on this integration branch. The checked
+Poisson case matches R priors and shared-draw predictions, but its extrapolated
+posterior means remain unreliable. Review the [Bayesian tutorial](docs/tutorials/t09-advanced-bayesian-adjustment.qmd)
+and diagnostics before interpreting corrected flows.
+
+## Development and parity
+
+Follow the [contribution rules](CONTRIBUTING.md),
+[implementation workflow](docs/development/workflow.md) and
+[API mapping](docs/development/api-mapping.md). Development is through focused
+branches and reviewed PRs. Tutorials use the existing Quarto website.
 
 ```bash
 python -m pytest
-```
-
-Run linting:
-
-```bash
 python -m ruff check .
 ```
 
-Format code:
+Set `DEBIASR_ROOT` to run the optional live-R regression tests. The adjustment
+comparisons use debiasR commit `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`.
+The [checked side-by-side PDF](docs/reports/debiasr_debiaspy_side_by_side.pdf)
+uses the original Census OD example and explains portable inputs and Bayesian
+limits. The report source and commands are in [report reproduction](docs/reports/README.md).
+The [integration review](docs/development/integration-review.md) records the
+branch's checks, intentional API choices and outstanding model review.
 
-```bash
-python -m ruff format .
-```
+We plan to investigate Polars for loading, joining and aggregating larger OD
+and benchmark tables. The evaluation will compare runtime and memory use on
+the Census example and other compatible datasets, while checking identifiers,
+missing values, duplicate joins and numerical parity with the current pandas
+implementation. Polars is not yet a dependency; the public API continues to
+accept pandas DataFrames.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and
-[docs/development/workflow.md](docs/development/workflow.md) for the contributor
-workflow.
+## Licence
 
-## Module structure
-
-The source files are organised around the main package tasks: measuring bias,
-adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` is implemented; most other modules remain placeholders:
-
-- `adjust_all_methods.py`
-- `adjust_coefficient.py`
-- `adjust_inverse_penetration.py`
-- `adjust_multilevel_bayes.py`
-- `adjust_raking_ratio.py`
-- `adjust_selection_rate.py`
-- `adjust_selection_rate2.py`
-- `data_simulated.py`
-- `distribution_metrics.py`
-- `example_data.py`
-- `flow_comparisons.py`
-- `globals.py`
-- `measure_bias.py`
-- `plot_validation.py`
-- `validate_flow_methods.py`
-- `validate_flows.py`
-
-This flat layout keeps the package easy to inspect during the first stage of
-development. It can be reorganised later if the Python implementation needs a
-larger internal structure.
-
-## Planned tutorials
-
-Tutorial placeholders are stored in `docs/tutorials`. The sequence is organised
-around the package workflow:
-
-- `t02-why-this-matters.qmd`
-- `t03-getting-set-up.qmd`
-- `t04-measuring-coverage-bias.qmd`
-- `t05-identifying-and-explaining-bias.qmd`
-- `t06-adjusting-biases.qmd`
-- `t07-validation.qmd`
-- `t08-visualising-flows.qmd`
-- `t09-advanced-bayesian-adjustment.qmd`
-
-## Tutorial website
-
-The tutorial placeholders are configured as a Quarto website. To preview the
-site locally:
-
-```bash
-quarto preview
-```
-
-To render the static site:
-
-```bash
-quarto render
-```
-
-The rendered site is written to `_site/`, which is ignored by git.
+Software is MIT-licensed; see [LICENSE](LICENSE). External datasets retain
+their own licence and attribution requirements. Original contributor records
+are retained below.
 
 ## Acknowledging contributors
 
@@ -202,9 +145,3 @@ DEBIAS.
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind are welcome.
-## Implementations introduced on this contribution branch
-
-proposed Bayesian and frequentist model backends, validation plotting, multi-method validation helpers, residual and spatial diagnostics, flow-distribution diagnostics, overall and paired validation, all-method orchestration, named companion data and portable OD examples, coefficient regression, raking ratio, inverse penetration, selection rate, selection rate II.
-
-Exports become available when their supporting methods have been introduced.
-Bayesian implementation is proposed for maintainer review under issue #16.

@@ -1,6 +1,28 @@
 ---
-title: "Visualising origin-destination flows"
+title: "Visualising flow validation"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v08-visualising-flows.qmd`.
+Plot validation results to compare methods and find where errors concentrate.
+Matplotlib is included in the base package; geographic maps require `.[plot]`.
+
+```python
+from debiaspy import (
+    adjust_inverse_penetration, debiaspy_example_data,
+    validate_flow_overall, validate_flow_plot_metrics,
+)
+
+bundle = debiaspy_example_data(n_areas=25)
+adjusted = adjust_inverse_penetration(bundle["mpd_od"], bundle["coverage"])
+validation = validate_flow_overall(
+    adjusted, bundle["benchmark_od"],
+    comparisons=["raw_vs_benchmark", "adjusted_vs_benchmark"],
+)
+figure = validate_flow_plot_metrics(validation)
+figure.savefig("validation_metrics.png", dpi=150, bbox_inches="tight")
+```
+
+Residual, scatter, residual-band and distribution plots accept the corresponding
+validation outputs. Structure plots use spatial summaries; LISA maps additionally
+require area polygons in a GeoDataFrame. Match polygon identifiers to the
+classified areas and inspect missing boundaries. Outline geometries are
+reprojected to the boundary CRS when both CRSs are available.

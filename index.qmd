@@ -62,7 +62,7 @@ python -m pip install -e ../debiaspydata
 
 ## Usage
 
-The first implemented group of functions measures area-level coverage bias,
+The measurement functions assess area-level coverage bias,
 compares the spatial distributions of active users and the population and
 examines residual structure:
 
@@ -100,6 +100,17 @@ residual_bias = validate_bias_residual_structure(
 dictionaries of pandas DataFrames. These separate the overall summaries from
 the area-level values and any optional diagnostics.
 
+Adjustment and flow-validation functions are also available on the integration
+branch. The synthetic example exercises measurement, inverse penetration and
+validation:
+
+```bash
+python examples/coverage_adjustment.py
+```
+
+See the [integration review](docs/development/integration-review.md) for
+verification scope and optional modelling dependencies.
+
 ## Framework
 
 The package follows a three-stage workflow:
@@ -128,8 +139,7 @@ testing and contribution checks.
 
 ## Repository structure
 
-- `src/debiaspy/` - package modules and placeholder Python counterparts to the
-  current `debiasR/R` files
+- `src/debiaspy/` - public package modules and private support code
 - `tests/` - `pytest` tests
 - `docs/tutorials/` - package-facing Quarto tutorials
 - `docs/development/` - local development workflow notes
@@ -137,7 +147,7 @@ testing and contribution checks.
 - `CONTRIBUTING.md` - contribution guidance
 - `pyproject.toml` - Python package metadata, build configuration and
   development dependencies
-- `LICENSE` and `LICENSE.md` - licensing information
+- `LICENSE` - MIT licensing information
 - `README.md` - package overview and development instructions
 
 ## License

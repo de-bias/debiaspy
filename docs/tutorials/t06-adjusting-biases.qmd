@@ -2,5 +2,49 @@
 title: "Adjusting biases in origin-destination flows"
 ---
 
-This tutorial is a placeholder for the Python counterpart of
-`debiasR/vignettes/v06-adjusting-biases.qmd`.
+All six adjustment methods remain available. Choose a method based on the
+available coverage, benchmark and covariate information:
+
+| Method | Main information used |
+| --- | --- |
+| Inverse penetration | Population and active-user counts |
+| Selection rate | Benchmark flows and area covariates |
+| Selection rate II | Benchmark origin/destination margins |
+| Raking ratio | Benchmark margins and iterative balancing |
+| Coefficient | Fitted relationship between observed and benchmark flows |
+| Multilevel | Flow, population, distance and bias predictors |
+
+Run all methods on the Census subset using a fixed-effect frequentist model:
+
+```python
+from debiaspy import adjust_all_methods, debiaspy_example_data
+
+bundle = debiaspy_example_data(n_areas=25)
+adjustments = adjust_all_methods(
+    bundle["mpd_od"],
+    bundle["coverage"],
+    benchmark_od_df=bundle["benchmark_od"],
+    covariates_df=bundle["covariates"],
+    distance_df=bundle["distance"],
+    methods="all",
+    multilevel_engine="frequentist",
+    multilevel_args={"random_intercept": "none", "prediction_scope": "observed"},
+)
+print(adjustments["inverse_penetration"].head())
+```
+
+Each result retains OD identifiers and has `flow_adj`. Method-specific
+arguments can be supplied through the corresponding `*_args` dictionary.
+For example, `inverse_penetration_args={"weight_by": "origin"}` selects origin
+weights. Use `methods=["inverse_penetration", "raking_ratio"]` to run a subset.
+
+Keep the same counting unit, time period and source scope across observed and
+benchmark flows. Zero-user inverse weights can produce infinite flows; inspect
+and resolve these rows before interpreting aggregate metrics. Calibration on a
+benchmark should be evaluated with independent data when assessing predictive
+accuracy. The example's coverage uses its benchmark margins.
+
+The multilevel function accepts `formula=` or the paired `mobility_formula=`
+and `bias_formula=` inputs. The deprecated R `custom_formula` spelling is omitted
+from this new Python interface. Bayesian engines remain experimental; see
+[Bayesian adjustment](t09-advanced-bayesian-adjustment.qmd).
