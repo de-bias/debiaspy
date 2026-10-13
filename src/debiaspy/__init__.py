@@ -16,8 +16,18 @@ from debiaspy.plot_validation import (
     validate_flow_plot_scatter,
     validate_flow_plot_structure,
 )
+from debiaspy.validate_flow_methods import (
+    validate_flow_distribution_methods,
+    validate_flow_margins,
+    validate_flow_overall_methods,
+    validate_flow_prepare_output,
+    validate_flow_prepare_outputs,
+    validate_flow_residual_methods,
+    validate_flow_residual_structure_methods,
+)
 from debiaspy.validate_flows import (
     validate_flow_distribution,
+    validate_flow_overall,
     validate_flow_pairs,
     validate_flow_residual_structure,
     validate_flow_residuals,
@@ -35,6 +45,14 @@ __all__ = [
     "validate_flow_distribution",
     "validate_flow_residuals",
     "validate_flow_residual_structure",
+    "validate_flow_overall",
+    "validate_flow_prepare_output",
+    "validate_flow_prepare_outputs",
+    "validate_flow_overall_methods",
+    "validate_flow_residual_methods",
+    "validate_flow_distribution_methods",
+    "validate_flow_residual_structure_methods",
+    "validate_flow_margins",
     "validate_flow_plot_metrics",
     "validate_flow_plot_residuals",
     "validate_flow_plot_scatter",
