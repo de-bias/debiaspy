@@ -59,31 +59,32 @@
 
 ## Local development setup
 
-- Work from the repository root in an isolated virtual environment:
+- Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/), then
+  prepare the development environment from the repository root:
 
   ```bash
-  python -m venv .venv
-  source .venv/bin/activate
-  python -m pip install -e ".[dev]"
+  uv sync
   ```
 
-- Editable installation means changes under `src/debiaspy/` are used without
-  reinstalling the package.
+- `uv` uses `.python-version`, `pyproject.toml` and `uv.lock` to obtain the
+  shared Python version, create `.venv/` and install the package and development
+  tools. Do not activate `.venv/`; use `uv run` for project commands.
+- Run `uv sync` after pulling changes to `pyproject.toml` or `uv.lock`.
 - Confirm that the development installation imports from the current checkout:
 
   ```bash
-  python -c "import debiaspy; print(debiaspy.__file__)"
+  uv run python -c "import debiaspy; print(debiaspy.__file__)"
   ```
 
 - When empirical examples require the companion data package and both
   repositories are sibling checkouts, install it with:
 
   ```bash
-  python -m pip install -e ../debiaspydata
+  uv pip install -e ../debiaspydata
   ```
 
-- Do not commit `.venv/`, caches, build outputs or other local development
-  files.
+- Commit `uv.lock` when dependency resolution changes. Do not commit `.venv/`,
+  caches, build outputs or other local development files.
 
 ## Git and GitHub controls
 
@@ -213,13 +214,13 @@
 - Run a focused test while developing, for example:
 
   ```bash
-  python -m pytest tests/test_measure_bias.py
+  uv run pytest tests/test_measure_bias.py
   ```
 
 - Before requesting review, run the complete deterministic test suite:
 
   ```bash
-  python -m pytest
+  uv run pytest
   ```
 
 - Do not weaken, delete, skip or rewrite a valid test merely to make a change
@@ -232,19 +233,19 @@
 - Run linting before requesting review:
 
   ```bash
-  python -m ruff check .
+  uv run ruff check .
   ```
 
 - Check formatting with:
 
   ```bash
-  python -m ruff format --check .
+  uv run ruff format --check .
   ```
 
 - When formatting changes are needed, run:
 
   ```bash
-  python -m ruff format .
+  uv run ruff format .
   ```
 
 - Review automatically formatted changes and keep them limited to files in
@@ -254,8 +255,14 @@
 
 - Add a runtime dependency only when the package needs it to provide public
   functionality and the benefit justifies the maintenance cost.
-- Add development-only tools under the `dev` optional dependency group.
-- Update `pyproject.toml` whenever dependency or build requirements change.
+- Add dependencies through `uv`: use `uv add PACKAGE` for runtime dependencies
+  and `uv add --dev PACKAGE` for development-only tools. Use an optional group
+  for a specialised feature only after that group has been agreed.
+- Update and commit both `pyproject.toml` and `uv.lock` whenever dependency
+  requirements change. Do not edit `uv.lock` manually.
+- Do not ask contributors to select exact package versions independently. Keep
+  broad compatibility requirements in `pyproject.toml` and let `uv.lock`
+  record the exact shared resolution.
 - Preserve compatible behaviour on all supported Python versions declared in
   `pyproject.toml`.
 - Do not add a dependency solely to avoid a small, clear implementation using

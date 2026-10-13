@@ -9,8 +9,10 @@
 ## Checklist
 
 - [ ] This change is proposed through a branch and PR, not a direct push to `main`
-- [ ] I have run `python -m pytest`
-- [ ] I have run `python -m ruff check .`
+- [ ] I have run `uv sync`
+- [ ] I have run `uv run pytest`
+- [ ] I have run `uv run ruff check .`
+- [ ] I have run `uv run ruff format --check .`
 - [ ] I have updated documentation if user-facing behaviour changed
 - [ ] I have added or updated tests for new package behaviour
 - [ ] I have checked that the Python behaviour mirrors `debiasR` where relevant

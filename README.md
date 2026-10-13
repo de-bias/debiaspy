@@ -22,25 +22,39 @@ flow-validation methods remain under development.
 
 ## Installation for development
 
-From the repository root:
+The contributor workflow uses
+[`uv`](https://docs.astral.sh/uv/getting-started/installation/) to manage the
+shared Python development environment. Ordinary package users do not need
+`uv`.
+
+After installing `uv`, run this once from the repository root:
 
 ```bash
-python -m pip install -e ".[dev]"
+uv sync
 ```
+
+This creates `.venv/`, installs `debiaspy` in editable mode and installs the
+current development tools. You do not need to activate the environment:
+commands beginning with `uv run` use it automatically.
+
+The repository commits `uv.lock` so contributors receive the same resolved
+dependency versions. The local `.venv/` directory is not committed.
 
 Install the empirical data companion when you need to reproduce tutorials or
 examples that use mobility, Census, covariate and coverage data:
 
 ```bash
-python -m pip install git+https://github.com/de-bias/debiaspydata.git
+uv pip install git+https://github.com/de-bias/debiaspydata.git
 ```
 
 If `debiaspy` and `debiaspydata` are cloned side by side under the same parent
 folder, install the local data package in editable mode with:
 
 ```bash
-python -m pip install -e ../debiaspydata
+uv pip install -e ../debiaspydata
 ```
+
+The companion package is not required for the core `debiaspy` installation.
 
 ## Current measurement functions
 
@@ -87,19 +101,19 @@ optional diagnostics requested by the user.
 Run the test suite:
 
 ```bash
-python -m pytest
+uv run pytest
 ```
 
 Run linting:
 
 ```bash
-python -m ruff check .
+uv run ruff check .
 ```
 
-Format code:
+Check formatting:
 
 ```bash
-python -m ruff format .
+uv run ruff format --check .
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and

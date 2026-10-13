@@ -29,76 +29,38 @@ documented and organised as a standalone tool for Python users.
 
 ## Installation
 
-The package is not yet released on PyPI. For local development, clone the
-repository and install it in editable mode:
+The package is not yet released on PyPI. For local development, install
+[`uv`](https://docs.astral.sh/uv/getting-started/installation/), then clone the
+repository and prepare the shared development environment:
 
 ```bash
 git clone https://github.com/de-bias/debiaspy.git
 cd debiaspy
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[dev]"
+uv sync
 ```
+
+This creates the local `.venv/` and installs the package and development tools.
+You do not need to activate the environment.
 
 Check that the package imports:
 
 ```bash
-python -c "import debiaspy; print(debiaspy.__version__)"
+uv run python -c "import debiaspy; print(debiaspy.__version__)"
 ```
 
 Install the empirical data companion when you need to reproduce tutorials or
 examples that use the packaged mobility, Census, covariate and coverage data:
 
 ```bash
-python -m pip install git+https://github.com/de-bias/debiaspydata.git
+uv pip install git+https://github.com/de-bias/debiaspydata.git
 ```
 
 If `debiaspy` and `debiaspydata` are cloned side by side under the same parent
 folder, install the local data package in editable mode with:
 
 ```bash
-python -m pip install -e ../debiaspydata
+uv pip install -e ../debiaspydata
 ```
-
-## Usage
-
-The first implemented group of functions measures area-level coverage bias,
-compares the spatial distributions of active users and the population and
-examines residual structure:
-
-```python
-import pandas as pd
-from debiaspy import (
-    measure_bias,
-    measure_bias_distribution,
-    validate_bias_residual_structure,
-)
-
-coverage = pd.DataFrame(
-    {
-        "area": ["A", "B"],
-        "population": [1000, 800],
-        "user_count": [100, 40],
-    }
-)
-
-area_bias = measure_bias(coverage)
-distribution_bias = measure_bias_distribution(coverage, area_col="area")
-residual_bias = validate_bias_residual_structure(
-    coverage,
-    coverage_area_col="area",
-)
-```
-
-`measure_bias()` returns the input data with three added columns:
-
-- `coverage_score`: `user_count / population`
-- `coverage_bias`: `1 - coverage_score`
-- `bias`: an alias of `coverage_bias`
-
-`measure_bias_distribution()` and `validate_bias_residual_structure()` return
-dictionaries of pandas DataFrames. These separate the overall summaries from
-the area-level values and any optional diagnostics.
 
 ## Framework
 
