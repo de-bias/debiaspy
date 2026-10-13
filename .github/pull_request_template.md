@@ -14,6 +14,7 @@
 - [ ] I have updated documentation if user-facing behaviour changed
 - [ ] I have added or updated tests for new package behaviour
 - [ ] I have checked that the Python behaviour mirrors `debiasR` where relevant
+- [ ] I have reviewed `PROJECT_LOG_STATUS.md` and updated it where necessary
 
 ## Notes for reviewers
 

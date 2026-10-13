@@ -32,8 +32,12 @@ website:
             text: "Validation workflow"
       - text: Development
         menu:
+          - href: docs/development/PROJECT_LOG_STATUS.md
+            text: "Project status"
           - href: docs/development/workflow.md
             text: "Workflow"
+          - href: docs/development/api-mapping.md
+            text: "API mapping"
           - href: CONTRIBUTING.md
             text: "Contributing"
     right:
