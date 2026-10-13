@@ -1,5 +1,6 @@
 """Python tools for bias correction in mobile-phone-derived mobility data."""
 
+from debiaspy.adjust_all_methods import adjust_all_methods
 from debiaspy.adjust_coefficient import adjust_coefficient
 from debiaspy.adjust_inverse_penetration import adjust_inverse_penetration
 from debiaspy.adjust_raking_ratio import adjust_raking_ratio
@@ -15,6 +16,7 @@ __version__ = "0.0.0"
 
 __all__ = [
     "__version__",
+    "adjust_all_methods",
     "adjust_coefficient",
     "adjust_inverse_penetration",
     "adjust_raking_ratio",

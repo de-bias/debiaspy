@@ -249,6 +249,12 @@ def require_unique_observation_rows(
     )
 
 
+class AdjustmentSet(dict[str, pd.DataFrame]):
+    def __init__(self, *args: Any, attrs: dict[str, Any] | None = None, **kwargs: Any):
+        super().__init__(*args, **kwargs)
+        self.attrs: dict[str, Any] = {} if attrs is None else attrs
+
+
 def join_with_r_warning(
     data: pd.DataFrame,
     reference: pd.DataFrame,
