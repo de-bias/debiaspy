@@ -19,6 +19,8 @@ detailed tasks and acceptance criteria.
 - **Development stage:** early development
 - **Package version:** `0.0.0`
 - **Supported Python versions:** Python 3.11, 3.12 and 3.13
+- **Development environment:** `uv` with Python 3.12 as the shared local
+  development version and committed dependency resolution in `uv.lock`
 - **Package layout:** `src` layout with a flat set of public modules
 - **Public interface:** the bias-measurement functions are implemented and
   exported; adjustment and flow-validation interfaces remain planned
@@ -99,6 +101,12 @@ the complete function-level plan.
   fixtures belong in this repository under `tests/`.
 - Every change to `main` is made through a branch and pull request. Direct
   pushes to `main` are not part of the project workflow.
+- Contributors use `uv` for the shared local development environment. Python
+  3.12 is the standard development version, while the package continues to
+  support Python 3.11, 3.12 and 3.13.
+- Dependencies are added only when implemented functionality requires them.
+  Broad compatibility requirements belong in `pyproject.toml`; `uv.lock`
+  records the exact shared resolution and is committed.
 - Human contributors remain responsible for reviewing agent-assisted code,
   tests and documentation.
 
@@ -125,6 +133,8 @@ the complete function-level plan.
   agents.
 - Established this project log and status process through issue
   [#19](https://github.com/de-bias/debiaspy/issues/19).
+- Standardised the contributor development environment with `uv` through issue
+  [#21](https://github.com/de-bias/debiaspy/issues/21).
 
 ## How to update this document
 

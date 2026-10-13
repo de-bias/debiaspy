@@ -140,7 +140,8 @@ The contributor should:
   structure, missing values, zero values, errors and warnings as relevant
 - include fixed examples that demonstrate agreement with `debiasR` where
   possible
-- run `python -m pytest` and `python -m ruff check .`
+- run `uv run pytest`, `uv run ruff check .` and
+  `uv run ruff format --check .`
 - update user-facing package documentation when behaviour becomes available
 - explain any deliberate difference from `debiasR` in the pull request
 - keep the pull request focused on the assigned issue

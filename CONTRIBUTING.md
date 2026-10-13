@@ -47,21 +47,26 @@ git clone https://github.com/de-bias/debiaspy.git
 cd debiaspy
 ```
 
-Create and activate a virtual environment:
+Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/) if it is
+not already available, then prepare the development environment:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+uv sync
 ```
 
-Install the package in editable development mode:
+This uses the shared Python version recorded in `.python-version`, creates a
+local `.venv/` and installs the package and current development tools. You do
+not need to activate `.venv`: use `uv run` for project commands.
+
+Confirm that Python imports the current checkout:
 
 ```bash
-python -m pip install -e ".[dev]"
+uv run python -c "import debiaspy; print(debiaspy.__file__)"
 ```
 
-Editable mode means changes under `src/debiaspy/` are picked up without
-reinstalling the package each time.
+Run `uv sync` again after pulling a change to `pyproject.toml` or `uv.lock`.
+The committed lock file gives contributors consistent dependency versions;
+do not commit `.venv/`.
 
 ## Development workflow
 
@@ -83,19 +88,33 @@ one documentation update or one test improvement at a time.
 Before opening a pull request, run:
 
 ```bash
-python -m pytest
-python -m ruff check .
+uv run pytest
+uv run ruff check .
+uv run ruff format --check .
 ```
 
 If formatting changes are needed, run:
 
 ```bash
-python -m ruff format .
+uv run ruff format .
 ```
 
 The test suite checks package imports, numerical results, input validation and
 the behaviour of implemented public functions. Each new public function should
 receive similarly focused tests.
+
+## Dependencies
+
+Add a dependency only when implemented functionality requires it, and explain
+the reason in the relevant pull request. Use `uv add PACKAGE` for a package
+needed by normal users and `uv add --dev PACKAGE` for a development-only tool.
+Use an optional dependency group for a specialised feature only after that
+group has been agreed.
+
+Commit both `pyproject.toml` and the updated `uv.lock`. Contributors should not
+edit `uv.lock` manually or choose their own dependency versions. Bayesian,
+spatial and other specialised packages will be added later if and when the
+corresponding functionality is implemented.
 
 ## Naming guide
 
@@ -144,8 +163,10 @@ clear explanations over internal implementation details.
 Before opening a PR:
 
 - check that the branch is up to date with `main`
-- run `python -m pytest`
-- run `python -m ruff check .`
+- run `uv sync`
+- run `uv run pytest`
+- run `uv run ruff check .`
+- run `uv run ruff format --check .`
 - update documentation if the user-facing behaviour changed
 - review `docs/development/PROJECT_LOG_STATUS.md` and update it where necessary
 - link any related issue
