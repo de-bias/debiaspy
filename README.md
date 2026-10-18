@@ -17,7 +17,8 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-The population coverage measurement API is implemented. Adjustment methods and
+The population coverage measurement API is implemented. The raking-ratio
+adjustment method is also available. Other adjustment methods and
 flow-validation methods remain under development.
 
 ## Installation for development
@@ -96,6 +97,39 @@ residual_bias = validate_bias_residual_structure(
 dictionaries containing summary and area-level DataFrames, along with any
 optional diagnostics requested by the user.
 
+## Current adjustment functions
+
+`adjust_raking_ratio()` adjusts observed origin-destination flows with
+iterative proportional fitting so selected origin and/or destination margins
+match supplied targets. Targets may be provided directly or derived from a
+benchmark OD table. Optional `group_cols` run the fit independently within
+each stratum.
+
+```python
+import pandas as pd
+from debiaspy import adjust_raking_ratio
+
+mpd_od = pd.DataFrame(
+    {
+        "origin": ["A", "A", "B", "B"],
+        "destination": ["X", "Y", "X", "Y"],
+        "flow": [10.0, 20.0, 30.0, 40.0],
+    }
+)
+origin_targets = pd.DataFrame({"origin": ["A", "B"], "target": [60.0, 40.0]})
+destination_targets = pd.DataFrame({"destination": ["X", "Y"], "target": [50.0, 50.0]})
+
+adjusted = adjust_raking_ratio(
+    mpd_od_df=mpd_od,
+    origin_targets=origin_targets,
+    destination_targets=destination_targets,
+)
+```
+
+The returned DataFrame includes the original `flow`, the adjusted `flow_adj`
+and the multiplicative `weight_ipf`. Convergence is reported in
+`adjusted.attrs["ipf_converged"]` and `adjusted.attrs["ipf_iterations"]`.
+
 ## Development checks
 
 Run the test suite:
@@ -125,13 +159,13 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` is implemented; most other modules remain placeholders:
+data. `measure_bias.py` and `adjust_raking_ratio.py` are implemented; most
+other modules remain placeholders:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
 - `adjust_inverse_penetration.py`
 - `adjust_multilevel_bayes.py`
-- `adjust_raking_ratio.py`
 - `adjust_selection_rate.py`
 - `adjust_selection_rate2.py`
 - `data_simulated.py`

@@ -1,6 +1,6 @@
 # Project log and status
 
-Last reviewed: 13 October 2026
+Last reviewed: 16 October 2026
 
 ## Purpose
 
@@ -22,8 +22,9 @@ detailed tasks and acceptance criteria.
 - **Development environment:** `uv` with Python 3.12 as the shared local
   development version and committed dependency resolution in `uv.lock`
 - **Package layout:** `src` layout with a flat set of public modules
-- **Public interface:** the bias-measurement functions are implemented and
-  exported; adjustment and flow-validation interfaces remain planned
+- **Public interface:** the bias-measurement functions and
+  `adjust_raking_ratio()` are implemented and exported; other adjustment and
+  flow-validation interfaces remain planned
 - **Documentation:** the README, contribution guidance, development workflow,
   testing guide, API mapping and Quarto website structure are in place
 - **Tutorials:** the planned tutorial sequence exists as placeholders and will
@@ -42,6 +43,14 @@ The public measurement interface currently includes:
 These functions are implemented in `src/debiaspy/measure_bias.py`, exported
 from `src/debiaspy/__init__.py` and covered by focused pytest tests.
 
+The public adjustment interface currently includes:
+
+- `adjust_raking_ratio()`
+
+This function is implemented in `src/debiaspy/adjust_raking_ratio.py`,
+exported from `src/debiaspy/__init__.py` and covered by focused pytest tests
+([issue #7](https://github.com/de-bias/debiaspy/issues/7)).
+
 The repository also contains the package scaffold, developer tooling,
 contribution guidance and the initial Quarto documentation website.
 
@@ -59,12 +68,11 @@ request guidance.
 
 The next planned areas are:
 
-- **Deterministic adjustment methods:** inverse penetration, two selection-rate
-  approaches, raking ratio and coefficient regression
+- **Remaining deterministic adjustment methods:** inverse penetration, two
+  selection-rate approaches and coefficient regression
   ([#4](https://github.com/de-bias/debiaspy/issues/4),
   [#5](https://github.com/de-bias/debiaspy/issues/5),
-  [#6](https://github.com/de-bias/debiaspy/issues/6),
-  [#7](https://github.com/de-bias/debiaspy/issues/7) and
+  [#6](https://github.com/de-bias/debiaspy/issues/6) and
   [#8](https://github.com/de-bias/debiaspy/issues/8))
 - **Example-data access:** a consistent Python route to example data through
   `debiaspydata` ([issue #9](https://github.com/de-bias/debiaspy/issues/9))
@@ -116,8 +124,9 @@ the complete function-level plan.
 ## Known limitations
 
 - The package is not yet a stable release.
-- Adjustment and flow-validation modules are currently placeholders rather than
-  usable public interfaces.
+- Most adjustment modules and the flow-validation modules are currently
+  placeholders rather than usable public interfaces. `adjust_raking_ratio()` is
+  the first completed adjustment method.
 - The example-data loader has not yet been implemented.
 - The Bayesian backend and model-parity strategy have not yet been agreed.
 - The Quarto tutorials are placeholders and do not yet provide a complete
@@ -140,6 +149,8 @@ the complete function-level plan.
   [#21](https://github.com/de-bias/debiaspy/issues/21).
 - Established the shared testing workflow through issue
   [#23](https://github.com/de-bias/debiaspy/issues/23).
+- Implemented `adjust_raking_ratio()` through issue
+  [#7](https://github.com/de-bias/debiaspy/issues/7).
 
 ## How to update this document
 
