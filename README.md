@@ -96,6 +96,39 @@ residual_bias = validate_bias_residual_structure(
 dictionaries containing summary and area-level DataFrames, along with any
 optional diagnostics requested by the user.
 
+## Calibrating flows against a benchmark
+
+`adjust_coefficient()` fits a calibration multiplier from observed and benchmark
+flows and returns the adjusted observations. Both tables use `origin`,
+`destination` and `flow` columns:
+
+```python
+import pandas as pd
+from debiaspy import adjust_coefficient
+
+observed = pd.DataFrame(
+    {
+        "origin": ["A", "A", "B", "B"],
+        "destination": ["X", "Y", "X", "Y"],
+        "flow": [10, 20, 30, 40],
+    }
+)
+benchmark = observed.assign(flow=[20, 40, 60, 80])
+adjusted = adjust_coefficient(observed, benchmark)
+# adjusted.flow_adj: [20, 40, 60, 80]
+coefficient = adjusted.attrs["coef"]
+model_summary = adjusted.attrs["model"]
+```
+
+The default uses OLS through the origin. `model_family` also accepts `poisson`,
+`negbin` and `zinb`; `level` selects OD, origin or destination calibration.
+`by_source=True` fits each overlapping `mpd_source` separately. Usable fitting
+pairs have finite observed flow greater than zero and finite benchmark flow at
+least zero. Original observation rows and missing adjusted values are retained.
+Repeated OD keys expand the fitting join. With `fit_intercept=True`, the fitted
+intercept is recorded in the model summary and the slope is the applied
+multiplier. Zero-inflated NB uses the count-component coefficient.
+
 ## Development checks
 
 Run the test suite:
