@@ -34,7 +34,7 @@ than one public function.
 | `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Planned |
 | `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Planned |
 | `R/adjust_selection_rate2.R` | `adjust_selection_rate2.py` | `adjust_selection_rate2()` | Planned |
-| `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Planned |
+| `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Implemented |
 | `R/adjust_coefficient.R` | `adjust_coefficient.py` | `adjust_coefficient()` | Planned |
 | `R/adjust_multilevel_bayes.R` | `adjust_multilevel_bayes.py` | `adjust_multilevel_bayes()` | Design required |
 | `R/adjust_all_methods.R` | `adjust_all_methods.py` | `adjust_all_methods()` | Planned after individual methods |
