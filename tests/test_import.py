@@ -6,3 +6,5 @@ def test_package_imports() -> None:
     assert callable(debiaspy.measure_bias)
     assert callable(debiaspy.measure_bias_distribution)
     assert callable(debiaspy.validate_bias_residual_structure)
+    assert callable(debiaspy.debiaspy_example_data)
+    assert "debiaspy_example_data" in debiaspy.__all__

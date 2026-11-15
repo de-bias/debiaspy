@@ -38,7 +38,7 @@ than one public function.
 | `R/adjust_coefficient.R` | `adjust_coefficient.py` | `adjust_coefficient()` | Planned |
 | `R/adjust_multilevel_bayes.R` | `adjust_multilevel_bayes.py` | `adjust_multilevel_bayes()` | Design required |
 | `R/adjust_all_methods.R` | `adjust_all_methods.py` | `adjust_all_methods()` | Planned after individual methods |
-| `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Planned |
+| `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Planned |
@@ -78,6 +78,34 @@ DataFrames must have unique column names and real numeric flow/coverage values.
 Complex values are rejected explicitly rather than cast to real numbers.
 Conflicting generated column names fail with explicit Python errors. No
 positivity, finite-value, or unique-area restrictions are added.
+
+## Example-data loader notes
+
+`debiaspy_example_data()` follows R's area ranking, positive-flow
+normalisation, OD-derived coverage and optional grid-completion order. Coverage
+is computed before completing the grid and is not loaded from the companion's
+population-coverage datasets. Optional covariates fall back to flow-derived
+teaching variables; missing centroid support returns an empty distance table.
+
+The Python companion's named CSV assets replace R object/file discovery and
+local environment-variable search paths. Explicit OD CSV paths are supported.
+The current companion supplies centroids rather than precomputed distance
+assets. Metadata source labels identify the Python companion. Boolean controls
+and whole-number area counts are validated explicitly; Python does not coerce
+fractional area counts or accept abbreviated geography names.
+
+The implementation adapts Nick Sweeney's reference contribution and adds the
+optional-data fallbacks and positive-coverage filtering needed for R behaviour.
+No Bayesian implementation or other draft contribution is included.
+
+On 15 November 2026, eight returned tables (MPD, benchmark, coverage, active
+users, population, OD audit, covariates and distance) were compared directly
+against the local R source using the same companion OD files. All matched
+within numerical tolerance for five-area LAD and MSOA selections under three
+settings: observed support, complete grids and complete grids without self
+flows. Distance source labels were excluded because they identify different
+R and Python companion packages. These were manual integration checks; the
+automated tests use small local tables and do not require R or the companion.
 
 ## Functions that will not be carried into the Python API
 
