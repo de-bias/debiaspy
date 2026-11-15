@@ -21,6 +21,8 @@ detailed tasks and acceptance criteria.
 - **Supported Python versions:** Python 3.11, 3.12 and 3.13
 - **Development environment:** `uv` with Python 3.12 as the shared local
   development version and committed dependency resolution in `uv.lock`
+- **Dependency security:** Pillow 13.0.0 is locked; GitHub reported zero open
+  Dependabot alerts when checked on 15 November 2026
 - **Package layout:** `src` layout with a flat set of public modules
 - **Public interface:** the bias-measurement functions and inverse-penetration
   adjustment are implemented and exported; other adjustment methods and
@@ -135,6 +137,15 @@ the complete function-level plan.
   evaluation as adjustment and validation functions are implemented.
 
 ## Recent milestones
+
+- **15 November 2026 — Pillow security update:** merged
+  [PR #29](https://github.com/de-bias/debiaspy/pull/29) after the inverse
+  penetration contribution and its project-status update. Updated the locked
+  Pillow version from 12.3.0 to 13.0.0 without changing other dependency
+  versions. All 116 tests, Ruff linting and formatting, the documentation render
+  and a Matplotlib PNG export/Pillow read check passed on Python 3.12. GitHub
+  subsequently reported zero open Dependabot alerts. No package interfaces
+  changed.
 
 - **15 November 2026 — inverse penetration:** merged Massimiliano Luca's
   implementation through [PR #27](https://github.com/de-bias/debiaspy/pull/27),
