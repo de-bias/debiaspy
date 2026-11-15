@@ -1,0 +1,1273 @@
+{
+  "basic": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [100, 80, 40],
+      "flow_adj": [90, 75, 50]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [95, 70, 55]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 215, 220, 215, 220, 220, 1.66666666666667, 0.959183673469388, 1, 5.0, 5.0, 0.0716564137616769, 4.59183673469388, 0.959183673469388, 0.920033319450229],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 220, 220, 215, 220, 220, 0.0, 0.944911182523068, 1, 10.8012344973464, 10.0, 0.156071998177261, 27.5, 0.625, 0.892857142857143],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 220, 215, 215, 220, 220, -1.66666666666667, 0.998906107238672, 1, 8.66025403784439, 8.33333333333333, 0.125925925925926, 23.2142857142857, 0.660714285714286, 0.997813411078717]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 90, 100, 95, 90, 95, 90, 95, 5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 75, 80, 70, 75, 70, 75, 70, -5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 50, 40, 55, 50, 55, 50, 55, 5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 90, 100, 95, 90, 95, 100, 95, -5, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 75, 80, 70, 75, 70, 80, 70, -10, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 50, 40, 55, 50, 55, 40, 55, 15, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 90, 100, 95, 90, 95, 100, 90, -10, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 75, 80, 70, 75, 70, 80, 75, -5, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 50, 40, 55, 50, 55, 40, 50, 10, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 100, 90, 95, 5, 10, -5, 5, -5, -10],
+          ["A1", "X", 80, 75, 70, 10, 5, 5, -5, -10, -5],
+          ["A2", "X", 40, 50, 55, -15, -10, -5, 5, 15, 10]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "zero_negative_keep": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [0, 4, -3, 8],
+      "flow_adj": [1, 0, -2, 5]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [0, 2, 3, -1]
+    },
+    "options": {
+      "comparisons": "all",
+      "drop_zeros": false
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, 4, 4, 4, 4, 9, 0.0, -0.930260509419063, -1.0, 4.06201920231798, 3.5, 2.88888888888889, 1.57692307692308, -0.576923076923077, 0.865384615384615],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 9, 4, 4, 4, 9, -1.25, -0.686493064256826, -0.8, 5.5, 4.25, 4.0, 1.58909090909091, -0.261818181818182, 0.471272727272727],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 9, 4, 4, 4, 9, -1.25, 0.875142346063842, 0.8, 2.59807621135332, 2.25, 0.7, -0.210909090909091, 0.538181818181818, 0.765874125874126]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 1, 0, 0, 1, 0, 1, 0, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 0, 4, 2, 0, 2, 0, 2, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", -2, -3, 3, -2, 3, -2, 3, 5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 5, 8, -1, 5, -1, 5, -1, -6, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 1, 0, 0, 1, 0, 0, 0, 0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 0, 4, 2, 0, 2, 4, 2, -2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", -2, -3, 3, -2, 3, -3, 3, 6, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 5, 8, -1, 5, -1, 8, -1, -9, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 1, 0, 0, 1, 0, 0, 1, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 0, 4, 2, 0, 2, 4, 0, -4, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", -2, -3, 3, -2, 3, -3, -2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 5, 8, -1, 5, -1, 8, 5, -3, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 0, 1, 0, 0, -1, 1, -1, 0, 1],
+          ["A1", "X", 4, 0, 2, 2, 4, -2, 2, -2, -4],
+          ["A2", "X", -3, -2, 3, -6, -1, -5, 5, 6, 1],
+          ["A3", "X", 8, 5, -1, 9, 3, 6, -6, -9, -3]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "zero_negative_drop": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [0, 4, -3, 8],
+      "flow_adj": [1, 0, -2, 5]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [0, 2, 3, -1]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 1, 4, 2, 0, 2, 4, -2.0, null, null, 2.0, 2.0, 1.0, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 1, 8, 5, 5, -1, 8, -3.0, null, null, 3.0, 3.0, 0.6, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A1", "X", 0, 4, 2, 0, 2, 4, 2, -2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 5, 8, -1, 5, -1, 8, 5, -3, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 0, 1, 0, 0, -1, 1, -1, 0, 1],
+          ["A1", "X", 4, 0, 2, 2, 4, -2, 2, -2, -4],
+          ["A2", "X", -3, -2, 3, -6, -1, -5, 5, 6, 1],
+          ["A3", "X", 8, 5, -1, 9, 3, 6, -6, -9, -3]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "missing_filter": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, null, 4, 7],
+      "flow_adj": [2, 3, null, 8]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [3, 5, 6, null]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 2, 5, 8, 5, 8, 1, 1.5, 1, 1, 1.58113883008419, 1.5, 0.366666666666667, -0.999999999999999, 2, 1],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 2, 5, 9, 2, 9, 5, 2.0, 1, 1, 2.0, 2.0, 0.5, 2.0, 1, 1],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 2, 8, 10, 10, 3, 8, 1.0, 1, 1, 1.0, 1.0, 0.3125, 1.0, 1, 1]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 2, 3, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 3.0, null, 5.0, 3.0, 5.0, 3, 5, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", null, 4.0, 6.0, null, 6.0, 4, 6, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 8.0, 7.0, null, 8.0, null, 7, 8, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1.0, 2.0, 3.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0],
+          ["A1", "X", null, 3.0, 5.0, null, null, -2.0, 2.0, null, null],
+          ["A2", "X", 4.0, null, 6.0, -2.0, null, null, null, 2.0, null],
+          ["A3", "X", 7.0, 8.0, null, null, -1.0, null, null, null, 1.0]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "missing_keep": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, null, 4, 7],
+      "flow_adj": [2, 3, null, 8]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [3, 5, 6, null]
+    },
+    "options": {
+      "comparisons": "all",
+      "drop_zeros": false,
+      "na_rm": false
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, 13, 14, 13, 14, 12, 1.5, null, null, null, null, 0.366666666666667, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 12, 14, 13, 14, 12, 2.0, null, null, null, null, 0.5, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 12, 13, 13, 14, 12, 1.0, null, null, null, null, 0.3125, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 3.0, 1.0, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 3.0, null, 5.0, 3.0, 5.0, 3.0, 5.0, 2.0, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", null, 4.0, 6.0, null, 6.0, null, 6.0, null, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 8.0, 7.0, null, 8.0, null, 8.0, null, null, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 1.0, 3.0, 2.0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 3.0, null, 5.0, 3.0, 5.0, null, 5.0, null, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", null, 4.0, 6.0, null, 6.0, 4.0, 6.0, 2.0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 8.0, 7.0, null, 8.0, null, 7.0, null, null, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2.0, 1.0, 3.0, 2.0, 3.0, 1.0, 2.0, 1.0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 3.0, null, 5.0, 3.0, 5.0, null, 3.0, null, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", null, 4.0, 6.0, null, 6.0, 4.0, null, null, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 8.0, 7.0, null, 8.0, null, 7.0, 8.0, 1.0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1.0, 2.0, 3.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0],
+          ["A1", "X", null, 3.0, 5.0, null, null, -2.0, 2.0, null, null],
+          ["A2", "X", 4.0, null, 6.0, -2.0, null, null, null, 2.0, null],
+          ["A3", "X", 7.0, 8.0, null, null, -1.0, null, null, null, 1.0]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "infinite_filter": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, 2, 3, 4],
+      "flow_adj": [2, "Infinity", 3, 4]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [3, 4, "-Infinity", 5]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 2, 6, 8, 6.0, 8.0, 5, 1.0, 1.0, 1, 1.0, 1.0, 0.266666666666667, 1.0, 1.0, 1.0],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 7, 12, "Infinity", 12.0, 7, 1.66666666666667, 0.981980506061966, 1, 1.73205080756888, 1.66666666666667, 0.455555555555556, 2.5, 0.642857142857143, 0.964285714285714],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 8, 9, 9.0, "-Infinity", 8, 0.333333333333333, 0.981980506061966, 1, 0.577350269189626, 0.333333333333333, 0.166666666666667, 1.28571428571429, 0.642857142857143, 0.964285714285714]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 2, 3, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4, 5, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", "Infinity", 2, 4.0, "Infinity", 4.0, 2, 4, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4, 5, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 3.0, 3, "-Infinity", 3.0, "-Infinity", 3, 3, 0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4, 4, 0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2.0, 3.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0],
+          ["A1", "X", 2, "Infinity", 4.0, -2.0, "-Infinity", "Infinity", "-Infinity", 2.0, "Infinity"],
+          ["A2", "X", 3, 3.0, "-Infinity", "Infinity", 0.0, "Infinity", "-Infinity", "-Infinity", 0.0],
+          ["A3", "X", 4, 4.0, 5.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "infinite_keep": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, 2, 3, 4],
+      "flow_adj": [2, "Infinity", 3, 4]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [3, 4, "-Infinity", 5]
+    },
+    "options": {
+      "comparisons": "all",
+      "drop_zeros": false,
+      "na_rm": false
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, "Infinity", "-Infinity", "Infinity", "-Infinity", 10, "-Infinity", null, null, "Infinity", "Infinity", "Infinity", null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 10.0, "-Infinity", "Infinity", "-Infinity", 10, "-Infinity", null, null, "Infinity", "Infinity", 0.455555555555556, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 10.0, "Infinity", "Infinity", "-Infinity", 10, "Infinity", null, null, "Infinity", "Infinity", 0.166666666666667, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 2.0, 3.0, 1.0, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", "Infinity", 2, 4.0, "Infinity", 4.0, "Infinity", 4.0, "-Infinity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 3.0, 3, "-Infinity", 3.0, "-Infinity", 3.0, "-Infinity", "-Infinity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4.0, 5.0, 1.0, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 1.0, 3.0, 2.0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", "Infinity", 2, 4.0, "Infinity", 4.0, 2.0, 4.0, 2.0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 3.0, 3, "-Infinity", 3.0, "-Infinity", 3.0, "-Infinity", "-Infinity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4.0, 5.0, 1.0, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2.0, 1, 3.0, 2.0, 3.0, 1.0, 2.0, 1.0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", "Infinity", 2, 4.0, "Infinity", 4.0, 2.0, "Infinity", "Infinity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 3.0, 3, "-Infinity", 3.0, "-Infinity", 3.0, 3.0, 0.0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 4.0, 4, 5.0, 4.0, 5.0, 4.0, 4.0, 0.0, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2.0, 3.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0],
+          ["A1", "X", 2, "Infinity", 4.0, -2.0, "-Infinity", "Infinity", "-Infinity", 2.0, "Infinity"],
+          ["A2", "X", 3, 3.0, "-Infinity", "Infinity", 0.0, "Infinity", "-Infinity", "-Infinity", 0.0],
+          ["A3", "X", 4, 4.0, 5.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "constant_x": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [1, 2, 3],
+      "flow_adj": [4, 4, 4]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [2, 3, 5]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 12, 10, 12, 10, 6, -0.666666666666667, null, null, 1.4142135623731, 1.33333333333333, 0.511111111111111, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 6, 10, 12, 10, 6, 1.33333333333333, 0.981980506061966, 1.0, 1.4142135623731, 1.33333333333333, 0.411111111111111, 0.333333333333333, 1.5, 0.964285714285714],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 6, 12, 12, 10, 6, 2.0, null, null, 2.16024689946929, 2.0, 0.5, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 4, 1, 2, 4, 2, 4, 2, -2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 4, 2, 3, 4, 3, 4, 3, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 4, 3, 5, 4, 5, 4, 5, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 4, 1, 2, 4, 2, 1, 2, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 4, 2, 3, 4, 3, 2, 3, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 4, 3, 5, 4, 5, 3, 5, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 4, 1, 2, 4, 2, 1, 4, 3, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 4, 2, 3, 4, 3, 2, 4, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 4, 3, 5, 4, 5, 3, 4, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 4, 2, -1, -3, 2, -2, 1, 3],
+          ["A1", "X", 2, 4, 3, -1, -2, 1, -1, 1, 2],
+          ["A2", "X", 3, 4, 5, -2, -1, -1, 1, 2, 1]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "constant_y": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [1, 2, 3],
+      "flow_adj": [2, 3, 5]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [4, 4, 4]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 10, 12, 10, 12, 6, 0.666666666666667, null, null, 1.4142135623731, 1.33333333333333, 0.333333333333333, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 6, 12, 10, 12, 6, 2.0, null, null, 2.16024689946929, 2.0, 0.5, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 6, 10, 10, 12, 6, 1.33333333333333, 0.981980506061966, 1.0, 1.4142135623731, 1.33333333333333, 0.411111111111111, 0.333333333333333, 1.5, 0.964285714285714]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2, 1, 4, 2, 4, 2, 4, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 3, 2, 4, 3, 4, 3, 4, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 5, 3, 4, 5, 4, 5, 4, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2, 1, 4, 2, 4, 1, 4, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 3, 2, 4, 3, 4, 2, 4, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 5, 3, 4, 5, 4, 3, 4, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2, 1, 4, 2, 4, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 3, 2, 4, 3, 4, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 5, 3, 4, 5, 4, 3, 5, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2, 4, -3, -1, -2, 2, 3, 1],
+          ["A1", "X", 2, 3, 4, -2, -1, -1, 1, 2, 1],
+          ["A2", "X", 3, 5, 4, -1, -2, 1, -1, 1, 2]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "singleton": {
+    "adj": {
+      "origin": ["A0"],
+      "destination": ["X"],
+      "flow": [2],
+      "flow_adj": [3]
+    },
+    "benchmark": {
+      "origin": ["A0"],
+      "destination": ["X"],
+      "flow": [5]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 1, 3, 5, 3, 5, 2, 2, null, null, 2, 2, 0.4, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 1, 2, 5, 3, 5, 2, 3, null, null, 3, 3, 0.6, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 1, 2, 3, 3, 5, 2, 1, null, null, 1, 1, 0.333333333333333, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 3, 2, 5, 3, 5, 3, 5, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 3, 2, 5, 3, 5, 2, 5, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 3, 2, 5, 3, 5, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 2, 3, 5, -3, -1, -2, 2, 3, 1]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "empty": {
+    "adj": {
+      "origin": [],
+      "destination": [],
+      "flow": [],
+      "flow_adj": []
+    },
+    "benchmark": {
+      "origin": [],
+      "destination": [],
+      "flow": []
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": []
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": []
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "perfect": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, 2, 3, 4],
+      "flow_adj": [2, 4, 6, 8]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [3, 6, 9, 12]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, 20, 30, 20, 30, 10, 2.5, 1, 1, 2.73861278752583, 2.5, 0.333333333333333, 0, 1.5, 1],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 10, 30, 20, 30, 10, 5.0, 1, 1, 5.47722557505166, 5.0, 0.666666666666667, 0, 3.0, 1],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 10, 20, 20, 30, 10, 2.5, 1, 1, 2.73861278752583, 2.5, 0.5, 0, 2.0, 1]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2, 1, 3, 2, 3, 2, 3, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 4, 2, 6, 4, 6, 4, 6, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 6, 3, 9, 6, 9, 6, 9, 3, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 8, 4, 12, 8, 12, 8, 12, 4, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2, 1, 3, 2, 3, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 4, 2, 6, 4, 6, 2, 6, 4, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 6, 3, 9, 6, 9, 3, 9, 6, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 8, 4, 12, 8, 12, 4, 12, 8, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2, 1, 3, 2, 3, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 4, 2, 6, 4, 6, 2, 4, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 6, 3, 9, 6, 9, 3, 6, 3, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 8, 4, 12, 8, 12, 4, 8, 4, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2, 3, -2, -1, -1, 1, 2, 1],
+          ["A1", "X", 2, 4, 6, -4, -2, -2, 2, 4, 2],
+          ["A2", "X", 3, 6, 9, -6, -3, -3, 3, 6, 3],
+          ["A3", "X", 4, 8, 12, -8, -4, -4, 4, 8, 4]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 3
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "rank_deficient": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [1, 2, 4],
+      "flow_adj": [100000000, 100000001, 100000002]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [3, 4, 6]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 300000003, 13, 300000003, 13, 7, -99999996.6666667, 0.981980506061966, 1, 99999996.6666667, 99999996.6666667, 24999999.1944444, 4.33333333333333, null, 0.0],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 7, 13, 300000003, 13, 7, 2.0, 1.0, 1, 2.0, 2.0, 0.5, 2.0, 1.0, 1.0],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 7, 300000003, 300000003, 13, 7, 99999998.6666667, 0.981980506061966, 1, 99999998.6666667, 99999998.6666667, 0.999999976666667, 99999999.5, 0.642857131191731, 0.964285719910109]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 100000000, 1, 3, 100000000, 3, 100000000, 3, -99999997, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 100000001, 2, 4, 100000001, 4, 100000001, 4, -99999997, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 100000002, 4, 6, 100000002, 6, 100000002, 6, -99999996, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 100000000, 1, 3, 100000000, 3, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 100000001, 2, 4, 100000001, 4, 2, 4, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 100000002, 4, 6, 100000002, 6, 4, 6, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 100000000, 1, 3, 100000000, 3, 1, 100000000, 99999999, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 100000001, 2, 4, 100000001, 4, 2, 100000001, 99999999, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 100000002, 4, 6, 100000002, 6, 4, 100000002, 99999998, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 100000000, 3, -2, -99999999, 99999997, -99999997, 2, 99999999],
+          ["A1", "X", 2, 100000001, 4, -2, -99999999, 99999997, -99999997, 2, 99999999],
+          ["A2", "X", 4, 100000002, 6, -2, -99999998, 99999996, -99999996, 2, 99999998]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 1
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "ties": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [1, 1, 2, 3],
+      "flow_adj": [2, 2, 3, 4]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [5, 4, 4, 8]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, 11, 21, 11, 21, 7, 2.5, 0.781660832781895, 0.5, 2.73861278752583, 2.5, 0.4625, 1.0, 1.54545454545455, 0.610993657505285],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 7, 21, 11, 21, 7, 3.5, 0.781660832781895, 0.5, 3.67423461417477, 3.5, 0.66875, 2.54545454545454, 1.54545454545455, 0.610993657505285],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 7, 11, 11, 21, 7, 1.0, 1.0, 1.0, 1.0, 1.0, 0.395833333333333, 1.0, 1.0, 1.0]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2, 1, 5, 2, 5, 2, 5, 3, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 2, 1, 4, 2, 4, 2, 4, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 3, 2, 4, 3, 4, 3, 4, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A3", "X", 4, 3, 8, 4, 8, 4, 8, 4, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2, 1, 5, 2, 5, 1, 5, 4, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 2, 1, 4, 2, 4, 1, 4, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 3, 2, 4, 3, 4, 2, 4, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A3", "X", 4, 3, 8, 4, 8, 3, 8, 5, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2, 1, 5, 2, 5, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 2, 1, 4, 2, 4, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 3, 2, 4, 3, 4, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A3", "X", 4, 3, 8, 4, 8, 3, 4, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2, 5, -4, -1, -3, 3, 4, 1],
+          ["A1", "X", 1, 2, 4, -3, -1, -2, 2, 3, 1],
+          ["A2", "X", 2, 3, 4, -2, -1, -1, 1, 2, 1],
+          ["A3", "X", 3, 4, 8, -5, -1, -4, 4, 5, 1]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 1
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "all_zero_y": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [1, 2, 3],
+      "flow_adj": [2, 3, 5]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [0, 0, 0]
+    },
+    "options": {
+      "comparisons": "all",
+      "drop_zeros": false
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 10, 0, 10, 0, 6, -3.33333333333333, null, null, 3.55902608401044, 3.33333333333333, null, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 6, 0, 10, 0, 6, -2.0, null, null, 2.16024689946929, 2.0, null, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 6, 10, 10, 0, 6, 1.33333333333333, 0.981980506061966, 1.0, 1.4142135623731, 1.33333333333333, 0.411111111111111, 0.333333333333333, 1.5, 0.964285714285714]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 2, 1, 0, 2, 0, 2, 0, -2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 3, 2, 0, 3, 0, 3, 0, -3, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 5, 3, 0, 5, 0, 5, 0, -5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A0", "X", 2, 1, 0, 2, 0, 1, 0, -1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A1", "X", 3, 2, 0, 3, 0, 2, 0, -2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A2", "X", 5, 3, 0, 5, 0, 3, 0, -3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A0", "X", 2, 1, 0, 2, 0, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 3, 2, 0, 3, 0, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 5, 3, 0, 5, 0, 3, 5, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 1, 2, 0, 1, -1, 2, -2, -1, 1],
+          ["A1", "X", 2, 3, 0, 2, -1, 3, -3, -2, 1],
+          ["A2", "X", 3, 5, 0, 3, -2, 5, -5, -3, 2]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "no_matches": {
+    "adj": {
+      "origin": ["A"],
+      "destination": ["X"],
+      "flow": [2],
+      "flow_adj": [3]
+    },
+    "benchmark": {
+      "origin": ["B"],
+      "destination": ["X"],
+      "flow": [4]
+    },
+    "options": {
+      "comparisons": "all",
+      "by_source": true
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": []
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": []
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "partial_and_missing_keys": {
+    "adj": {
+      "origin": ["B", "A", null, "Z"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [2, 3, 4, 5],
+      "flow_adj": [3, 5, 6, 7]
+    },
+    "benchmark": {
+      "origin": ["A", null, "B", "unused"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [4, 7, 5, 8]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 14, 16, 14, 16, 9, 0.666666666666667, 0.5, 0.5, 1.4142135623731, 1.33333333333333, 0.264285714285714, 3.0, 0.499999999999999, 0.25],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 9, 16, 14, 16, 9, 2.33333333333333, 0.654653670707977, 0.5, 2.51661147842358, 2.33333333333333, 0.426190476190476, 2.33333333333334, 0.999999999999999, 0.428571428571428],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 9, 14, 14, 16, 9, 1.66666666666667, 0.981980506061966, 1.0, 1.73205080756888, 1.66666666666667, 0.355555555555556, 0.166666666666669, 1.5, 0.964285714285714]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["B", "X", 3, 2, 5, 3, 5, 3, 5, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A", "X", 5, 3, 4, 5, 4, 5, 4, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          [null, "X", 6, 4, 7, 6, 7, 6, 7, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 3, 2, 5, 3, 5, 2, 5, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A", "X", 5, 3, 4, 5, 4, 3, 4, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          [null, "X", 6, 4, 7, 6, 7, 4, 7, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["B", "X", 3, 2, 5, 3, 5, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A", "X", 5, 3, 4, 5, 4, 3, 5, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          [null, "X", 6, 4, 7, 6, 7, 4, 6, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["B", "X", 2, 3, 5, -3, -1, -2, 2, 3, 1],
+          ["A", "X", 3, 5, 4, -1, -2, 1, -1, 1, 2],
+          [null, "X", 4, 6, 7, -3, -2, -1, 1, 3, 2]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "duplicate_keys": {
+    "adj": {
+      "origin": ["A", "B", "B"],
+      "destination": ["X", "X", "X"],
+      "flow": [1, 2, 3],
+      "flow_adj": [2, 4, 5]
+    },
+    "benchmark": {
+      "origin": ["A", "A", "B"],
+      "destination": ["X", "X", "X"],
+      "flow": [3, 4, 6]
+    },
+    "options": {
+      "comparisons": "all"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 4, 13, 19, 13, 19, 7, 1.5, 0.925925925925926, 0.888888888888889, 1.58113883008419, 1.5, 0.333333333333333, 1.74074074074074, 0.925925925925926, 0.857338820301783],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 4, 7, 19, 13, 19, 7, 3.0, 0.870388279778489, 0.888888888888889, 3.08220700148449, 3.0, 0.645833333333333, 2.36363636363636, 1.36363636363636, 0.757575757575758],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 4, 7, 13, 13, 19, 7, 1.5, 0.986440050415621, 1.0, 1.58113883008419, 1.5, 0.475, 0.545454545454545, 1.54545454545455, 0.973063973063973]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 2, 1, 3, 2, 3, 2, 3, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A", "X", 2, 1, 4, 2, 4, 2, 4, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 4, 2, 6, 4, 6, 4, 6, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 5, 3, 6, 5, 6, 5, 6, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A", "X", 2, 1, 3, 2, 3, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A", "X", 2, 1, 4, 2, 4, 1, 4, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["B", "X", 4, 2, 6, 4, 6, 2, 6, 4, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["B", "X", 5, 3, 6, 5, 6, 3, 6, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A", "X", 2, 1, 3, 2, 3, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A", "X", 2, 1, 4, 2, 4, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["B", "X", 4, 2, 6, 4, 6, 2, 4, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["B", "X", 5, 3, 6, 5, 6, 3, 5, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A", "X", 1, 2, 3, -2, -1, -1, 1, 2, 1],
+          ["A", "X", 1, 2, 4, -3, -1, -2, 2, 3, 1],
+          ["B", "X", 2, 4, 6, -4, -2, -2, 2, 4, 2],
+          ["B", "X", 3, 5, 6, -3, -2, -1, 1, 3, 2]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 1,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 1,
+        "perfect": 0
+      }
+    }
+  },
+  "sources": {
+    "adj": {
+      "origin": ["A0", "A1", "A2", "A3", "A4", "A5"],
+      "destination": ["X", "X", "X", "X", "X", "X"],
+      "flow": [1, 2, 3, 4, 5, 6],
+      "flow_adj": [2, 3, 5, 8, 9, 10],
+      "mpd_source": ["b", "a", null, "a", "b", "b"]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2", "A3", "A4", "A5"],
+      "destination": ["X", "X", "X", "X", "X", "X"],
+      "flow": [3, 5, 4, 7, 8, 12],
+      "mpd_source": ["ignored", "ignored", "ignored", "ignored", "ignored", "ignored"]
+    },
+    "options": {
+      "comparisons": "all",
+      "by_source": true
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 6, 37, 39, 37, 39, 21, 0.333333333333333, 0.895452439203022, 0.942857142857143, 1.4142135623731, 1.33333333333333, 0.236309523809524, 1.04559270516717, 0.884498480243161, 0.801835070874641],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 6, 21, 39, 37, 39, 21, 3.0, 0.931427260886806, 0.942857142857143, 3.36650164612069, 3.0, 0.470039682539683, 0.8, 1.62857142857143, 0.867556742323098],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 6, 21, 37, 37, 39, 21, 2.66666666666667, 0.984596961566513, 1.0, 3.0, 2.66666666666667, 0.42962962962963, 0.0666666666666674, 1.74285714285714, 0.96943117672601]
+        ]
+      },
+      "data": {
+        "columns": ["mpd_source", "origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["b", "A0", "X", 2, 1, 3, 2, 3, 2, 3, 1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["a", "A1", "X", 3, 2, 5, 3, 5, 3, 5, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          [null, "A2", "X", 5, 3, 4, 5, 4, 5, 4, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["a", "A3", "X", 8, 4, 7, 8, 7, 8, 7, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["b", "A4", "X", 9, 5, 8, 9, 8, 9, 8, -1, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["b", "A5", "X", 10, 6, 12, 10, 12, 10, 12, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["b", "A0", "X", 2, 1, 3, 2, 3, 1, 3, 2, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["a", "A1", "X", 3, 2, 5, 3, 5, 2, 5, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          [null, "A2", "X", 5, 3, 4, 5, 4, 3, 4, 1, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["a", "A3", "X", 8, 4, 7, 8, 7, 4, 7, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["b", "A4", "X", 9, 5, 8, 9, 8, 5, 8, 3, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["b", "A5", "X", 10, 6, 12, 10, 12, 6, 12, 6, "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["b", "A0", "X", 2, 1, 3, 2, 3, 1, 2, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["a", "A1", "X", 3, 2, 5, 3, 5, 2, 3, 1, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          [null, "A2", "X", 5, 3, 4, 5, 4, 3, 5, 2, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["a", "A3", "X", 8, 4, 7, 8, 7, 4, 8, 4, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["b", "A4", "X", 9, 5, 8, 9, 8, 5, 9, 4, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["b", "A5", "X", 10, 6, 12, 10, 12, 6, 10, 4, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "by_source": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared", "mpd_source"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 2, 11, 12, 11, 12, 6, 0.5, 1.0, 1, 1.58113883008419, 1.5, 0.271428571428571, 3.8, 0.4, 1.0, "a"],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 2, 6, 11, 11, 12, 6, 2.5, 1.0, 1, 2.91547594742265, 2.5, 0.416666666666667, -2.0, 2.5, 1.0, "a"],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 2, 6, 12, 11, 12, 6, 3.0, 1.0, 1, 3.0, 3.0, 0.514285714285714, 3.0, 1.0, 1.0, "a"],
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 21, 23, 21, 23, 12, 0.666666666666667, 0.941218896546688, 1, 1.4142135623731, 1.33333333333333, 0.208333333333333, 0.850877192982457, 0.973684210526316, 0.885893011216566, "b"],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 12, 21, 21, 23, 12, 3.0, 0.997176464952738, 1, 3.3166247903554, 3.0, 0.448148148148148, 0.428571428571427, 1.64285714285714, 0.994360902255639, "b"],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 3, 12, 23, 21, 23, 12, 3.66666666666667, 0.963927854491769, 1, 4.04145188432738, 3.66666666666667, 0.513888888888889, 1.09523809523809, 1.64285714285714, 0.929156908665105, "b"]
+        ]
+      },
+      "pairs": {
+        "columns": ["mpd_source", "origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["b", "A0", "X", 1, 2, 3, -2, -1, -1, 1, 2, 1],
+          ["a", "A1", "X", 2, 3, 5, -3, -1, -2, 2, 3, 1],
+          [null, "A2", "X", 3, 5, 4, -1, -2, 1, -1, 1, 2],
+          ["a", "A3", "X", 4, 8, 7, -3, -4, 1, -1, 3, 4],
+          ["b", "A4", "X", 5, 9, 8, -3, -4, 1, -1, 3, 4],
+          ["b", "A5", "X", 6, 10, 12, -6, -4, -2, 2, 6, 4]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "no_raw": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow_adj": [10, 20, 30],
+      "mpd_source": ["src1", "src1", "src2"]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "flow": [12, 18, 33]
+    },
+    "options": {
+      "comparisons": "adjusted_vs_benchmark",
+      "by_source": true
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 60, 63, 60, 63, 0, 1, 0.970725343394151, 1, 2.38047614284762, 2.33333333333333, 0.122895622895623, -6.7648826573671506e-15, 1.05, 0.942307692307692]
+        ]
+      },
+      "data": {
+        "columns": ["mpd_source", "origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["src1", "A0", "X", 10, null, 12, 10, 12, 10, 12, 2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["src1", "A1", "X", 20, null, 18, 20, 18, 20, 18, -2, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["src2", "A2", "X", 30, null, 33, 30, 33, 30, 33, 3, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "by_source": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared", "mpd_source"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 2, 30, 30, 30, 30, 0, 0, 1.0, 1.0, 2, 2, 0.138888888888889, 5.99999999999998, 0.6, 1.0, "src1"],
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 1, 30, 33, 30, 33, 0, 3, null, null, 3, 3, 0.0909090909090909, null, null, null, "src2"]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "custom": {
+    "adj": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "raw": [100, 80, 40],
+      "adjusted": [90, 75, 50]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1", "A2"],
+      "destination": ["X", "X", "X"],
+      "bench": [95, 70, 55]
+    },
+    "options": {
+      "comparisons": ["raw_vs_adjusted", "adjusted_vs_benchmark", "raw_vs_adjusted"],
+      "flow_col_mpd": "raw",
+      "flow_col_adj": "adjusted",
+      "flow_col_bench": "bench"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 3, 220, 215, 215, 220, 220, -1.66666666666667, 0.998906107238672, 1, 8.66025403784439, 8.33333333333333, 0.125925925925926, 23.2142857142857, 0.660714285714286, 0.997813411078717],
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 3, 215, 220, 215, 220, 220, 1.66666666666667, 0.959183673469388, 1, 5.0, 5.0, 0.0716564137616769, 4.59183673469388, 0.959183673469388, 0.920033319450229]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A0", "X", 90, 100, 95, 90, 95, 100, 90, -10, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A1", "X", 75, 80, 70, 75, 70, 80, 75, -5, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A2", "X", 50, 40, 55, 50, 55, 40, 50, 10, "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A0", "X", 90, 100, 95, 90, 95, 90, 95, 5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A1", "X", 75, 80, 70, 75, 70, 75, 70, -5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A2", "X", 50, 40, 55, 50, 55, 50, 55, 5, "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "pairs": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["A0", "X", 100, 90, 95, 5, 10, -5, 5, -5, -10],
+          ["A1", "X", 80, 75, 70, 10, 5, 5, -5, -10, -5],
+          ["A2", "X", 40, 50, 55, -15, -10, -5, 5, 15, 10]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  },
+  "source_all_filtered": {
+    "adj": {
+      "origin": ["A0", "A1"],
+      "destination": ["X", "X"],
+      "flow": [0, 0],
+      "flow_adj": [0, 0],
+      "mpd_source": ["b", "a"]
+    },
+    "benchmark": {
+      "origin": ["A0", "A1"],
+      "destination": ["X", "X"],
+      "flow": [0, 0]
+    },
+    "options": {
+      "comparisons": "all",
+      "by_source": true
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "comparison", "comparison_label", "x_series", "y_series", "signed_residual", "n", "sum_x", "sum_y", "sum_adj", "sum_bench", "sum_mpd", "mean_error", "pearson_r", "spearman_rho", "rmse", "mae", "mape", "ols_intercept", "ols_slope", "r_squared"],
+        "data": [
+          ["parity", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null],
+          ["parity", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw", 0, 0, 0, 0, 0, 0, null, null, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["mpd_source", "origin", "destination", "flow_adj", "mpd_flow", "flow_bench", "adj_flow", "benchmark_flow", "x_flow", "y_flow", "residual", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": []
+      },
+      "by_source": {
+        "columns": [],
+        "data": []
+      },
+      "pairs": {
+        "columns": ["mpd_source", "origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted"],
+        "data": [
+          ["b", "A0", "X", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          ["a", "A1", "X", 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ]
+      }
+    },
+    "warnings": {
+      "overall": {
+        "many": 0,
+        "perfect": 0
+      },
+      "pairs": {
+        "many": 0,
+        "perfect": 0
+      }
+    }
+  }
+}

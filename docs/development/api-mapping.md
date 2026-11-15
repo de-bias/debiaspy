@@ -39,8 +39,8 @@ than one public function.
 | `R/adjust_multilevel_bayes.R` | `adjust_multilevel_bayes.py` | `adjust_multilevel_bayes()` | Design required |
 | `R/adjust_all_methods.R` | `adjust_all_methods.py` | `adjust_all_methods()` | Planned after individual methods |
 | `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Planned |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Implemented |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Planned |
@@ -78,6 +78,36 @@ DataFrames must have unique column names and real numeric flow/coverage values.
 Complex values are rejected explicitly rather than cast to real numbers.
 Conflicting generated column names fail with explicit Python errors. No
 positivity, finite-value, or unique-area restrictions are added.
+
+## Overall and pair-level validation parity
+
+`validate_flow_overall()` returns a dictionary of scalar metrics for one
+comparison, or `method` plus a `summary` DataFrame for multiple comparisons,
+with optional `data` and `by_source` tables. `validate_flow_pairs()` returns a
+DataFrame. Metric names, comparison metadata and residual directions follow
+the R implementation. No legacy function aliases are exported.
+
+Both functions use an inner join on OD keys, including missing-key matches and
+duplicate expansion. Benchmark source labels are ignored. Overall filtering is
+comparison-specific; `drop_zeros=True` retains strictly positive x/y values.
+Per-source tables exclude missing source IDs and follow source-level then
+comparison order. With `na_rm=False`, individual metrics preserve R's different
+missing-value rules. MAPE excludes zero denominators and is not multiplied by
+100. OLS is undefined for constant or singleton series; the default R QR rank
+tolerance is retained for predictors nearly collinear with the intercept.
+
+The test fixture contains results from 22 R scenarios. Numeric comparisons use
+relative/absolute tolerance `1e-12`, except for slope and R-squared in a large
+offset regression scenario (absolute tolerance `5e-8`, reflecting floating-point
+differences between R QR and centered NumPy calculations). Column/row order,
+missingness and warning counts are also verified.
+
+Python-specific validation requires DataFrames with unique column names,
+distinct real-valued flow columns separate from identifiers, boolean controls,
+and a non-empty sequence of valid comparison IDs. `method_name=None` represents
+the missing R method label. Pandas uses positional indices and NaN for numeric
+missing values. Error and warning classes are Python equivalents of R
+conditions; exact R message formatting is not reproduced.
 
 ## Functions that will not be carried into the Python API
 

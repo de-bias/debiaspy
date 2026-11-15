@@ -17,9 +17,9 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-The population coverage measurement API and inverse-penetration adjustment are
-implemented. Other adjustment methods and flow-validation methods remain under
-development.
+The population coverage measurement API, inverse-penetration adjustment, and
+overall and pair-level flow validation are implemented. Other adjustment and
+validation methods remain under development.
 
 ## Installation for development
 
@@ -126,6 +126,52 @@ infinite weights or NaN; this function does not clip or fill those results.
 Identical coverage records are deduplicated, but different records for the same
 area/source can expand the output. Neither input DataFrame is modified.
 
+## Overall and pair-level flow validation
+
+Use `validate_flow_overall()` for fit metrics and `validate_flow_pairs()` for
+individual origin-destination differences:
+
+```python
+import pandas as pd
+
+from debiaspy import validate_flow_overall, validate_flow_pairs
+
+adjusted = pd.DataFrame(
+    {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [2, 3],
+        "flow_adj": [4, 6],
+    }
+)
+benchmark = pd.DataFrame(
+    {"origin": ["A", "B"], "destination": ["B", "A"], "flow": [5, 7]}
+)
+metrics = validate_flow_overall(adjusted, benchmark, comparisons="all")
+summary = metrics["summary"]
+pairs = validate_flow_pairs(adjusted, benchmark)
+```
+
+Comparison IDs are `adjusted_vs_benchmark`, `raw_vs_benchmark` and
+`raw_vs_adjusted`. The first series is the baseline x; the second is the
+reference y. Canonical signed residuals are **y minus x**, while the retained
+`diff_*` columns in the pair table use first minus second. MAPE is a fraction,
+not a percentage, and omits zero reference flows.
+
+Overall validation defaults to `adjusted_vs_benchmark` and returns a dictionary
+of scalar metrics for one comparison, or a `summary` DataFrame for multiple
+comparisons. `return_joined=True` includes the rows used for each comparison;
+`by_source=True` adds source-specific metrics when adjusted inputs contain
+`mpd_source`. Constant or singleton series have undefined correlation and OLS
+metrics.
+
+Both functions inner-join on `origin` and `destination` only: unmatched pairs
+are excluded, missing keys match, and duplicate keys may expand the result.
+Source labels are carried from the adjusted table but are not join keys.
+Overall validation removes non-finite compared values by default; its default
+`drop_zeros=True` retains strictly positive flows, also excluding negatives.
+Pair-level validation retains zero, negative and missing flows.
+
 ## Development checks
 
 Run the test suite:
@@ -155,8 +201,9 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` and `adjust_inverse_penetration.py` are implemented;
-most other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py`, the overall/pair-level
+functions in `validate_flows.py`, and their private comparison helpers are
+implemented; most other modules remain placeholders:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
