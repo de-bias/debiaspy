@@ -41,7 +41,7 @@ than one public function.
 | `R/example-data.R` | `example_data.py` | `debiaspy_example_data()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Implemented |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Planned |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Planned |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Planned |
 | `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_output()` | Planned |
@@ -108,6 +108,37 @@ and a non-empty sequence of valid comparison IDs. `method_name=None` represents
 the missing R method label. Pandas uses positional indices and NaN for numeric
 missing values. Error and warning classes are Python equivalents of R
 conditions; exact R message formatting is not reproduced.
+
+## Flow-distribution validation parity
+
+`validate_flow_distribution()` returns a summary DataFrame and optional
+`origin_level` and `od_level` DataFrames. Comparisons preserve the existing
+IDs and ordering; KL is `KL(y || x)` and JSD uses natural logarithms. Shares,
+KL contributions, JSD contributions and epsilon validation are centralized in
+`distribution_metrics.py` and reused by `measure_bias_distribution()`.
+
+The full OD join uses benchmark row order followed by unmatched adjusted rows,
+including missing-key matches and duplicate expansion. Sources are ignored;
+missing flows become zero before smoothing. Origin output is sorted by origin
+within each comparison. Zero-reference origins have missing KL/JSD but retain
+OD contributions. Weighted means always use positive finite benchmark totals
+and finite metric values, even for `raw_vs_adjusted`. Negative flows are not
+clipped or silently rejected: nonpositive/non-finite smoothed totals fail,
+while negative log arguments warn and yield NaN, following R arithmetic.
+
+Fixed results from 22 executed R scenarios verify numerical agreement at
+relative/absolute tolerance `1e-12`, table names/order, missingness, errors and
+warning presence. The existing measurement tests and a cross-API calculation
+example verify that centralizing the calculations preserves measurement
+behaviour. Python uses explicit DataFrame, real-valued column and boolean
+validation, Python errors/warnings, and `None` for an absent method label.
+Unambiguous weighting prefixes are accepted; `weight_by=None` selects `"none"`.
+
+A deliberate edge-case difference: an empty adjusted DataFrame without the
+optional raw column is accepted if benchmark support exists. R fails while
+assigning a scalar to that empty frame; Python consistently fills absent raw
+flows with zero, as for nonempty input. An empty union still raises ValueError.
+Exact R condition text and aggregated warning counts are not replicated.
 
 ## Functions that will not be carried into the Python API
 

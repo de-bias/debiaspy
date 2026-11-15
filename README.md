@@ -18,8 +18,8 @@ of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
 The population coverage measurement API, inverse-penetration adjustment, and
-overall and pair-level flow validation are implemented. Other adjustment and
-validation methods remain under development.
+overall, pair-level and distributional flow validation are implemented. Other
+adjustment and validation methods remain under development.
 
 ## Installation for development
 
@@ -172,6 +172,43 @@ Overall validation removes non-finite compared values by default; its default
 `drop_zeros=True` retains strictly positive flows, also excluding negatives.
 Pair-level validation retains zero, negative and missing flows.
 
+## Flow-distribution validation
+
+`validate_flow_distribution()` compares each origin's allocation across
+destinations using destination shares, rather than individual flow magnitudes:
+
+```python
+import pandas as pd
+
+from debiaspy import validate_flow_distribution
+
+adjusted = pd.DataFrame(
+    {"origin": ["A", "A"], "destination": ["X", "Y"], "flow_adj": [30, 70]}
+)
+benchmark = pd.DataFrame(
+    {"origin": ["A", "A"], "destination": ["X", "Y"], "flow": [50, 50]}
+)
+result = validate_flow_distribution(adjusted, benchmark, return_od_level=True)
+summary = result["summary"]
+origins = result["origin_level"]
+contributions = result["od_level"]
+```
+
+The default reports `KL(benchmark || adjusted)` and symmetric Jensen–Shannon
+divergence, using natural logarithms. `comparisons="all"` also compares raw
+flows against the benchmark and adjusted flows; include a raw `flow` column
+in the adjusted table for these comparisons. Output comparison names and order
+match the overall validation API.
+
+The union of observed OD pairs defines the support. Missing flows become zero,
+then `epsilon=1e-8` is added before computing shares within each origin.
+Duplicate keys expand the join; they are not aggregated, and source labels are
+ignored. Origins with zero reference totals retain their detail rows but have
+missing origin-level divergences. `weight_by="benchmark_origin_total"` adds
+weighted means using benchmark totals for every comparison.
+`return_origin_level=False` omits origin details; `return_od_level=True`
+includes shares and contributions.
+
 ## Development checks
 
 Run the test suite:
@@ -201,9 +238,10 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py`, `adjust_inverse_penetration.py`, the overall/pair-level
-functions in `validate_flows.py`, and their private comparison helpers are
-implemented; most other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py`, the overall, pair-level
+and distributional functions in `validate_flows.py`, and their shared private
+comparison/distribution helpers are implemented. Most other modules remain
+placeholders. The module layout includes:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
