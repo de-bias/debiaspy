@@ -1,0 +1,1611 @@
+{
+  "residual_basic": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["A", "A", "B"],
+      "destination": ["B", "C", "C"],
+      "flow": [100, 50, 10],
+      "flow_adj": [90, 40, 30]
+    },
+    "benchmark": {
+      "origin": ["A", "A", "B"],
+      "destination": ["B", "C", "C"],
+      "flow": [80, 80, 20]
+    },
+    "options": {
+      "method_name": "parity",
+      "top_n": 2
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 3.0, 0.0, -10.0, 0.0, 0.0, 20.0, 20.0, 20.0, 10.0, 0.333333333333333, 0.333333333333333, 0.333333333333333, 0.666666666666667, 0.333333333333333, 0.0, 0.0, 0.333333333333333, 0.0, 0.0, 0.0]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "B", 100.0, 90.0, 80.0, 20.0, 10.0, 10.0, -10.0, -20.0, -10.0, "parity", -20.0, -10.0, -10.0, -20.0, -10.0, -10.0, 20.0, 10.0, 10.0, -25.0, -12.5, 10.0, 10.0, 50.0, 25.1661147842358, -0.794719414239026, 0.794719414239026, 28.8675134594813, -0.346410161513775, 0.346410161513775, false, false, false, false, false, false, true, "improved"],
+          ["A", "C", 50.0, 40.0, 80.0, -30.0, 10.0, -40.0, 40.0, 30.0, -10.0, "parity", 30.0, 40.0, -10.0, 30.0, 40.0, -10.0, 30.0, 40.0, 10.0, 37.5, 50.0, -10.0, -10.0, -33.3333333333333, 25.1661147842358, 1.19207912135854, 1.19207912135854, 28.8675134594813, 1.3856406460551, 1.3856406460551, true, false, false, true, false, false, false, "worsened"],
+          ["B", "C", 10.0, 30.0, 20.0, -10.0, -20.0, 10.0, -10.0, 10.0, 20.0, "parity", 10.0, -10.0, 20.0, 10.0, -10.0, 20.0, 10.0, 10.0, 20.0, 50.0, -50.0, 0.0, 0.0, 0.0, 25.1661147842358, 0.397359707119513, 0.397359707119513, 28.8675134594813, -0.346410161513775, 0.346410161513775, false, false, false, false, false, false, true, "unchanged"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "C", 50.0, 40.0, 80.0, -30.0, 10.0, -40.0, 40.0, 30.0, -10.0, "parity", 30.0, 40.0, -10.0, 30.0, 40.0, -10.0, 30.0, 40.0, 10.0, 37.5, 50.0, -10.0, -10.0, -33.3333333333333, 25.1661147842358, 1.19207912135854, 1.19207912135854, 28.8675134594813, 1.3856406460551, 1.3856406460551, true, false, false, true, false, false, false, "worsened"],
+          ["A", "B", 100.0, 90.0, 80.0, 20.0, 10.0, 10.0, -10.0, -20.0, -10.0, "parity", -20.0, -10.0, -10.0, -20.0, -10.0, -10.0, 20.0, 10.0, 10.0, -25.0, -12.5, 10.0, 10.0, 50.0, 25.1661147842358, -0.794719414239026, 0.794719414239026, 28.8675134594813, -0.346410161513775, 0.346410161513775, false, false, false, false, false, false, true, "improved"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_missing_zero": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "E", "F"],
+      "destination": ["X", "X", "X", "X", "X", "X"],
+      "flow": [10, 0, null, 10, "Infinity", 3],
+      "flow_adj": [12, 0, 5, null, 4, 3]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "E", "F"],
+      "destination": ["X", "X", "X", "X", "X", "X"],
+      "flow": [0, 0, 5, 9, 2, null]
+    },
+    "options": {
+      "method_name": "parity"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 6.0, "-Infinity", 0.0, "Infinity", 0.0, "Infinity", 3.5, 5.5, 1.0, 0.166666666666667, 0.166666666666667, 0.666666666666667, 0.333333333333333, null, null, null, 0.25, 0.25, 0.0, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 0.0, 10.0, -2.0, 12.0, -12.0, -10.0, 2.0, "parity", -10.0, -12.0, 2.0, -10.0, -12.0, 2.0, 10.0, 12.0, 2.0, null, null, -2.0, -2.0, -20.0, null, null, null, 5.74456264653803, -2.08893187146837, 2.08893187146837, null, null, null, true, true, false, false, "worsened"],
+          ["B", "X", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, null, null, null, null, 5.74456264653803, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged"],
+          ["C", "X", null, 5.0, 5.0, null, null, 0.0, 0.0, null, null, "parity", null, 0.0, null, null, 0.0, null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, 5.74456264653803, 0.0, 0.0, null, null, null, false, false, false, false, "unchanged"],
+          ["D", "X", 10.0, null, 9.0, 1.0, null, null, null, -1.0, null, "parity", -1.0, null, null, -1.0, null, null, 1.0, null, null, -11.1111111111111, null, null, null, null, null, null, null, 5.74456264653803, null, null, null, null, null, null, null, null, false, "unchanged"],
+          ["E", "X", "Infinity", 4.0, 2.0, "Infinity", "Infinity", 2.0, -2.0, "-Infinity", "-Infinity", "parity", "-Infinity", -2.0, "-Infinity", "-Infinity", -2.0, "-Infinity", "Infinity", 2.0, "Infinity", "-Infinity", -100.0, "Infinity", "Infinity", null, null, null, null, 5.74456264653803, -0.348155311911396, 0.348155311911396, null, null, null, false, false, false, true, "improved"],
+          ["F", "X", 3.0, 3.0, null, null, 0.0, null, null, null, 0.0, "parity", null, null, 0.0, null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, 5.74456264653803, null, null, null, null, null, null, null, null, false, "unchanged"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 0.0, 10.0, -2.0, 12.0, -12.0, -10.0, 2.0, "parity", -10.0, -12.0, 2.0, -10.0, -12.0, 2.0, 10.0, 12.0, 2.0, null, null, -2.0, -2.0, -20.0, null, null, null, 5.74456264653803, -2.08893187146837, 2.08893187146837, null, null, null, true, true, false, false, "worsened"],
+          ["E", "X", "Infinity", 4.0, 2.0, "Infinity", "Infinity", 2.0, -2.0, "-Infinity", "-Infinity", "parity", "-Infinity", -2.0, "-Infinity", "-Infinity", -2.0, "-Infinity", "Infinity", 2.0, "Infinity", "-Infinity", -100.0, "Infinity", "Infinity", null, null, null, null, 5.74456264653803, -0.348155311911396, 0.348155311911396, null, null, null, false, false, false, true, "improved"],
+          ["B", "X", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, null, null, null, null, 5.74456264653803, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged"],
+          ["C", "X", null, 5.0, 5.0, null, null, 0.0, 0.0, null, null, "parity", null, 0.0, null, null, 0.0, null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, 5.74456264653803, 0.0, 0.0, null, null, null, false, false, false, false, "unchanged"],
+          ["D", "X", 10.0, null, 9.0, 1.0, null, null, null, -1.0, null, "parity", -1.0, null, null, -1.0, null, null, 1.0, null, null, -11.1111111111111, null, null, null, null, null, null, null, 5.74456264653803, null, null, null, null, null, null, null, null, false, "unchanged"],
+          ["F", "X", 3.0, 3.0, null, null, 0.0, null, null, null, 0.0, "parity", null, null, 0.0, null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, 5.74456264653803, null, null, null, null, null, null, null, null, false, "unchanged"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_constant": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [10, 20, 30],
+      "flow_adj": [12, 22, 32]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [11, 21, 31]
+    },
+    "options": {
+      "method_name": "parity"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 3.0, 2.0, 2.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 11.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 9.09090909090909, -9.09090909090909, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"],
+          ["B", "X", 20.0, 22.0, 21.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 4.76190476190476, -4.76190476190476, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"],
+          ["C", "X", 30.0, 32.0, 31.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 3.2258064516129, -3.2258064516129, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 11.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 9.09090909090909, -9.09090909090909, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"],
+          ["B", "X", 20.0, 22.0, 21.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 4.76190476190476, -4.76190476190476, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"],
+          ["C", "X", 30.0, 32.0, 31.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 3.2258064516129, -3.2258064516129, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, true, "unchanged"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_all_missing": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["A", "B"],
+      "destination": ["X", "X"],
+      "flow": [null, null],
+      "flow_adj": [null, null]
+    },
+    "benchmark": {
+      "origin": ["A", "B"],
+      "destination": ["X", "X"],
+      "flow": [1, 2]
+    },
+    "options": {
+      "method_name": "parity"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 2.0, null, null, null, null, null, null, null, null, 0.0, 0.0, 1.0, 0.0, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", null, null, 1.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, "unchanged"],
+          ["B", "X", null, null, 2.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, "unchanged"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "X", null, null, 1.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, "unchanged"],
+          ["B", "X", null, null, 2.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, "unchanged"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_empty": {
+    "target": "residuals",
+    "adj": {
+      "origin": [],
+      "destination": [],
+      "flow": [],
+      "flow_adj": []
+    },
+    "benchmark": {
+      "origin": [],
+      "destination": [],
+      "flow": []
+    },
+    "options": {
+      "method_name": "parity"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 0.0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": []
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": []
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_ties": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["C", "A", "B", "D"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [20, 10, 20, 10],
+      "flow_adj": [15, 15, 15, 15]
+    },
+    "benchmark": {
+      "origin": ["C", "A", "B", "D"],
+      "destination": ["X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "top_n": 2.8
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 4.0, 0.0, 0.0, 0.0, 0.0, 5.0, 5.0, 5.0, 5.0, 0.5, 0.5, 0.0, 0.5, 0.5, 0.0, 0.0, null, null, null, null]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["C", "X", 20.0, 15.0, 10.0, 10.0, 5.0, 5.0, -5.0, -10.0, -5.0, "parity", -10.0, -5.0, -5.0, -10.0, -5.0, -5.0, 10.0, 5.0, 5.0, -100.0, -50.0, 5.0, 5.0, 50.0, 5.77350269189626, -1.73205080756888, 1.73205080756888, 0.0, null, null, true, false, false, null, null, null, true, "improved"],
+          ["A", "X", 10.0, 15.0, 10.0, 0.0, -5.0, 5.0, -5.0, 0.0, 5.0, "parity", 0.0, -5.0, 5.0, 0.0, -5.0, 5.0, 0.0, 5.0, 5.0, 0.0, -50.0, -5.0, -5.0, null, 5.77350269189626, 0.0, 0.0, 0.0, null, null, false, false, false, null, null, null, false, "worsened"],
+          ["B", "X", 20.0, 15.0, 10.0, 10.0, 5.0, 5.0, -5.0, -10.0, -5.0, "parity", -10.0, -5.0, -5.0, -10.0, -5.0, -5.0, 10.0, 5.0, 5.0, -100.0, -50.0, 5.0, 5.0, 50.0, 5.77350269189626, -1.73205080756888, 1.73205080756888, 0.0, null, null, true, false, false, null, null, null, true, "improved"],
+          ["D", "X", 10.0, 15.0, 10.0, 0.0, -5.0, 5.0, -5.0, 0.0, 5.0, "parity", 0.0, -5.0, 5.0, 0.0, -5.0, 5.0, 0.0, 5.0, 5.0, 0.0, -50.0, -5.0, -5.0, null, 5.77350269189626, 0.0, 0.0, 0.0, null, null, false, false, false, null, null, null, false, "worsened"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["C", "X", 20.0, 15.0, 10.0, 10.0, 5.0, 5.0, -5.0, -10.0, -5.0, "parity", -10.0, -5.0, -5.0, -10.0, -5.0, -5.0, 10.0, 5.0, 5.0, -100.0, -50.0, 5.0, 5.0, 50.0, 5.77350269189626, -1.73205080756888, 1.73205080756888, 0.0, null, null, true, false, false, null, null, null, true, "improved"],
+          ["B", "X", 20.0, 15.0, 10.0, 10.0, 5.0, 5.0, -5.0, -10.0, -5.0, "parity", -10.0, -5.0, -5.0, -10.0, -5.0, -5.0, 10.0, 5.0, 5.0, -100.0, -50.0, 5.0, 5.0, 50.0, 5.77350269189626, -1.73205080756888, 1.73205080756888, 0.0, null, null, true, false, false, null, null, null, true, "improved"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_custom": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["B", "A"],
+      "destination": ["X", "Y"],
+      "raw": [2, 5],
+      "adjusted": [4, 8],
+      "mpd_source": ["s1", "s2"]
+    },
+    "benchmark": {
+      "origin": ["A", "B"],
+      "destination": ["Y", "X"],
+      "reference": [9, 3]
+    },
+    "options": {
+      "method_name": "parity",
+      "flow_col_mpd": "raw",
+      "flow_col_adj": "adjusted",
+      "flow_col_bench": "reference"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 2.0, 2.5, 2.5, 1.5, 1.5, 2.5, 1.0, 2.5, 1.0, 0.5, 0.0, 0.5, 1.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        ]
+      },
+      "data": {
+        "columns": ["mpd_source", "origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["s1", "B", "X", 2.0, 4.0, 3.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 33.3333333333333, -33.3333333333333, 0.0, 0.0, 0.0, 2.12132034355964, 0.471404520791032, 0.471404520791032, 1.4142135623731, -0.707106781186547, 0.707106781186547, false, false, false, false, false, false, true, "unchanged"],
+          ["s2", "A", "Y", 5.0, 8.0, 9.0, -4.0, -3.0, -1.0, 1.0, 4.0, 3.0, "parity", 4.0, 1.0, 3.0, 4.0, 1.0, 3.0, 4.0, 1.0, 3.0, 44.4444444444444, 11.1111111111111, 3.0, 3.0, 75.0, 2.12132034355964, 1.88561808316413, 1.88561808316413, 1.4142135623731, 0.707106781186547, 0.707106781186547, true, false, false, false, false, false, true, "improved"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["mpd_source", "origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["s2", "A", "Y", 5.0, 8.0, 9.0, -4.0, -3.0, -1.0, 1.0, 4.0, 3.0, "parity", 4.0, 1.0, 3.0, 4.0, 1.0, 3.0, 4.0, 1.0, 3.0, 44.4444444444444, 11.1111111111111, 3.0, 3.0, 75.0, 2.12132034355964, 1.88561808316413, 1.88561808316413, 1.4142135623731, 0.707106781186547, 0.707106781186547, true, false, false, false, false, false, true, "improved"],
+          ["s1", "B", "X", 2.0, 4.0, 3.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 33.3333333333333, -33.3333333333333, 0.0, 0.0, 0.0, 2.12132034355964, 0.471404520791032, 0.471404520791032, 1.4142135623731, -0.707106781186547, 0.707106781186547, false, false, false, false, false, false, true, "unchanged"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "residual_duplicates": {
+    "target": "residuals",
+    "adj": {
+      "origin": ["A", "A"],
+      "destination": ["B", "B"],
+      "flow": [2, 5],
+      "flow_adj": [3, 7]
+    },
+    "benchmark": {
+      "origin": ["A", "A"],
+      "destination": ["B", "B"],
+      "flow": [4, 8]
+    },
+    "options": {
+      "method_name": "parity"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "n", "mean_signed_residual_reduction", "median_signed_residual_reduction", "mean_abs_residual_reduction", "median_abs_residual_reduction", "mean_abs_residual_mpd_benchmark", "mean_abs_residual_adj_benchmark", "median_abs_residual_mpd_benchmark", "median_abs_residual_adj_benchmark", "share_improved", "share_worsened", "share_unchanged", "share_moved_in_benchmark_direction", "share_residual_mpd_over_1sd", "share_residual_mpd_over_2sd", "share_residual_mpd_over_3sd", "share_residual_adj_over_1sd", "share_residual_adj_over_2sd", "share_residual_adj_over_3sd", "reduction_share_residual_over_2sd"],
+        "data": [
+          ["parity", 4.0, 1.5, 1.5, 0.5, 1.0, 3.0, 2.5, 2.5, 2.0, 0.75, 0.25, 0.0, 0.75, 0.5, 0.25, 0.0, 0.25, 0.0, 0.0, 0.25]
+        ]
+      },
+      "data": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "B", 2.0, 3.0, 4.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0, "parity", 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 50.0, 25.0, 1.0, 1.0, 50.0, 2.88675134594813, 0.692820323027551, 0.692820323027551, 3.2659863237109, 0.306186217847897, 0.306186217847897, false, false, false, false, false, false, true, "improved"],
+          ["A", "B", 2.0, 3.0, 8.0, -6.0, -1.0, -5.0, 5.0, 6.0, 1.0, "parity", 6.0, 5.0, 1.0, 6.0, 5.0, 1.0, 6.0, 5.0, 1.0, 75.0, 62.5, 1.0, 1.0, 16.6666666666667, 2.88675134594813, 2.07846096908265, 2.07846096908265, 3.2659863237109, 1.53093108923949, 1.53093108923949, true, true, false, true, false, false, true, "improved"],
+          ["A", "B", 5.0, 7.0, 4.0, 1.0, -2.0, 3.0, -3.0, -1.0, 2.0, "parity", -1.0, -3.0, 2.0, -1.0, -3.0, 2.0, 1.0, 3.0, 2.0, -25.0, -75.0, -2.0, -2.0, -200.0, 2.88675134594813, -0.346410161513775, 0.346410161513775, 3.2659863237109, -0.918558653543692, 0.918558653543692, false, false, false, false, false, false, false, "worsened"],
+          ["A", "B", 5.0, 7.0, 8.0, -3.0, -2.0, -1.0, 1.0, 3.0, 2.0, "parity", 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 37.5, 12.5, 2.0, 2.0, 66.6666666666667, 2.88675134594813, 1.03923048454133, 1.03923048454133, 3.2659863237109, 0.306186217847897, 0.306186217847897, true, false, false, false, false, false, true, "improved"]
+        ]
+      },
+      "top_worst": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag"],
+        "data": [
+          ["A", "B", 2.0, 3.0, 8.0, -6.0, -1.0, -5.0, 5.0, 6.0, 1.0, "parity", 6.0, 5.0, 1.0, 6.0, 5.0, 1.0, 6.0, 5.0, 1.0, 75.0, 62.5, 1.0, 1.0, 16.6666666666667, 2.88675134594813, 2.07846096908265, 2.07846096908265, 3.2659863237109, 1.53093108923949, 1.53093108923949, true, true, false, true, false, false, true, "improved"],
+          ["A", "B", 5.0, 7.0, 4.0, 1.0, -2.0, 3.0, -3.0, -1.0, 2.0, "parity", -1.0, -3.0, 2.0, -1.0, -3.0, 2.0, 1.0, 3.0, 2.0, -25.0, -75.0, -2.0, -2.0, -200.0, 2.88675134594813, -0.346410161513775, 0.346410161513775, 3.2659863237109, -0.918558653543692, 0.918558653543692, false, false, false, false, false, false, false, "worsened"],
+          ["A", "B", 5.0, 7.0, 8.0, -3.0, -2.0, -1.0, 1.0, 3.0, 2.0, "parity", 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 37.5, 12.5, 2.0, 2.0, 66.6666666666667, 2.88675134594813, 1.03923048454133, 1.03923048454133, 3.2659863237109, 0.306186217847897, 0.306186217847897, true, false, false, false, false, false, true, "improved"],
+          ["A", "B", 2.0, 3.0, 4.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0, "parity", 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 50.0, 25.0, 1.0, 1.0, 50.0, 2.88675134594813, 0.692820323027551, 0.692820323027551, 3.2659863237109, 0.306186217847897, 0.306186217847897, false, false, false, false, false, false, true, "improved"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": true,
+      "replacement": false
+    }
+  },
+  "structure_basic": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [9, 21, 31, 41, 10, 20, 30, 40],
+      "flow_adj": [11, 21, 29, 39, 10, 20, 30, 40]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [10, 20, 30, 40, 10, 20, 30, 40]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", "B", "C", "D"],
+        "neighbor": ["B", "A", "D", "C"]
+      },
+      "covariate_df": {
+        "area": ["D", "B", "A", "C"],
+        "cov": [4, 2, 1, 3]
+      },
+      "covariate_col": "cov",
+      "geometry_df": {
+        "area": ["D", "C", "B", "A"],
+        "x": [1, 0, 1, 0],
+        "y": [0, 0, 1, 1]
+      }
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 8.0, 4.0, 0.632455532033676, 1.0, 0.894427190999916]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 8.0, 0.632455532033676]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 4.0, 4.0, 4.0, 1.0]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "cov", 4.0, 0.894427190999916]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 9.0, 11.0, 10.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 10.0, -10.0, 0.0, 0.0, 0.0, 0.707106781186548, 1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 21.0, 21.0, 20.0, 1.0, 0.0, 1.0, -1.0, -1.0, 0.0, "parity", -1.0, -1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -5.0, -5.0, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, false, "unchanged", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 31.0, 29.0, 30.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -3.33333333333333, 3.33333333333333, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", 1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 41.0, 39.0, 40.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -2.5, 2.5, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", 1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["A", "Y", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "Y", 20.0, 20.0, 20.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "Y", 30.0, 30.0, 30.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "Y", 40.0, 40.0, 40.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 20.0, 19.0, 21.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 40.0, 41.0, 41.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 60.0, 61.0, 59.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 80.0, 81.0, 79.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "x", "y"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 20.0, 19.0, 21.0, 0.0, 1.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 40.0, 41.0, 41.0, 1.0, 1.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 60.0, 61.0, 59.0, 0.0, 0.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 80.0, 81.0, 79.0, 1.0, 0.0]
+        ]
+      },
+      "covariate_data": {
+        "columns": ["area", "covariate_value", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["D", 4.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 80.0, 81.0, 79.0],
+          ["B", 2.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 40.0, 41.0, 41.0],
+          ["A", 1.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, -0.5, -0.5, -0.5, 0.5, 20.0, 19.0, 21.0],
+          ["C", 3.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 0.5, 0.5, 0.5, 0.5, 60.0, 61.0, 59.0]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "structure_raw_sum": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [9, 21, 31, 41, 10, 20, 30, 40],
+      "flow_adj": [11, 21, 29, 39, 10, 20, 30, 40]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [10, 20, 30, 40, 10, 20, 30, 40]
+    },
+    "options": {
+      "method_name": "parity",
+      "residual_type": "mpd",
+      "residual_aggregation": "sum",
+      "area_neighbors": {
+        "area": ["A", "B", "C", "D"],
+        "neighbor": ["B", "A", "D", "C"]
+      }
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 8.0, 4.0, -0.50709255283711, -0.333333333333333, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "benchmark_flow", 8.0, -0.50709255283711]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 4.0, 4.0, 4.0, -0.333333333333333]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 9.0, 11.0, 10.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 10.0, -10.0, 0.0, 0.0, 0.0, 0.707106781186548, 1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", 1.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["B", "X", 21.0, 21.0, 20.0, 1.0, 0.0, 1.0, -1.0, -1.0, 0.0, "parity", -1.0, -1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -5.0, -5.0, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, false, "unchanged", -1.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["C", "X", 31.0, 29.0, 30.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -3.33333333333333, 3.33333333333333, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", -1.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["D", "X", 41.0, 39.0, 40.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -2.5, 2.5, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", -1.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["A", "Y", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["B", "Y", 20.0, 20.0, 20.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["C", "Y", 30.0, 30.0, 30.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"],
+          ["D", "Y", 40.0, 40.0, 40.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "raw_mpd", "benchmark", "benchmark - raw"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, 1.0, 1.0, 1.0, 1.0, 20.0, 19.0, 21.0],
+          ["B", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 40.0, 41.0, 41.0],
+          ["C", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 60.0, 61.0, 59.0],
+          ["D", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 80.0, 81.0, 79.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, 1.0, 1.0, 1.0, 1.0, 20.0, 19.0, 21.0],
+          ["B", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 40.0, 41.0, 41.0],
+          ["C", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 60.0, 61.0, 59.0],
+          ["D", "parity", "mpd", "raw_vs_benchmark", "Raw MPD vs benchmark", "origin", "sum", 2.0, -1.0, -1.0, -1.0, 1.0, 80.0, 81.0, 79.0]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "structure_destination": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [9, 21, 31, 41, 10, 20, 30, 40],
+      "flow_adj": [11, 21, 29, 39, 10, 20, 30, 40]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "A", "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "Y", "Y", "Y", "Y"],
+      "flow": [10, 20, 30, 40, 10, 20, 30, 40]
+    },
+    "options": {
+      "method_name": "parity",
+      "comparison": "raw_vs_adjusted",
+      "spatial_role": "destination",
+      "residual_aggregation": "sum",
+      "area_neighbors": {
+        "area": ["X", "Y"],
+        "neighbor": ["Y", "X"]
+      },
+      "local_moran": true,
+      "local_moran_nsim": 7,
+      "local_moran_seed": 12
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 8.0, 2.0, -0.65275336576822, -1.0, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "benchmark_flow", 8.0, -0.65275336576822]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 2.0, 2.0, 2.0, -1.0]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 9.0, 11.0, 10.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 10.0, -10.0, 0.0, 0.0, 0.0, 0.707106781186548, 1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", 2.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["B", "X", 21.0, 21.0, 20.0, 1.0, 0.0, 1.0, -1.0, -1.0, 0.0, "parity", -1.0, -1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -5.0, -5.0, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, -1.3228756555323, 1.3228756555323, true, false, false, true, false, false, false, "unchanged", 0.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["C", "X", 31.0, 29.0, 30.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -3.33333333333333, 3.33333333333333, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", -2.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["D", "X", 41.0, 39.0, 40.0, 1.0, 2.0, -1.0, 1.0, -1.0, -2.0, "parity", -1.0, 1.0, -2.0, -1.0, 1.0, -2.0, 1.0, 1.0, 2.0, -2.5, 2.5, 0.0, 0.0, 0.0, 0.707106781186548, -1.4142135623731, 1.4142135623731, 0.755928946018454, 1.3228756555323, 1.3228756555323, true, false, false, true, false, false, true, "unchanged", -2.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["A", "Y", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["B", "Y", 20.0, 20.0, 20.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["C", "Y", 30.0, 30.0, 30.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"],
+          ["D", "Y", 40.0, 40.0, 40.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.707106781186548, 0.0, 0.0, 0.755928946018454, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "raw_mpd", "adjusted", "adjusted - raw"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["X", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 4.0, -2.0, -2.0, -2.0, 2.0, 100.0, 102.0, 100.0],
+          ["Y", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 4.0, 0.0, 0.0, 0.0, 0.0, 100.0, 100.0, 100.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["X", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 4.0, -2.0, -2.0, -2.0, 2.0, 100.0, 102.0, 100.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, "low-high", 1.0, 1.0, false, "not significant"],
+          ["Y", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 4.0, 0.0, 0.0, 0.0, 0.0, 100.0, 100.0, 100.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, "high-low", 1.0, 1.0, false, "not significant"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["X", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", -2.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, "low-high", 1.0, 1.0, false, "not significant"],
+          ["Y", "parity", "adjustment", "raw_vs_adjusted", "Raw MPD vs adjusted", "destination", "sum", 0.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0, "high-low", 1.0, 1.0, false, "not significant"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_clusters": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10],
+      "flow_adj": [12, 12, 8, 8, 10]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", "B", "C", "D"],
+        "neighbor": ["B", "A", "D", "C"]
+      },
+      "local_moran": true,
+      "local_moran_nsim": 19,
+      "local_moran_seed": 123,
+      "local_moran_alpha": 1,
+      "local_moran_p_adjust": "none"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 5.0, null, 1.25, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 5.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 4.0, 4.0, 1.25]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["E", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, 2.0, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.11803398874989, -2.0, -2.0, -1.11803398874989, 1.0, 1.0, 1.25, "low-low", 0.9, 0.9, true, "low-low"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.11803398874989, -2.0, -2.0, -1.11803398874989, 1.0, 1.0, 1.25, "low-low", 0.8, 0.8, true, "low-low"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.11803398874989, 2.0, 2.0, 1.11803398874989, 1.0, 1.0, 1.25, "high-high", 0.8, 0.8, true, "high-high"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.11803398874989, 2.0, 2.0, 1.11803398874989, 1.0, 1.0, 1.25, "high-high", 0.65, 0.65, true, "high-high"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, 0.0, 0.0, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.11803398874989, 1.0, 1.0, -2.0, -2.0, -1.11803398874989, 1.25, "low-low", 0.9, 0.9, true, "low-low"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.11803398874989, 1.0, 1.0, -2.0, -2.0, -1.11803398874989, 1.25, "low-low", 0.8, 0.8, true, "low-low"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.11803398874989, 1.0, 1.0, 2.0, 2.0, 1.11803398874989, 1.25, "high-high", 0.8, 0.8, true, "high-high"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.11803398874989, 1.0, 1.0, 2.0, 2.0, 1.11803398874989, 1.25, "high-high", 0.65, 0.65, true, "high-high"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_weighted": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [10, 10, 10],
+      "flow_adj": [12, 10, 8]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", "A", "B", "C"],
+        "neighbor": ["B", "C", "A", "A"],
+        "weight": [1, 3, 2, 4]
+      },
+      "weight_col": "weight",
+      "local_moran": true,
+      "local_moran_nsim": 19,
+      "local_moran_seed": 99
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 3.0, 3.0, null, -1.05, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 3.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 3.0, 4.0, 10.0, -1.05]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, 2.0, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.22474487139159, 6.0, 1.5, 0.918558653543692, 2.0, 4.0, -4.5, "low-high", 0.4, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, 0.0, 0.0, -4.0, -2.0, -1.22474487139159, 1.0, 2.0, 0.0, "undefined", 1.0, 1.0, false, "not significant"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.22474487139159, -8.0, -2.0, -1.22474487139159, 1.0, 4.0, -6.0, "high-low", 0.7, 1.0, false, "not significant"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.22474487139159, 2.0, 4.0, 6.0, 1.5, 0.918558653543692, -4.5, "low-high", 0.4, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, 0.0, 0.0, 1.0, 2.0, -4.0, -2.0, -1.22474487139159, 0.0, "undefined", 1.0, 1.0, false, "not significant"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.22474487139159, 1.0, 4.0, -8.0, -2.0, -1.22474487139159, -6.0, "high-low", 0.7, 1.0, false, "not significant"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_irregular": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10],
+      "flow_adj": [13, 11, 10, 8, 3]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "from": ["A", "A", "B", "B", "C", "D", "E", "E", "Q", "A", "B", "C", "D"],
+        "to": ["B", "B", "A", "B", "D", "E", "A", "C", "A", "Q", "C", "D", "A"],
+        "w": [1, 2, 3, 1, 1, 2, 4, 1, 1, 1, 0, -1, null]
+      },
+      "area_col": "from",
+      "neighbor_col": "to",
+      "weight_col": "w",
+      "local_moran": true,
+      "local_moran_nsim": 31,
+      "local_moran_seed": 2026,
+      "local_moran_p_adjust": "hommel",
+      "local_moran_alpha": 0.5
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 5.0, null, -0.224137931034483, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 5.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 8.0, 15.0, -0.224137931034483]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 13.0, 10.0, 0.0, -3.0, 3.0, -3.0, 0.0, 3.0, "parity", 0.0, -3.0, 3.0, 0.0, -3.0, 3.0, 0.0, 3.0, 3.0, 0.0, -30.0, -3.0, -3.0, null, 0.0, null, null, 3.80788655293195, -0.787838597158335, 0.787838597158335, null, null, null, false, false, false, false, "worsened", -3.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 11.0, 10.0, 0.0, -1.0, 1.0, -1.0, 0.0, 1.0, "parity", 0.0, -1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, 1.0, 0.0, -10.0, -1.0, -1.0, null, 0.0, null, null, 3.80788655293195, -0.262612865719445, 0.262612865719445, null, null, null, false, false, false, false, "worsened", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, 3.80788655293195, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 3.80788655293195, 0.52522573143889, 0.52522573143889, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["E", "X", 10.0, 3.0, 10.0, 0.0, 7.0, -7.0, 7.0, 0.0, -7.0, "parity", 0.0, 7.0, -7.0, 0.0, 7.0, -7.0, 0.0, 7.0, 7.0, 0.0, 70.0, -7.0, -7.0, null, 0.0, null, null, 3.80788655293195, 1.83829006003612, 1.83829006003612, null, null, null, true, false, false, false, "worsened", 7.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -3.0, -3.0, -3.0, 3.0, 10.0, 10.0, 13.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 7.0, 7.0, 7.0, 7.0, 10.0, 10.0, 3.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -3.0, -3.0, -3.0, 3.0, 10.0, 10.0, 13.0, -4.0, -1.17444043902941, -6.0, -2.0, -0.587220219514703, 2.0, 3.0, 2.06896551724138, "low-low", 0.71875, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0, -2.0, -0.587220219514703, -14.0, -3.5, -1.02763538415073, 2.0, 4.0, 2.41379310344828, "low-low", 0.5, 1.0, false, "not significant"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, -1.0, -0.293610109757352, 1.0, 1.0, 0.293610109757352, 1.0, 1.0, -0.0862068965517241, "low-high", 1.0, 1.0, false, "not significant"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 1.0, 0.293610109757352, 12.0, 6.0, 1.76166065854411, 1.0, 2.0, 1.03448275862069, "high-high", 0.28125, 0.958333333333333, false, "not significant"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 7.0, 7.0, 7.0, 7.0, 10.0, 10.0, 3.0, 6.0, 1.76166065854411, -17.0, -3.4, -0.998274373174996, 2.0, 5.0, -8.79310344827586, "high-low", 0.09375, 0.46875, true, "high-low"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -3.0, -4.0, -1.17444043902941, 2.0, 3.0, -6.0, -2.0, -0.587220219514703, 2.06896551724138, "low-low", 0.71875, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -1.0, -2.0, -0.587220219514703, 2.0, 4.0, -14.0, -3.5, -1.02763538415073, 2.41379310344828, "low-low", 0.5, 1.0, false, "not significant"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, -1.0, -0.293610109757352, 1.0, 1.0, 1.0, 1.0, 0.293610109757352, -0.0862068965517241, "low-high", 1.0, 1.0, false, "not significant"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 1.0, 0.293610109757352, 1.0, 2.0, 12.0, 6.0, 1.76166065854411, 1.03448275862069, "high-high", 0.28125, 0.958333333333333, false, "not significant"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 7.0, 6.0, 1.76166065854411, 2.0, 5.0, -17.0, -3.4, -0.998274373174996, -8.79310344827586, "high-low", 0.09375, 0.46875, true, "high-low"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_constant": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [10, 10, 10],
+      "flow_adj": [11, 11, 11]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C"],
+      "destination": ["X", "X", "X"],
+      "flow": [10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", "B", "C"],
+        "neighbor": ["B", "C", "A"]
+      },
+      "local_moran": true,
+      "local_moran_seed": 123
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 3.0, 3.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 3.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 3.0, 3.0, 3.0, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 11.0, 10.0, 0.0, -1.0, 1.0, -1.0, 0.0, 1.0, "parity", 0.0, -1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, 1.0, 0.0, -10.0, -1.0, -1.0, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, false, "worsened", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 11.0, 10.0, 0.0, -1.0, 1.0, -1.0, 0.0, 1.0, "parity", 0.0, -1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, 1.0, 0.0, -10.0, -1.0, -1.0, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, false, "worsened", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 11.0, 10.0, 0.0, -1.0, 1.0, -1.0, 0.0, 1.0, "parity", 0.0, -1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, 1.0, 0.0, -10.0, -1.0, -1.0, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, false, "worsened", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 10.0, 10.0, 11.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -1.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -1.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -1.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_no_neighbors": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10],
+      "flow_adj": [12, 12, 8, 8, 10]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "local_moran": true,
+      "local_moran_seed": 1
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 5.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 5.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, null, null, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["E", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, 2.0, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_no_matches": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10],
+      "flow_adj": [12, 12, 8, 8, 10]
+    },
+    "benchmark": {
+      "origin": ["A", "B", "C", "D", "E"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["Q"],
+        "neighbor": ["Z"]
+      },
+      "local_moran": true,
+      "local_moran_seed": 1
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 5.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 5.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 0.0, 0.0, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, -1.0, 1.0, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.0, 1.0, 1.0, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["E", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, 2.0, 0.0, 0.0, null, null, null, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.11803398874989, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.11803398874989, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.11803398874989, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.11803398874989, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, 0.0, 0.0, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.11803398874989, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.11803398874989, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.11803398874989, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.11803398874989, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["E", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_singleton": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A"],
+      "destination": ["X"],
+      "flow": [10],
+      "flow_adj": [12]
+    },
+    "benchmark": {
+      "origin": ["A"],
+      "destination": ["X"],
+      "flow": [11]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A"],
+        "neighbor": ["A"]
+      },
+      "local_moran": true
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 1.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 1.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, null, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 11.0, -1.0, -2.0, 1.0, -1.0, 1.0, 2.0, "parity", 1.0, -1.0, 2.0, 1.0, -1.0, 2.0, 1.0, 1.0, 2.0, 9.09090909090909, -9.09090909090909, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, null, true, "unchanged", -1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 11.0, 10.0, 12.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -1.0, -1.0, -1.0, 1.0, 11.0, 10.0, 12.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -1.0, null, null, null, null, null, 0.0, null, null, "undefined", null, null, null, "undefined"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "structure_empty": {
+    "target": "structure",
+    "adj": {
+      "origin": [],
+      "destination": [],
+      "flow": [],
+      "flow_adj": []
+    },
+    "benchmark": {
+      "origin": [],
+      "destination": [],
+      "flow": []
+    },
+    "options": {
+      "method_name": "parity",
+      "local_moran": true,
+      "area_neighbors": {
+        "area": [],
+        "neighbor": []
+      }
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, 0.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 0.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, 0.0, null, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": []
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": []
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": []
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": []
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "structure_missing": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", null, "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [8, 8, null, 11, 10],
+      "flow_adj": [9, 12, null, 8, 10]
+    },
+    "benchmark": {
+      "origin": ["A", null, "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", null, "B", "C", "D"],
+        "neighbor": [null, "A", "C", "D", "C"]
+      },
+      "local_moran": true,
+      "local_moran_nsim": 13,
+      "local_moran_seed": 0,
+      "covariate_df": {
+        "id": ["C", "A", "A", "Q"],
+        "value": [3, 1, 2, 4]
+      },
+      "covariate_area_col": "id",
+      "covariate_col": "value",
+      "geometry_df": {
+        "id": ["C", "C", "A"],
+        "x": [1, 2, 3]
+      },
+      "geometry_area_col": "id"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 5.0, 5.0, null, -0.485714285714286, 0.866025403784439]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 4.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 4.0, 4.0, 4.0, -0.485714285714286]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "value", 3.0, 0.866025403784439]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 8.0, 9.0, 10.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0, "parity", 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 20.0, 10.0, 1.0, 1.0, 50.0, 1.5, 1.33333333333333, 1.33333333333333, 1.70782512765993, 0.58554004376912, 0.58554004376912, true, false, false, false, false, false, true, "improved", 1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          [null, "X", 8.0, 12.0, 10.0, -2.0, -4.0, 2.0, -2.0, 2.0, 4.0, "parity", 2.0, -2.0, 4.0, 2.0, -2.0, 4.0, 2.0, 2.0, 4.0, 20.0, -20.0, 0.0, 0.0, 0.0, 1.5, 1.33333333333333, 1.33333333333333, 1.70782512765993, -1.17108008753824, 1.17108008753824, true, false, false, true, false, false, true, "unchanged", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", null, null, 10.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1.5, null, null, 1.70782512765993, null, null, null, null, null, null, null, null, false, "unchanged", null, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 11.0, 8.0, 10.0, 1.0, 3.0, -2.0, 2.0, -1.0, -3.0, "parity", -1.0, 2.0, -3.0, -1.0, 2.0, -3.0, 1.0, 2.0, 3.0, -10.0, 20.0, -1.0, -1.0, -100.0, 1.5, -0.666666666666667, 0.666666666666667, 1.70782512765993, 1.17108008753824, 1.17108008753824, false, false, false, true, false, false, true, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 1.5, 0.0, 0.0, 1.70782512765993, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, null, null, 0.0, null, 10.0, 0.0, 0.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          [null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 8.0, 12.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "x", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0, 3.0, 0.75, 0.50709255283711, -2.25, -2.25, -1.52127765851133, 1.0, 1.0, -0.771428571428571, "high-low", 0.428571428571429, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, null, null, 0.0, null, 10.0, 0.0, 0.0, null, null, null, null, null, null, 0.0, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0, 1.0, 1.75, 1.18321595661992, -0.25, -0.25, -0.169030850945703, 1.0, 1.0, -0.2, "high-low", 1.0, 1.0, false, "not significant"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0, 2.0, 1.75, 1.18321595661992, -0.25, -0.25, -0.169030850945703, 1.0, 1.0, -0.2, "high-low", 1.0, 1.0, false, "not significant"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, null, -0.25, -0.169030850945703, 1.75, 1.75, 1.18321595661992, 1.0, 1.0, -0.2, "low-high", 0.642857142857143, 1.0, false, "not significant"],
+          [null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 8.0, 12.0, null, -2.25, -1.52127765851133, 0.75, 0.75, 0.50709255283711, 1.0, 1.0, -0.771428571428571, "low-high", 0.785714285714286, 1.0, false, "not significant"]
+        ]
+      },
+      "covariate_data": {
+        "columns": ["area", "covariate_value", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["C", 3.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0],
+          ["A", 1.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0],
+          ["A", 2.0, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0],
+          ["B", null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, null, null, 0.0, null, 10.0, 0.0, 0.0],
+          ["D", null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          [null, null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 8.0, 12.0]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 0.75, 0.50709255283711, 1.0, 1.0, -2.25, -2.25, -1.52127765851133, -0.771428571428571, "high-low", 0.428571428571429, 1.0, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", null, null, null, 0.0, null, null, null, null, null, "no neighbours", null, null, null, "no neighbours"],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 1.75, 1.18321595661992, 1.0, 1.0, -0.25, -0.25, -0.169030850945703, -0.2, "high-low", 1.0, 1.0, false, "not significant"],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 0.0, -0.25, -0.169030850945703, 1.0, 1.0, 1.75, 1.75, 1.18321595661992, -0.2, "low-high", 0.642857142857143, 1.0, false, "not significant"],
+          [null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.25, -1.52127765851133, 1.0, 1.0, 0.75, 0.75, 0.50709255283711, -0.771428571428571, "low-high", 0.785714285714286, 1.0, false, "not significant"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "structure_missing_sum": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", null, "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [8, 8, null, 11, 10],
+      "flow_adj": [9, 12, null, 8, 10]
+    },
+    "benchmark": {
+      "origin": ["A", null, "B", "C", "D"],
+      "destination": ["X", "X", "X", "X", "X"],
+      "flow": [10, 10, 10, 10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "residual_aggregation": "sum"
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 5.0, 5.0, null, null, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 4.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 5.0, null, null, null]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 8.0, 9.0, 10.0, -2.0, -1.0, -1.0, 1.0, 2.0, 1.0, "parity", 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 20.0, 10.0, 1.0, 1.0, 50.0, 1.5, 1.33333333333333, 1.33333333333333, 1.70782512765993, 0.58554004376912, 0.58554004376912, true, false, false, false, false, false, true, "improved", 1.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          [null, "X", 8.0, 12.0, 10.0, -2.0, -4.0, 2.0, -2.0, 2.0, 4.0, "parity", 2.0, -2.0, 4.0, 2.0, -2.0, 4.0, 2.0, 2.0, 4.0, 20.0, -20.0, 0.0, 0.0, 0.0, 1.5, 1.33333333333333, 1.33333333333333, 1.70782512765993, -1.17108008753824, 1.17108008753824, true, false, false, true, false, false, true, "unchanged", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", null, null, 10.0, null, null, null, null, null, null, "parity", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1.5, null, null, 1.70782512765993, null, null, null, null, null, null, null, null, false, "unchanged", null, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["C", "X", 11.0, 8.0, 10.0, 1.0, 3.0, -2.0, 2.0, -1.0, -3.0, "parity", -1.0, 2.0, -3.0, -1.0, 2.0, -3.0, 1.0, 2.0, 3.0, -10.0, 20.0, -1.0, -1.0, -100.0, 1.5, -0.666666666666667, 0.666666666666667, 1.70782512765993, 1.17108008753824, 1.17108008753824, false, false, false, true, false, false, true, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["D", "X", 10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "parity", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 1.5, 0.0, 0.0, 1.70782512765993, 0.0, 0.0, false, false, false, false, false, false, true, "unchanged", 0.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          [null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 8.0, 12.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 8.0, 9.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 0.0, 0.0],
+          ["C", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 11.0, 8.0],
+          ["D", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0],
+          [null, "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "sum", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 8.0, 12.0]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": false
+    }
+  },
+  "lisa_scalar_sample": {
+    "target": "structure",
+    "adj": {
+      "origin": ["A", "B"],
+      "destination": ["X", "X"],
+      "flow": [10, 10],
+      "flow_adj": [12, 8]
+    },
+    "benchmark": {
+      "origin": ["A", "B"],
+      "destination": ["X", "X"],
+      "flow": [10, 10]
+    },
+    "options": {
+      "method_name": "parity",
+      "area_neighbors": {
+        "area": ["A", "B"],
+        "neighbor": ["B", "A"]
+      },
+      "local_moran": true,
+      "local_moran_nsim": 5,
+      "local_moran_seed": 123
+    },
+    "expected": {
+      "summary": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "n_areas", "pearson_residual_benchmark_flow", "moran_i", "pearson_residual_covariate"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, null, -1.0, null]
+        ]
+      },
+      "flow_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "benchmark_comparison", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "benchmark_flow", 2.0, null]
+        ]
+      },
+      "moran_i": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_areas_used", "n_links_used", "weight_sum", "moran_i"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 2.0, -1.0]
+        ]
+      },
+      "covariate_correlation": {
+        "columns": ["method", "residual_type", "comparison", "comparison_label", "spatial_role", "covariate", "n", "pearson_r"],
+        "data": [
+          ["parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", null, null, null]
+        ]
+      },
+      "od_level": {
+        "columns": ["origin", "destination", "mpd_flow", "adj_flow", "benchmark_flow", "diff_mpd_benchmark", "diff_mpd_adj", "diff_adj_benchmark", "signed_residual_adjusted_vs_benchmark", "signed_residual_raw_vs_benchmark", "signed_residual_raw_vs_adjusted", "method", "residual_mpd_benchmark", "residual_adj_benchmark", "residual_mpd_adj", "benchmark_minus_mpd", "benchmark_minus_adj", "signed_residual_reduction", "abs_residual_mpd_benchmark", "abs_residual_adj_benchmark", "abs_residual_mpd_adj", "pct_residual_mpd_benchmark", "pct_residual_adj_benchmark", "abs_residual_improvement", "abs_residual_reduction", "pct_residual_improvement", "residual_sd_mpd_benchmark", "residual_mpd_benchmark_sd_score", "abs_residual_mpd_benchmark_sd_score", "residual_sd_adj_benchmark", "residual_adj_benchmark_sd_score", "abs_residual_adj_benchmark_sd_score", "residual_mpd_over_1sd", "residual_mpd_over_2sd", "residual_mpd_over_3sd", "residual_adj_over_1sd", "residual_adj_over_2sd", "residual_adj_over_3sd", "moved_in_benchmark_direction", "improvement_flag", "selected_residual", "residual_type", "comparison", "comparison_label", "x_series", "y_series", "signed_residual"],
+        "data": [
+          ["A", "X", 10.0, 12.0, 10.0, 0.0, -2.0, 2.0, -2.0, 0.0, 2.0, "parity", 0.0, -2.0, 2.0, 0.0, -2.0, 2.0, 0.0, 2.0, 2.0, 0.0, -20.0, -2.0, -2.0, null, 0.0, null, null, 2.82842712474619, -0.707106781186547, 0.707106781186547, null, null, null, false, false, false, false, "worsened", -2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"],
+          ["B", "X", 10.0, 8.0, 10.0, 0.0, 2.0, -2.0, 2.0, 0.0, -2.0, "parity", 0.0, 2.0, -2.0, 0.0, 2.0, -2.0, 0.0, 2.0, 2.0, 0.0, 20.0, -2.0, -2.0, null, 0.0, null, null, 2.82842712474619, 0.707106781186547, 0.707106781186547, null, null, null, false, false, false, false, "worsened", 2.0, "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "adjusted", "benchmark", "benchmark - adjusted"]
+        ]
+      },
+      "area_level": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0]
+        ]
+      },
+      "map_data": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "n_od_pairs", "selected_residual", "mean_residual", "sum_residual", "mean_abs_residual", "benchmark_flow_sum", "mpd_flow_sum", "adj_flow_sum", "centered_residual", "residual_z", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "n_neighbors_used", "local_weight_sum", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, -2.0, -2.0, -2.0, 2.0, 10.0, 10.0, 12.0, -2.0, -1.0, 2.0, 2.0, 1.0, 1.0, 1.0, -1.0, "low-high", 0.333333333333333, 0.666666666666667, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 1.0, 2.0, 2.0, 2.0, 2.0, 10.0, 10.0, 8.0, 2.0, 1.0, -2.0, -2.0, -1.0, 1.0, 1.0, -1.0, "high-low", 1.0, 1.0, false, "not significant"]
+        ]
+      },
+      "local_moran": {
+        "columns": ["area", "method", "residual_type", "comparison", "comparison_label", "spatial_role", "residual_aggregation", "selected_residual", "centered_residual", "residual_z", "n_neighbors_used", "local_weight_sum", "neighbor_lag_sum", "neighbor_lag_mean", "spatial_lag_z", "local_moran_i", "lisa_quadrant", "p_value", "p_adjusted", "significant", "lisa_cluster"],
+        "data": [
+          ["A", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", -2.0, -2.0, -1.0, 1.0, 1.0, 2.0, 2.0, 1.0, -1.0, "low-high", 0.333333333333333, 0.666666666666667, false, "not significant"],
+          ["B", "parity", "adjusted", "adjusted_vs_benchmark", "Adjusted vs benchmark", "origin", "mean", 2.0, 2.0, 1.0, 1.0, 1.0, -2.0, -2.0, -1.0, -1.0, "high-low", 1.0, 1.0, false, "not significant"]
+        ]
+      }
+    },
+    "warnings": {
+      "many": false,
+      "replacement": true
+    }
+  }
+}

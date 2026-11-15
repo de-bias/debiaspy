@@ -6,7 +6,12 @@ from debiaspy.measure_bias import (
     measure_bias_distribution,
     validate_bias_residual_structure,
 )
-from debiaspy.validate_flows import validate_flow_overall, validate_flow_pairs
+from debiaspy.validate_flows import (
+    validate_flow_overall,
+    validate_flow_pairs,
+    validate_flow_residual_structure,
+    validate_flow_residuals,
+)
 
 __version__ = "0.0.0"
 
@@ -18,4 +23,6 @@ __all__ = [
     "validate_bias_residual_structure",
     "validate_flow_overall",
     "validate_flow_pairs",
+    "validate_flow_residuals",
+    "validate_flow_residual_structure",
 ]
