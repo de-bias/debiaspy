@@ -17,8 +17,8 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-The population coverage measurement API is implemented. The raking-ratio
-adjustment method is also available. Other adjustment methods and
+The population coverage measurement API, inverse-penetration adjustment and
+raking-ratio adjustment are implemented. Other adjustment methods and
 flow-validation methods remain under development.
 
 ## Installation for development
@@ -97,7 +97,7 @@ residual_bias = validate_bias_residual_structure(
 dictionaries containing summary and area-level DataFrames, along with any
 optional diagnostics requested by the user.
 
-## Current adjustment functions
+## Raking-ratio adjustment
 
 `adjust_raking_ratio()` adjusts observed origin-destination flows with
 iterative proportional fitting so selected origin and/or destination margins
@@ -130,6 +130,35 @@ The returned DataFrame includes the original `flow`, the adjusted `flow_adj`
 and the multiplicative `weight_ipf`. Convergence is reported in
 `adjusted.attrs["ipf_converged"]` and `adjusted.attrs["ipf_iterations"]`.
 
+## Inverse-penetration adjustment
+
+`adjust_inverse_penetration()` scales observed flows using the ratio of
+population to active users at origins, destinations, or both:
+
+```python
+import pandas as pd
+
+from debiaspy import adjust_inverse_penetration
+
+flows = pd.DataFrame({"origin": ["A", "B"], "destination": ["B", "A"], "flow": [2, 3]})
+coverage = pd.DataFrame(
+    {"origin": ["A", "B"], "population": [100, 200], "user_count": [10, 50]}
+)
+adjusted = adjust_inverse_penetration(flows, coverage, weight_by="origin")
+# adjusted["flow_adj"] contains [20.0, 12.0].
+```
+
+The default `weight_by="origin"` uses origin coverage. `"destination"` uses
+destination coverage, and `"both"` uses the geometric mean of the two weights.
+The result preserves the original columns, adds the applicable `weight_*`
+columns and `flow_adj`, and renames a custom `flow_col` to `flow`. If both inputs
+contain `mpd_source`, coverage is matched by area and source.
+
+Missing coverage produces missing adjusted flows. Zero user counts can produce
+infinite weights or NaN; this function does not clip or fill those results.
+Identical coverage records are deduplicated, but different records for the same
+area/source can expand the output. Neither input DataFrame is modified.
+
 ## Development checks
 
 Run the test suite:
@@ -159,8 +188,8 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` and `adjust_raking_ratio.py` are implemented; most
-other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py` and
+`adjust_raking_ratio.py` are implemented; most other modules remain placeholders:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`

@@ -32,11 +32,16 @@ before making changes. Some agents load this file automatically, but the named
 human contributor remains responsible for checking the resulting code, tests
 and documentation.
 
-Every pull request must review the project log and update it where necessary.
-Make any required update in the same branch and pull request as the work that
-changes project status. Small changes that do not affect the recorded status do
-not need to edit the file, but contributors must still confirm that they have
-reviewed it in the pull request checklist.
+Review the project log before preparing a pull request. Describe any changes
+to implemented functionality, dependencies, decisions or limitations in the PR
+description, including the checks performed and any remaining work.
+
+Carmen Cabrera maintains `PROJECT_LOG_STATUS.md` after implementation PRs are
+merged, recording the PR number, merge date and a concise summary in merge
+order. These updates use a separate documentation branch and PR. Contributors
+should leave the log unchanged unless Carmen asks them to edit it. Continue to
+update the README, API mapping and other relevant documentation in the
+implementation PR.
 
 ## Local setup
 
@@ -174,7 +179,8 @@ Before opening a PR:
 - run `uv run ruff check .`
 - run `uv run ruff format --check .`
 - update documentation if the user-facing behaviour changed
-- review `docs/development/PROJECT_LOG_STATUS.md` and update it where necessary
+- review `docs/development/PROJECT_LOG_STATUS.md` and explain relevant status
+  changes in the PR description for Carmen's post-merge update
 - link any related issue
 
 Use the pull request template in `.github/pull_request_template.md`.
