@@ -86,8 +86,10 @@ When porting a function from `debiasR`:
 6. Export the public function from `src/debiaspy/__init__.py` when the API is
    ready.
 7. Update README or tutorial text if the function is user-facing.
-8. Review `PROJECT_LOG_STATUS.md` and update it if the work changes the recorded
-   project status.
+8. Review `PROJECT_LOG_STATUS.md` and describe relevant status changes, checks
+   and remaining work in the PR description. Carmen updates the log after
+   merges through a separate documentation PR; leave it unchanged unless she
+   requests an edit.
 9. Run `uv run pytest`, `uv run ruff check .` and
    `uv run ruff format --check .`.
 

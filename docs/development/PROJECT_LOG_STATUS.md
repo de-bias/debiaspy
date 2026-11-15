@@ -1,6 +1,6 @@
 # Project log and status
 
-Last reviewed: 13 October 2026
+Last reviewed: 15 November 2026
 
 ## Purpose
 
@@ -22,8 +22,9 @@ detailed tasks and acceptance criteria.
 - **Development environment:** `uv` with Python 3.12 as the shared local
   development version and committed dependency resolution in `uv.lock`
 - **Package layout:** `src` layout with a flat set of public modules
-- **Public interface:** the bias-measurement functions are implemented and
-  exported; adjustment and flow-validation interfaces remain planned
+- **Public interface:** the bias-measurement functions and inverse-penetration
+  adjustment are implemented and exported; other adjustment methods and
+  flow-validation interfaces remain planned
 - **Documentation:** the README, contribution guidance, development workflow,
   testing guide, API mapping and Quarto website structure are in place
 - **Tutorials:** the planned tutorial sequence exists as placeholders and will
@@ -42,6 +43,12 @@ The public measurement interface currently includes:
 These functions are implemented in `src/debiaspy/measure_bias.py`, exported
 from `src/debiaspy/__init__.py` and covered by focused pytest tests.
 
+The public adjustment interface also includes `adjust_inverse_penetration()`,
+implemented in `src/debiaspy/adjust_inverse_penetration.py`. It supports origin,
+destination and geometric-mean weighting, with source-specific coverage
+matching when both inputs contain `mpd_source`. It is publicly exported and
+covered by calculation, input-validation and fixed R-reference tests.
+
 The repository also contains the package scaffold, developer tooling,
 contribution guidance and the initial Quarto documentation website.
 
@@ -59,10 +66,9 @@ request guidance.
 
 The next planned areas are:
 
-- **Deterministic adjustment methods:** inverse penetration, two selection-rate
+- **Remaining deterministic adjustment methods:** two selection-rate
   approaches, raking ratio and coefficient regression
-  ([#4](https://github.com/de-bias/debiaspy/issues/4),
-  [#5](https://github.com/de-bias/debiaspy/issues/5),
+  ([#5](https://github.com/de-bias/debiaspy/issues/5),
   [#6](https://github.com/de-bias/debiaspy/issues/6),
   [#7](https://github.com/de-bias/debiaspy/issues/7) and
   [#8](https://github.com/de-bias/debiaspy/issues/8))
@@ -112,12 +118,15 @@ the complete function-level plan.
   empty, `pass`-only and unjustifiably skipped placeholder tests are not used.
 - Human contributors remain responsible for reviewing agent-assisted code,
   tests and documentation.
+- Carmen maintains this log after implementation PRs are merged, recording
+  merge dates, PR numbers and summaries in merge order through separate
+  documentation PRs. Contributors describe status changes in their PR bodies.
 
 ## Known limitations
 
 - The package is not yet a stable release.
-- Adjustment and flow-validation modules are currently placeholders rather than
-  usable public interfaces.
+- Adjustment modules other than inverse penetration and the flow-validation
+  modules remain placeholders on `main`.
 - The example-data loader has not yet been implemented.
 - The Bayesian backend and model-parity strategy have not yet been agreed.
 - The Quarto tutorials are placeholders and do not yet provide a complete
@@ -126,6 +135,17 @@ the complete function-level plan.
   evaluation as adjustment and validation functions are implemented.
 
 ## Recent milestones
+
+- **15 November 2026 — inverse penetration:** merged Massimiliano Luca's
+  implementation through [PR #27](https://github.com/de-bias/debiaspy/pull/27),
+  completing [issue #4](https://github.com/de-bias/debiaspy/issues/4). Carmen
+  reviewed the behaviour against R and confirmed that the full test suite,
+  linting, formatting and public import checks passed. The contribution includes
+  27 stored R-reference output tables across nine scenarios and three weighting
+  modes. No dependencies were changed. Raking-ratio PR #25 remains unmerged and
+  is next for review.
+
+Earlier milestones:
 
 - Established the initial package structure, development tooling and Quarto
   website.
@@ -143,17 +163,17 @@ the complete function-level plan.
 
 ## How to update this document
 
-Every pull request must review this document and update it where necessary.
-The contributor should make the update in the same branch and pull request as
-the work that changes project status.
+Carmen Cabrera maintains this document after implementation PRs are merged.
+Contributors and coding agents should review it before work and describe
+relevant status changes, checks and remaining work in their PR descriptions.
+Leave the log unchanged unless Carmen requests an edit.
 
-Update this document when a pull request changes implemented functionality,
-the public API, dependencies, package structure, methodological decisions,
-known limitations, development priorities or another statement recorded here.
-A small change that does not affect the recorded project status does not need
-to edit the file, but the contributor must still review it.
+After a merge, Carmen updates the current snapshot and adds a dated milestone
+with the merged PR number and a concise summary. Record milestones in merge
+order, with the newest first, and distinguish completed work from open PRs.
+Update the review date and link to the relevant issue or PR for detail.
 
-Write entries to describe the state that will be true on `main` after the pull
-request is merged. Do not describe unmerged work as completed. Keep the summary
-concise, update the review date when the file changes and link to the relevant
-issue or pull request for detail.
+Log updates use a separate documentation branch and PR. Implementation PRs
+should still include necessary README, API mapping and other documentation
+changes. Small changes that do not affect recorded status do not require a new
+milestone.
