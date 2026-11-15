@@ -126,6 +126,36 @@ infinite weights or NaN; this function does not clip or fill those results.
 Identical coverage records are deduplicated, but different records for the same
 area/source can expand the output. Neither input DataFrame is modified.
 
+## Loading example data
+
+With the optional `debiaspydata` companion installed, prepare aligned LAD
+travel-to-work inputs with:
+
+```python
+from debiaspy import debiaspy_example_data
+
+example = debiaspy_example_data(n_areas=25, geography="lad", complete_grid=True)
+flows = example["mpd_od"]
+benchmark = example["benchmark_od"]
+coverage = example["coverage"]
+```
+
+Use `geography="msoa"` for MSOA data and `n_areas=None` to retain all
+overlapping areas. Full MSOA grids can be large; begin with a small subset.
+The dictionary also contains `active_users`, `population`, `covariates`,
+`distance`, `od_audit` and `metadata`, plus geography-specific OD aliases.
+Explicit `mpd_path` and `census_path` CSV paths can replace the packaged flows.
+
+As in the R example loader, `coverage` is derived from the selected flows
+before grid completion: `population` is Census origin outflow and `user_count`
+is MPD origin outflow. These are travel-to-work teaching inputs, not resident
+population and total active-user counts. Origins without positive totals in
+both sources are excluded. Missing OD pairs can then be filled with zero and
+identified by the returned row-status columns.
+
+Packaged covariates and centroid distances are used where available. Otherwise
+the loader returns flow-derived covariates and an empty distance table.
+
 ## Development checks
 
 Run the test suite:
