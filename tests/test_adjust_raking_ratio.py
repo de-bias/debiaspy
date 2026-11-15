@@ -117,6 +117,31 @@ def test_adjust_raking_ratio_destination_only_matches_targets() -> None:
     assert adj_destination["Y"] == pytest.approx(30.0, abs=1e-8)
 
 
+def test_adjust_raking_ratio_uses_benchmark_only_margins() -> None:
+    mpd = _smoke_od()
+    benchmark = pd.DataFrame(
+        {
+            "origin": ["A", "A", "B", "B"],
+            "destination": ["X", "Y", "X", "Y"],
+            "flow": [25.0, 35.0, 15.0, 25.0],
+        }
+    )
+
+    result = adjust_raking_ratio(
+        mpd_od_df=mpd,
+        benchmark_od_df=benchmark,
+        tol=1e-10,
+    )
+
+    for area_col in ("origin", "destination"):
+        actual = result.groupby(area_col)["flow_adj"].sum()
+        expected = benchmark.groupby(area_col)["flow"].sum()
+        pd.testing.assert_index_equal(actual.index, expected.index)
+        np.testing.assert_allclose(actual, expected, rtol=0, atol=1e-6)
+
+    assert result.attrs["ipf_converged"] is True
+
+
 def test_adjust_raking_ratio_uses_benchmark_margins_with_override() -> None:
     mpd = _smoke_od()
     benchmark = pd.DataFrame(
