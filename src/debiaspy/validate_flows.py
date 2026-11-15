@@ -1,4 +1,4 @@
-"""Overall metrics and pair-level residuals for origin-destination flows."""
+"""Overall, pair-level and distribution diagnostics for origin-destination flows."""
 
 import warnings
 from collections.abc import Sequence
@@ -7,6 +7,12 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from debiaspy.distribution_metrics import (
+    _distribution_jsd_contributions,
+    _distribution_kl_contributions,
+    _distribution_shares,
+    _validate_distribution_epsilon,
+)
 from debiaspy.flow_comparisons import (
     _SERIES_COLUMNS,
     _flow_comparison_spec,
@@ -103,7 +109,7 @@ def validate_flow_overall(
         raw_required,
         overall=True,
     )
-    joined = _inner_join_flows(left, right)
+    joined = _join_flows(left, right)
     joined["adj_flow"] = joined["flow_adj"]
     joined["benchmark_flow"] = joined["flow_bench"]
     tables = []
@@ -193,7 +199,7 @@ def validate_flow_pairs(
         True,
         overall=False,
     )
-    out = _inner_join_flows(left, right)
+    out = _join_flows(left, right)
     raw, adjusted, benchmark = (
         _floats(out[col]) for col in ("mpd_flow", "adj_flow", "benchmark_flow")
     )
@@ -268,7 +274,9 @@ def _prepare_flow_inputs(
     return left, right
 
 
-def _inner_join_flows(left: pd.DataFrame, right: pd.DataFrame) -> pd.DataFrame:
+def _join_flows(
+    left: pd.DataFrame, right: pd.DataFrame, *, how: str = "inner"
+) -> pd.DataFrame:
     keys = ["origin", "destination"]
     left_many, right_many = (
         left.duplicated(keys, keep=False),
@@ -289,7 +297,20 @@ def _inner_join_flows(left: pd.DataFrame, right: pd.DataFrame) -> pd.DataFrame:
                 UserWarning,
                 stacklevel=3,
             )
-    return left.merge(right, on=keys, how="inner", sort=False)
+    if how == "inner":
+        return left.merge(right, on=keys, how="inner", sort=False)
+    # pandas outer joins sort keys; restore the reference's left-first order.
+    joined = left.assign(_left_order=np.arange(len(left))).merge(
+        right.assign(_right_order=np.arange(len(right))),
+        on=keys,
+        how="outer",
+        sort=False,
+    )
+    return (
+        joined.sort_values(["_left_order", "_right_order"], kind="stable")
+        .drop(columns=["_left_order", "_right_order"])
+        .reset_index(drop=True)
+    )
 
 
 def _floats(values: pd.Series) -> np.ndarray:
@@ -389,3 +410,258 @@ def _flow_ols_metrics(x: np.ndarray, y: np.ndarray) -> dict[str, float]:
         "ols_slope": slope,
         "r_squared": float(mss / (mss + rss)) if full_rank else 0.0,
     }
+
+
+def validate_flow_distribution(
+    adj_df: pd.DataFrame,
+    benchmark_od_df: pd.DataFrame,
+    flow_col_adj: str = "flow_adj",
+    flow_col_mpd: str = "flow",
+    flow_col_bench: str = "flow",
+    epsilon: float = 1e-8,
+    method_name: str | None = None,
+    weight_by: str | None = "none",
+    comparisons: str | Sequence[str] = "adjusted_vs_benchmark",
+    return_origin_level: bool = True,
+    return_od_level: bool = False,
+) -> dict[str, pd.DataFrame]:
+    """Compare destination-share distributions separately for each origin.
+
+    Parameters
+    ----------
+    adj_df, benchmark_od_df:
+        DataFrames containing ``origin``, ``destination`` and the requested
+        flow columns. Raw flows are required only for raw comparisons.
+    flow_col_adj, flow_col_mpd, flow_col_bench:
+        Names of the adjusted, raw MPD and benchmark flow columns.
+    epsilon:
+        Positive finite smoothing constant added to each flow before shares
+        are calculated on the union of observed OD pairs.
+    method_name:
+        Optional method label, included in every output table.
+    weight_by:
+        ``"none"`` or ``"benchmark_origin_total"``. Unambiguous prefixes are
+        accepted; None selects ``"none"``. Weighted means use benchmark totals,
+        including for ``raw_vs_adjusted``. Only finite metrics and positive
+        finite weights contribute. Unweighted means and medians are always returned.
+    comparisons:
+        A comparison ID, ordered sequence, or ``"all"``. Supported IDs are
+        ``adjusted_vs_benchmark``, ``raw_vs_benchmark`` and ``raw_vs_adjusted``.
+        The first series is x/comparison, the second y/reference.
+    return_origin_level, return_od_level:
+        Include origin-level diagnostics (default True) and OD-level shares
+        and contributions (default False).
+
+    Returns
+    -------
+    dict[str, pandas.DataFrame]
+        ``summary`` contains one row per comparison. Optional ``origin_level``
+        contains origin totals, zero-total flags, KL and JSD; ``od_level``
+        contains flows, shares and individual divergence contributions.
+
+    Notes
+    -----
+    KL is directional: KL(y || x). JSD is symmetric; both use natural logs.
+    A full OD join retains unmatched pairs and matches missing keys. Missing
+    flows become zero before smoothing. Sources are ignored and duplicate
+    keys expand the join (many-to-many joins warn); rows are not aggregated.
+    OD rows follow benchmark order, then unmatched adjusted rows. Origin rows
+    follow sorted origin/group order within each requested comparison.
+
+    Origins with unsmoothed reference totals <= 0 have missing divergences and
+    are excluded from summaries, but their OD contributions are retained.
+    Negative flows are not clipped: nonpositive/non-finite smoothed totals
+    raise ValueError; negative logarithm arguments warn and produce NaN.
+    Empty union support raises ValueError. Inputs are not modified.
+    """
+    if weight_by is None:
+        weight_by = "none"
+    choices = ("none", "benchmark_origin_total")
+    matches = [
+        choice
+        for choice in choices
+        if isinstance(weight_by, str) and weight_by and choice.startswith(weight_by)
+    ]
+    if len(matches) != 1:
+        raise ValueError("`weight_by` must be 'none' or 'benchmark_origin_total'.")
+    weight_by = matches[0]
+    selected = _normalise_flow_comparisons(comparisons)
+    _validate_distribution_epsilon(epsilon)
+    for name, value in (
+        ("return_origin_level", return_origin_level),
+        ("return_od_level", return_od_level),
+    ):
+        if not isinstance(value, (bool, np.bool_)):
+            raise TypeError(f"`{name}` must be a boolean.")
+    if method_name is not None and not isinstance(method_name, str):
+        raise TypeError("`method_name` must be a string or None.")
+    adjusted, benchmark = _prepare_flow_inputs(
+        adj_df,
+        benchmark_od_df,
+        flow_col_adj,
+        flow_col_mpd,
+        flow_col_bench,
+        any(value != "adjusted_vs_benchmark" for value in selected),
+        overall=True,
+    )
+    adjusted = adjusted.drop(columns="mpd_source", errors="ignore").rename(
+        columns={"flow_adj": "adjusted_flow", "mpd_flow": "raw_flow"}
+    )
+    benchmark = benchmark.rename(columns={"flow_bench": "benchmark_flow"})
+    support = _join_flows(benchmark, adjusted, how="outer")
+    if support.empty:
+        raise ValueError("Cannot compute distribution shares from empty OD support.")
+    for column in ("benchmark_flow", "raw_flow", "adjusted_flow"):
+        support[column] = _floats(support[column].fillna(0))
+    origins, od_tables, summaries = [], [], []
+    for comparison in selected:
+        origin, od = _compute_flow_distribution_comparison(
+            comparison, support, epsilon, method_name
+        )
+        origins.append(origin)
+        od_tables.append(od)
+        metadata = _flow_distribution_metadata(comparison, method_name)
+        row = {
+            **metadata,
+            "n_origins": len(origin),
+            "n_origins_used": int(origin["kl_origin"].notna().sum()),
+            "weight_by": weight_by,
+        }
+        for metric in ("kl", "jsd"):
+            values = _floats(origin[f"{metric}_origin"])
+            present = values[~np.isnan(values)]
+            row[f"{metric}_mean"] = float(present.mean()) if len(present) else np.nan
+            row[f"{metric}_median"] = (
+                float(np.median(present)) if len(present) else np.nan
+            )
+            row[f"{metric}_weighted_mean"] = (
+                _weighted_mean_na(values, _floats(origin["bench_origin_total"]))
+                if weight_by == "benchmark_origin_total"
+                else np.nan
+            )
+        summaries.append(row)
+    out = {"summary": pd.DataFrame(summaries)}
+    if return_origin_level:
+        out["origin_level"] = pd.concat(origins, ignore_index=True)
+    if return_od_level:
+        out["od_level"] = pd.concat(od_tables, ignore_index=True)
+    return out
+
+
+def _flow_distribution_metadata(comparison, method_name):
+    spec = _flow_comparison_spec(comparison)
+    labels = {
+        "raw_mpd": "raw_mpd",
+        "adjusted": "adjusted_mpd",
+        "benchmark": "benchmark",
+    }
+    return {
+        "method": method_name,
+        "comparison": comparison,
+        "comparison_label": spec["comparison_label"],
+        "x_distribution": spec["x_series"],
+        "y_distribution": spec["y_series"],
+        "reference_distribution": labels[spec["y_series"]],
+        "comparison_distribution": labels[spec["x_series"]],
+    }
+
+
+def _compute_flow_distribution_comparison(comparison, support, epsilon, method_name):
+    metadata = _flow_distribution_metadata(comparison, method_name)
+    columns = {
+        "raw_mpd": "raw_flow",
+        "adjusted": "adjusted_flow",
+        "benchmark": "benchmark_flow",
+    }
+    origin_rows, od_groups = [], []
+    for origin, group in support.groupby(
+        "origin", sort=True, observed=True, dropna=False
+    ):
+        data = group.copy()
+        data["reference_flow"] = data[columns[metadata["y_distribution"]]]
+        data["comparison_flow"] = data[columns[metadata["x_distribution"]]]
+        with np.errstate(invalid="ignore", over="ignore"):
+            totals = {
+                "bench_origin_total": float(data["benchmark_flow"].sum()),
+                "raw_origin_total": float(data["raw_flow"].sum()),
+                "adjusted_origin_total": float(data["adjusted_flow"].sum()),
+                "adj_origin_total": float(data["adjusted_flow"].sum()),
+                "reference_origin_total": float(data["reference_flow"].sum()),
+                "comparison_origin_total": float(data["comparison_flow"].sum()),
+            }
+        flags = {
+            f"zero_{name}_total": np.nan
+            if np.isnan(totals[total])
+            else totals[total] <= 0
+            for name, total in zip(
+                ("benchmark", "raw", "adjusted", "adj", "reference", "comparison"),
+                totals,
+                strict=True,
+            )
+        }
+        try:
+            reference_share = _distribution_shares(
+                _floats(data["reference_flow"]), epsilon
+            )
+            comparison_share = _distribution_shares(
+                _floats(data["comparison_flow"]), epsilon
+            )
+        except ValueError as error:
+            raise ValueError(f"{comparison}, origin {origin!r}: {error}") from error
+        data["reference_share"] = reference_share
+        data["comparison_share"] = comparison_share
+        data["midpoint_share"] = 0.5 * (reference_share + comparison_share)
+        data["kl_contribution"] = _distribution_kl_contributions(
+            reference_share, comparison_share
+        )
+        data["jsd_contribution"] = _distribution_jsd_contributions(
+            reference_share, comparison_share
+        )
+        for name, value in {**metadata, **totals, **flags}.items():
+            data[name] = value
+        origin_rows.append(
+            {
+                **metadata,
+                "origin": origin,
+                "n_destinations": len(data),
+                **totals,
+                **flags,
+                "kl_origin": np.nan
+                if flags["zero_reference_total"]
+                else float(data["kl_contribution"].sum(skipna=False)),
+                "jsd_origin": np.nan
+                if flags["zero_reference_total"]
+                else float(data["jsd_contribution"].sum(skipna=False)),
+            }
+        )
+        od_groups.append(
+            data[
+                [
+                    *metadata,
+                    "origin",
+                    "destination",
+                    "benchmark_flow",
+                    "raw_flow",
+                    "adjusted_flow",
+                    "reference_flow",
+                    "comparison_flow",
+                    "reference_share",
+                    "comparison_share",
+                    "midpoint_share",
+                    "kl_contribution",
+                    "jsd_contribution",
+                    *totals,
+                    *flags,
+                ]
+            ]
+        )
+    return pd.DataFrame(origin_rows), pd.concat(od_groups).sort_index().reset_index(
+        drop=True
+    )
+
+
+def _weighted_mean_na(values: np.ndarray, weights: np.ndarray) -> float:
+    keep = np.isfinite(values) & np.isfinite(weights) & (weights > 0)
+    if not keep.any():
+        return np.nan
+    return float(np.sum(values[keep] * weights[keep]) / np.sum(weights[keep]))

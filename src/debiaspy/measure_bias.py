@@ -4,13 +4,19 @@ from __future__ import annotations
 
 import warnings
 from collections.abc import Sequence
-from numbers import Real
 from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
+
+from debiaspy.distribution_metrics import (
+    _distribution_jsd_contributions,
+    _distribution_kl_contributions,
+    _distribution_shares,
+    _validate_distribution_epsilon,
+)
 
 
 def measure_bias(coverage_df: pd.DataFrame) -> pd.DataFrame:
@@ -135,8 +141,8 @@ def measure_bias_distribution(
     area_level["user_share"] = user_share
     area_level["share_difference_user_minus_population"] = user_share - population_share
     area_level["midpoint_share"] = 0.5 * (population_share + user_share)
-    area_level["kl_contribution"] = population_share * np.log(
-        population_share / user_share
+    area_level["kl_contribution"] = _distribution_kl_contributions(
+        population_share, user_share
     )
     area_level["jsd_contribution"] = _distribution_jsd_contributions(
         population_share, user_share
@@ -545,34 +551,6 @@ def _require_numeric_columns(
 def _require_string_column_names(*column_names: str) -> None:
     if any(not isinstance(column, str) or not column for column in column_names):
         raise TypeError("Column names must be non-empty strings.")
-
-
-def _validate_distribution_epsilon(epsilon: float) -> None:
-    if (
-        isinstance(epsilon, bool)
-        or not isinstance(epsilon, Real)
-        or not np.isfinite(epsilon)
-        or epsilon <= 0
-    ):
-        raise ValueError("`epsilon` must be a single positive finite number.")
-
-
-def _distribution_shares(values: np.ndarray, epsilon: float) -> np.ndarray:
-    total = np.sum(values + epsilon)
-    if not np.isfinite(total) or total <= 0:
-        raise ValueError(
-            "Cannot compute distribution shares from non-finite or empty totals."
-        )
-    return (values + epsilon) / total
-
-
-def _distribution_jsd_contributions(
-    population_share: np.ndarray, user_share: np.ndarray
-) -> np.ndarray:
-    midpoint_share = 0.5 * (population_share + user_share)
-    return 0.5 * population_share * np.log(population_share / midpoint_share) + (
-        0.5 * user_share * np.log(user_share / midpoint_share)
-    )
 
 
 def _normalise_benchmark_flow_roles(
