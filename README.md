@@ -18,8 +18,8 @@ of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
 The population coverage measurement API, inverse-penetration adjustment, and
-overall and pair-level flow validation are implemented. Other adjustment and
-validation methods remain under development.
+overall, pair-level and residual/spatial flow validation are implemented.
+Other adjustment and validation methods remain under development.
 
 ## Installation for development
 
@@ -172,6 +172,56 @@ Overall validation removes non-finite compared values by default; its default
 `drop_zeros=True` retains strictly positive flows, also excluding negatives.
 Pair-level validation retains zero, negative and missing flows.
 
+## Residual and spatial diagnostics
+
+Use `validate_flow_residuals()` to inspect signed and absolute errors,
+percentage errors, improvement flags, standard-deviation thresholds and the
+worst remaining OD pairs. `signed_residual_reduction` is adjusted minus raw;
+`abs_residual_reduction` is positive when absolute benchmark error decreases.
+
+`validate_flow_residual_structure()` adds correlations, origin- or
+destination-level aggregation, global Moran's I, and optional Local Moran/LISA:
+
+```python
+import pandas as pd
+
+from debiaspy import validate_flow_residuals, validate_flow_residual_structure
+
+adjusted = pd.DataFrame(
+    {
+        "origin": ["A", "B", "C"],
+        "destination": ["X"] * 3,
+        "flow": [10, 10, 10],
+        "flow_adj": [12, 10, 8],
+    }
+)
+benchmark = adjusted[["origin", "destination"]].assign(flow=10)
+neighbors = pd.DataFrame({"area": ["A", "B", "C"], "neighbor": ["B", "C", "A"]})
+residuals = validate_flow_residuals(adjusted, benchmark)
+structure = validate_flow_residual_structure(
+    adjusted,
+    benchmark,
+    area_neighbors=neighbors,
+    local_moran=True,
+    local_moran_seed=123,
+)
+```
+
+`comparison` selects the residual series; signs remain reference minus
+baseline. Flow correlations always use benchmark flows. `spatial_role` selects
+origins or destinations and `residual_aggregation` selects mean or sum.
+Area-level `mean_residual`, `sum_residual` and `mean_abs_residual` describe the
+already aggregated `selected_residual`.
+
+Neighbour links are directed, retain duplicates and self-links, and can have
+positive finite weights. Global Moran includes all finite residual areas in
+its denominator, including islands. Local Moran uses population variance and
+weighted lag sums; it distinguishes `no neighbours`, `undefined`, significant
+quadrants and `not significant`. Seeded conditional permutations are
+reproducible. Optional covariate and geometry tables provide correlations and
+map-ready data. `make_plots=True` returns Matplotlib figures, with a coordinate
+map when both `x_col` and `y_col` are supplied.
+
 ## Development checks
 
 Run the test suite:
@@ -201,9 +251,9 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py`, `adjust_inverse_penetration.py`, the overall/pair-level
-functions in `validate_flows.py`, and their private comparison helpers are
-implemented; most other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py`, the overall, pair-level
+and residual/spatial functions in `validate_flows.py`, and their private
+helpers are implemented. Most other modules remain placeholders. The layout includes:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`

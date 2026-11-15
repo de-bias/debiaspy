@@ -42,8 +42,8 @@ than one public function.
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_overall()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_pairs()` | Implemented |
 | `R/validate_flows.R` | `validate_flows.py` | `validate_flow_distribution()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Planned |
-| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Planned |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residuals()` | Implemented |
+| `R/validate_flows.R` | `validate_flows.py` | `validate_flow_residual_structure()` | Implemented |
 | `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_output()` | Planned |
 | `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_prepare_outputs()` | Planned |
 | `R/validate_flow_methods.R` | `validate_flow_methods.py` | `validate_flow_overall_methods()` | Planned |
@@ -108,6 +108,45 @@ and a non-empty sequence of valid comparison IDs. `method_name=None` represents
 the missing R method label. Pandas uses positional indices and NaN for numeric
 missing values. Error and warning classes are Python equivalents of R
 conditions; exact R message formatting is not reproduced.
+
+## Residual and spatial-structure parity
+
+`validate_flow_residuals()` reuses the public pair validator. Its residuals,
+percentages, improvement flags, sample-SD scores, strict threshold flags,
+summary fields and stable worst-pair ordering follow R. Missing improvement
+values become `unchanged` and missing direction comparisons become False;
+missing SD flags remain nullable booleans. Positive fractional `top_n` values
+are truncated as in R.
+
+`validate_flow_residual_structure()` supports all three comparisons, both
+spatial roles, mean/sum aggregation, covariates, geometry joins, global Moran,
+and opt-in Local Moran/LISA. It reuses the existing Pearson, neighbour-link
+and global Moran helpers. The area aliases `mean_residual`, `sum_residual` and
+`mean_abs_residual` reflect the aggregated scalar `selected_residual`: this
+preserves R's sequential summarise evaluation, rather than recomputing those
+aliases from OD rows. Missing links, islands, constant series, duplicate and
+self-links, missing keys, and zero/missing flows are retained consistently.
+
+Local Moran uses raw weighted lag sums and population variance. Conditional
+permutations fix the focal value; two-sided pseudo p-values include a plus-one
+correction and finite-p-value adjustment. All eight R adjustment names are
+supported. A private NumPy MT19937 adapter reproduces R's default seed
+expansion and rejection sampling, including the single-positive-value
+`sample()` behaviour and its replacement warning. Fixed results cover 22 R
+scenarios, including seeded p-values and LISA clusters, with tolerance `1e-12`.
+Additional fixed examples cover all p-value adjustments and four RNG seeds.
+The reference configuration is R 4.5 with default Mersenne-Twister/Rejection;
+other R RNG configurations are not claimed to match.
+
+Python returns pandas tables and Matplotlib figures. Missing method/covariate
+labels use None, and missing logical flags use pandas nullable booleans.
+Validation requires DataFrames with unique columns, real numeric quantities,
+distinct endpoint/weight columns and boolean controls. Seeds must fit a signed
+32-bit integer after truncation; invalid seeds are rejected before simulation.
+Without a seed, a private generator uses fresh entropy rather than consuming
+R or NumPy global RNG state. Plot names and plotted quantities are preserved;
+Matplotlib styling replaces ggplot styling. Exact R condition formatting is
+not reproduced. No new dependencies are needed.
 
 ## Functions that will not be carried into the Python API
 
