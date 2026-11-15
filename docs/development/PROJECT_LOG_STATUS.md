@@ -31,8 +31,8 @@ detailed tasks and acceptance criteria.
   testing guide, API mapping and Quarto website structure are in place
 - **Tutorials:** the planned tutorial sequence exists as placeholders and will
   be developed as the corresponding public interfaces stabilise
-- **Example data:** empirical example data are intended to come from the
-  separate `debiaspydata` package
+- **Example data:** `debiaspy_example_data()` prepares aligned LAD/MSOA inputs
+  from the optional `debiaspydata` package or explicit OD CSV paths
 
 ## Implemented functionality
 
@@ -50,6 +50,12 @@ implemented in `src/debiaspy/adjust_inverse_penetration.py`. It supports origin,
 destination and geometric-mean weighting, with source-specific coverage
 matching when both inputs contain `mpd_source`. It is publicly exported and
 covered by calculation, input-validation and fixed R-reference tests.
+
+`debiaspy_example_data()` is implemented in `src/debiaspy/example_data.py` and
+publicly exported. It returns aligned OD flows, flow-derived coverage,
+population and active-user tables, covariates, centroid distances, an OD audit
+and metadata. It supports area selection and optional complete grids, following
+the R loader's coverage construction and filtering order.
 
 The repository also contains the package scaffold, developer tooling,
 contribution guidance and the initial Quarto documentation website.
@@ -74,8 +80,6 @@ The next planned areas are:
   [#6](https://github.com/de-bias/debiaspy/issues/6),
   [#7](https://github.com/de-bias/debiaspy/issues/7) and
   [#8](https://github.com/de-bias/debiaspy/issues/8))
-- **Example-data access:** a consistent Python route to example data through
-  `debiaspydata` ([issue #9](https://github.com/de-bias/debiaspy/issues/9))
 - **Multi-method adjustment:** an orchestrator after the individual adjustment
   methods are stable ([issue #10](https://github.com/de-bias/debiaspy/issues/10))
 - **Flow validation:** overall, pair-level, distributional, residual, spatial
@@ -129,7 +133,9 @@ the complete function-level plan.
 - The package is not yet a stable release.
 - Adjustment modules other than inverse penetration and the flow-validation
   modules remain placeholders on `main`.
-- The example-data loader has not yet been implemented.
+- The example loader derives coverage from selected travel-to-work outflows,
+  rather than independent population-coverage counts, and excludes origins
+  without positive MPD and Census totals before grid completion, as in R.
 - The Bayesian backend and model-parity strategy have not yet been agreed.
 - The Quarto tutorials are placeholders and do not yet provide a complete
   user-learning pathway.
@@ -137,6 +143,18 @@ the complete function-level plan.
   evaluation as adjustment and validation functions are implemented.
 
 ## Recent milestones
+
+- **15 November 2026, 21:39 UTC — example-data loader:** merged
+  [PR #34](https://github.com/de-bias/debiaspy/pull/34), completing
+  [issue #9](https://github.com/de-bias/debiaspy/issues/9). Carmen led the
+  implementation with AI assistance, adapting Nick Sweeney's reference code.
+  Added 34 loader test cases and extended the public import check; all 150
+  package tests, linting and formatting passed. Eight returned tables matched
+  R within numerical tolerance across six LAD/MSOA settings, excluding
+  companion-specific distance source labels. Real-data examples included the
+  full LAD grid (313 areas and 97,969 pairs). Carmen checked LAD and MSOA
+  examples in Jupyter. No dependencies changed. Raking PR #25 remains pending
+  team decisions on clipping and zero-flow behaviour.
 
 - **15 November 2026 — Pillow security update:** merged
   [PR #29](https://github.com/de-bias/debiaspy/pull/29) after the inverse
