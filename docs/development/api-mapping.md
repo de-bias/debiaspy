@@ -31,7 +31,7 @@ than one public function.
 | `R/measure_bias.R` | `measure_bias.py` | `measure_bias()` | Implemented |
 | `R/measure_bias.R` | `measure_bias.py` | `measure_bias_distribution()` | Implemented |
 | `R/measure_bias.R` | `measure_bias.py` | `validate_bias_residual_structure()` | Implemented |
-| `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Planned |
+| `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Implemented |
 | `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Planned |
 | `R/adjust_selection_rate2.R` | `adjust_selection_rate2.py` | `adjust_selection_rate2()` | Planned |
 | `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Planned |
@@ -62,6 +62,22 @@ than one public function.
 
 `debiasR_example_data()` is renamed `debiaspy_example_data()` because the R
 package name should not appear in the Python API.
+
+## Inverse-penetration parity notes
+
+The inverse-penetration implementation preserves R's three weighting modes,
+source-aware joins, selected-column deduplication, ambiguous-coverage row
+expansion, missing-key matching, and non-finite arithmetic. Unambiguous
+`weight_by` prefixes are accepted and `None` corresponds to R's `NULL` default.
+Tests compare 27 output tables and warning counts generated from the unchanged
+R source, covering nine input scenarios under all three weighting modes.
+
+Python returns a pandas DataFrame with a fresh positional index. Numeric missing
+values use NaN; Python warning and exception classes replace R conditions.
+DataFrames must have unique column names and real numeric flow/coverage values.
+Complex values are rejected explicitly rather than cast to real numbers.
+Conflicting generated column names fail with explicit Python errors. No
+positivity, finite-value, or unique-area restrictions are added.
 
 ## Functions that will not be carried into the Python API
 

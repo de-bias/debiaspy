@@ -1,0 +1,447 @@
+{
+  "basic": {
+    "mpd": {
+      "origin": ["A", "A", "B", "C"],
+      "destination": ["B", "C", "A", "A"],
+      "flow": [2, 0, 3, 4],
+      "label": ["first", "zero", "third", "fourth"]
+    },
+    "coverage": {
+      "origin": ["A", "B", "C"],
+      "population": [100, 200, 90],
+      "user_count": [10, 50, 30]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 20],
+          ["A", "C", 0, "zero", 10, 0],
+          ["B", "A", 3, "third", 4, 12],
+          ["C", "A", 4, "fourth", 3, 12]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "label", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 4, 8],
+          ["A", "C", 0, "zero", 3, 0],
+          ["B", "A", 3, "third", 10, 30],
+          ["C", "A", 4, "fourth", 10, 40]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 4, 6.32455532033676, 12.6491106406735],
+          ["A", "C", 0, "zero", 10, 3, 5.47722557505166, 0.0],
+          ["B", "A", 3, "third", 4, 10, 6.32455532033676, 18.9736659610103],
+          ["C", "A", 4, "fourth", 3, 10, 5.47722557505166, 21.9089023002066]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "custom_flow": {
+    "mpd": {
+      "origin": ["A", "A", "B", "C"],
+      "destination": ["B", "C", "A", "A"],
+      "trips": [2, 0, 3, 4],
+      "label": ["first", "zero", "third", "fourth"]
+    },
+    "coverage": {
+      "origin": ["A", "B", "C"],
+      "population": [100, 200, 90],
+      "user_count": [10, 50, 30]
+    },
+    "flow_col": "trips",
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 20],
+          ["A", "C", 0, "zero", 10, 0],
+          ["B", "A", 3, "third", 4, 12],
+          ["C", "A", 4, "fourth", 3, 12]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "label", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 4, 8],
+          ["A", "C", 0, "zero", 3, 0],
+          ["B", "A", 3, "third", 10, 30],
+          ["C", "A", 4, "fourth", 10, 40]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 4, 6.32455532033676, 12.6491106406735],
+          ["A", "C", 0, "zero", 10, 3, 5.47722557505166, 0.0],
+          ["B", "A", 3, "third", 4, 10, 6.32455532033676, 18.9736659610103],
+          ["C", "A", 4, "fourth", 3, 10, 5.47722557505166, 21.9089023002066]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "source_specific": {
+    "mpd": {
+      "origin": ["A", "A", "B", "B"],
+      "destination": ["B", "B", "A", "A"],
+      "flow": [2, 3, 4, 5],
+      "mpd_source": ["s1", "s2", "s1", null]
+    },
+    "coverage": {
+      "origin": ["A", "B", "A", "B", "A", "B"],
+      "population": [100, 200, 100, 200, 100, 200],
+      "user_count": [10, 40, 20, 25, 50, 100],
+      "mpd_source": ["s1", "s1", "s2", "s2", null, null]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "mpd_source", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "s1", 10, 20],
+          ["A", "B", 3, "s2", 5, 15],
+          ["B", "A", 4, "s1", 5, 20],
+          ["B", "A", 5, null, 2, 10]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "mpd_source", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "s1", 5, 10],
+          ["A", "B", 3, "s2", 8, 24],
+          ["B", "A", 4, "s1", 10, 40],
+          ["B", "A", 5, null, 2, 10]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "mpd_source", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "s1", 10, 5, 7.07106781186548, 14.142135623731],
+          ["A", "B", 3, "s2", 5, 8, 6.32455532033676, 18.9736659610103],
+          ["B", "A", 4, "s1", 5, 10, 7.07106781186548, 28.2842712474619],
+          ["B", "A", 5, null, 2, 2, 2.0, 10.0]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "source_only_flows": {
+    "mpd": {
+      "origin": ["A", "A", "B", "C"],
+      "destination": ["B", "C", "A", "A"],
+      "flow": [2, 0, 3, 4],
+      "label": ["first", "zero", "third", "fourth"],
+      "mpd_source": ["s1", "s2", "s1", "s2"]
+    },
+    "coverage": {
+      "origin": ["A", "B", "C"],
+      "population": [100, 200, 90],
+      "user_count": [10, 50, 30]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "label", "mpd_source", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", "s1", 10, 20],
+          ["A", "C", 0, "zero", "s2", 10, 0],
+          ["B", "A", 3, "third", "s1", 4, 12],
+          ["C", "A", 4, "fourth", "s2", 3, 12]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "label", "mpd_source", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", "s1", 4, 8],
+          ["A", "C", 0, "zero", "s2", 3, 0],
+          ["B", "A", 3, "third", "s1", 10, 30],
+          ["C", "A", 4, "fourth", "s2", 10, 40]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "label", "mpd_source", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", "s1", 10, 4, 6.32455532033676, 12.6491106406735],
+          ["A", "C", 0, "zero", "s2", 10, 3, 5.47722557505166, 0.0],
+          ["B", "A", 3, "third", "s1", 4, 10, 6.32455532033676, 18.9736659610103],
+          ["C", "A", 4, "fourth", "s2", 3, 10, 5.47722557505166, 21.9089023002066]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "source_only_coverage": {
+    "mpd": {
+      "origin": ["A", "A", "B", "C"],
+      "destination": ["B", "C", "A", "A"],
+      "flow": [2, 0, 3, 4],
+      "label": ["first", "zero", "third", "fourth"]
+    },
+    "coverage": {
+      "origin": ["A", "A", "B", "C"],
+      "population": [100, 100, 200, 90],
+      "user_count": [10, 10, 50, 30],
+      "mpd_source": ["s1", "s2", "s1", "s2"]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 20],
+          ["A", "C", 0, "zero", 10, 0],
+          ["B", "A", 3, "third", 4, 12],
+          ["C", "A", 4, "fourth", 3, 12]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "label", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 4, 8],
+          ["A", "C", 0, "zero", 3, 0],
+          ["B", "A", 3, "third", 10, 30],
+          ["C", "A", 4, "fourth", 10, 40]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "label", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, "first", 10, 4, 6.32455532033676, 12.6491106406735],
+          ["A", "C", 0, "zero", 10, 3, 5.47722557505166, 0.0],
+          ["B", "A", 3, "third", 4, 10, 6.32455532033676, 18.9736659610103],
+          ["C", "A", 4, "fourth", 3, 10, 5.47722557505166, 21.9089023002066]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "duplicates": {
+    "mpd": {
+      "origin": ["A", "B", "B"],
+      "destination": ["B", "A", "A"],
+      "flow": [2, 3, 4]
+    },
+    "coverage": {
+      "origin": ["A", "A", "A", "B"],
+      "population": [10, 10, 20, 30],
+      "user_count": [1, 1, 1, 1]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 10, 20],
+          ["A", "B", 2, 20, 40],
+          ["B", "A", 3, 30, 90],
+          ["B", "A", 4, 30, 120]
+        ],
+        "many_to_many": 1,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 30, 60],
+          ["B", "A", 3, 10, 30],
+          ["B", "A", 3, 20, 60],
+          ["B", "A", 4, 10, 40],
+          ["B", "A", 4, 20, 80]
+        ],
+        "many_to_many": 1,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 10, 30, 17.3205080756888, 34.6410161513775],
+          ["A", "B", 2, 20, 30, 24.4948974278318, 48.9897948556636],
+          ["B", "A", 3, 30, 10, 17.3205080756888, 51.9615242270663],
+          ["B", "A", 3, 30, 20, 24.4948974278318, 73.4846922834953],
+          ["B", "A", 4, 30, 10, 17.3205080756888, 69.2820323027551],
+          ["B", "A", 4, 30, 20, 24.4948974278318, 97.9795897113271]
+        ],
+        "many_to_many": 2,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "equal_weights_distinct_coverage": {
+    "mpd": {
+      "origin": ["A", "B"],
+      "destination": ["B", "A"],
+      "flow": [2, 3]
+    },
+    "coverage": {
+      "origin": ["A", "A", "B"],
+      "population": [10, 20, 30],
+      "user_count": [1, 2, 1]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 10, 20],
+          ["A", "B", 2, 10, 20],
+          ["B", "A", 3, 30, 90]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 30, 60],
+          ["B", "A", 3, 10, 30],
+          ["B", "A", 3, 10, 30]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 2, 10, 30, 17.3205080756888, 34.6410161513775],
+          ["A", "B", 2, 10, 30, 17.3205080756888, 34.6410161513775],
+          ["B", "A", 3, 30, 10, 17.3205080756888, 51.9615242270663],
+          ["B", "A", 3, 30, 10, 17.3205080756888, 51.9615242270663]
+        ],
+        "many_to_many": 1,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "missing": {
+    "mpd": {
+      "origin": ["A", null, "Z", "B"],
+      "destination": [null, "B", "A", "Z"],
+      "flow": [2, null, 3, 4]
+    },
+    "coverage": {
+      "origin": ["A", "B", null],
+      "population": [100, null, 90],
+      "user_count": [10, 50, 30]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", null, 2.0, 10.0, 20.0],
+          [null, "B", null, 3.0, null],
+          ["Z", "A", 3.0, null, null],
+          ["B", "Z", 4.0, null, null]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", null, 2.0, 3.0, 6.0],
+          [null, "B", null, null, null],
+          ["Z", "A", 3.0, 10.0, 30.0],
+          ["B", "Z", 4.0, null, null]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", null, 2.0, 10.0, 3.0, 5.47722557505166, 10.9544511501033],
+          [null, "B", null, 3.0, null, null, null],
+          ["Z", "A", 3.0, null, 10.0, null, null],
+          ["B", "Z", 4.0, null, null, null, null]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      }
+    }
+  },
+  "numeric_edges": {
+    "mpd": {
+      "origin": ["A", "B", "C", "D", "E", "F", "G", "H"],
+      "destination": ["B", "A", "D", "C", "F", "E", "H", "G"],
+      "flow": [0, 2, 3, -4, null, 6, 7, 8]
+    },
+    "coverage": {
+      "origin": ["A", "B", "C", "D", "E", "F", "G", "H"],
+      "population": [100, 0, -20, 40, 50, "Infinity", 80, 90],
+      "user_count": [0, 0, 2, 4, null, 2, "Infinity", -3]
+    },
+    "expected": {
+      "origin": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "flow_adj"],
+        "data": [
+          ["A", "B", 0.0, "Infinity", null],
+          ["B", "A", 2.0, null, null],
+          ["C", "D", 3.0, -10.0, -30.0],
+          ["D", "C", -4.0, 10.0, -40.0],
+          ["E", "F", null, null, null],
+          ["F", "E", 6.0, "Infinity", "Infinity"],
+          ["G", "H", 7.0, 0.0, 0.0],
+          ["H", "G", 8.0, -30.0, -240.0]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "destination": {
+        "columns": ["origin", "destination", "flow", "weight_destination", "flow_adj"],
+        "data": [
+          ["A", "B", 0.0, null, null],
+          ["B", "A", 2.0, "Infinity", "Infinity"],
+          ["C", "D", 3.0, 10.0, 30.0],
+          ["D", "C", -4.0, -10.0, 40.0],
+          ["E", "F", null, "Infinity", null],
+          ["F", "E", 6.0, null, null],
+          ["G", "H", 7.0, -30.0, -210.0],
+          ["H", "G", 8.0, 0.0, 0.0]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 0
+      },
+      "both": {
+        "columns": ["origin", "destination", "flow", "weight_origin", "weight_destination", "weight_both", "flow_adj"],
+        "data": [
+          ["A", "B", 0.0, "Infinity", null, null, null],
+          ["B", "A", 2.0, null, "Infinity", null, null],
+          ["C", "D", 3.0, -10.0, 10.0, null, null],
+          ["D", "C", -4.0, 10.0, -10.0, null, null],
+          ["E", "F", null, null, "Infinity", null, null],
+          ["F", "E", 6.0, "Infinity", null, null, null],
+          ["G", "H", 7.0, 0.0, -30.0, 0.0, 0.0],
+          ["H", "G", 8.0, -30.0, 0.0, 0.0, 0.0]
+        ],
+        "many_to_many": 0,
+        "nan_warnings": 1
+      }
+    }
+  }
+}
