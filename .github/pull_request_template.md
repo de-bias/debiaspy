@@ -16,7 +16,7 @@
 - [ ] I have updated documentation if user-facing behaviour changed
 - [ ] I have included meaningful tests for new or changed package behaviour in this PR, or explained why tests are not applicable
 - [ ] I have checked that the Python behaviour mirrors `debiasR` where relevant
-- [ ] I have reviewed `PROJECT_LOG_STATUS.md` and updated it where necessary
+- [ ] I have reviewed `PROJECT_LOG_STATUS.md` and described relevant status changes in this PR for Carmen's post-merge update
 
 ## Notes for reviewers
 

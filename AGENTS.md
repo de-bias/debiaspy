@@ -130,8 +130,12 @@
 - Link the relevant issue and explain any deliberate difference from
   `debiasR` in the pull request.
 - Review `docs/development/PROJECT_LOG_STATUS.md` for every pull request and
-  update it in the same branch when the work changes any status recorded there.
-  Do not describe unmerged work as completed.
+  describe relevant status changes, checks and remaining work in the PR body.
+  Carmen Cabrera maintains the log after merges through a separate
+  documentation branch and PR, recording PR numbers, merge dates and summaries
+  in merge order. Leave the log unchanged unless Carmen requests an edit.
+  Continue updating the README, API mapping and other relevant documentation
+  in implementation PRs.
 - Disclose material AI assistance and identify the human who reviewed the code,
   tests and documentation.
 - Carmen Cabrera (`carmen-cabrera`) and Francisco Rowe (`fcorowe`) can review
@@ -332,8 +336,8 @@
 - Summarise the files changed and the behaviour implemented.
 - Report the exact test, lint, formatting and documentation commands run and
   whether they passed.
-- Confirm that `docs/development/PROJECT_LOG_STATUS.md` was reviewed and state
-  whether it required an update.
+- Confirm that `docs/development/PROJECT_LOG_STATUS.md` was reviewed and
+  identify any status changes for Carmen's post-merge update.
 - Identify remaining limitations, unresolved methodological questions and
   deliberate differences from `debiasR`.
 - Confirm whether the working tree is uncommitted, committed, pushed or covered
