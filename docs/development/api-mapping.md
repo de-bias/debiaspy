@@ -32,7 +32,7 @@ than one public function.
 | `R/measure_bias.R` | `measure_bias.py` | `measure_bias_distribution()` | Implemented |
 | `R/measure_bias.R` | `measure_bias.py` | `validate_bias_residual_structure()` | Implemented |
 | `R/adjust_inverse_penetration.R` | `adjust_inverse_penetration.py` | `adjust_inverse_penetration()` | Implemented |
-| `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Planned |
+| `R/adjust_selection_rate.R` | `adjust_selection_rate.py` | `adjust_selection_rate()` | Implemented |
 | `R/adjust_selection_rate2.R` | `adjust_selection_rate2.py` | `adjust_selection_rate2()` | Planned |
 | `R/adjust_raking_ratio.R` | `adjust_raking_ratio.py` | `adjust_raking_ratio()` | Planned |
 | `R/adjust_coefficient.R` | `adjust_coefficient.py` | `adjust_coefficient()` | Planned |
@@ -106,6 +106,34 @@ settings: observed support, complete grids and complete grids without self
 flows. Distance source labels were excluded because they identify different
 R and Python companion packages. These were manual integration checks; the
 automated tests use small local tables and do not require R or the companion.
+
+## Selection-rate verification
+
+Tests compare 54 output tables across 36 input scenarios with unchanged
+`debiasR` commit `6fa2709ae42de6dc525a4a46182fdfb448b14a3f`. Inputs and generated
+outputs are stored in `tests/fixtures/selection_rate_inputs.json` and
+`tests/fixtures/selection_rate_r.json`; the output also records the R runtime.
+Checks cover values (rtol=atol=1e-12), output structure, selected parameters,
+calibration losses, warning counts and input preservation.
+
+Ordinary pytest uses the stored outputs and requires no R installation. To run
+the same comparisons with fresh R output, or regenerate the stored reference:
+
+```bash
+DEBIASR_ROOT=../debiasR uv run pytest tests/test_adjust_selection_rate.py
+Rscript scripts/generate_selection_reference.R ../debiasR selection_rate
+```
+
+These commands require R, dplyr and jsonlite, and a clean R checkout at the
+reference commit. Adjust the checkout path as needed.
+
+Python returns an empty DataFrame with the expected columns for empty flow
+inputs. Explicit parameters must be finite numeric scalars, excluding booleans;
+clipping bounds must be ordered and non-negative. Inputs require unique column
+names and real-valued arithmetic; existing endpoint-weight columns are rejected.
+Explicit `r_global` and `r_grid` values must be non-negative; zero remains
+accepted. The deprecated R-only `income_col` alias is omitted; use
+`covariate_col`.
 
 ## Functions that will not be carried into the Python API
 

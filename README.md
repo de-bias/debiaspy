@@ -17,9 +17,9 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-The population coverage measurement API and inverse-penetration adjustment are
-implemented. Other adjustment methods and flow-validation methods remain under
-development.
+The population coverage measurement API, inverse-penetration adjustment and
+`adjust_selection_rate()` are implemented. Other adjustment and flow-validation
+methods remain under development.
 
 ## Installation for development
 
@@ -126,6 +126,77 @@ infinite weights or NaN; this function does not clip or fill those results.
 Identical coverage records are deduplicated, but different records for the same
 area/source can expand the output. Neither input DataFrame is modified.
 
+## Selection-rate adjustment
+
+`adjust_selection_rate()` combines active-user penetration with a normalized
+area covariate. It requires `mpd_source` in both flow and coverage tables:
+
+```python
+import pandas as pd
+
+from debiaspy import adjust_selection_rate
+
+flows = pd.DataFrame(
+    {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+    }
+)
+coverage = pd.DataFrame(
+    {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"],
+    }
+)
+covariates = pd.DataFrame({"area": ["A", "B"], "index": [0, 1]})
+adjusted = adjust_selection_rate(
+    flows,
+    coverage,
+    covariates,
+    covariate_col="index",
+    r_global=0.25,
+)
+# adjusted["flow_adj"] contains [40.0, 40.0].
+```
+
+Choose `weight_by="origin"`, `"destination"` or `"both"` (geometric mean).
+Legacy coverage uses `origin`, `population`, `user_count` and `mpd_source`.
+When present, separate endpoint counts take precedence. This schema has
+`origin`, `origin_population`, `origin_user_count`, `destination`,
+`destination_population`, `destination_user_count` and `mpd_source`.
+
+Explicit `covariate_col` supports numeric area-level variables beyond income.
+Values already in [0, 1] are retained. Other values use min-max scaling over the
+column. Missing/unmatched covariates use 1, reducing the weight to inverse
+penetration. Income columns embedded in coverage are not used.
+
+A fixed `r_global` overrides calibration. Otherwise, supply `benchmark_od_df`
+with origin, destination and a flow column (`flow_col_bench`, default `"flow"`)
+to search `r_grid` (default 0 to 3 in steps of 0.01), or omit both to use the
+descriptive overall users/population ratio. Without a usable covariate the
+weights do not depend on `r_global`, so calibration cannot identify it.
+`adjusted.attrs["r_global"]` records the value used; calibrated results also
+contain `adjusted.attrs["r_calibration"]`, a DataFrame of `r` and `loss`.
+
+The result includes both endpoint weights, `weight_missing` and `flow_adj`.
+`keep_cols` retains requested extra columns from the input flow table.
+`clip_min` and `clip_max` bound valid weights. Invalid coverage rows leave
+missing weights. Side-specific coverage and covariate duplicates can expand
+joins. Legacy coverage uses the first weight per area/source. Missing keys match
+missing keys. Neither input is modified.
+
+Calibration compares only overlapping origin/destination pairs, with one global
+parameter across sources. `calibration_aggregate="origin"` compares totals by
+origin, and `"od"` compares matched rows. Missing adjusted values are omitted
+from loss sums, so an all-missing OD loss is zero. Benchmarks used for fitting
+do not constitute an independent validation set.
+See the [development verification guide](docs/development/api-mapping.md#selection-rate-verification)
+for reference checks and interface differences.
+
 ## Loading example data
 
 With the optional `debiaspydata` companion installed, prepare aligned LAD
@@ -185,8 +256,9 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` and `adjust_inverse_penetration.py` are implemented;
-most other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py`,
+`adjust_selection_rate.py` and `example_data.py` are implemented. Most other
+modules remain placeholders. The module list includes:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
