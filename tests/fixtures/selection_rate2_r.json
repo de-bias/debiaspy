@@ -1,0 +1,2605 @@
+{
+  "metadata": {
+    "reference": "6fa2709ae42de6dc525a4a46182fdfb448b14a3f",
+    "function_name": "adjust_selection_rate2",
+    "r_version": "R version 4.6.1 (2026-06-24)",
+    "dplyr": "1.2.1",
+    "jsonlite": "2.0.0"
+  },
+  "cases": {
+    "legacy_fixed": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 8.0326532985631669
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 14.288489977625265
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "new_fixed": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "origin_population": [100, 200],
+        "origin_user_count": [25, 100],
+        "destination": ["B", "A"],
+        "destination_population": [300, 400],
+        "destination_user_count": [30, 200],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 6.6425326612871851
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 6.8888228804655158
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "legacy_fallback": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {},
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "clipped": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1,
+        "clip_min": 0.75,
+        "clip_max": 0.78000000000000003
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.75,
+              "weight_destination": 0.78000000000000003,
+              "weight_missing": false,
+              "flow_adj": 7.6485292703891776
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.78000000000000003,
+              "weight_destination": 0.75,
+              "weight_missing": false,
+              "flow_adj": 15.297058540778355
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "clipped_zero": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1,
+        "clip_max": 0
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0,
+              "weight_destination": 0,
+              "weight_missing": false,
+              "flow_adj": 0
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0,
+              "weight_destination": 0,
+              "weight_missing": false,
+              "flow_adj": 0
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "keep_columns": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1,
+        "keep_cols": ["label", "missing", "flow_adj", "weight_missing", "label"]
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "label", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "label": "first",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "label": "second",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "text_coverage_counts": {
+      "mpd": {
+        "origin": ["A", "B", "C", "D", "E"],
+        "destination": ["B", "C", "D", "E", "A"],
+        "flow": [10, 20, 30, 40, 50],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "coverage": {
+        "origin": ["A", "B", "C", "D", "E"],
+        "population": ["0x64", " 2e2 ", "", "NaN", "  +0X1.9p6 "],
+        "user_count": ["0x19", "100", "25", "25", "50"],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "B",
+              "destination": "C",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "C",
+              "destination": "D",
+              "mpd_source": "s",
+              "flow": 30,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "D",
+              "destination": "E",
+              "mpd_source": "s",
+              "flow": 40,
+              "weight_origin": null,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "E",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 50,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 37.877184120235619
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "text_calibration_inputs": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "od",
+        "k_grid": [0.5, 1, 2]
+      },
+      "benchmark": {
+        "origin": ["A", "B", "A", "B"],
+        "destination": ["B", "A", "B", "A"],
+        "flow": ["0x7", " 16 ", " ", "NaN"]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 3.1594752418314851
+            },
+            {
+              "k": 1,
+              "loss": 0.20955158593896606
+            },
+            {
+              "k": 2,
+              "loss": 3.827354935704312
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "calibrated_origin": {
+      "mpd": {
+        "origin": ["A", "A"],
+        "destination": ["B", "C"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "origin",
+        "k_grid": [0.5, 1, 2],
+        "flow_col_bench": "target"
+      },
+      "benchmark": {
+        "origin": ["A", "A"],
+        "destination": ["B", "C"],
+        "target": [11, 14]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.83714674111174348,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.3714674111174343
+            },
+            {
+              "origin": "A",
+              "destination": "C",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.83714674111174348,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.742934822234869
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 0.11440223335230115
+            },
+            {
+              "k": 1,
+              "loss": 3.5672650335621015
+            },
+            {
+              "k": 2,
+              "loss": 8.5184480422562103
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "new_calibrated_origin": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "origin_population": [100, 200],
+        "origin_user_count": [25, 100],
+        "destination": ["B", "A"],
+        "destination_population": [300, 400],
+        "destination_user_count": [30, 200],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "origin",
+        "k_grid": [0.5, 1, 2],
+        "flow_col_bench": "target"
+      },
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "target": [7, 16]
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 6.8888228804655158
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 3.0062191413769526
+            },
+            {
+              "k": 1,
+              "loss": 0.17648371666081797
+            },
+            {
+              "k": 2,
+              "loss": 4.2020276187462953
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "missing_calibration_origin": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [0, 0],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "origin",
+        "k_grid": [0.5, 1, 2],
+        "flow_col_bench": "target"
+      },
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "target": [7, 16]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 23
+            },
+            {
+              "k": 1,
+              "loss": 23
+            },
+            {
+              "k": 2,
+              "loss": 23
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "calibrated_od": {
+      "mpd": {
+        "origin": ["A", "A"],
+        "destination": ["B", "C"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "od",
+        "k_grid": [0.5, 1, 2],
+        "flow_col_bench": "target"
+      },
+      "benchmark": {
+        "origin": ["A", "A"],
+        "destination": ["B", "C"],
+        "target": [11, 14]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "A",
+              "destination": "C",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 14.288489977625265
+            }
+          ],
+          "parameter": 1,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 5.3714674111174343
+            },
+            {
+              "k": 1,
+              "loss": 4.1442449888126323
+            },
+            {
+              "k": 2,
+              "loss": 8.5184480422562086
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "missing_calibration_od": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [0, 0],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "calibration_aggregate": "od",
+        "k_grid": [0.5, 1, 2],
+        "flow_col_bench": "target"
+      },
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "target": [7, 16]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 0
+            },
+            {
+              "k": 1,
+              "loss": 0
+            },
+            {
+              "k": 2,
+              "loss": 0
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "parameter_overrides_benchmark": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "benchmark": {
+        "irrelevant": 1
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "invalid_coverage_rows": {
+      "mpd": {
+        "origin": ["A", "B", "C", "D", "E"],
+        "destination": ["B", "B", "B", "B", "B"],
+        "flow": [0, 20, null, 3, 4],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "coverage": {
+        "origin": ["A", "B", "C", "D", "E"],
+        "population": ["100", "100", "0", "Infinity", "200"],
+        "user_count": [0, null, 3, 10, -2],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 0,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "C",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": null,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "D",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 3,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "E",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 4,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 0,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "C",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": null,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "D",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 3,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "E",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 4,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 0,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "C",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": null,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "D",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 3,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "E",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 4,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "missing_and_literal_keys": {
+      "mpd": {
+        "origin": [null, "nan", "None", "<NA>", "B"],
+        "destination": ["B", "B", "B", "B", "B"],
+        "flow": [10, 10, 10, 10, 10],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "coverage": {
+        "origin": [null, "nan", "None", "<NA>", "B"],
+        "population": [100, 100, 100, 100, 100],
+        "user_count": [10, 20, 25, 50, 100],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": null,
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.66425326612871849,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 6.6425326612871851
+            },
+            {
+              "origin": "nan",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.69743827986497364,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 6.9743827986497369
+            },
+            {
+              "origin": "None",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "<NA>",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.0326532985631669
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 1,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 10
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": null,
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            },
+            {
+              "origin": "nan",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            },
+            {
+              "origin": "None",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            },
+            {
+              "origin": "<NA>",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": null,
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.66425326612871849,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 8.1501734099877812
+            },
+            {
+              "origin": "nan",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.69743827986497364,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 8.3512770272873453
+            },
+            {
+              "origin": "None",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 8.4523635681462679
+            },
+            {
+              "origin": "<NA>",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 8.9625070703253389
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 1,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "numeric_coverage_keys": {
+      "mpd": {
+        "origin": ["1", "2"],
+        "destination": ["2", "1"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"]
+      },
+      "coverage": {
+        "origin": [1, 2],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "1",
+              "destination": "2",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "2",
+              "destination": "1",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "multiple_sources": {
+      "mpd": {
+        "origin": ["A", "B", "A", "B", "A", "B"],
+        "destination": ["B", "A", "B", "A", "B", "A"],
+        "flow": [10, 20, 10, 20, 10, 20],
+        "mpd_source": ["s", "s", "other", "other", null, null]
+      },
+      "coverage": {
+        "origin": ["A", "B", "A", "B", "A", "B"],
+        "population": [100, 200, 100, 200, 100, 200],
+        "user_count": [25, 100, 50, 150, 10, 20],
+        "mpd_source": ["s", "s", "other", "other", null, null]
+      },
+      "args": {
+        "k": 1
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            },
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "other",
+              "flow": 10,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.89852230101082686,
+              "weight_missing": false,
+              "flow_adj": 8.4955977571017254
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "other",
+              "flow": 20,
+              "weight_origin": 0.89852230101082686,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 16.991195514203451
+            },
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": null,
+              "flow": 10,
+              "weight_origin": 0.66425326612871849,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 6.6425326612871851
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": null,
+              "flow": 20,
+              "weight_origin": 0.66425326612871849,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 13.28506532257437
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "repeated_coverage": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "A", "A", "B"],
+        "population": [100, 100, 100, 200],
+        "user_count": [10, 10, 80, 50],
+        "mpd_source": ["s", "s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.74331614320212713,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.4331614320212713
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 14.288489977625265
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": 0.74331614320212713,
+              "weight_missing": false,
+              "flow_adj": 14.866322864042543
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.74331614320212713,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 7.2872715272420931
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.74331614320212713,
+              "weight_missing": false,
+              "flow_adj": 14.574543054484186
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "repeated_new_coverage": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "A", "A", "B"],
+        "origin_population": [100, 100, 100, 200],
+        "origin_user_count": [10, 10, 80, 50],
+        "destination": ["B", "B", "B", "A"],
+        "destination_population": [100, 100, 100, 100],
+        "destination_user_count": [10, 10, 80, 50],
+        "mpd_source": ["s", "s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.74331614320212713,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.4331614320212713
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 14.288489977625265
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 0.74331614320212713,
+              "weight_missing": false,
+              "flow_adj": 7.4331614320212713
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.74331614320212713,
+              "weight_destination": 0.74331614320212713,
+              "weight_missing": false,
+              "flow_adj": 7.4331614320212713
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "penetration_endpoints": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 100],
+        "user_count": [0, 150],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 1,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 20
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "destination": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": false,
+              "flow_adj": 10
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": null,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        },
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": null,
+              "weight_destination": 1,
+              "weight_missing": true,
+              "flow_adj": null
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 1,
+              "weight_destination": null,
+              "weight_missing": true,
+              "flow_adj": null
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "invalid_candidates_skipped": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {
+        "k_grid": ["0", "-1", null, "Infinity", "1", "2"]
+      },
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [7, 16]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": [
+            {
+              "k": 1,
+              "loss": 0.20955158593896606
+            },
+            {
+              "k": 2,
+              "loss": 3.827354935704312
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "groups_and_missing_strata": {
+      "mpd": {
+        "origin": ["A", "A", "B", "B"],
+        "destination": ["B", "B", "A", "A"],
+        "flow": [10, 20, 30, 40],
+        "mpd_source": ["s", "s", "s", "s"],
+        "age": ["young", null, "young", null],
+        "label": ["a", "b", "c", "d"]
+      },
+      "coverage": {
+        "origin": ["A", "A", "B", "B"],
+        "population": [100, 100, 200, 200],
+        "user_count": [25, 50, 100, 150],
+        "mpd_source": ["s", "s", "s", "s"],
+        "age": ["young", null, "young", null]
+      },
+      "args": {
+        "k": 1,
+        "group_cols": "age",
+        "keep_cols": "label"
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "age", "label", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "age": "young",
+              "label": "a",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 7.5754368240471237
+            },
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "age": null,
+              "label": "b",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.89852230101082686,
+              "weight_missing": false,
+              "flow_adj": 16.991195514203451
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "age": "young",
+              "label": "c",
+              "flow": 30,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 22.726310472141371
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "age": null,
+              "label": "d",
+              "flow": 40,
+              "weight_origin": 0.89852230101082686,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 33.982391028406902
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "grouped_calibration": {
+      "mpd": {
+        "origin": ["A", "A", "B", "B"],
+        "destination": ["B", "B", "A", "A"],
+        "flow": [10, 20, 30, 40],
+        "mpd_source": ["s", "s", "s", "s"],
+        "age": ["young", null, "young", null],
+        "label": ["a", "b", "c", "d"]
+      },
+      "coverage": {
+        "origin": ["A", "A", "B", "B"],
+        "population": [100, 100, 200, 200],
+        "user_count": [25, 50, 100, 150],
+        "mpd_source": ["s", "s", "s", "s"],
+        "age": ["young", null, "young", null]
+      },
+      "args": {
+        "group_cols": "age",
+        "keep_cols": "label",
+        "k_grid": [0.5, 1, 2]
+      },
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [15, 35]
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "age", "label", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "age": "young",
+              "label": "a",
+              "flow": 10,
+              "weight_origin": 0.83714674111174348,
+              "weight_destination": 0.88940039153570249,
+              "weight_missing": false,
+              "flow_adj": 8.6287811382467101
+            },
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "age": null,
+              "label": "b",
+              "flow": 20,
+              "weight_origin": 0.88940039153570249,
+              "weight_destination": 0.94369007904358837,
+              "weight_missing": false,
+              "flow_adj": 18.322863594861211
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "age": "young",
+              "label": "c",
+              "flow": 30,
+              "weight_origin": 0.88940039153570249,
+              "weight_destination": 0.83714674111174348,
+              "weight_missing": false,
+              "flow_adj": 25.886343414740132
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "age": null,
+              "label": "d",
+              "flow": 40,
+              "weight_origin": 0.94369007904358837,
+              "weight_destination": 0.88940039153570249,
+              "weight_missing": false,
+              "flow_adj": 36.645727189722422
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 10.516284662429527
+            },
+            {
+              "k": 1,
+              "loss": 18.724666161201153
+            },
+            {
+              "k": 2,
+              "loss": 30.145019984965714
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "default_grid": {
+      "mpd": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+        "label": ["first", "second"]
+      },
+      "coverage": {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"]
+      },
+      "args": {},
+      "benchmark": {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [7, 16]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 7.1442449888126323
+            },
+            {
+              "origin": "B",
+              "destination": "A",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 16.065306597126334
+            }
+          ],
+          "parameter": 1,
+          "calibration": [
+            {
+              "k": 0.10000000000000001,
+              "loss": 6.1480013021511386
+            },
+            {
+              "k": 0.20000000000000001,
+              "loss": 5.3403112277639195
+            },
+            {
+              "k": 0.30000000000000004,
+              "loss": 4.5744989680330441
+            },
+            {
+              "k": 0.40000000000000002,
+              "loss": 3.8482735102689549
+            },
+            {
+              "k": 0.5,
+              "loss": 3.1594752418314851
+            },
+            {
+              "k": 0.59999999999999998,
+              "loss": 2.5060680786385525
+            },
+            {
+              "k": 0.70000000000000007,
+              "loss": 1.8861320843239779
+            },
+            {
+              "k": 0.80000000000000004,
+              "loss": 1.2978565483755133
+            },
+            {
+              "k": 0.90000000000000002,
+              "loss": 0.73953349368948373
+            },
+            {
+              "k": 1,
+              "loss": 0.20955158593896606
+            },
+            {
+              "k": 1.1000000000000001,
+              "loss": 0.29360958101912082
+            },
+            {
+              "k": 1.2000000000000002,
+              "loss": 0.77138484776887584
+            },
+            {
+              "k": 1.3000000000000003,
+              "loss": 1.2251285224742299
+            },
+            {
+              "k": 1.4000000000000001,
+              "loss": 1.6561191055327118
+            },
+            {
+              "k": 1.5000000000000002,
+              "loss": 2.0655637253640151
+            },
+            {
+              "k": 1.6000000000000001,
+              "loss": 2.4546023036651272
+            },
+            {
+              "k": 1.7000000000000002,
+              "loss": 2.8243114672627794
+            },
+            {
+              "k": 1.8000000000000003,
+              "loss": 3.1757082225733502
+            },
+            {
+              "k": 1.9000000000000001,
+              "loss": 3.5097534076353307
+            },
+            {
+              "k": 2,
+              "loss": 3.827354935704312
+            },
+            {
+              "k": 2.1000000000000001,
+              "loss": 4.1293708434906398
+            },
+            {
+              "k": 2.2000000000000002,
+              "loss": 4.4166121562709044
+            },
+            {
+              "k": 2.3000000000000003,
+              "loss": 4.6898455813121975
+            },
+            {
+              "k": 2.4000000000000004,
+              "loss": 4.949796040308442
+            },
+            {
+              "k": 2.5000000000000004,
+              "loss": 5.1971490508378269
+            },
+            {
+              "k": 2.6000000000000001,
+              "loss": 5.4325529662060195
+            },
+            {
+              "k": 2.7000000000000002,
+              "loss": 5.6566210824379075
+            },
+            {
+              "k": 2.8000000000000003,
+              "loss": 5.8699336206189399
+            },
+            {
+              "k": 2.9000000000000004,
+              "loss": 6.0730395922622158
+            },
+            {
+              "k": 3.0000000000000004,
+              "loss": 6.2664585548874312
+            },
+            {
+              "k": 3.1000000000000001,
+              "loss": 6.4506822645399211
+            },
+            {
+              "k": 3.2000000000000002,
+              "loss": 6.6261762315502208
+            },
+            {
+              "k": 3.3000000000000003,
+              "loss": 6.7933811854349244
+            },
+            {
+              "k": 3.4000000000000004,
+              "loss": 6.9527144544661201
+            },
+            {
+              "k": 3.5000000000000004,
+              "loss": 7.1045712650875359
+            },
+            {
+              "k": 3.6000000000000001,
+              "loss": 7.2493259660292946
+            },
+            {
+              "k": 3.7000000000000002,
+              "loss": 7.3873331816679881
+            },
+            {
+              "k": 3.8000000000000003,
+              "loss": 7.5189288988937122
+            },
+            {
+              "k": 3.9000000000000004,
+              "loss": 7.6444314914788629
+            },
+            {
+              "k": 4,
+              "loss": 7.7641426856940772
+            },
+            {
+              "k": 4.0999999999999996,
+              "loss": 7.8783484706833669
+            },
+            {
+              "k": 4.2000000000000002,
+              "loss": 7.9873199568922377
+            },
+            {
+              "k": 4.2999999999999998,
+              "loss": 8.0913141856382502
+            },
+            {
+              "k": 4.3999999999999995,
+              "loss": 8.1905748927225268
+            },
+            {
+              "k": 4.5,
+              "loss": 8.2853332288016546
+            },
+            {
+              "k": 4.5999999999999996,
+              "loss": 8.3758084390721486
+            },
+            {
+              "k": 4.7000000000000002,
+              "loss": 8.4622085046628115
+            },
+            {
+              "k": 4.7999999999999998,
+              "loss": 8.544730747983607
+            },
+            {
+              "k": 4.9000000000000004,
+              "loss": 8.623562404142227
+            },
+            {
+              "k": 5,
+              "loss": 8.6988811604107674
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "repeated_source_benchmark": {
+      "mpd": {
+        "origin": ["A", "A"],
+        "destination": ["B", "B"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "other"]
+      },
+      "coverage": {
+        "origin": ["A", "B", "A", "B"],
+        "population": [100, 200, 100, 200],
+        "user_count": [25, 100, 50, 150],
+        "mpd_source": ["s", "s", "other", "other"]
+      },
+      "benchmark": {
+        "origin": ["A", "A"],
+        "destination": ["B", "B"],
+        "flow": [15, 35],
+        "mpd_source": ["s", "other"]
+      },
+      "args": {
+        "k_grid": [0.5, 1, 2]
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.83714674111174348,
+              "weight_destination": 0.88940039153570249,
+              "weight_missing": false,
+              "flow_adj": 8.6287811382467101
+            },
+            {
+              "origin": "A",
+              "destination": "B",
+              "mpd_source": "other",
+              "flow": 20,
+              "weight_origin": 0.88940039153570249,
+              "weight_destination": 0.94369007904358837,
+              "weight_missing": false,
+              "flow_adj": 18.322863594861211
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 46.096710533784155
+            },
+            {
+              "k": 1,
+              "loss": 50.866735323498844
+            },
+            {
+              "k": 2,
+              "loss": 57.516556377594384
+            }
+          ],
+          "many_to_many": 3,
+          "coercion_warnings": 0,
+          "warnings": ["Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 1 of `x` matches multiple rows in `y`.\nℹ Row 1 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning.", "Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 1 of `x` matches multiple rows in `y`.\nℹ Row 1 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning.", "Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 1 of `x` matches multiple rows in `y`.\nℹ Row 1 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning."]
+        }
+      }
+    },
+    "missing_key_calibration": {
+      "mpd": {
+        "origin": [null, "nan", "None", "<NA>", "B"],
+        "destination": ["B", "B", "B", "B", "B"],
+        "flow": [10, 10, 10, 10, 10],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "coverage": {
+        "origin": [null, "nan", "None", "<NA>", "B"],
+        "population": [100, 100, 100, 100, 100],
+        "user_count": [10, 20, 25, 50, 100],
+        "mpd_source": ["s", "s", "s", "s", "s"]
+      },
+      "args": {
+        "k_grid": [0.5, 1, 2]
+      },
+      "benchmark": {
+        "origin": [null, "nan", "None", "<NA>", "B"],
+        "destination": ["B", "B", "B", "B", "B"],
+        "flow": [40, 30, 20, 10, 10]
+      },
+      "modes": "origin",
+      "expected": {
+        "origin": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": null,
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.80677608631689635,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.0677608631689637
+            },
+            {
+              "origin": "nan",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.82694128756625929,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.2694128756625922
+            },
+            {
+              "origin": "None",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.83714674111174348,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.3714674111174343
+            },
+            {
+              "origin": "<NA>",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.88940039153570249,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 8.8940039153570254
+            },
+            {
+              "origin": "B",
+              "destination": "B",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 1,
+              "weight_destination": null,
+              "weight_missing": false,
+              "flow_adj": 10
+            }
+          ],
+          "parameter": 0.5,
+          "calibration": [
+            {
+              "k": 0.5,
+              "loss": 66.397354934693993
+            },
+            {
+              "k": 1,
+              "loss": 71.206186252687274
+            },
+            {
+              "k": 2,
+              "loss": 77.651215238875722
+            }
+          ],
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    },
+    "scientific_numeric_coverage_keys": {
+      "mpd": {
+        "origin": ["1e+05", "1e-04", "1250000"],
+        "destination": ["1e-04", "1250000", "1e+05"],
+        "flow": [10, 20, 30],
+        "mpd_source": ["s", "s", "s"]
+      },
+      "coverage": {
+        "origin": [100000, 0.0001, 1250000],
+        "population": [100, 100, 100],
+        "user_count": [10, 25, 50],
+        "mpd_source": ["s", "s", "s"]
+      },
+      "args": {
+        "k": 1
+      },
+      "modes": "both",
+      "expected": {
+        "both": {
+          "columns": ["origin", "destination", "mpd_source", "flow", "weight_origin", "weight_destination", "weight_missing", "flow_adj"],
+          "data": [
+            {
+              "origin": "1e+05",
+              "destination": "1e-04",
+              "mpd_source": "s",
+              "flow": 10,
+              "weight_origin": 0.66425326612871849,
+              "weight_destination": 0.71442449888126325,
+              "weight_missing": false,
+              "flow_adj": 6.8888228804655158
+            },
+            {
+              "origin": "1e-04",
+              "destination": "1250000",
+              "mpd_source": "s",
+              "flow": 20,
+              "weight_origin": 0.71442449888126325,
+              "weight_destination": 0.80326532985631671,
+              "weight_missing": false,
+              "flow_adj": 15.150873648094247
+            },
+            {
+              "origin": "1250000",
+              "destination": "1e+05",
+              "mpd_source": "s",
+              "flow": 30,
+              "weight_origin": 0.80326532985631671,
+              "weight_destination": 0.66425326612871849,
+              "weight_missing": false,
+              "flow_adj": 21.913796043417918
+            }
+          ],
+          "parameter": 1,
+          "calibration": {},
+          "many_to_many": 0,
+          "coercion_warnings": 0,
+          "warnings": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1793 @@
+{
+  "legacy_fixed": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "new_fixed": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "origin_population": [
+        100,
+        200
+      ],
+      "origin_user_count": [
+        25,
+        100
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "destination_population": [
+        300,
+        400
+      ],
+      "destination_user_count": [
+        30,
+        200
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "legacy_fallback": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {},
+    "modes": [
+      "origin"
+    ]
+  },
+  "clipped": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1,
+      "clip_min": 0.75,
+      "clip_max": 0.78
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "clipped_zero": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1,
+      "clip_max": 0
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "keep_columns": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1,
+      "keep_cols": [
+        "label",
+        "missing",
+        "flow_adj",
+        "weight_missing",
+        "label"
+      ]
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "text_coverage_counts": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "destination": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "A"
+      ],
+      "flow": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "population": [
+        "0x64",
+        " 2e2 ",
+        "",
+        "NaN",
+        "  +0X1.9p6 "
+      ],
+      "user_count": [
+        "0x19",
+        "100",
+        "25",
+        "25",
+        "50"
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "text_calibration_inputs": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "od",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ]
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B",
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A",
+        "B",
+        "A"
+      ],
+      "flow": [
+        "0x7",
+        " 16 ",
+        " ",
+        "NaN"
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "calibrated_origin": {
+    "mpd": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "C"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "origin",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ],
+      "flow_col_bench": "target"
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "C"
+      ],
+      "target": [
+        11,
+        14
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "new_calibrated_origin": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "origin_population": [
+        100,
+        200
+      ],
+      "origin_user_count": [
+        25,
+        100
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "destination_population": [
+        300,
+        400
+      ],
+      "destination_user_count": [
+        30,
+        200
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "origin",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ],
+      "flow_col_bench": "target"
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "target": [
+        7,
+        16
+      ]
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "missing_calibration_origin": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        0,
+        0
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "origin",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ],
+      "flow_col_bench": "target"
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "target": [
+        7,
+        16
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "calibrated_od": {
+    "mpd": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "C"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "od",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ],
+      "flow_col_bench": "target"
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "C"
+      ],
+      "target": [
+        11,
+        14
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "missing_calibration_od": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        0,
+        0
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "calibration_aggregate": "od",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ],
+      "flow_col_bench": "target"
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "target": [
+        7,
+        16
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "parameter_overrides_benchmark": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    },
+    "benchmark": {
+      "irrelevant": [
+        1
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "invalid_coverage_rows": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "flow": [
+        0,
+        20,
+        null,
+        3,
+        4
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "population": [
+        100,
+        100,
+        0,
+        "Infinity",
+        200
+      ],
+      "user_count": [
+        0,
+        null,
+        3,
+        10,
+        -2
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "missing_and_literal_keys": {
+    "mpd": {
+      "origin": [
+        null,
+        "nan",
+        "None",
+        "<NA>",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "flow": [
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        null,
+        "nan",
+        "None",
+        "<NA>",
+        "B"
+      ],
+      "population": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "user_count": [
+        10,
+        20,
+        25,
+        50,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "numeric_coverage_keys": {
+    "mpd": {
+      "origin": [
+        "1",
+        "2"
+      ],
+      "destination": [
+        "2",
+        "1"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        1,
+        2
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "multiple_sources": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B",
+        "A",
+        "B",
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A",
+        "B",
+        "A",
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20,
+        10,
+        20,
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "other",
+        "other",
+        null,
+        null
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B",
+        "A",
+        "B",
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200,
+        100,
+        200,
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100,
+        50,
+        150,
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "other",
+        "other",
+        null,
+        null
+      ]
+    },
+    "args": {
+      "k": 1
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "repeated_coverage": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "A",
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        100,
+        100,
+        200
+      ],
+      "user_count": [
+        10,
+        10,
+        80,
+        50
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "repeated_new_coverage": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "A",
+        "A",
+        "B"
+      ],
+      "origin_population": [
+        100,
+        100,
+        100,
+        200
+      ],
+      "origin_user_count": [
+        10,
+        10,
+        80,
+        50
+      ],
+      "destination": [
+        "B",
+        "B",
+        "B",
+        "A"
+      ],
+      "destination_population": [
+        100,
+        100,
+        100,
+        100
+      ],
+      "destination_user_count": [
+        10,
+        10,
+        80,
+        50
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "penetration_endpoints": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        100
+      ],
+      "user_count": [
+        0,
+        150
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    }
+  },
+  "invalid_candidates_skipped": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k_grid": [
+        0,
+        -1,
+        null,
+        "Infinity",
+        1,
+        2
+      ]
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        7,
+        16
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "groups_and_missing_strata": {
+    "mpd": {
+      "origin": [
+        "A",
+        "A",
+        "B",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "A",
+        "A"
+      ],
+      "flow": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ],
+      "age": [
+        "young",
+        null,
+        "young",
+        null
+      ],
+      "label": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "A",
+        "B",
+        "B"
+      ],
+      "population": [
+        100,
+        100,
+        200,
+        200
+      ],
+      "user_count": [
+        25,
+        50,
+        100,
+        150
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ],
+      "age": [
+        "young",
+        null,
+        "young",
+        null
+      ]
+    },
+    "args": {
+      "k": 1,
+      "group_cols": "age",
+      "keep_cols": "label"
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "grouped_calibration": {
+    "mpd": {
+      "origin": [
+        "A",
+        "A",
+        "B",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "A",
+        "A"
+      ],
+      "flow": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ],
+      "age": [
+        "young",
+        null,
+        "young",
+        null
+      ],
+      "label": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "A",
+        "B",
+        "B"
+      ],
+      "population": [
+        100,
+        100,
+        200,
+        200
+      ],
+      "user_count": [
+        25,
+        50,
+        100,
+        150
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s"
+      ],
+      "age": [
+        "young",
+        null,
+        "young",
+        null
+      ]
+    },
+    "args": {
+      "group_cols": "age",
+      "keep_cols": "label",
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ]
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        15,
+        35
+      ]
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "default_grid": {
+    "mpd": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ],
+      "label": [
+        "first",
+        "second"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s"
+      ]
+    },
+    "args": {},
+    "benchmark": {
+      "origin": [
+        "A",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "A"
+      ],
+      "flow": [
+        7,
+        16
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "repeated_source_benchmark": {
+    "mpd": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "B"
+      ],
+      "flow": [
+        10,
+        20
+      ],
+      "mpd_source": [
+        "s",
+        "other"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        "A",
+        "B",
+        "A",
+        "B"
+      ],
+      "population": [
+        100,
+        200,
+        100,
+        200
+      ],
+      "user_count": [
+        25,
+        100,
+        50,
+        150
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "other",
+        "other"
+      ]
+    },
+    "benchmark": {
+      "origin": [
+        "A",
+        "A"
+      ],
+      "destination": [
+        "B",
+        "B"
+      ],
+      "flow": [
+        15,
+        35
+      ],
+      "mpd_source": [
+        "s",
+        "other"
+      ]
+    },
+    "args": {
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ]
+    },
+    "modes": [
+      "both"
+    ]
+  },
+  "missing_key_calibration": {
+    "mpd": {
+      "origin": [
+        null,
+        "nan",
+        "None",
+        "<NA>",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "flow": [
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        null,
+        "nan",
+        "None",
+        "<NA>",
+        "B"
+      ],
+      "population": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "user_count": [
+        10,
+        20,
+        25,
+        50,
+        100
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k_grid": [
+        0.5,
+        1,
+        2
+      ]
+    },
+    "benchmark": {
+      "origin": [
+        null,
+        "nan",
+        "None",
+        "<NA>",
+        "B"
+      ],
+      "destination": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "flow": [
+        40,
+        30,
+        20,
+        10,
+        10
+      ]
+    },
+    "modes": [
+      "origin"
+    ]
+  },
+  "scientific_numeric_coverage_keys": {
+    "mpd": {
+      "origin": [
+        "1e+05",
+        "1e-04",
+        "1250000"
+      ],
+      "destination": [
+        "1e-04",
+        "1250000",
+        "1e+05"
+      ],
+      "flow": [
+        10,
+        20,
+        30
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "coverage": {
+      "origin": [
+        100000.0,
+        0.0001,
+        1250000.0
+      ],
+      "population": [
+        100,
+        100,
+        100
+      ],
+      "user_count": [
+        10,
+        25,
+        50
+      ],
+      "mpd_source": [
+        "s",
+        "s",
+        "s"
+      ]
+    },
+    "args": {
+      "k": 1
+    },
+    "modes": [
+      "both"
+    ]
+  }
+}

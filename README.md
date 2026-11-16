@@ -17,9 +17,9 @@ spatial and temporal aggregation and a validation target. Examples include trade
 of goods, Internet traffic, supply chains and other forms of interaction between
 places.
 
-The population coverage measurement API and inverse-penetration adjustment are
-implemented. Other adjustment methods and flow-validation methods remain under
-development.
+The population coverage measurement API, inverse-penetration adjustment and
+`adjust_selection_rate2()` are implemented. Other adjustment and flow-validation
+methods remain under development.
 
 ## Installation for development
 
@@ -126,6 +126,68 @@ infinite weights or NaN; this function does not clip or fill those results.
 Identical coverage records are deduplicated, but different records for the same
 area/source can expand the output. Neither input DataFrame is modified.
 
+## Selection Rate II adjustment
+
+`adjust_selection_rate2()` multiplies flow by the nonlinear correction
+`p * (exp(-k) - 1) / (exp(-k*p) - 1)`, where `p` is active users/population:
+
+```python
+import pandas as pd
+
+from debiaspy import adjust_selection_rate2
+
+flows = pd.DataFrame(
+    {
+        "origin": ["A", "B"],
+        "destination": ["B", "A"],
+        "flow": [10, 20],
+        "mpd_source": ["s", "s"],
+    }
+)
+coverage = pd.DataFrame(
+    {
+        "origin": ["A", "B"],
+        "population": [100, 200],
+        "user_count": [25, 100],
+        "mpd_source": ["s", "s"],
+    }
+)
+adjusted = adjust_selection_rate2(flows, coverage, k=1)
+# adjusted["flow_adj"] is approximately [7.144245, 16.065307].
+```
+
+The factor can be below 1 and reduce observed flows. Choose origin, destination
+or geometric-mean weighting with `weight_by`. Supply `group_cols` for strata
+present in both tables; the same group values identify the origin and destination
+lookups. Population and users are summed by area/source/group before taking
+their ratio, including repeated coverage records.
+
+Legacy coverage uses `origin`, `population`, `user_count` and `mpd_source`.
+When present, separate endpoint counts take precedence. This schema has
+`origin`, `origin_population`, `origin_user_count`, `destination`,
+`destination_population`, `destination_user_count` and `mpd_source`.
+
+A fixed positive `k` overrides calibration. If `k` is omitted, a supplied
+`benchmark_od_df` selects one global `k` from `k_grid` (default 0.1 to 5
+in steps of 0.1). The benchmark has origin, destination and a flow column
+(`flow_col_bench`, default `"flow"`). Without a benchmark, `k=1`.
+The result includes both endpoint weights, `weight_missing` and `flow_adj`.
+`keep_cols` retains requested extra columns from the input flow table.
+`clip_min` and `clip_max` bound valid weights. The selected value is in
+`adjusted.attrs["k"]`; calibrated results also contain the `k`/`loss` DataFrame
+`adjusted.attrs["k_calibration"]`. Neither input is modified.
+
+Invalid coverage leaves missing weights. Penetration is limited to [0, 1];
+a zero penetration ultimately produces a missing weight, while full penetration
+produces weight 1. Missing identifiers and missing group values are retained.
+Calibration matches only overlapping origin/destination pairs, ignoring source
+and group columns, with one parameter for the entire call.
+`calibration_aggregate="origin"` compares totals by origin, and `"od"`
+compares matched rows. Missing adjusted values are omitted from loss sums, so
+an all-missing OD loss is zero. Benchmarks used for fitting do not constitute
+an independent validation set. See the [development verification guide](docs/development/api-mapping.md#selection-rate-ii-verification)
+for reference checks and interface differences.
+
 ## Loading example data
 
 With the optional `debiaspydata` companion installed, prepare aligned LAD
@@ -185,8 +247,9 @@ meaningful tests with new or changed functions.
 
 The source files are organised around the main package tasks: measuring bias,
 adjusting flows, validating outputs, plotting diagnostics and loading example
-data. `measure_bias.py` and `adjust_inverse_penetration.py` are implemented;
-most other modules remain placeholders:
+data. `measure_bias.py`, `adjust_inverse_penetration.py`,
+`adjust_selection_rate2.py` and `example_data.py` are implemented. Most other
+modules remain placeholders. The module list includes:
 
 - `adjust_all_methods.py`
 - `adjust_coefficient.py`
