@@ -278,3 +278,9 @@ DEBIAS.
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind are welcome.
+
+`adjust_all_methods(observed, coverage, methods="inverse_penetration")`
+runs the inverse penetration adjustment with both origin and destination
+weights, as in the R wrapper. Use `inverse_penetration_args` to override those
+defaults. The default `methods="all"` selects all six reference methods and
+requires their inputs and implementations.
