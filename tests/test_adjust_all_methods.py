@@ -84,3 +84,21 @@ def test_all_dispatches_six_methods_in_reference_order(monkeypatch):
     assert calls["multilevel_bayes"]["model_engine"] == "frequentist"
     assert {"mpd_source", "mpd_time"} <= set(calls["multilevel_bayes"]["mpd_od_df"])
     assert all(table is observed for table in result.values())
+
+
+@pytest.mark.parametrize("name", ["mpd_od_df", "coverage_df"])
+def test_multilevel_rejects_duplicate_prepared_table(name):
+    observed = pd.DataFrame(columns=["origin", "destination", "flow"])
+    coverage = pd.DataFrame(columns=["origin", "population", "user_count"])
+    covariates = pd.DataFrame(columns=["area", "rural_pct"])
+    distances = pd.DataFrame(columns=["origin", "destination", "distance_km"])
+
+    with pytest.raises(TypeError, match=f"multiple values.*{name}"):
+        adjust_all_methods(
+            observed,
+            coverage,
+            covariates_df=covariates,
+            distance_df=distances,
+            methods="multilevel_bayes",
+            multilevel_args={name: observed},
+        )

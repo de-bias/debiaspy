@@ -70,6 +70,7 @@ def adjust_all_methods(
     methods, missing inputs, or unsupported multilevel contracts fail before
     the affected method runs. Parity is scoped to each method's audited cases.
     """
+    # Resolve the engine and method selection before validating inputs
     engines = ("frequentist", "bayesian")
     matches = [
         engine
@@ -80,6 +81,7 @@ def adjust_all_methods(
         raise ValueError("`multilevel_engine` must be one of: frequentist, bayesian")
     multilevel_engine = matches[0]
     selected = _normalise_methods(methods)
+    # Check shared inputs, then check tables required by the selected methods
     _require_columns(mpd_od_df, ("origin", "destination", "flow"), "mpd_od_df")
     _require_columns(coverage_df, ("origin", "population", "user_count"), "coverage_df")
 
@@ -112,6 +114,7 @@ def adjust_all_methods(
             distance_df, ("origin", "destination", "distance_km"), "distance_df"
         )
 
+    # Dispatch in the reference order and apply each method’s overrides
     out: AdjustmentSet = AdjustmentSet()
 
     if "inverse_penetration" in selected:
@@ -173,6 +176,7 @@ def adjust_all_methods(
         out["coefficient"] = _run("coefficient", **args)
 
     if "multilevel_bayes" in selected:
+        # Build the reference formula and prepare missing source and time columns
         default_formula = (
             "flow ~ "
             f"{covariate_col}_o + {covariate_col}_d + log_distance + "
@@ -201,13 +205,15 @@ def adjust_all_methods(
             source_col=args.get("source_col"),
             time_col=args.get("time_col"),
         )
-        args = {
-            "mpd_od_df": ml_inputs["mpd_od_df"],
-            "coverage_df": ml_inputs["coverage_df"],
+        # Pass prepared tables explicitly so duplicate overrides raise an error
+        out["multilevel_bayes"] = _run(
+            "multilevel_bayes",
+            mpd_od_df=ml_inputs["mpd_od_df"],
+            coverage_df=ml_inputs["coverage_df"],
             **args,
-        }
-        out["multilevel_bayes"] = _run("multilevel_bayes", **args)
+        )
 
+    # Record the executed method names alongside their returned tables
     out.attrs["methods"] = list(out.keys())
     return out
 
@@ -239,6 +245,7 @@ def _merge_args(
             "Method-specific argument overrides must be supplied as named lists."
         )
     merged = defaults.copy()
+    # Merge nested keys and preserve explicit None values
     for key, value in overrides.items():
         if isinstance(merged.get(key), dict) and isinstance(value, dict):
             merged[key] = _merge_args(merged[key], value)
